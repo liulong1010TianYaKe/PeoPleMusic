@@ -1,0 +1,69 @@
+//
+//  聚米iOS版本.pch
+//  聚米iOS版本V1.0.1
+//
+//  Created by hzins on 14-10-22.
+//  Copyright (c) 2014年 hzins. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+//#define _DEBUG_DATA
+
+#ifdef DEBUG // 调试状态, 打开LOG功能
+  #define KyoLog(fmt, ...) NSLog((@"%s [LinE %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+  #define KyoAlert(fmt, ...)  { [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"%s\n [LinE %d] ", __PRETTY_FUNCTION__, __LINE__] message:[NSString stringWithFormat:fmt, ##__VA_ARGS__]  delegate:nil cancelButtonTitle:@"OK(debug mode)" otherButtonTitles:nil] show]; }
+  #define XYLog(fmt, ...) NSLog((@"%s [LinE %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else // 发布状态, 关闭LOG功能
+  #define KyoLog(...) (void)0;
+  #define KyoAlert(...) (void)0;
+  #define XYLog(...) (void)0;
+
+#endif
+
+#ifdef __OBJC__
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "Global.h"
+#import "MJExtension.h"
+#import "UserInfo.h"
+#import "UIView+Extension.h"
+#import "NSString+MD5.h"
+#import "NetworkHelp.h"
+#import "UIImage+Tint.h"
+#import "KyoTextField.h"
+#import "MBProgressHUD.h"
+#import "KyoDataCache.h"
+#import "RootViewController.h"
+#import "JMNavigationViewController.h"
+#import "JMTabBarViewController.h"
+#import "UIImage+KIAdditions.h"
+#import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
+#import "CTBaseDialogView.h"
+#import "KyoUtil.h"
+#import "UIBarButtonItem+Extension.h"
+#import "NSDate+Convert.h"
+#import "KyoMultiTextField.h"
+#import "NSString+Validate.h"
+#import "UIImage+Antialiase.h"
+#import "VerifyRegexTool.h"
+#import "UITableView+EmptyOrError.h"
+//#import "UMAnalyticsHelp.h"
+#import "OTCover.h"
+#import "MAWebViewController.h"
+
+#import "UINavigationController+FDFullscreenPopGesture.h"
+#import "NSString+Html.h"
+#import "NSString+IPAddress.h"
+//#import "KyoThirdPlatformHelp.h"
+#import "CALayer+XibConfiguration.h"
+#import "UIButton+WebCache.h"
+#import "UIView+VisualEffectView.h"
+
+#endif
