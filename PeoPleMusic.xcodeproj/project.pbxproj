@@ -172,6 +172,8 @@
 		FD94F3E21C0E804A006AA37C /* LibrayMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD94F3E11C0E804A006AA37C /* LibrayMusicViewController.m */; };
 		FD94F3E51C0E8062006AA37C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD94F3E41C0E8062006AA37C /* HomeViewController.m */; };
 		FD94F3E81C0E8077006AA37C /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD94F3E71C0E8077006AA37C /* PlayerViewController.m */; };
+		FD94F3EC1C0F0C57006AA37C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD94F3EB1C0F0C57006AA37C /* Home.storyboard */; };
+		FD94F3EF1C0F101F006AA37C /* CommonGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = FD94F3EE1C0F101F006AA37C /* CommonGroup.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -515,6 +517,9 @@
 		FD94F3E41C0E8062006AA37C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		FD94F3E61C0E8077006AA37C /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		FD94F3E71C0E8077006AA37C /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
+		FD94F3EB1C0F0C57006AA37C /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		FD94F3ED1C0F101F006AA37C /* CommonGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonGroup.h; sourceTree = "<group>"; };
+		FD94F3EE1C0F101F006AA37C /* CommonGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonGroup.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1376,8 +1381,11 @@
 		FD94F3DE1C0E7FB8006AA37C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FD94F3ED1C0F101F006AA37C /* CommonGroup.h */,
+				FD94F3EE1C0F101F006AA37C /* CommonGroup.m */,
 				FD94F3E31C0E8062006AA37C /* HomeViewController.h */,
 				FD94F3E41C0E8062006AA37C /* HomeViewController.m */,
+				FD94F3EB1C0F0C57006AA37C /* Home.storyboard */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1475,6 +1483,7 @@
 				FD8C2CB71C0C6A98007CE036 /* dialog_btn_close@2x.png in Resources */,
 				FD8C2CCB1C0C6A98007CE036 /* com_icon_yuyinhuatong@2x.png in Resources */,
 				FD8C2DB81C0C6ADF007CE036 /* RootViewController.xib in Resources */,
+				FD94F3EC1C0F0C57006AA37C /* Home.storyboard in Resources */,
 				FD8C2CD41C0C6A98007CE036 /* com_txt_btn_clear@2x.png in Resources */,
 				FD8C2B9F1C0C6A41007CE036 /* LaunchScreen.storyboard in Resources */,
 				FD8C2CCF1C0C6A98007CE036 /* KyoSelectedColumnCell.xib in Resources */,
@@ -1548,6 +1557,7 @@
 				FD8C2D451C0C6AAA007CE036 /* UIImage+Antialiase.m in Sources */,
 				FD8C2CB41C0C6A98007CE036 /* CExpandHeader.m in Sources */,
 				FD8C2CC11C0C6A98007CE036 /* KyoRefreshControl.m in Sources */,
+				FD94F3EF1C0F101F006AA37C /* CommonGroup.m in Sources */,
 				FD8C2D011C0C6A98007CE036 /* UIImageView+WebCache.m in Sources */,
 				FD8C2D8B1C0C6ACA007CE036 /* NSString+Easy.m in Sources */,
 				FD8C2CB21C0C6A98007CE036 /* UIImageView+AFNetworking.m in Sources */,

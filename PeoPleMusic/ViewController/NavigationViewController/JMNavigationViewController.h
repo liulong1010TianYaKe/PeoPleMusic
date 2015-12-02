@@ -4,7 +4,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define kNavigationBarTintColor YYColor(253, 43, 43)
+#define kNavigationBarTintColor YYColor(223, 81, 1)
 
 @interface JMNavigationViewController : UINavigationController
 

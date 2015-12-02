@@ -29,11 +29,7 @@
 
 //一些url
 //#define kCounselorUrl(_proId,_planID,_appId) [NSString stringWithFormat:@"http://m.hzins.com/activities/yuyue/bdym?productId=%ld&planId=%ld&appId=%@", (long)_proId, (long)_planID, _appId]   //预约顾问的页面  －－h5使用的
-#define kCounselorUrl ([[UserInfo sharedUserInfo] isLogined] ? [NSString stringWithFormat:@"http://m.hzins.com/AppointmentByMobile?session=%@", [UserInfo sharedUserInfo].session] : @"http://m.hzins.com/AppointmentByMobile")
-#define kHealthToldUrl(_proId, _protectItem)  [NSString stringWithFormat:@"http://api.m.hzins.com/Notify/?productId=%ld&protectItem=%@",(long)_proId, _protectItem]    //健康告知url
-#define kShareProduct(_proId, _planId)   [NSString stringWithFormat:@"http://m.hzins.com/product/detail-%ld.html?DProtectPlanId=%ld", (long)_proId, (long)_planId] //分享产品url
-#define kShareProject(_projectId)   [NSString stringWithFormat:@"http://m.hzins.com/plan/PlanDetail-%ld.html",(long)_projectId] //分享方案url
-#define kProjectHelpUrl @"http://m.hzins.com/claims/"   //精选方案中理赔帮助url
+
 
 //主站App的一些标示
 #define kAppPlatform  @"4"
@@ -127,7 +123,7 @@
 //*****AppStyle
 #define kGlobalStyleColor kStyleFontColorFC4949 //主题色
 #define kTabBarBGColor   YYColor(255,255,255)//tabBar的背景色
-#define kNavBarBGColor kStyleFontColorFC4949  //NavBar的背景色
+#define kNavBarBGColor YYColor(223,81,1) //NavBar的背景色
 #define kNavBarTextColor YYColor(255,255,255)  //NavBar的文字颜色
 #define kNavShadowColor [UIImage createImageWithColor:YYColorRGBA(100, 100, 100,0.1)]   //NavBar的阴影色
 #define KGlobalBackgroundColor  YYColorFromRGB(0xF5F5F5)  //所有viewcontroller的背景色

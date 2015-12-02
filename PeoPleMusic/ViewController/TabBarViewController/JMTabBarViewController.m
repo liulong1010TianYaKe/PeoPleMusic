@@ -77,7 +77,7 @@
     
     //设置tabBarItem选中状态下文字的颜色
     NSMutableDictionary *selectedtextAttrs=[NSMutableDictionary dictionary];
-    selectedtextAttrs[NSForegroundColorAttributeName] = YYColor(250, 76, 85);
+    selectedtextAttrs[NSForegroundColorAttributeName] = YYColor(232, 101, 4);
     [childVc.tabBarItem setTitleTextAttributes:selectedtextAttrs forState:UIControlStateSelected];
     
     //不渲染
