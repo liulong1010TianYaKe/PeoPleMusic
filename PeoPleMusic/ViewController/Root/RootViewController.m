@@ -9,8 +9,9 @@
 #import "RootViewController.h"
 #import "UIDevice-Hardware.h"
 #import "NewfeatureViewController.h"
-
-
+#import "PlayerViewController.h"
+#import "LibrayMusicViewController.h"
+#import "HomeViewController.h"
 #import "KyoTopWindow.h"
 
 #import "KyoURLProtocol.h"
@@ -123,19 +124,19 @@
     [self.contentView layoutIfNeeded];
 
     
-     UIViewController *homeViewController = [[UIViewController alloc] init];
+     PlayerViewController *playerVC = [[PlayerViewController alloc] init];
 
-    [self.tabBarViewController addOneChildVc:homeViewController title:@"保障" imageName:@"tab_icon_security_normal" selectedImageName:@"tab_icon_security_selected"];
+    [self.tabBarViewController addOneChildVc:playerVC title:@"曲库" imageName:@"icon_indicator_music_off" selectedImageName:@"icon_indicator_music_on"];
     
     
-    UIViewController  *productViewController = [[UIViewController alloc] init];
-    [self.tabBarViewController addOneChildVc:productViewController title:@"产品" imageName:@"tab_icon_product_normal" selectedImageName:@"tab_icon_product_selected"];
+    LibrayMusicViewController  *libMusicVC = [[LibrayMusicViewController alloc] init];
+    [self.tabBarViewController addOneChildVc:libMusicVC title:@"点播" imageName:@"icon_indicator_dianbo_off" selectedImageName:@"icon_indicator_dianbo_on"];
     
-    UIViewController *CounselorVc = [[UIViewController alloc] init];
-    [self.tabBarViewController addOneChildVc:CounselorVc title:@"顾问" imageName:@"tab_icon_consultant_normal" selectedImageName:@"tab_icon_consultant_selected"];
+    HomeViewController *homeVC = [[HomeViewController alloc] init];
+    [self.tabBarViewController addOneChildVc:homeVC title:@"我的" imageName:@"icon_indicator_personal_off" selectedImageName:@"icon_indicator_personal_on"];
  
     [self.tabBarViewController addCustomTabBar];
-    self.tabBarViewController.lastSelectedViewContoller = productViewController;
+    self.tabBarViewController.lastSelectedViewContoller = playerVC;
     self.tabBarViewController.selectedIndex = 1;    //默认为产品页
 }
 

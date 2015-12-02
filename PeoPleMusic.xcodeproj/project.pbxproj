@@ -169,6 +169,9 @@
 		FD8C2DD71C0C6DBC007CE036 /* BasicsUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2DD51C0C6DBC007CE036 /* BasicsUserInfo.m */; };
 		FD8C2DDA1C0C6E31007CE036 /* BasicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2DD91C0C6E31007CE036 /* BasicsView.m */; };
 		FD8C2DDC1C0C6FAB007CE036 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD8C2DDB1C0C6FAB007CE036 /* Info.plist */; };
+		FD94F3E21C0E804A006AA37C /* LibrayMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD94F3E11C0E804A006AA37C /* LibrayMusicViewController.m */; };
+		FD94F3E51C0E8062006AA37C /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD94F3E41C0E8062006AA37C /* HomeViewController.m */; };
+		FD94F3E81C0E8077006AA37C /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD94F3E71C0E8077006AA37C /* PlayerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -506,6 +509,12 @@
 		FD8C2DD81C0C6E31007CE036 /* BasicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicsView.h; sourceTree = "<group>"; };
 		FD8C2DD91C0C6E31007CE036 /* BasicsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicsView.m; sourceTree = "<group>"; };
 		FD8C2DDB1C0C6FAB007CE036 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD94F3E01C0E804A006AA37C /* LibrayMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrayMusicViewController.h; sourceTree = "<group>"; };
+		FD94F3E11C0E804A006AA37C /* LibrayMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibrayMusicViewController.m; sourceTree = "<group>"; };
+		FD94F3E31C0E8062006AA37C /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		FD94F3E41C0E8062006AA37C /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		FD94F3E61C0E8077006AA37C /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		FD94F3E71C0E8077006AA37C /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1259,6 +1268,9 @@
 		FD8C2D961C0C6ADF007CE036 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				FD94F3DF1C0E8014006AA37C /* Player */,
+				FD94F3DE1C0E7FB8006AA37C /* Home */,
+				FD94F3DD1C0E7F8B006AA37C /* LibraryMusic */,
 				FD8C2D971C0C6ADF007CE036 /* Common */,
 				FD8C2DA21C0C6ADF007CE036 /* NavigationViewController */,
 				FD8C2DA51C0C6ADF007CE036 /* Root */,
@@ -1350,6 +1362,33 @@
 				FD8C2DCD1C0C6D7F007CE036 /* SSKeychainQuery.m */,
 			);
 			path = SSKeychain;
+			sourceTree = "<group>";
+		};
+		FD94F3DD1C0E7F8B006AA37C /* LibraryMusic */ = {
+			isa = PBXGroup;
+			children = (
+				FD94F3E01C0E804A006AA37C /* LibrayMusicViewController.h */,
+				FD94F3E11C0E804A006AA37C /* LibrayMusicViewController.m */,
+			);
+			name = LibraryMusic;
+			sourceTree = "<group>";
+		};
+		FD94F3DE1C0E7FB8006AA37C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FD94F3E31C0E8062006AA37C /* HomeViewController.h */,
+				FD94F3E41C0E8062006AA37C /* HomeViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		FD94F3DF1C0E8014006AA37C /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				FD94F3E61C0E8077006AA37C /* PlayerViewController.h */,
+				FD94F3E71C0E8077006AA37C /* PlayerViewController.m */,
+			);
+			name = Player;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1505,6 +1544,7 @@
 				FD8C2DC01C0C6AFA007CE036 /* main.m in Sources */,
 				FD8C2CB91C0C6A98007CE036 /* CTSegmentedControl.m in Sources */,
 				FD8C2DB11C0C6ADF007CE036 /* BasicsViewController.m in Sources */,
+				FD94F3E81C0E8077006AA37C /* PlayerViewController.m in Sources */,
 				FD8C2D451C0C6AAA007CE036 /* UIImage+Antialiase.m in Sources */,
 				FD8C2CB41C0C6A98007CE036 /* CExpandHeader.m in Sources */,
 				FD8C2CC11C0C6A98007CE036 /* KyoRefreshControl.m in Sources */,
@@ -1516,6 +1556,7 @@
 				FD8C2D051C0C6A98007CE036 /* SWLongPressGestureRecognizer.m in Sources */,
 				FD8C2D8C1C0C6ACA007CE036 /* NSTimeZone+Easy.m in Sources */,
 				FD8C2CE41C0C6A98007CE036 /* NSObject+MJCoding.m in Sources */,
+				FD94F3E51C0E8062006AA37C /* HomeViewController.m in Sources */,
 				FD8C2D461C0C6AAA007CE036 /* UIImage+KIAdditions.m in Sources */,
 				FD8C2CBA1C0C6A98007CE036 /* DMLazyScrollView.m in Sources */,
 				FD8C2CA91C0C6A98007CE036 /* AFHTTPRequestOperation.m in Sources */,
@@ -1569,6 +1610,7 @@
 				FD8C2CFE1C0C6A98007CE036 /* UIImage+MultiFormat.m in Sources */,
 				FD8C2D8A1C0C6ACA007CE036 /* NSObject+Mapping.m in Sources */,
 				FD8C2DD01C0C6D7F007CE036 /* SSKeychain.m in Sources */,
+				FD94F3E21C0E804A006AA37C /* LibrayMusicViewController.m in Sources */,
 				FD8C2D3F1C0C6AAA007CE036 /* NSString+IPAddress.m in Sources */,
 				FD8C2CCA1C0C6A98007CE036 /* RHRefreshControlViewSequenceImages.m in Sources */,
 				FD8C2CF71C0C6A98007CE036 /* SDWebImageDecoder.m in Sources */,
@@ -1814,6 +1856,7 @@
 				FD8C2BB01C0C6A42007CE036 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FD8C2BB11C0C6A42007CE036 /* Build configuration list for PBXNativeTarget "PeoPleMusicTests" */ = {
 			isa = XCConfigurationList;
@@ -1822,6 +1865,7 @@
 				FD8C2BB31C0C6A42007CE036 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
