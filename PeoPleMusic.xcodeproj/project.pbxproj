@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18CF4C4E1C15DE9900362987 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF4C4D1C15DE9900362987 /* HomeModel.m */; };
+		18CF4C531C15E10E00362987 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF4C511C15E10E00362987 /* HomeCell.m */; };
+		18CF4C541C15E10E00362987 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CF4C521C15E10E00362987 /* HomeCell.xib */; };
 		FD8C2B9F1C0C6A41007CE036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD8C2B9D1C0C6A41007CE036 /* LaunchScreen.storyboard */; };
 		FD8C2BAA1C0C6A42007CE036 /* PeoPleMusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2BA91C0C6A42007CE036 /* PeoPleMusicTests.m */; };
 		FD8C2BB81C0C6A8D007CE036 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2BB61C0C6A8D007CE036 /* AppDelegate.m */; };
@@ -187,6 +190,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18CF4C4C1C15DE9900362987 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
+		18CF4C4D1C15DE9900362987 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		18CF4C501C15E10E00362987 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = SOURCE_ROOT; };
+		18CF4C511C15E10E00362987 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = SOURCE_ROOT; };
+		18CF4C521C15E10E00362987 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = SOURCE_ROOT; };
 		FD8C2B8C1C0C6A41007CE036 /* PeoPleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeoPleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8C2B9E1C0C6A41007CE036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD8C2BA51C0C6A42007CE036 /* PeoPleMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeoPleMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -540,6 +548,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18CF4C4B1C15DE7700362987 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				18CF4C4C1C15DE9900362987 /* HomeModel.h */,
+				18CF4C4D1C15DE9900362987 /* HomeModel.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		18CF4C4F1C15E0D400362987 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				18CF4C501C15E10E00362987 /* HomeCell.h */,
+				18CF4C511C15E10E00362987 /* HomeCell.m */,
+				18CF4C521C15E10E00362987 /* HomeCell.xib */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
 		FD8C2B831C0C6A41007CE036 = {
 			isa = PBXGroup;
 			children = (
@@ -1175,6 +1202,7 @@
 		FD8C2D521C0C6ABF007CE036 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18CF4C4B1C15DE7700362987 /* Home */,
 				FD8C2DD21C0C6DBC007CE036 /* UserInfo.h */,
 				FD8C2DD31C0C6DBC007CE036 /* UserInfo.m */,
 				FD8C2DD41C0C6DBC007CE036 /* BasicsUserInfo.h */,
@@ -1266,6 +1294,7 @@
 		FD8C2D951C0C6AD1007CE036 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18CF4C4F1C15E0D400362987 /* Home */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1444,7 +1473,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0710;
-				ORGANIZATIONNAME = long;
+				ORGANIZATIONNAME = kyo;
 				TargetAttributes = {
 					FD8C2B8B1C0C6A41007CE036 = {
 						CreatedOnToolsVersion = 7.1;
@@ -1486,6 +1515,7 @@
 				FD94F3EC1C0F0C57006AA37C /* Home.storyboard in Resources */,
 				FD8C2CD41C0C6A98007CE036 /* com_txt_btn_clear@2x.png in Resources */,
 				FD8C2B9F1C0C6A41007CE036 /* LaunchScreen.storyboard in Resources */,
+				18CF4C541C15E10E00362987 /* HomeCell.xib in Resources */,
 				FD8C2CCF1C0C6A98007CE036 /* KyoSelectedColumnCell.xib in Resources */,
 				FD8C2CC51C0C6A98007CE036 /* KyoTipsView.xib in Resources */,
 				FD8C2DDC1C0C6FAB007CE036 /* Info.plist in Resources */,
@@ -1527,6 +1557,7 @@
 				FD8C2D841C0C6ACA007CE036 /* NSDateFormatter+Easy.m in Sources */,
 				FD8C2CDB1C0C6A98007CE036 /* MJArgument.m in Sources */,
 				FD8C2CED1C0C6A98007CE036 /* RNCryptorEngine.m in Sources */,
+				18CF4C531C15E10E00362987 /* HomeCell.m in Sources */,
 				FD8C2D8D1C0C6ACA007CE036 /* UIImage-RoundCorner.m in Sources */,
 				FD8C2D811C0C6ACA007CE036 /* ApplicationInfo.m in Sources */,
 				FD8C2CD71C0C6A98007CE036 /* KyoTopWindow.m in Sources */,
@@ -1634,6 +1665,7 @@
 				FD8C2CE81C0C6A98007CE036 /* RECommonFunctions.m in Sources */,
 				FD8C2CAC1C0C6A98007CE036 /* AFNetworkReachabilityManager.m in Sources */,
 				FD8C2D4B1C0C6AAA007CE036 /* UINavigationItem+Spacing.m in Sources */,
+				18CF4C4E1C15DE9900362987 /* HomeModel.m in Sources */,
 				FD8C2CC01C0C6A98007CE036 /* KyoLoadMoreControl.m in Sources */,
 				FD8C2CD11C0C6A98007CE036 /* KyoSlider.m in Sources */,
 				FD8C2CB01C0C6A98007CE036 /* AFURLResponseSerialization.m in Sources */,

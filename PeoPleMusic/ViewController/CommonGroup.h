@@ -9,13 +9,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^BlockOperation)();
+
 @interface CommonGroup : NSObject
+
 /** 组头 */
 @property (nonatomic, copy) NSString *header;
 /** 组尾 */
 @property (nonatomic, copy) NSString *footer;
 /** 这组的所有行模型(数组中存放的都是JMCommonItem模型) */
 @property (nonatomic, strong) NSArray *items;
+
+@property (nonatomic, copy) BlockOperation blockOperation;
 
 + (instancetype)group;
 @end
