@@ -8,6 +8,11 @@
 
 #import "HomeViewController.h"
 #import "HomeCell.h"
+#import "MyDeviceViewController.h"
+#import "SpeakerControlViewController.h"
+#import "SpeakerManagerViewController.h"
+#import "FeedBackViewController.h"
+#import "SetHelperViewController.h"
 
 @interface HomeViewController ()
 
@@ -36,6 +41,7 @@
 
 - (void)setupData{
     
+    __weak typeof(self)weekSelf = self;
     NSMutableArray *tempArr1  = [NSMutableArray array];
     
     HomeModel *model1 = [[HomeModel alloc] init];
@@ -49,17 +55,27 @@
     model2.imgIcon = @"icon_my_device";
     model2.title = @"我的音响";
     model2.subTitle = @"人人点歌－2号音响";
+    model2.blockOperation = ^{
+        [weekSelf.navigationController pushViewController:[MyDeviceViewController createMyDeviceViewController] animated:YES];
+    };
     [tempArr1 addObject:model2];
     
     NSMutableArray *tempArr2  = [NSMutableArray array];
     HomeModel *model3 = [[HomeModel alloc] init];
     model3.imgIcon = @"icon_speaker_manager";
     model3.title = @"音响配置";
+    model3.blockOperation = ^{
+        [weekSelf.navigationController pushViewController:[SpeakerManagerViewController createMSpeakerManagerViewController ] animated:YES];
+    };
     [tempArr2 addObject:model3];
     
     HomeModel *model4 = [[HomeModel alloc] init];
     model4.imgIcon = @"icon_speaker_controll";
     model4.title = @"音响控制";
+    model4.blockOperation = ^{
+        [weekSelf.navigationController pushViewController:[SpeakerControlViewController createSpeakerControlViewController] animated:YES];
+    };
+    
     [tempArr2 addObject:model4];
     
     
@@ -73,11 +89,17 @@
     HomeModel *model6 = [[HomeModel alloc] init];
     model6.imgIcon = @"icon_set_feed_back";
     model6.title = @"使用反馈";
+    model6.blockOperation = ^{
+        [weekSelf.navigationController pushViewController:[FeedBackViewController createSFeedBackViewController] animated:YES];
+    };
     [tempArr3 addObject:model6];
     
     HomeModel *model7 = [[HomeModel alloc] init];
     model7.imgIcon = @"icon_set_help";
     model7.title = @"操作指南";
+    model7.blockOperation = ^{
+        [weekSelf.navigationController pushViewController:[SetHelperViewController createSetHelperViewController] animated:YES];
+    };
     [tempArr3 addObject:model7];
     
     _array = [NSMutableArray arrayWithObjects:tempArr1,tempArr2,tempArr3, nil];
@@ -110,7 +132,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath     //重写父类中的方法
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
+   HomeModel *homeModel =  _array[indexPath.section][indexPath.row];
+//    if (indexPath.section == 0) {
+//        if (indexPath.row == 1) {
+            if (homeModel.blockOperation) {
+                homeModel.blockOperation();
+            }
+//        }
+//    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
