@@ -80,11 +80,11 @@
     
     
     NSMutableArray *tempArr3  = [NSMutableArray array];
-    HomeModel *model5 = [[HomeModel alloc] init];
-    model5.imgIcon = @"icon_set_update";
-    model5.title = @"检测升级";
-    model5.subTitle = @"V1.2.1";
-    [tempArr3 addObject:model5];
+//    HomeModel *model5 = [[HomeModel alloc] init];
+//    model5.imgIcon = @"icon_set_update";
+//    model5.title = @"检测升级";
+//    model5.subTitle = @"V1.2.1";
+//    [tempArr3 addObject:model5];
     
     HomeModel *model6 = [[HomeModel alloc] init];
     model6.imgIcon = @"icon_set_feed_back";

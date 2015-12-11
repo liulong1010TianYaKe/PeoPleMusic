@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18777B1D1C1B11F800B74CC3 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18777B1B1C1B11F800B74CC3 /* HomeCell.m */; };
+		18777B1E1C1B11F800B74CC3 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18777B1C1C1B11F800B74CC3 /* HomeCell.xib */; };
 		188492321C17268A004C3330 /* MyDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188492311C17268A004C3330 /* MyDeviceViewController.m */; };
 		188492351C1730A5004C3330 /* SpeakerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188492341C1730A5004C3330 /* SpeakerManagerViewController.m */; };
 		188492381C1731A7004C3330 /* SpeakerControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188492371C1731A7004C3330 /* SpeakerControlViewController.m */; };
 		1884923B1C173271004C3330 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884923A1C173271004C3330 /* FeedBackViewController.m */; };
 		1884923E1C17331B004C3330 /* SetHelperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884923D1C17331B004C3330 /* SetHelperViewController.m */; };
 		18CF4C4E1C15DE9900362987 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF4C4D1C15DE9900362987 /* HomeModel.m */; };
-		18CF4C531C15E10E00362987 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF4C511C15E10E00362987 /* HomeCell.m */; };
-		18CF4C541C15E10E00362987 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CF4C521C15E10E00362987 /* HomeCell.xib */; };
 		FD8C2B9F1C0C6A41007CE036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD8C2B9D1C0C6A41007CE036 /* LaunchScreen.storyboard */; };
 		FD8C2BAA1C0C6A42007CE036 /* PeoPleMusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2BA91C0C6A42007CE036 /* PeoPleMusicTests.m */; };
 		FD8C2BB81C0C6A8D007CE036 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2BB61C0C6A8D007CE036 /* AppDelegate.m */; };
@@ -194,6 +194,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18777B1A1C1B11F800B74CC3 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCell.h; path = PeoPleMusic/Cell/HomeCell.h; sourceTree = SOURCE_ROOT; };
+		18777B1B1C1B11F800B74CC3 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCell.m; path = PeoPleMusic/Cell/HomeCell.m; sourceTree = SOURCE_ROOT; };
+		18777B1C1C1B11F800B74CC3 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeCell.xib; path = PeoPleMusic/Cell/HomeCell.xib; sourceTree = SOURCE_ROOT; };
 		188492301C17268A004C3330 /* MyDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDeviceViewController.h; sourceTree = "<group>"; };
 		188492311C17268A004C3330 /* MyDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDeviceViewController.m; sourceTree = "<group>"; };
 		188492331C1730A5004C3330 /* SpeakerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerManagerViewController.h; sourceTree = "<group>"; };
@@ -206,9 +209,6 @@
 		1884923D1C17331B004C3330 /* SetHelperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetHelperViewController.m; sourceTree = "<group>"; };
 		18CF4C4C1C15DE9900362987 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeModel.h; path = ../Model/HomeModel.h; sourceTree = "<group>"; };
 		18CF4C4D1C15DE9900362987 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeModel.m; path = ../Model/HomeModel.m; sourceTree = "<group>"; };
-		18CF4C501C15E10E00362987 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = SOURCE_ROOT; };
-		18CF4C511C15E10E00362987 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = SOURCE_ROOT; };
-		18CF4C521C15E10E00362987 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = SOURCE_ROOT; };
 		FD8C2B8C1C0C6A41007CE036 /* PeoPleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeoPleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8C2B9E1C0C6A41007CE036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD8C2BA51C0C6A42007CE036 /* PeoPleMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeoPleMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -587,9 +587,9 @@
 		18CF4C4F1C15E0D400362987 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				18CF4C501C15E10E00362987 /* HomeCell.h */,
-				18CF4C511C15E10E00362987 /* HomeCell.m */,
-				18CF4C521C15E10E00362987 /* HomeCell.xib */,
+				18777B1A1C1B11F800B74CC3 /* HomeCell.h */,
+				18777B1B1C1B11F800B74CC3 /* HomeCell.m */,
+				18777B1C1C1B11F800B74CC3 /* HomeCell.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1551,7 +1551,7 @@
 				FD94F3EC1C0F0C57006AA37C /* Home.storyboard in Resources */,
 				FD8C2CD41C0C6A98007CE036 /* com_txt_btn_clear@2x.png in Resources */,
 				FD8C2B9F1C0C6A41007CE036 /* LaunchScreen.storyboard in Resources */,
-				18CF4C541C15E10E00362987 /* HomeCell.xib in Resources */,
+				18777B1E1C1B11F800B74CC3 /* HomeCell.xib in Resources */,
 				FD8C2CCF1C0C6A98007CE036 /* KyoSelectedColumnCell.xib in Resources */,
 				FD8C2CC51C0C6A98007CE036 /* KyoTipsView.xib in Resources */,
 				FD8C2DDC1C0C6FAB007CE036 /* Info.plist in Resources */,
@@ -1593,7 +1593,6 @@
 				FD8C2D841C0C6ACA007CE036 /* NSDateFormatter+Easy.m in Sources */,
 				FD8C2CDB1C0C6A98007CE036 /* MJArgument.m in Sources */,
 				FD8C2CED1C0C6A98007CE036 /* RNCryptorEngine.m in Sources */,
-				18CF4C531C15E10E00362987 /* HomeCell.m in Sources */,
 				FD8C2D8D1C0C6ACA007CE036 /* UIImage-RoundCorner.m in Sources */,
 				FD8C2D811C0C6ACA007CE036 /* ApplicationInfo.m in Sources */,
 				FD8C2CD71C0C6A98007CE036 /* KyoTopWindow.m in Sources */,
@@ -1718,6 +1717,7 @@
 				FD8C2CEC1C0C6A98007CE036 /* RNCryptor.m in Sources */,
 				FD8C2CCC1C0C6A98007CE036 /* KyoSearchBar.m in Sources */,
 				FD8C2CD91C0C6A98007CE036 /* MBProgressHUD+MJ.m in Sources */,
+				18777B1D1C1B11F800B74CC3 /* HomeCell.m in Sources */,
 				FD8C2CD01C0C6A98007CE036 /* KyoSelectedMultiColumnTableView.m in Sources */,
 				FD8C2CBC1C0C6A98007CE036 /* KyoDataCache.m in Sources */,
 				FD8C2CE61C0C6A98007CE036 /* NSObject+MJMember.m in Sources */,
