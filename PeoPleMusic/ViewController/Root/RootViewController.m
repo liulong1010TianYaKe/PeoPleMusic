@@ -124,13 +124,14 @@
     [self.contentView layoutIfNeeded];
 
     
-     PlayerViewController *playerVC = [[PlayerViewController alloc] init];
+   
+     LibrayMusicViewController  *libMusicVC = [[LibrayMusicViewController alloc] init];
 
-    [self.tabBarViewController addOneChildVc:playerVC title:@"曲库" imageName:@"icon_indicator_music_off" selectedImageName:@"icon_indicator_music_on"];
+    [self.tabBarViewController addOneChildVc:libMusicVC title:@"曲库" imageName:@"icon_indicator_music_off" selectedImageName:@"icon_indicator_music_on"];
     
     
-    LibrayMusicViewController  *libMusicVC = [[LibrayMusicViewController alloc] init];
-    [self.tabBarViewController addOneChildVc:libMusicVC title:@"点播" imageName:@"icon_indicator_dianbo_off" selectedImageName:@"icon_indicator_dianbo_on"];
+     PlayerViewController *playerVC = [PlayerViewController createPlayerViewController];
+    [self.tabBarViewController addOneChildVc:playerVC title:@"点播" imageName:@"icon_indicator_dianbo_off" selectedImageName:@"icon_indicator_dianbo_on"];
     
     HomeViewController *homeVC = [[HomeViewController alloc] init];
     [self.tabBarViewController addOneChildVc:homeVC title:@"我的" imageName:@"icon_indicator_personal_off" selectedImageName:@"icon_indicator_personal_on"];

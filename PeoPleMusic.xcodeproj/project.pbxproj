@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18720E041C1C1F670008FA09 /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18720E031C1C1F670008FA09 /* Player.storyboard */; };
+		18720E081C1C2E490008FA09 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18720E071C1C2E490008FA09 /* PlayerCell.m */; };
 		18777B1D1C1B11F800B74CC3 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18777B1B1C1B11F800B74CC3 /* HomeCell.m */; };
 		18777B1E1C1B11F800B74CC3 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18777B1C1C1B11F800B74CC3 /* HomeCell.xib */; };
 		188492321C17268A004C3330 /* MyDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188492311C17268A004C3330 /* MyDeviceViewController.m */; };
@@ -194,6 +196,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18720E031C1C1F670008FA09 /* Player.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
+		18720E061C1C2E490008FA09 /* PlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCell.h; sourceTree = "<group>"; };
+		18720E071C1C2E490008FA09 /* PlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCell.m; sourceTree = "<group>"; };
 		18777B1A1C1B11F800B74CC3 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCell.h; path = PeoPleMusic/Cell/HomeCell.h; sourceTree = SOURCE_ROOT; };
 		18777B1B1C1B11F800B74CC3 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCell.m; path = PeoPleMusic/Cell/HomeCell.m; sourceTree = SOURCE_ROOT; };
 		18777B1C1C1B11F800B74CC3 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeCell.xib; path = PeoPleMusic/Cell/HomeCell.xib; sourceTree = SOURCE_ROOT; };
@@ -560,9 +565,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18720E051C1C2E280008FA09 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				18720E061C1C2E490008FA09 /* PlayerCell.h */,
+				18720E071C1C2E490008FA09 /* PlayerCell.m */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
 		1884922E1C1722A1004C3330 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				18720E051C1C2E280008FA09 /* Player */,
 				1884922F1C172390004C3330 /* Home */,
 			);
 			path = Cell;
@@ -1460,6 +1475,7 @@
 			children = (
 				FD94F3E61C0E8077006AA37C /* PlayerViewController.h */,
 				FD94F3E71C0E8077006AA37C /* PlayerViewController.m */,
+				18720E031C1C1F670008FA09 /* Player.storyboard */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -1546,6 +1562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD8C2CB71C0C6A98007CE036 /* dialog_btn_close@2x.png in Resources */,
+				18720E041C1C1F670008FA09 /* Player.storyboard in Resources */,
 				FD8C2CCB1C0C6A98007CE036 /* com_icon_yuyinhuatong@2x.png in Resources */,
 				FD8C2DB81C0C6ADF007CE036 /* RootViewController.xib in Resources */,
 				FD94F3EC1C0F0C57006AA37C /* Home.storyboard in Resources */,
@@ -1674,6 +1691,7 @@
 				FD8C2D3D1C0C6AAA007CE036 /* NSString+Convert.m in Sources */,
 				FD8C2CBB1C0C6A98007CE036 /* iCarousel.m in Sources */,
 				FD8C2CE91C0C6A98007CE036 /* RESideMenu.m in Sources */,
+				18720E081C1C2E490008FA09 /* PlayerCell.m in Sources */,
 				FD8C2CC71C0C6A98007CE036 /* RHRefreshControl.m in Sources */,
 				FD8C2CAB1C0C6A98007CE036 /* AFHTTPSessionManager.m in Sources */,
 				FD8C2D921C0C6ACA007CE036 /* NetworkResultModel.m in Sources */,
@@ -1863,6 +1881,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
 				INFOPLIST_FILE = PeoPleMusic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -1881,6 +1900,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
 				INFOPLIST_FILE = PeoPleMusic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
