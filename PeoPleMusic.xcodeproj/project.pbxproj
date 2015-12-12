@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18720E041C1C1F670008FA09 /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18720E031C1C1F670008FA09 /* Player.storyboard */; };
 		18720E081C1C2E490008FA09 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18720E071C1C2E490008FA09 /* PlayerCell.m */; };
+		18720E0C1C1C648A0008FA09 /* SongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18720E0B1C1C648A0008FA09 /* SongModel.m */; };
 		18777B1D1C1B11F800B74CC3 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18777B1B1C1B11F800B74CC3 /* HomeCell.m */; };
 		18777B1E1C1B11F800B74CC3 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18777B1C1C1B11F800B74CC3 /* HomeCell.xib */; };
 		188492321C17268A004C3330 /* MyDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188492311C17268A004C3330 /* MyDeviceViewController.m */; };
@@ -199,6 +200,8 @@
 		18720E031C1C1F670008FA09 /* Player.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
 		18720E061C1C2E490008FA09 /* PlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCell.h; sourceTree = "<group>"; };
 		18720E071C1C2E490008FA09 /* PlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCell.m; sourceTree = "<group>"; };
+		18720E0A1C1C648A0008FA09 /* SongModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongModel.h; sourceTree = "<group>"; };
+		18720E0B1C1C648A0008FA09 /* SongModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongModel.m; sourceTree = "<group>"; };
 		18777B1A1C1B11F800B74CC3 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCell.h; path = PeoPleMusic/Cell/HomeCell.h; sourceTree = SOURCE_ROOT; };
 		18777B1B1C1B11F800B74CC3 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCell.m; path = PeoPleMusic/Cell/HomeCell.m; sourceTree = SOURCE_ROOT; };
 		18777B1C1C1B11F800B74CC3 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeCell.xib; path = PeoPleMusic/Cell/HomeCell.xib; sourceTree = SOURCE_ROOT; };
@@ -570,6 +573,15 @@
 			children = (
 				18720E061C1C2E490008FA09 /* PlayerCell.h */,
 				18720E071C1C2E490008FA09 /* PlayerCell.m */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		18720E091C1C64550008FA09 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				18720E0A1C1C648A0008FA09 /* SongModel.h */,
+				18720E0B1C1C648A0008FA09 /* SongModel.m */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -1245,6 +1257,7 @@
 		FD8C2D521C0C6ABF007CE036 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18720E091C1C64550008FA09 /* Player */,
 				18CF4C4B1C15DE7700362987 /* Home */,
 				FD8C2DD21C0C6DBC007CE036 /* UserInfo.h */,
 				FD8C2DD31C0C6DBC007CE036 /* UserInfo.m */,
@@ -1686,6 +1699,7 @@
 				FD8C2D411C0C6AAA007CE036 /* NSString+Size.m in Sources */,
 				FD8C2D4D1C0C6AAA007CE036 /* UIView+Extension.m in Sources */,
 				FD8C2CFD1C0C6A98007CE036 /* UIImage+GIF.m in Sources */,
+				18720E0C1C1C648A0008FA09 /* SongModel.m in Sources */,
 				FD8C2DB31C0C6ADF007CE036 /* MABasicsViewController.m in Sources */,
 				FD8C2CEF1C0C6A98007CE036 /* RNEncryptor.m in Sources */,
 				FD8C2D3D1C0C6AAA007CE036 /* NSString+Convert.m in Sources */,
