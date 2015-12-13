@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblJbNub;
 @property (weak, nonatomic) IBOutlet UIImageView *imgJb;
 @property (weak, nonatomic) IBOutlet UILabel *lblSerNumb;
-
+@property (weak, nonatomic) IBOutlet UIView *viewSeg;
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 - (IBAction)btnCellTouchInside:(id)sender;
 
@@ -62,8 +62,9 @@
             self.lblSerNumb.textColor = YYColor(230, 101, 4);
             self.lblJbNub.textColor = YYColor(230, 101, 4);
             self.imgDown.image = [UIImage imageNamed:@"icon_pull_down"];
-            
+            self.viewSeg.hidden = NO;
         }else{
+            self.viewSeg.hidden = YES;
             self.bottomView.hidden = YES;
             self.lblNumb.textColor  = [UIColor whiteColor];
             self.lblSongerName.textColor = [UIColor whiteColor];

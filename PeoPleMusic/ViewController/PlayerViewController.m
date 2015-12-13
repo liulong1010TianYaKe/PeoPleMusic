@@ -47,6 +47,8 @@
 //    self.tableHeaderView.backgroundColor = [UIColor clearColor];
 
     self.tableView.backgroundView =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_song_header"]];
+    
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 10);
 }
 
 - (void)viewWillAppear:(BOOL)animated{
