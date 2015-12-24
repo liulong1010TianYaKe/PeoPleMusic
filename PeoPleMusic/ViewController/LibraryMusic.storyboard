@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--Libray Music View Controller-->
+        <scene sceneID="pPD-xS-ekW">
+            <objects>
+                <tableViewController storyboardIdentifier="LibrayMusicViewController" id="0SK-be-Ufu" customClass="LibrayMusicViewController" sceneMemberID="viewController">
+                    <connections>
+                        <outlet property="headerView" destination="W2v-ug-eBz" id="cXN-Zi-JQ2"/>
+                        <outlet property="pageControl" destination="pTe-YF-8HS" id="RDk-aC-ohh"/>
+                        <outlet property="scrollView" destination="9zB-EM-M7n" id="fcH-hn-niu"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QeX-vb-261" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="W2v-ug-eBz">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9zB-EM-M7n">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                            <subviews>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="guide_one" translatesAutoresizingMaskIntoConstraints="NO" id="c5H-c6-1gt">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                </imageView>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="guide_two" translatesAutoresizingMaskIntoConstraints="NO" id="LX4-tj-8YR">
+                                    <rect key="frame" x="320" y="0.0" width="320" height="150"/>
+                                </imageView>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="guide_three" translatesAutoresizingMaskIntoConstraints="NO" id="yq1-Hm-TI1">
+                                    <rect key="frame" x="640" y="0.0" width="320" height="150"/>
+                                </imageView>
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="guide_four" translatesAutoresizingMaskIntoConstraints="NO" id="94g-Lh-qDS">
+                                    <rect key="frame" x="960" y="0.0" width="320" height="150"/>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="94g-Lh-qDS" firstAttribute="leading" secondItem="yq1-Hm-TI1" secondAttribute="trailing" id="0Qs-s2-rXb"/>
+                                <constraint firstItem="LX4-tj-8YR" firstAttribute="leading" secondItem="c5H-c6-1gt" secondAttribute="trailing" id="0SI-Nd-NcZ"/>
+                                <constraint firstAttribute="bottom" secondItem="yq1-Hm-TI1" secondAttribute="bottom" id="4gw-fR-uLV"/>
+                                <constraint firstItem="yq1-Hm-TI1" firstAttribute="leading" secondItem="LX4-tj-8YR" secondAttribute="trailing" id="BwA-NI-8jd"/>
+                                <constraint firstAttribute="bottom" secondItem="LX4-tj-8YR" secondAttribute="bottom" id="GLp-Hi-Go7"/>
+                                <constraint firstAttribute="bottom" secondItem="c5H-c6-1gt" secondAttribute="bottom" id="M2i-FS-8oa"/>
+                                <constraint firstItem="94g-Lh-qDS" firstAttribute="top" secondItem="9zB-EM-M7n" secondAttribute="top" id="PdG-ew-rcV"/>
+                                <constraint firstItem="yq1-Hm-TI1" firstAttribute="top" secondItem="9zB-EM-M7n" secondAttribute="top" id="Tjv-bV-B2L"/>
+                                <constraint firstItem="c5H-c6-1gt" firstAttribute="top" secondItem="9zB-EM-M7n" secondAttribute="top" id="XXQ-Hf-LYq"/>
+                                <constraint firstItem="yq1-Hm-TI1" firstAttribute="leading" secondItem="LX4-tj-8YR" secondAttribute="trailing" id="aPB-4p-qUY"/>
+                                <constraint firstAttribute="trailing" secondItem="94g-Lh-qDS" secondAttribute="trailing" id="m1F-Ij-C7v"/>
+                                <constraint firstItem="LX4-tj-8YR" firstAttribute="leading" secondItem="c5H-c6-1gt" secondAttribute="trailing" id="rLk-0M-jYt"/>
+                                <constraint firstItem="94g-Lh-qDS" firstAttribute="leading" secondItem="yq1-Hm-TI1" secondAttribute="trailing" id="u5J-wJ-rVE"/>
+                                <constraint firstItem="c5H-c6-1gt" firstAttribute="leading" secondItem="9zB-EM-M7n" secondAttribute="leading" id="wx0-SN-XDh"/>
+                                <constraint firstItem="LX4-tj-8YR" firstAttribute="top" secondItem="9zB-EM-M7n" secondAttribute="top" id="x3Z-Xp-wmK"/>
+                                <constraint firstAttribute="bottom" secondItem="94g-Lh-qDS" secondAttribute="bottom" id="yly-5I-tbS"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="delegate" destination="0SK-be-Ufu" id="6B6-ed-guo"/>
+                            </connections>
+                        </scrollView>
+                        <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="pTe-YF-8HS">
+                            <rect key="frame" x="132.5" y="103" width="55" height="37"/>
+                            <color key="pageIndicatorTintColor" red="1" green="1" blue="1" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                            <color key="currentPageIndicatorTintColor" red="0.98597550389999999" green="0.64231062849999998" blue="0.21150505410000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="pageControlChange:" destination="0SK-be-Ufu" eventType="valueChanged" id="HxI-yy-PoQ"/>
+                            </connections>
+                        </pageControl>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="LX4-tj-8YR" firstAttribute="width" secondItem="W2v-ug-eBz" secondAttribute="width" id="ArU-ED-w8k"/>
+                        <constraint firstItem="yq1-Hm-TI1" firstAttribute="width" secondItem="W2v-ug-eBz" secondAttribute="width" id="CUI-2V-uDV"/>
+                        <constraint firstItem="c5H-c6-1gt" firstAttribute="height" secondItem="W2v-ug-eBz" secondAttribute="height" id="ClT-dl-ZD0"/>
+                        <constraint firstAttribute="trailing" secondItem="9zB-EM-M7n" secondAttribute="trailing" id="FBT-bx-sos"/>
+                        <constraint firstItem="94g-Lh-qDS" firstAttribute="width" secondItem="W2v-ug-eBz" secondAttribute="width" id="S2D-mz-s6A"/>
+                        <constraint firstAttribute="bottom" secondItem="9zB-EM-M7n" secondAttribute="bottom" id="U1L-h0-qOp"/>
+                        <constraint firstItem="9zB-EM-M7n" firstAttribute="leading" secondItem="W2v-ug-eBz" secondAttribute="leading" id="WT9-89-9QV"/>
+                        <constraint firstItem="LX4-tj-8YR" firstAttribute="height" secondItem="W2v-ug-eBz" secondAttribute="height" id="fGL-PP-W7y"/>
+                        <constraint firstItem="c5H-c6-1gt" firstAttribute="width" secondItem="W2v-ug-eBz" secondAttribute="width" id="iOG-r0-ogN"/>
+                        <constraint firstAttribute="bottom" secondItem="pTe-YF-8HS" secondAttribute="bottom" constant="10" id="mgw-oF-6bj"/>
+                        <constraint firstItem="94g-Lh-qDS" firstAttribute="height" secondItem="W2v-ug-eBz" secondAttribute="height" id="niA-A9-iQA"/>
+                        <constraint firstItem="9zB-EM-M7n" firstAttribute="top" secondItem="W2v-ug-eBz" secondAttribute="top" id="rXh-ox-J1m"/>
+                        <constraint firstItem="pTe-YF-8HS" firstAttribute="centerX" secondItem="W2v-ug-eBz" secondAttribute="centerX" id="vp9-Ah-cVk"/>
+                        <constraint firstItem="yq1-Hm-TI1" firstAttribute="height" secondItem="W2v-ug-eBz" secondAttribute="height" id="w3a-sE-UHo"/>
+                    </constraints>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="-204" y="291"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="guide_four" width="500" height="222"/>
+        <image name="guide_one" width="500" height="222"/>
+        <image name="guide_three" width="500" height="222"/>
+        <image name="guide_two" width="500" height="222"/>
+    </resources>
+</document>

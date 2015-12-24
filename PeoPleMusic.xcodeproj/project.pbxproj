@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1833A0BD1C22FF520024626A /* LibraryMusicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */; };
+		1833A0BF1C22FF600024626A /* LibraryMusicHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */; };
+		1833A0C31C230A290024626A /* LibraryMusiceCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0C11C230A290024626A /* LibraryMusiceCellTableViewCell.m */; };
+		1833A0C41C230A290024626A /* LibraryMusiceCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833A0C21C230A290024626A /* LibraryMusiceCellTableViewCell.xib */; };
+		1833A0C81C298D360024626A /* PlayListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0C71C298D360024626A /* PlayListView.m */; };
+		1833A0CA1C298D4F0024626A /* PlayListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833A0C91C298D4F0024626A /* PlayListView.xib */; };
 		18720E041C1C1F670008FA09 /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18720E031C1C1F670008FA09 /* Player.storyboard */; };
 		18720E081C1C2E490008FA09 /* PlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18720E071C1C2E490008FA09 /* PlayerCell.m */; };
 		18720E0C1C1C648A0008FA09 /* SongModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18720E0B1C1C648A0008FA09 /* SongModel.m */; };
 		18777B1D1C1B11F800B74CC3 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18777B1B1C1B11F800B74CC3 /* HomeCell.m */; };
 		18777B1E1C1B11F800B74CC3 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18777B1C1C1B11F800B74CC3 /* HomeCell.xib */; };
+		1879904A1C219EDA00622BB7 /* LibraryMusic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 187990491C219EDA00622BB7 /* LibraryMusic.storyboard */; };
 		188492321C17268A004C3330 /* MyDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188492311C17268A004C3330 /* MyDeviceViewController.m */; };
 		188492351C1730A5004C3330 /* SpeakerManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188492341C1730A5004C3330 /* SpeakerManagerViewController.m */; };
 		188492381C1731A7004C3330 /* SpeakerControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188492371C1731A7004C3330 /* SpeakerControlViewController.m */; };
@@ -197,6 +204,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1833A0BB1C22FF520024626A /* LibraryMusicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicHeaderView.h; sourceTree = "<group>"; };
+		1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicHeaderView.m; sourceTree = "<group>"; };
+		1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusicHeaderView.xib; sourceTree = "<group>"; };
+		1833A0C01C230A290024626A /* LibraryMusiceCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusiceCellTableViewCell.h; sourceTree = "<group>"; };
+		1833A0C11C230A290024626A /* LibraryMusiceCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusiceCellTableViewCell.m; sourceTree = "<group>"; };
+		1833A0C21C230A290024626A /* LibraryMusiceCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusiceCellTableViewCell.xib; sourceTree = "<group>"; };
+		1833A0C61C298D360024626A /* PlayListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListView.h; sourceTree = SOURCE_ROOT; };
+		1833A0C71C298D360024626A /* PlayListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListView.m; sourceTree = SOURCE_ROOT; };
+		1833A0C91C298D4F0024626A /* PlayListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayListView.xib; sourceTree = SOURCE_ROOT; };
 		18720E031C1C1F670008FA09 /* Player.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
 		18720E061C1C2E490008FA09 /* PlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCell.h; sourceTree = "<group>"; };
 		18720E071C1C2E490008FA09 /* PlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCell.m; sourceTree = "<group>"; };
@@ -205,6 +221,7 @@
 		18777B1A1C1B11F800B74CC3 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCell.h; path = PeoPleMusic/Cell/HomeCell.h; sourceTree = SOURCE_ROOT; };
 		18777B1B1C1B11F800B74CC3 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCell.m; path = PeoPleMusic/Cell/HomeCell.m; sourceTree = SOURCE_ROOT; };
 		18777B1C1C1B11F800B74CC3 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeCell.xib; path = PeoPleMusic/Cell/HomeCell.xib; sourceTree = SOURCE_ROOT; };
+		187990491C219EDA00622BB7 /* LibraryMusic.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LibraryMusic.storyboard; sourceTree = "<group>"; };
 		188492301C17268A004C3330 /* MyDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDeviceViewController.h; sourceTree = "<group>"; };
 		188492311C17268A004C3330 /* MyDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDeviceViewController.m; sourceTree = "<group>"; };
 		188492331C1730A5004C3330 /* SpeakerManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerManagerViewController.h; sourceTree = "<group>"; };
@@ -568,6 +585,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1833A0BA1C22FF070024626A /* LibraryMusic */ = {
+			isa = PBXGroup;
+			children = (
+				1833A0BB1C22FF520024626A /* LibraryMusicHeaderView.h */,
+				1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */,
+				1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */,
+				1833A0C01C230A290024626A /* LibraryMusiceCellTableViewCell.h */,
+				1833A0C11C230A290024626A /* LibraryMusiceCellTableViewCell.m */,
+				1833A0C21C230A290024626A /* LibraryMusiceCellTableViewCell.xib */,
+			);
+			name = LibraryMusic;
+			sourceTree = "<group>";
+		};
+		1833A0C51C298CFC0024626A /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				1833A0C61C298D360024626A /* PlayListView.h */,
+				1833A0C71C298D360024626A /* PlayListView.m */,
+				1833A0C91C298D4F0024626A /* PlayListView.xib */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
 		18720E051C1C2E280008FA09 /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,6 +629,7 @@
 		1884922E1C1722A1004C3330 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				1833A0BA1C22FF070024626A /* LibraryMusic */,
 				18720E051C1C2E280008FA09 /* Player */,
 				1884922F1C172390004C3330 /* Home */,
 			);
@@ -1350,6 +1391,7 @@
 		FD8C2D951C0C6AD1007CE036 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1833A0C51C298CFC0024626A /* Player */,
 				18CF4C4F1C15E0D400362987 /* Home */,
 			);
 			path = View;
@@ -1459,6 +1501,7 @@
 			children = (
 				FD94F3E01C0E804A006AA37C /* LibrayMusicViewController.h */,
 				FD94F3E11C0E804A006AA37C /* LibrayMusicViewController.m */,
+				187990491C219EDA00622BB7 /* LibraryMusic.storyboard */,
 			);
 			name = LibraryMusic;
 			sourceTree = "<group>";
@@ -1579,12 +1622,16 @@
 				FD8C2CCB1C0C6A98007CE036 /* com_icon_yuyinhuatong@2x.png in Resources */,
 				FD8C2DB81C0C6ADF007CE036 /* RootViewController.xib in Resources */,
 				FD94F3EC1C0F0C57006AA37C /* Home.storyboard in Resources */,
+				1833A0BF1C22FF600024626A /* LibraryMusicHeaderView.xib in Resources */,
 				FD8C2CD41C0C6A98007CE036 /* com_txt_btn_clear@2x.png in Resources */,
 				FD8C2B9F1C0C6A41007CE036 /* LaunchScreen.storyboard in Resources */,
+				1833A0C41C230A290024626A /* LibraryMusiceCellTableViewCell.xib in Resources */,
 				18777B1E1C1B11F800B74CC3 /* HomeCell.xib in Resources */,
+				1879904A1C219EDA00622BB7 /* LibraryMusic.storyboard in Resources */,
 				FD8C2CCF1C0C6A98007CE036 /* KyoSelectedColumnCell.xib in Resources */,
 				FD8C2CC51C0C6A98007CE036 /* KyoTipsView.xib in Resources */,
 				FD8C2DDC1C0C6FAB007CE036 /* Info.plist in Resources */,
+				1833A0CA1C298D4F0024626A /* PlayListView.xib in Resources */,
 				FD8C2DC41C0C6B07007CE036 /* Assets.xcassets in Resources */,
 				FD8C2CCD1C0C6A98007CE036 /* kyoSelectedColumn_arrow@2x.png in Resources */,
 				FD8C2DCF1C0C6D7F007CE036 /* SSKeychain.strings in Resources */,
@@ -1676,6 +1723,7 @@
 				FD8C2CE71C0C6A98007CE036 /* OTCover.m in Sources */,
 				FD8C2CF21C0C6A98007CE036 /* RNOpenSSLEncryptor.m in Sources */,
 				FD8C2D8F1C0C6ACA007CE036 /* KyoBasicsWebMutualHelp.m in Sources */,
+				1833A0C81C298D360024626A /* PlayListView.m in Sources */,
 				FD8C2D941C0C6ACA007CE036 /* VerifyRegexTool.m in Sources */,
 				FD8C2D441C0C6AAA007CE036 /* UIDevice-Hardware.m in Sources */,
 				FD8C2D491C0C6AAA007CE036 /* UILabel+size.m in Sources */,
@@ -1736,6 +1784,7 @@
 				1884923E1C17331B004C3330 /* SetHelperViewController.m in Sources */,
 				FD8C2CAC1C0C6A98007CE036 /* AFNetworkReachabilityManager.m in Sources */,
 				FD8C2D4B1C0C6AAA007CE036 /* UINavigationItem+Spacing.m in Sources */,
+				1833A0BD1C22FF520024626A /* LibraryMusicHeaderView.m in Sources */,
 				18CF4C4E1C15DE9900362987 /* HomeModel.m in Sources */,
 				FD8C2CC01C0C6A98007CE036 /* KyoLoadMoreControl.m in Sources */,
 				FD8C2CD11C0C6A98007CE036 /* KyoSlider.m in Sources */,
@@ -1750,6 +1799,7 @@
 				FD8C2CCC1C0C6A98007CE036 /* KyoSearchBar.m in Sources */,
 				FD8C2CD91C0C6A98007CE036 /* MBProgressHUD+MJ.m in Sources */,
 				18777B1D1C1B11F800B74CC3 /* HomeCell.m in Sources */,
+				1833A0C31C230A290024626A /* LibraryMusiceCellTableViewCell.m in Sources */,
 				FD8C2CD01C0C6A98007CE036 /* KyoSelectedMultiColumnTableView.m in Sources */,
 				FD8C2CBC1C0C6A98007CE036 /* KyoDataCache.m in Sources */,
 				FD8C2CE61C0C6A98007CE036 /* NSObject+MJMember.m in Sources */,

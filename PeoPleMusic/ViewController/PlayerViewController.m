@@ -10,6 +10,7 @@
 #import "PlayerCell.h"
 #import "SongModel.h"
 #import "UIView-WhenTappedBlocks.h"
+#import "PlayListView.h"
 
 @interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate>{
     SongModel *_oldModel;
@@ -22,6 +23,8 @@
 
 @property (nonatomic, strong) NSArray *songModels;
 @property (weak, nonatomic) IBOutlet UIImageView *imgBg;
+
+
 
 @end
 
@@ -49,6 +52,8 @@
     self.tableView.backgroundView =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_song_header"]];
     
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 10);
+    
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -117,5 +122,16 @@
 }
 
 - (IBAction)btnSongListTouchInside:(id)sender {
+    
+//    UIView *view = [[UIView alloc] init];
+//    view.backgroundColor = [UIColor redColor];
+//    view.frame = CGRectMake(0, kWindowHeight - 100, kWindowWidth, 100);
+//    
+//    CTBaseDialogView *baseView = [[CTBaseDialogView alloc] initWithSubView:view animation:CTAnimationTypeDownToUp fromFrame:self.view.frame];
+//    baseView.isNoNeedCloseBtn = YES;
+//    baseView.bodyView = view;
+//    [baseView show];
+    [[PlayListView createPlayListViewFromWindow] show];
+  
 }
 @end

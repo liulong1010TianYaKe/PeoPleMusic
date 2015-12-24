@@ -6,8 +6,9 @@
 //  Copyright © 2015 long. All rights reserved.
 //
 
-#import "BasicsViewController.h"
 
-@interface LibrayMusicViewController : BasicsViewController
+#import "BasicsTableViewController.h"
 
+@interface LibrayMusicViewController : BasicsTableViewController
++ (LibrayMusicViewController *)createLibrayMusicViewController;
 @end

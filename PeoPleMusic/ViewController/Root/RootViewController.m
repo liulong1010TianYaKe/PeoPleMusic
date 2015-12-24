@@ -125,7 +125,7 @@
 
     
    
-     LibrayMusicViewController  *libMusicVC = [[LibrayMusicViewController alloc] init];
+     LibrayMusicViewController  *libMusicVC = [LibrayMusicViewController createLibrayMusicViewController];
 
     [self.tabBarViewController addOneChildVc:libMusicVC title:@"曲库" imageName:@"icon_indicator_music_off" selectedImageName:@"icon_indicator_music_on"];
     
