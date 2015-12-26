@@ -14,20 +14,22 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tX-K2-cbG">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="输入歌曲/歌手名称" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="U1u-Rf-VAu">
-                            <rect key="frame" x="8" y="8" width="304" height="44"/>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" spellCheckingType="no"/>
-                        </textField>
+                        <searchBar contentMode="redraw" placeholder="输入歌曲/歌手名称" translatesAutoresizingMaskIntoConstraints="NO" id="WDL-Ie-OQd">
+                            <rect key="frame" x="0.0" y="8" width="320" height="44"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="WDL-Ie-OQd" secondAttribute="bottom" constant="8" id="2Xr-lu-MqB"/>
                         <constraint firstAttribute="height" constant="60" id="D08-YS-K3o"/>
-                        <constraint firstAttribute="trailing" secondItem="U1u-Rf-VAu" secondAttribute="trailing" constant="8" id="GtY-PZ-coq"/>
-                        <constraint firstItem="U1u-Rf-VAu" firstAttribute="top" secondItem="6tX-K2-cbG" secondAttribute="top" constant="8" id="HD1-e1-eNy"/>
-                        <constraint firstItem="U1u-Rf-VAu" firstAttribute="leading" secondItem="6tX-K2-cbG" secondAttribute="leading" constant="8" id="tpt-n2-WH3"/>
-                        <constraint firstAttribute="bottom" secondItem="U1u-Rf-VAu" secondAttribute="bottom" constant="8" id="vD1-d3-tWl"/>
+                        <constraint firstAttribute="trailing" secondItem="WDL-Ie-OQd" secondAttribute="trailing" id="J7v-NT-VWW"/>
+                        <constraint firstItem="WDL-Ie-OQd" firstAttribute="leading" secondItem="6tX-K2-cbG" secondAttribute="leading" id="Vuq-vy-fX0"/>
+                        <constraint firstItem="WDL-Ie-OQd" firstAttribute="top" secondItem="6tX-K2-cbG" secondAttribute="top" constant="8" id="W0j-9m-572"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yl4-OA-YBi">
@@ -85,7 +87,7 @@
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uaX-aw-LBa">
-                            <rect key="frame" x="159.5" y="0.0" width="1" height="55"/>
+                            <rect key="frame" x="159" y="0.0" width="1" height="55"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="tNr-Jv-XQ1"/>
@@ -129,7 +131,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="txtInput" destination="U1u-Rf-VAu" id="SNd-zE-rxh"/>
+                <outlet property="searBar" destination="WDL-Ie-OQd" id="fba-Ae-Dl1"/>
             </connections>
             <point key="canvasLocation" x="223" y="244.5"/>
         </view>

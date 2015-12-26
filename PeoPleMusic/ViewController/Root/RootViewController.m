@@ -57,7 +57,7 @@
     
     [self startMonitoringNetworkState]; //开始监听网络状态
     [self setupTabBarViewController];   //设置tabbarviewcontroller
-//    [self checkShowNewFeatureViewController];   //检测是否需要显示新特性viewcontroller
+    [self checkShowNewFeatureViewController];   //检测是否需要显示新特性viewcontroller
     
     //添加手势
     [KyoUtil addTagGesture:self performSelector:@selector(clearAllTextField:) withView:self.view];

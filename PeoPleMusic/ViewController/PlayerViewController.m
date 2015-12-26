@@ -11,6 +11,9 @@
 #import "SongModel.h"
 #import "UIView-WhenTappedBlocks.h"
 #import "PlayListView.h"
+#import "Feedbackview.h"
+#import "ChaboView.h"
+#import "PlayDetailViewController.h"
 
 @interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate>{
     SongModel *_oldModel;
@@ -24,8 +27,9 @@
 @property (nonatomic, strong) NSArray *songModels;
 @property (weak, nonatomic) IBOutlet UIImageView *imgBg;
 
+@property (nonatomic, strong) FeedBackView *feedBackView;
 
-
+@property (nonatomic, strong) ChaboView *chaoboView;
 @end
 
 @implementation PlayerViewController
@@ -114,7 +118,28 @@
 }
 
 - (void)playerCellTouchInside:(PlayerCell *)cell withBtnType:(PlayerCellBtnTypes)type{
-    
+    switch (type) {
+
+        case PlayerCellBtnTypeDetail:{
+            PlayDetailViewController *VC = [PlayDetailViewController createViewController];
+            [self.navigationController pushViewController:VC animated:YES];
+          
+            break;
+        }
+        case PlayerCellBtnTypeDelete:
+            break;
+        case PlayerCellBtnTypeMsg:
+           self.feedBackView = [FeedBackView createFeedBackViewFromWindow] ;
+            [self.feedBackView show];
+            break;
+        case PlayerCellBtnTypeChabo:
+            self.chaoboView = [ChaboView createChaboViewFromWindow];
+            [self.chaoboView show];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 // 播放
@@ -123,15 +148,31 @@
 
 - (IBAction)btnSongListTouchInside:(id)sender {
     
-//    UIView *view = [[UIView alloc] init];
-//    view.backgroundColor = [UIColor redColor];
-//    view.frame = CGRectMake(0, kWindowHeight - 100, kWindowWidth, 100);
-//    
-//    CTBaseDialogView *baseView = [[CTBaseDialogView alloc] initWithSubView:view animation:CTAnimationTypeDownToUp fromFrame:self.view.frame];
-//    baseView.isNoNeedCloseBtn = YES;
-//    baseView.bodyView = view;
-//    [baseView show];
+
     [[PlayListView createPlayListViewFromWindow] show];
   
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification{
+    [super keyboardWillShow:notification];
+//    keyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    self.currentKeyBoradRect = keyboardRect;
+    CGRect kyRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    KyoLog(@"%@",NSStringFromCGRect(self.currentKeyBoradRect));
+    if (self.feedBackView && self.feedBackView.frame.origin.x == 0) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.feedBackView.frame = CGRectMake(0, -kyRect.size.height   , kWindowWidth, kWindowHeight);
+        }];
+    }
+    
+    if (self.chaoboView) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.chaoboView.frame = CGRectMake(0, -kyRect.size.height   , kWindowWidth, kWindowHeight);
+        }];
+    }
+
+}
+- (void)keyboardWillHide:(NSNotification *)notification{
+    [super keyboardWillHide:notification];
 }
 @end

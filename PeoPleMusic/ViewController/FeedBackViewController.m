@@ -44,10 +44,7 @@
     _textViewFeed.layer.cornerRadius = 4;
     _textViewFeed.layer.masksToBounds = YES;
     
-    _textViewFeed.layer.borderWidth = 1.5;
-    _textViewFeed.layer.borderColor = YYColor(199, 199, 199).CGColor;
-    _textViewFeed.layer.cornerRadius = 4;
-    _textViewFeed.layer.masksToBounds = YES;
+   
   
 }
 

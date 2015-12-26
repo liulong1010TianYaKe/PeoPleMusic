@@ -7,9 +7,10 @@
 //
 
 #import "PlayListView.h"
+#import "PlayListCell.h"
 
 
-@interface PlayListView ()
+@interface PlayListView ()<UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -25,7 +26,9 @@
     
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecoginzer:)];
     [self addGestureRecognizer:tapGR];
-//    self.tableView.userInteractionEnabled = NO;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([PlayListCell class]) bundle:nil] forCellReuseIdentifier:KPlayListCellIdentify];
+    
 }
 + (instancetype)createPlayListViewFromWindow{
     
@@ -48,7 +51,7 @@
     
     [window addSubview:self];
     
-    [UIView animateWithDuration:1.0f animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         self.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight);
     }];
     
@@ -57,7 +60,7 @@
 
 - (void)close{
     
-    [UIView animateWithDuration:1 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         self.frame = CGRectMake(0, kWindowHeight, kWindowWidth, kWindowHeight);
     }];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -69,4 +72,21 @@
     [self close];
 }
 
+#pragma mark -- 
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    PlayListCell *cell = [tableView dequeueReusableCellWithIdentifier:KPlayListCellIdentify];
+    __weak typeof(self)weekSelf = self;
+    cell.cancelOperationBlock = ^{
+        [weekSelf close];
+    };
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return KPlayListCelllHeight;
+}
 @end
