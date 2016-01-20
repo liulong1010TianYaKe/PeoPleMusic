@@ -7,18 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1817B57D1C2D90420038AEFF /* PlayListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1817B57B1C2D90420038AEFF /* PlayListCell.m */; };
-		1817B57E1C2D90420038AEFF /* PlayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1817B57C1C2D90420038AEFF /* PlayListCell.xib */; };
 		1833A0BD1C22FF520024626A /* LibraryMusicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */; };
 		1833A0BF1C22FF600024626A /* LibraryMusicHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */; };
 		1833A0C31C230A290024626A /* LibraryMusiceCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0C11C230A290024626A /* LibraryMusiceCellTableViewCell.m */; };
 		1833A0C41C230A290024626A /* LibraryMusiceCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833A0C21C230A290024626A /* LibraryMusiceCellTableViewCell.xib */; };
-		1833A0C81C298D360024626A /* PlayListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0C71C298D360024626A /* PlayListView.m */; };
-		1833A0CA1C298D4F0024626A /* PlayListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833A0C91C298D4F0024626A /* PlayListView.xib */; };
-		1871F3291C2D9DE0009B79DB /* FeedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1871F3281C2D9DE0009B79DB /* FeedBackView.m */; };
-		1871F32D1C2D9E16009B79DB /* FeedBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1871F32C1C2D9E16009B79DB /* FeedBackView.xib */; };
-		1871F3301C2DB104009B79DB /* ChaboView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1871F32F1C2DB104009B79DB /* ChaboView.m */; };
-		1871F3321C2DB122009B79DB /* ChaboView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1871F3311C2DB122009B79DB /* ChaboView.xib */; };
 		1871F3361C2DB65C009B79DB /* PlayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1871F3341C2DB65C009B79DB /* PlayDetailViewController.m */; };
 		1871F3371C2DB65C009B79DB /* PlayDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1871F3351C2DB65C009B79DB /* PlayDetailViewController.xib */; };
 		18720E041C1C1F670008FA09 /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18720E031C1C1F670008FA09 /* Player.storyboard */; };
@@ -33,6 +25,22 @@
 		1884923B1C173271004C3330 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884923A1C173271004C3330 /* FeedBackViewController.m */; };
 		1884923E1C17331B004C3330 /* SetHelperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1884923D1C17331B004C3330 /* SetHelperViewController.m */; };
 		18CF4C4E1C15DE9900362987 /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF4C4D1C15DE9900362987 /* HomeModel.m */; };
+		18EBC9361C4FD72700460546 /* ChaboView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC92B1C4FD72700460546 /* ChaboView.m */; };
+		18EBC9371C4FD72700460546 /* ChaboView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC92C1C4FD72700460546 /* ChaboView.xib */; };
+		18EBC9381C4FD72700460546 /* FeedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC92E1C4FD72700460546 /* FeedBackView.m */; };
+		18EBC9391C4FD72700460546 /* FeedBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC92F1C4FD72700460546 /* FeedBackView.xib */; };
+		18EBC93A1C4FD72700460546 /* PlayListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9311C4FD72700460546 /* PlayListCell.m */; };
+		18EBC93B1C4FD72700460546 /* PlayListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC9321C4FD72700460546 /* PlayListCell.xib */; };
+		18EBC93C1C4FD72700460546 /* PlayListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9341C4FD72700460546 /* PlayListView.m */; };
+		18EBC93D1C4FD72700460546 /* PlayListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC9351C4FD72700460546 /* PlayListView.xib */; };
+		18EBC9451C4FD98000460546 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9401C4FD98000460546 /* TFHpple.m */; };
+		18EBC9461C4FD98000460546 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9421C4FD98000460546 /* TFHppleElement.m */; };
+		18EBC9471C4FD98000460546 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9441C4FD98000460546 /* XPathQuery.m */; };
+		18EBC9491C4FDADD00460546 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EBC9481C4FDADD00460546 /* libxml2.2.tbd */; };
+		18EBC94E1C4FDC5900460546 /* MusicCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC94D1C4FDC5900460546 /* MusicCategoryModel.m */; };
+		18EBC9511C4FED8300460546 /* LibraryMusicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9501C4FED8300460546 /* LibraryMusicListViewController.m */; };
+		18EBC9541C4FFBBB00460546 /* LibraryMusicListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9531C4FFBBB00460546 /* LibraryMusicListCell.m */; };
+		18EBC9561C50014600460546 /* LibraryMusicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC9551C50014600460546 /* LibraryMusicListCell.xib */; };
 		FD8C2B9F1C0C6A41007CE036 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD8C2B9D1C0C6A41007CE036 /* LaunchScreen.storyboard */; };
 		FD8C2BAA1C0C6A42007CE036 /* PeoPleMusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2BA91C0C6A42007CE036 /* PeoPleMusicTests.m */; };
 		FD8C2BB81C0C6A8D007CE036 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2BB61C0C6A8D007CE036 /* AppDelegate.m */; };
@@ -212,24 +220,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1817B57A1C2D90420038AEFF /* PlayListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListCell.h; sourceTree = SOURCE_ROOT; };
-		1817B57B1C2D90420038AEFF /* PlayListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListCell.m; sourceTree = SOURCE_ROOT; };
-		1817B57C1C2D90420038AEFF /* PlayListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayListCell.xib; sourceTree = SOURCE_ROOT; };
 		1833A0BB1C22FF520024626A /* LibraryMusicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicHeaderView.h; sourceTree = "<group>"; };
 		1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicHeaderView.m; sourceTree = "<group>"; };
 		1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusicHeaderView.xib; sourceTree = "<group>"; };
 		1833A0C01C230A290024626A /* LibraryMusiceCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusiceCellTableViewCell.h; sourceTree = "<group>"; };
 		1833A0C11C230A290024626A /* LibraryMusiceCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusiceCellTableViewCell.m; sourceTree = "<group>"; };
 		1833A0C21C230A290024626A /* LibraryMusiceCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusiceCellTableViewCell.xib; sourceTree = "<group>"; };
-		1833A0C61C298D360024626A /* PlayListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListView.h; sourceTree = SOURCE_ROOT; };
-		1833A0C71C298D360024626A /* PlayListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListView.m; sourceTree = SOURCE_ROOT; };
-		1833A0C91C298D4F0024626A /* PlayListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayListView.xib; sourceTree = SOURCE_ROOT; };
-		1871F3271C2D9DE0009B79DB /* FeedBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackView.h; sourceTree = SOURCE_ROOT; };
-		1871F3281C2D9DE0009B79DB /* FeedBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackView.m; sourceTree = SOURCE_ROOT; };
-		1871F32C1C2D9E16009B79DB /* FeedBackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackView.xib; sourceTree = SOURCE_ROOT; };
-		1871F32E1C2DB104009B79DB /* ChaboView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChaboView.h; sourceTree = SOURCE_ROOT; };
-		1871F32F1C2DB104009B79DB /* ChaboView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChaboView.m; sourceTree = SOURCE_ROOT; };
-		1871F3311C2DB122009B79DB /* ChaboView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChaboView.xib; sourceTree = SOURCE_ROOT; };
 		1871F3331C2DB65C009B79DB /* PlayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayDetailViewController.h; sourceTree = "<group>"; };
 		1871F3341C2DB65C009B79DB /* PlayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayDetailViewController.m; sourceTree = "<group>"; };
 		1871F3351C2DB65C009B79DB /* PlayDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayDetailViewController.xib; sourceTree = "<group>"; };
@@ -254,6 +250,32 @@
 		1884923D1C17331B004C3330 /* SetHelperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetHelperViewController.m; sourceTree = "<group>"; };
 		18CF4C4C1C15DE9900362987 /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeModel.h; path = ../Model/HomeModel.h; sourceTree = "<group>"; };
 		18CF4C4D1C15DE9900362987 /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeModel.m; path = ../Model/HomeModel.m; sourceTree = "<group>"; };
+		18EBC92A1C4FD72700460546 /* ChaboView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChaboView.h; sourceTree = "<group>"; };
+		18EBC92B1C4FD72700460546 /* ChaboView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChaboView.m; sourceTree = "<group>"; };
+		18EBC92C1C4FD72700460546 /* ChaboView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChaboView.xib; sourceTree = "<group>"; };
+		18EBC92D1C4FD72700460546 /* FeedBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackView.h; sourceTree = "<group>"; };
+		18EBC92E1C4FD72700460546 /* FeedBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackView.m; sourceTree = "<group>"; };
+		18EBC92F1C4FD72700460546 /* FeedBackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedBackView.xib; sourceTree = "<group>"; };
+		18EBC9301C4FD72700460546 /* PlayListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListCell.h; sourceTree = "<group>"; };
+		18EBC9311C4FD72700460546 /* PlayListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListCell.m; sourceTree = "<group>"; };
+		18EBC9321C4FD72700460546 /* PlayListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayListCell.xib; sourceTree = "<group>"; };
+		18EBC9331C4FD72700460546 /* PlayListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListView.h; sourceTree = "<group>"; };
+		18EBC9341C4FD72700460546 /* PlayListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListView.m; sourceTree = "<group>"; };
+		18EBC9351C4FD72700460546 /* PlayListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayListView.xib; sourceTree = "<group>"; };
+		18EBC93F1C4FD98000460546 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		18EBC9401C4FD98000460546 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		18EBC9411C4FD98000460546 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		18EBC9421C4FD98000460546 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		18EBC9431C4FD98000460546 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		18EBC9441C4FD98000460546 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		18EBC9481C4FDADD00460546 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		18EBC94C1C4FDC5900460546 /* MusicCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCategoryModel.h; sourceTree = "<group>"; };
+		18EBC94D1C4FDC5900460546 /* MusicCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCategoryModel.m; sourceTree = "<group>"; };
+		18EBC94F1C4FED8300460546 /* LibraryMusicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicListViewController.h; sourceTree = "<group>"; };
+		18EBC9501C4FED8300460546 /* LibraryMusicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicListViewController.m; sourceTree = "<group>"; };
+		18EBC9521C4FFBBB00460546 /* LibraryMusicListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicListCell.h; sourceTree = "<group>"; };
+		18EBC9531C4FFBBB00460546 /* LibraryMusicListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicListCell.m; sourceTree = "<group>"; };
+		18EBC9551C50014600460546 /* LibraryMusicListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusicListCell.xib; sourceTree = "<group>"; };
 		FD8C2B8C1C0C6A41007CE036 /* PeoPleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeoPleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD8C2B9E1C0C6A41007CE036 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD8C2BA51C0C6A42007CE036 /* PeoPleMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeoPleMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -592,6 +614,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18EBC9491C4FDADD00460546 /* libxml2.2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,27 +637,11 @@
 				1833A0C01C230A290024626A /* LibraryMusiceCellTableViewCell.h */,
 				1833A0C11C230A290024626A /* LibraryMusiceCellTableViewCell.m */,
 				1833A0C21C230A290024626A /* LibraryMusiceCellTableViewCell.xib */,
+				18EBC9521C4FFBBB00460546 /* LibraryMusicListCell.h */,
+				18EBC9531C4FFBBB00460546 /* LibraryMusicListCell.m */,
+				18EBC9551C50014600460546 /* LibraryMusicListCell.xib */,
 			);
 			name = LibraryMusic;
-			sourceTree = "<group>";
-		};
-		1833A0C51C298CFC0024626A /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				1833A0C61C298D360024626A /* PlayListView.h */,
-				1833A0C71C298D360024626A /* PlayListView.m */,
-				1833A0C91C298D4F0024626A /* PlayListView.xib */,
-				1817B57A1C2D90420038AEFF /* PlayListCell.h */,
-				1817B57B1C2D90420038AEFF /* PlayListCell.m */,
-				1817B57C1C2D90420038AEFF /* PlayListCell.xib */,
-				1871F3271C2D9DE0009B79DB /* FeedBackView.h */,
-				1871F3281C2D9DE0009B79DB /* FeedBackView.m */,
-				1871F32C1C2D9E16009B79DB /* FeedBackView.xib */,
-				1871F32E1C2DB104009B79DB /* ChaboView.h */,
-				1871F32F1C2DB104009B79DB /* ChaboView.m */,
-				1871F3311C2DB122009B79DB /* ChaboView.xib */,
-			);
-			name = Player;
 			sourceTree = "<group>";
 		};
 		18720E051C1C2E280008FA09 /* Player */ = {
@@ -681,7 +688,35 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
-		18CF4C4F1C15E0D400362987 /* Home */ = {
+		18EBC9261C4FD65100460546 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				18EBC9291C4FD67500460546 /* Home */,
+				18EBC9271C4FD65B00460546 /* Player */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		18EBC9271C4FD65B00460546 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				18EBC92A1C4FD72700460546 /* ChaboView.h */,
+				18EBC92B1C4FD72700460546 /* ChaboView.m */,
+				18EBC92C1C4FD72700460546 /* ChaboView.xib */,
+				18EBC92D1C4FD72700460546 /* FeedBackView.h */,
+				18EBC92E1C4FD72700460546 /* FeedBackView.m */,
+				18EBC92F1C4FD72700460546 /* FeedBackView.xib */,
+				18EBC9301C4FD72700460546 /* PlayListCell.h */,
+				18EBC9311C4FD72700460546 /* PlayListCell.m */,
+				18EBC9321C4FD72700460546 /* PlayListCell.xib */,
+				18EBC9331C4FD72700460546 /* PlayListView.h */,
+				18EBC9341C4FD72700460546 /* PlayListView.m */,
+				18EBC9351C4FD72700460546 /* PlayListView.xib */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		18EBC9291C4FD67500460546 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				18777B1A1C1B11F800B74CC3 /* HomeCell.h */,
@@ -691,12 +726,43 @@
 			name = Home;
 			sourceTree = "<group>";
 		};
+		18EBC93E1C4FD98000460546 /* TFHpple */ = {
+			isa = PBXGroup;
+			children = (
+				18EBC93F1C4FD98000460546 /* TFHpple.h */,
+				18EBC9401C4FD98000460546 /* TFHpple.m */,
+				18EBC9411C4FD98000460546 /* TFHppleElement.h */,
+				18EBC9421C4FD98000460546 /* TFHppleElement.m */,
+				18EBC9431C4FD98000460546 /* XPathQuery.h */,
+				18EBC9441C4FD98000460546 /* XPathQuery.m */,
+			);
+			path = TFHpple;
+			sourceTree = "<group>";
+		};
+		18EBC94A1C4FDAE800460546 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				18EBC9481C4FDADD00460546 /* libxml2.2.tbd */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		18EBC94B1C4FDBF700460546 /* LibraryMusic */ = {
+			isa = PBXGroup;
+			children = (
+				18EBC94C1C4FDC5900460546 /* MusicCategoryModel.h */,
+				18EBC94D1C4FDC5900460546 /* MusicCategoryModel.m */,
+			);
+			name = LibraryMusic;
+			sourceTree = "<group>";
+		};
 		FD8C2B831C0C6A41007CE036 = {
 			isa = PBXGroup;
 			children = (
 				FD8C2B8E1C0C6A41007CE036 /* PeoPleMusic */,
 				FD8C2BA81C0C6A42007CE036 /* PeoPleMusicTests */,
 				FD8C2B8D1C0C6A41007CE036 /* Products */,
+				18EBC94A1C4FDAE800460546 /* Framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -712,13 +778,13 @@
 		FD8C2B8E1C0C6A41007CE036 /* PeoPleMusic */ = {
 			isa = PBXGroup;
 			children = (
-				1884922E1C1722A1004C3330 /* Cell */,
-				FD8C2D951C0C6AD1007CE036 /* View */,
-				FD8C2D531C0C6AC9007CE036 /* Utility */,
-				FD8C2D521C0C6ABF007CE036 /* Model */,
-				FD8C2D0C1C0C6AAA007CE036 /* Category */,
 				FD8C2BB91C0C6A98007CE036 /* ThirdLibs */,
+				FD8C2D531C0C6AC9007CE036 /* Utility */,
+				FD8C2D0C1C0C6AAA007CE036 /* Category */,
 				FD8C2BB41C0C6A8D007CE036 /* AppDelegate */,
+				18EBC9261C4FD65100460546 /* View */,
+				1884922E1C1722A1004C3330 /* Cell */,
+				FD8C2D521C0C6ABF007CE036 /* Model */,
 				FD8C2D961C0C6ADF007CE036 /* ViewController */,
 				FD8C2B9D1C0C6A41007CE036 /* LaunchScreen.storyboard */,
 				FD8C2DDB1C0C6FAB007CE036 /* Info.plist */,
@@ -759,6 +825,7 @@
 		FD8C2BB91C0C6A98007CE036 /* ThirdLibs */ = {
 			isa = PBXGroup;
 			children = (
+				18EBC93E1C4FD98000460546 /* TFHpple */,
 				FD8C2DC71C0C6D7F007CE036 /* SSKeychain */,
 				FD8C2BBA1C0C6A98007CE036 /* AFNetworking */,
 				FD8C2BD01C0C6A98007CE036 /* AutoScrollLabel */,
@@ -1327,6 +1394,7 @@
 		FD8C2D521C0C6ABF007CE036 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				18EBC94B1C4FDBF700460546 /* LibraryMusic */,
 				18720E091C1C64550008FA09 /* Player */,
 				18CF4C4B1C15DE7700362987 /* Home */,
 				FD8C2DD21C0C6DBC007CE036 /* UserInfo.h */,
@@ -1415,15 +1483,6 @@
 			children = (
 			);
 			path = WebMutualHelp;
-			sourceTree = "<group>";
-		};
-		FD8C2D951C0C6AD1007CE036 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1833A0C51C298CFC0024626A /* Player */,
-				18CF4C4F1C15E0D400362987 /* Home */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		FD8C2D961C0C6ADF007CE036 /* ViewController */ = {
@@ -1531,6 +1590,8 @@
 				FD94F3E01C0E804A006AA37C /* LibrayMusicViewController.h */,
 				FD94F3E11C0E804A006AA37C /* LibrayMusicViewController.m */,
 				187990491C219EDA00622BB7 /* LibraryMusic.storyboard */,
+				18EBC94F1C4FED8300460546 /* LibraryMusicListViewController.h */,
+				18EBC9501C4FED8300460546 /* LibraryMusicListViewController.m */,
 			);
 			name = LibraryMusic;
 			sourceTree = "<group>";
@@ -1651,10 +1712,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD8C2CB71C0C6A98007CE036 /* dialog_btn_close@2x.png in Resources */,
+				18EBC9391C4FD72700460546 /* FeedBackView.xib in Resources */,
 				1871F3371C2DB65C009B79DB /* PlayDetailViewController.xib in Resources */,
-				1871F32D1C2D9E16009B79DB /* FeedBackView.xib in Resources */,
 				18720E041C1C1F670008FA09 /* Player.storyboard in Resources */,
+				18EBC93B1C4FD72700460546 /* PlayListCell.xib in Resources */,
 				FD8C2CCB1C0C6A98007CE036 /* com_icon_yuyinhuatong@2x.png in Resources */,
+				18EBC9561C50014600460546 /* LibraryMusicListCell.xib in Resources */,
 				FD8C2DB81C0C6ADF007CE036 /* RootViewController.xib in Resources */,
 				FD94F3EC1C0F0C57006AA37C /* Home.storyboard in Resources */,
 				1833A0BF1C22FF600024626A /* LibraryMusicHeaderView.xib in Resources */,
@@ -1666,12 +1729,11 @@
 				FD8C2CCF1C0C6A98007CE036 /* KyoSelectedColumnCell.xib in Resources */,
 				FD8C2CC51C0C6A98007CE036 /* KyoTipsView.xib in Resources */,
 				FD8C2DDC1C0C6FAB007CE036 /* Info.plist in Resources */,
-				1817B57E1C2D90420038AEFF /* PlayListCell.xib in Resources */,
-				1833A0CA1C298D4F0024626A /* PlayListView.xib in Resources */,
 				FD8C2DC41C0C6B07007CE036 /* Assets.xcassets in Resources */,
-				1871F3321C2DB122009B79DB /* ChaboView.xib in Resources */,
+				18EBC93D1C4FD72700460546 /* PlayListView.xib in Resources */,
 				FD8C2CCD1C0C6A98007CE036 /* kyoSelectedColumn_arrow@2x.png in Resources */,
 				FD8C2DCF1C0C6D7F007CE036 /* SSKeychain.strings in Resources */,
+				18EBC9371C4FD72700460546 /* ChaboView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1709,6 +1771,7 @@
 				FD8C2CED1C0C6A98007CE036 /* RNCryptorEngine.m in Sources */,
 				FD8C2D8D1C0C6ACA007CE036 /* UIImage-RoundCorner.m in Sources */,
 				FD8C2D811C0C6ACA007CE036 /* ApplicationInfo.m in Sources */,
+				18EBC9541C4FFBBB00460546 /* LibraryMusicListCell.m in Sources */,
 				FD8C2CD71C0C6A98007CE036 /* KyoTopWindow.m in Sources */,
 				FD8C2CAD1C0C6A98007CE036 /* AFSecurityPolicy.m in Sources */,
 				FD8C2CD61C0C6A98007CE036 /* KyoTextField.m in Sources */,
@@ -1733,11 +1796,13 @@
 				FD8C2CE11C0C6A98007CE036 /* MJType.m in Sources */,
 				FD8C2CB31C0C6A98007CE036 /* AutoScrollView.m in Sources */,
 				FD8C2DC01C0C6AFA007CE036 /* main.m in Sources */,
+				18EBC9511C4FED8300460546 /* LibraryMusicListViewController.m in Sources */,
 				FD8C2CB91C0C6A98007CE036 /* CTSegmentedControl.m in Sources */,
+				18EBC9451C4FD98000460546 /* TFHpple.m in Sources */,
 				FD8C2DB11C0C6ADF007CE036 /* BasicsViewController.m in Sources */,
-				1871F3301C2DB104009B79DB /* ChaboView.m in Sources */,
 				FD94F3E81C0E8077006AA37C /* PlayerViewController.m in Sources */,
 				FD8C2D451C0C6AAA007CE036 /* UIImage+Antialiase.m in Sources */,
+				18EBC9361C4FD72700460546 /* ChaboView.m in Sources */,
 				FD8C2CB41C0C6A98007CE036 /* CExpandHeader.m in Sources */,
 				FD8C2CC11C0C6A98007CE036 /* KyoRefreshControl.m in Sources */,
 				FD8C2D011C0C6A98007CE036 /* UIImageView+WebCache.m in Sources */,
@@ -1758,10 +1823,10 @@
 				FD8C2CEB1C0C6A98007CE036 /* Base64.m in Sources */,
 				FD8C2DB91C0C6ADF007CE036 /* JMTabBarViewController.m in Sources */,
 				FD8C2CD51C0C6A98007CE036 /* KyoSelectedEmailSuffixView.m in Sources */,
+				18EBC94E1C4FDC5900460546 /* MusicCategoryModel.m in Sources */,
 				FD8C2CE71C0C6A98007CE036 /* OTCover.m in Sources */,
 				FD8C2CF21C0C6A98007CE036 /* RNOpenSSLEncryptor.m in Sources */,
 				FD8C2D8F1C0C6ACA007CE036 /* KyoBasicsWebMutualHelp.m in Sources */,
-				1833A0C81C298D360024626A /* PlayListView.m in Sources */,
 				FD8C2D941C0C6ACA007CE036 /* VerifyRegexTool.m in Sources */,
 				FD8C2D441C0C6AAA007CE036 /* UIDevice-Hardware.m in Sources */,
 				FD8C2D491C0C6AAA007CE036 /* UILabel+size.m in Sources */,
@@ -1803,8 +1868,9 @@
 				FD8C2CE21C0C6A98007CE036 /* MJTypeEncoding.m in Sources */,
 				FD8C2CDF1C0C6A98007CE036 /* MJMember.m in Sources */,
 				FD8C2D4F1C0C6AAA007CE036 /* UIView+OnlyOneTouch.m in Sources */,
+				18EBC9461C4FD98000460546 /* TFHppleElement.m in Sources */,
 				FD8C2D041C0C6A98007CE036 /* SWCellScrollView.m in Sources */,
-				1871F3291C2D9DE0009B79DB /* FeedBackView.m in Sources */,
+				18EBC9381C4FD72700460546 /* FeedBackView.m in Sources */,
 				FD8C2CFE1C0C6A98007CE036 /* UIImage+MultiFormat.m in Sources */,
 				FD8C2D8A1C0C6ACA007CE036 /* NSObject+Mapping.m in Sources */,
 				FD8C2DD01C0C6D7F007CE036 /* SSKeychain.m in Sources */,
@@ -1816,11 +1882,14 @@
 				FD8C2CDD1C0C6A98007CE036 /* MJFoundation.m in Sources */,
 				FD8C2D4A1C0C6AAA007CE036 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				FD8C2CF51C0C6A98007CE036 /* SDImageCache.m in Sources */,
+				18EBC93C1C4FD72700460546 /* PlayListView.m in Sources */,
 				FD8C2D891C0C6ACA007CE036 /* NSObject+Easy.m in Sources */,
 				FD8C2CDA1C0C6A98007CE036 /* MBProgressHUD.m in Sources */,
 				FD8C2CBD1C0C6A98007CE036 /* NSData+DES.m in Sources */,
 				FD8C2CE81C0C6A98007CE036 /* RECommonFunctions.m in Sources */,
 				1884923E1C17331B004C3330 /* SetHelperViewController.m in Sources */,
+				18EBC9471C4FD98000460546 /* XPathQuery.m in Sources */,
+				18EBC93A1C4FD72700460546 /* PlayListCell.m in Sources */,
 				FD8C2CAC1C0C6A98007CE036 /* AFNetworkReachabilityManager.m in Sources */,
 				FD8C2D4B1C0C6AAA007CE036 /* UINavigationItem+Spacing.m in Sources */,
 				1833A0BD1C22FF520024626A /* LibraryMusicHeaderView.m in Sources */,
@@ -1851,7 +1920,6 @@
 				FD8C2CF31C0C6A98007CE036 /* MKAnnotationView+WebCache.m in Sources */,
 				FD8C2CF41C0C6A98007CE036 /* NSData+ImageContentType.m in Sources */,
 				FD8C2CBE1C0C6A98007CE036 /* KyoGradeView.m in Sources */,
-				1817B57D1C2D90420038AEFF /* PlayListCell.m in Sources */,
 				FD8C2D851C0C6ACA007CE036 /* NSLocale+Easy.m in Sources */,
 				FD8C2DB61C0C6ADF007CE036 /* NewfeatureViewController.m in Sources */,
 				FD8C2CBF1C0C6A98007CE036 /* KyoMultiTextField.m in Sources */,
@@ -1987,8 +2055,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = PeoPleMusic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2007,8 +2078,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
+				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = PeoPleMusic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

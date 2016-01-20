@@ -9,6 +9,9 @@
 #import "LibrayMusicViewController.h"
 #import "LibraryMusicHeaderView.h"
 #import "LibraryMusiceCellTableViewCell.h"
+#import "TFHpple.h"
+#import "MusicCategoryModel.h"
+#import "LibraryMusicListViewController.h"
 
 @interface LibrayMusicViewController ()<LibraryMusicHeaderViewDelegate>
 
@@ -46,15 +49,35 @@
 }
 
 - (void)setupData{
-    self.dataArray = @[@"轻音乐",@"小清新",@"网络"];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+   
+    
 
+    self.dataArray = [self getMusicCategoryModels];
+
+    
+}
+#pragma mark -- 
+
+// 获取酷我音乐类别
+- (NSArray *)getMusicCategoryModels{
+    NSString *contentHtml = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://yinyue.kuwo.cn/yy/category.htm"] encoding:NSUTF8StringEncoding error:nil];
+    TFHpple *doc = [TFHpple hppleWithHTMLData:[contentHtml dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSArray *TRElements = [doc searchWithXPathQuery:@"//div[@class='sider fl']//div[@class='hotlist']"];
+    NSArray *tempElements = [TRElements[0] searchWithXPathQuery:@"//li"];
+    NSMutableArray *tempArr = [NSMutableArray array];
+    for (TFHppleElement *e in tempElements) {
+        MusicCategoryModel *model = [[MusicCategoryModel alloc] init];
+        model.title = [e.children[0] content];
+        model.href = [NSString stringWithFormat:@"http://yinyue.kuwo.cn%@",[e.children[0] objectForKey:@"href"]];
+        [tempArr addObject:model];
+    }
+    
+    return tempArr;
+}
+#pragma mark -- UITableViewDataSource, UITableViewDelegate
 - (UIView* )tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    LibraryMusicHeaderView *headerView =
+
   LibraryMusicHeaderView *libView =  [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([LibraryMusicHeaderView class]) owner:tableView options:nil] firstObject];
     libView.delegate = self;
     
@@ -75,23 +98,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LibraryMusiceCellTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:KLibraryMusiceCellTableViewCellIdentifier];
-    cell.lblTitle.text = self.dataArray[indexPath.row];
+    cell.model = self.dataArray[indexPath.row];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MusicCategoryModel *model = self.dataArray[indexPath.row];
+    LibraryMusicListViewController *listVC = [LibraryMusicListViewController createLibraryMusicListViewController];
+    listVC.title = model.title;
+    listVC.urlString = model.href;
+    [self.navigationController pushViewController:listVC animated:YES];
+    
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)pageControlChange:(id)sender {
     

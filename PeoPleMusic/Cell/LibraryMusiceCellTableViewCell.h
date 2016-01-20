@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MusicCategoryModel.h"
 #define KLibraryMusiceCellTableViewCellHeight 44// 60+38
 #define KLibraryMusiceCellTableViewCellIdentifier  @"KPlayerCellIdentifier"
 
 
 @interface LibraryMusiceCellTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+
+
+@property (nonatomic, strong) MusicCategoryModel *model;
+
 @end

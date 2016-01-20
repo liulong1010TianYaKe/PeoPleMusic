@@ -121,7 +121,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    CommonCell *cell = [CommonCell cellWithTableView:tableView];
     
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:KHomeCellIdentify];
     cell.indexpath = indexPath;
