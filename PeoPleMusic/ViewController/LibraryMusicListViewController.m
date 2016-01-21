@@ -10,6 +10,8 @@
 #import "MusicCategoryModel.h"
 #import "TFHpple.h"
 #import "LibraryMusicListCell.h"
+#import "MusicListPlayViewController.h"
+
 @interface LibraryMusicListViewController ()
 
 @property (nonatomic, strong) NSArray *musicList;
@@ -75,9 +77,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LibraryMusicListCell * cell = [tableView dequeueReusableCellWithIdentifier:KLibraryMusicListCellTableViewCellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:<#(UITableViewCellStyle)#> reuseIdentifier:<#(nullable NSString *)#>]
-//    }
+
     cell.model = self.musicList[indexPath.row];
 
     return cell;
@@ -85,11 +85,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    MusicCategoryModel *model = self.dataArray[indexPath.row];
-//    LibraryMusicListViewController *listVC = [LibraryMusicListViewController createLibraryMusicListViewController];
-//    listVC.title = model.title;
-//    listVC.urlString = model.href;
-//    [self.navigationController pushViewController:listVC animated:YES];
+    MusicCategoryModel *model = self.musicList[indexPath.row];
+    MusicListPlayViewController *musicListPlayerVC = [[MusicListPlayViewController alloc] init];
+    musicListPlayerVC.title = model.title;
+    musicListPlayerVC.urlString = model.href;
+    [self.navigationController pushViewController:musicListPlayerVC animated:YES];
     
 }
 

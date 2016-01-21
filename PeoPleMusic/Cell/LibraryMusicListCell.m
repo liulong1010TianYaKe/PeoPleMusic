@@ -29,7 +29,7 @@
 - (void)setModel:(MusicCategoryModel *)model{
     _model = model;
     if (model) {
-        
+  
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
         self.lblTilte.text = model.title;
         self.lblSubTitle.text = model.number;
