@@ -105,7 +105,7 @@
 
 
 - (NSString *)getMusic:(NSString *)musicID{
-    
+
     
     NSString *downUrl = nil;
     
@@ -214,8 +214,8 @@
 
 - (void)playMusic:(NSString *)playUrl{
     NSLog(@"playUrl = %@",playUrl);
-//    STKAudioPlayer *audioPlayer = [[STKAudioPlayer alloc] init];
-//    [audioPlayer playURL:[NSURL URLWithString:playUrl]];
+    STKAudioPlayer *audioPlayer = [[STKAudioPlayer alloc] init];
+    [audioPlayer playURL:[NSURL URLWithString:playUrl]];
 //    NSURL *url = [[NSURL alloc] initWithString:playUrl];
 ////    NSURL *url = [[NSURL alloc]initWithString:urlStr];
 //    NSData * audioData = [NSData dataWithContentsOfURL:url];
@@ -231,12 +231,12 @@
 //    [player play];
     
   
-    NSURL *url = [NSURL URLWithString: [playUrl encodeToPercentEscapeString]];
-//    [audioPlayer playURL:url];
-   
-      MPMoviePlayerController*    moivePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-
-    [moivePlayer play];
+//    NSURL *url = [NSURL URLWithString: [playUrl encodeToPercentEscapeString]];
+////    [audioPlayer playURL:url];
+//   
+//      MPMoviePlayerController*    moivePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+//
+//    [moivePlayer play];
     
     
     
