@@ -7,6 +7,7 @@
 //
 
 #import "FeedBackViewController.h"
+#import "KyoStreamKitHelper.h"
 
 @interface FeedBackViewController ()<UITextViewDelegate,UITextFieldDelegate>
 
@@ -49,8 +50,11 @@
 }
 
 - (IBAction)btnCommitTouchInside:(id)sender {
-    
-    
+//    STKAudioPlayer *play = [[KyoStreamKitHelper share] player];
+//    [play play:@" http://other.web.ra01.sycdn.kuwo.cn/885f6780b5335393d0f9d94a6875e60f/56b0587c/resource/n1/128/72/84/2040807972.mp3"];
+//    [play play:@"http://other.web.re01.sycdn.kuwo.cn/0e06620df2cb68aab17b5544af3e4e11/56b04611/resource/n3/14/72/1978377000.mp3"];
+//    [play playURL:[NSURL URLWithString:@"http://other.web.re01.sycdn.kuwo.cn/0e06620df2cb68aab17b5544af3e4e11/56b04611/resource/n3/14/72/1978377000.mp3"]]; 
+   
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{

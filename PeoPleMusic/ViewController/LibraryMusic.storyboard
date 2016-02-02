@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Libray Music View Controller-->
@@ -25,17 +25,22 @@
                             <subviews>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="guide_one" translatesAutoresizingMaskIntoConstraints="NO" id="c5H-c6-1gt">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                    <animations/>
                                 </imageView>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="guide_two" translatesAutoresizingMaskIntoConstraints="NO" id="LX4-tj-8YR">
                                     <rect key="frame" x="320" y="0.0" width="320" height="150"/>
+                                    <animations/>
                                 </imageView>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="guide_three" translatesAutoresizingMaskIntoConstraints="NO" id="yq1-Hm-TI1">
                                     <rect key="frame" x="640" y="0.0" width="320" height="150"/>
+                                    <animations/>
                                 </imageView>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="guide_four" translatesAutoresizingMaskIntoConstraints="NO" id="94g-Lh-qDS">
                                     <rect key="frame" x="960" y="0.0" width="320" height="150"/>
+                                    <animations/>
                                 </imageView>
                             </subviews>
+                            <animations/>
                             <constraints>
                                 <constraint firstItem="94g-Lh-qDS" firstAttribute="leading" secondItem="yq1-Hm-TI1" secondAttribute="trailing" id="0Qs-s2-rXb"/>
                                 <constraint firstItem="LX4-tj-8YR" firstAttribute="leading" secondItem="c5H-c6-1gt" secondAttribute="trailing" id="0SI-Nd-NcZ"/>
@@ -59,7 +64,8 @@
                             </connections>
                         </scrollView>
                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="pTe-YF-8HS">
-                            <rect key="frame" x="132.5" y="103" width="55" height="37"/>
+                            <rect key="frame" x="133" y="103" width="55" height="37"/>
+                            <animations/>
                             <color key="pageIndicatorTintColor" red="1" green="1" blue="1" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                             <color key="currentPageIndicatorTintColor" red="0.98597550389999999" green="0.64231062849999998" blue="0.21150505410000001" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -67,6 +73,7 @@
                             </connections>
                         </pageControl>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="LX4-tj-8YR" firstAttribute="width" secondItem="W2v-ug-eBz" secondAttribute="width" id="ArU-ED-w8k"/>
@@ -95,6 +102,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="28" sectionFooterHeight="28" id="qb4-Ls-mpl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="QBP-sC-9VR" id="vlN-GT-HZD"/>

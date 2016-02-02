@@ -17,3 +17,4 @@ typedef void(^CancelOperationBlock)();
 @property (nonatomic, copy)CancelOperationBlock cancelOperationBlock;
 
 @end
+                                                                                                                                                                    

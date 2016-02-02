@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,6 +16,7 @@
                     <subviews>
                         <searchBar contentMode="redraw" placeholder="输入歌曲/歌手名称" translatesAutoresizingMaskIntoConstraints="NO" id="WDL-Ie-OQd">
                             <rect key="frame" x="0.0" y="8" width="320" height="44"/>
+                            <animations/>
                             <textInputTraits key="textInputTraits"/>
                             <scopeButtonTitles>
                                 <string>Title</string>
@@ -23,6 +24,7 @@
                             </scopeButtonTitles>
                         </searchBar>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="WDL-Ie-OQd" secondAttribute="bottom" constant="8" id="2Xr-lu-MqB"/>
@@ -37,6 +39,7 @@
                     <subviews>
                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_music_phone" translatesAutoresizingMaskIntoConstraints="NO" id="aSO-yG-V4G">
                             <rect key="frame" x="20" y="12" width="25" height="30"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="BQh-Qc-n4K"/>
                                 <constraint firstAttribute="height" constant="30" id="QGd-U7-pBh"/>
@@ -44,12 +47,14 @@
                         </imageView>
                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本地下载" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3R-CT-F8Z">
                             <rect key="frame" x="53" y="18" width="60" height="18"/>
+                            <animations/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9a-rf-PUI">
-                            <rect key="frame" x="0.0" y="0.0" width="159.5" height="55"/>
+                            <rect key="frame" x="0.0" y="0.0" width="160" height="55"/>
+                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
@@ -61,22 +66,25 @@
                                 <action selector="btnLoadTouchInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="elv-bi-CzX"/>
                             </connections>
                         </button>
-                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_music_speaker" translatesAutoresizingMaskIntoConstraints="NO" id="aqW-cI-E0V">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_music_speaker" translatesAutoresizingMaskIntoConstraints="NO" id="aqW-cI-E0V">
                             <rect key="frame" x="179" y="12" width="25" height="30"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Aws-T7-SsQ"/>
                                 <constraint firstAttribute="width" constant="25" id="CeV-XV-iCv"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="音响本地" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0H-UH-cGU">
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="音响本地" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0H-UH-cGU">
                             <rect key="frame" x="212" y="19" width="60" height="18"/>
+                            <animations/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnD-Jd-PKj">
-                            <rect key="frame" x="160" y="0.0" width="159.5" height="55"/>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnD-Jd-PKj">
+                            <rect key="frame" x="160" y="0.0" width="160" height="55"/>
+                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
@@ -88,12 +96,14 @@
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uaX-aw-LBa">
                             <rect key="frame" x="159" y="0.0" width="1" height="55"/>
+                            <animations/>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="tNr-Jv-XQ1"/>
                             </constraints>
                         </imageView>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="TnD-Jd-PKj" firstAttribute="top" secondItem="Yl4-OA-YBi" secondAttribute="top" id="0CM-Oo-X2A"/>
@@ -119,6 +129,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="6tX-K2-cbG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7op-WO-qaZ"/>

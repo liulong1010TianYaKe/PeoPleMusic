@@ -18,15 +18,15 @@
 //JSExportAs(callProDetail,
 //           - (void)gotoProductDetailViewControllerWithProductId:(NSInteger)productId withPlanId:(NSInteger)planId);
 /**< 打开分享页面 */
-JSExportAs(callShare,
-           - (void)showShareView:(NSString *)openUrl withTitle:(NSString *)title withSummary:(NSString *)summary withPicUrl:(NSString *)picUrl);
-/**< 从h5得到分享分享内容 */
-JSExportAs(initShareInfo,
-           - (void)getShareInfo:(NSString *)openUrl withTitle:(NSString *)title withSummary:(NSString *)summary withPicUrl:(NSString *)picUrl);
+//JSExportAs(callShare,
+//           - (void)showShareView:(NSString *)openUrl withTitle:(NSString *)title withSummary:(NSString *)summary withPicUrl:(NSString *)picUrl);
+///**< 从h5得到分享分享内容 */
+//JSExportAs(initShareInfo,
+//           - (void)getShareInfo:(NSString *)openUrl withTitle:(NSString *)title withSummary:(NSString *)summary withPicUrl:(NSString *)picUrl);
 /**< 跳转到评测报告列表界面 */
 //- (void)callEvaluationList;
 /**< 跳转到在线客服 */
-- (void)callOnlineServicePage:(NSString *)url;
+
 /**< 顾问状态    0离线 1在线 */
 //- (void)updateAdvisorStatus:(NSInteger)status;
 /**< 返回用户头像地址 */

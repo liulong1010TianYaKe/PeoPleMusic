@@ -68,19 +68,19 @@
 
 
 
-/**< 跳转到在线客服 */
-- (void)callOnlineServicePage:(NSString *)url {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_GotoOnlineServicePage object:url];
-    });
-}
+///**< 跳转到在线客服 */
+//- (void)callOnlineServicePage:(NSString *)url {
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_GotoOnlineServicePage object:url];
+//    });
+//}
 
 /**< 顾问状态    0离线 1在线 */
-- (void)updateAdvisorStatus:(NSInteger)status {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_AdvisorStatus object:@(status)];
-    });
-}
+//- (void)updateAdvisorStatus:(NSInteger)status {
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_AdvisorStatus object:@(status)];
+//    });
+//}
 
 ///**< 返回用户头像地址 */
 //- (NSString *)getUserAvatar {

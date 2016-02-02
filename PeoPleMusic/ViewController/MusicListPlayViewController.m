@@ -10,6 +10,10 @@
 #import "TFHpple.h"
 #import "OnlineMusicModel.h"
 #import "MusicPlayerCell.h"
+#import <CommonCrypto/CommonDigest.h>
+#import "STKAudioPlayer.h"
+#import <AVFoundation/AVFoundation.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MusicListPlayViewController ()<UITableViewDataSource,UITableViewDelegate,KyoRefreshControlDelegate>
 
@@ -17,6 +21,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) KyoRefreshControl *kyoRefreshControl;
+
 
 @end
 
@@ -97,6 +102,76 @@
     return tempArr;
 }
 
+
+
+- (NSString *)getMusic:(NSString *)musicID{
+    
+    
+    NSString *downUrl = nil;
+    
+    NSString *midUrl = [NSString stringWithFormat:@"http://player.kuwo.cn/webmusic/st/getNewMuiseByRid?rid=MUSIC_%@", musicID];
+    
+    NSString *title=[NSString stringWithContentsOfURL:[NSURL URLWithString:midUrl] encoding:NSUTF8StringEncoding error:nil];
+    
+    NSData *data = [title dataUsingEncoding:NSUTF8StringEncoding];
+    
+    TFHpple *parser = [[TFHpple alloc]initWithXMLData:data];
+    NSArray *array = [parser searchWithXPathQuery:@"//Song"];
+    if (array == nil || array.count == 0) return nil;
+    TFHppleElement *e0 = array[0];
+    NSArray *contetnt = [e0 children];
+    
+    NSString *dl = nil;
+    NSString *path;
+    NSString *size;
+    
+    for(TFHppleElement *e in contetnt){
+        NSString *tagName =[e tagName];
+        if([tagName isEqualToString:@"mp3dl"]){
+            //            NSLog(@"%@", [e content]);
+            dl = [e content];
+        }else if([tagName isEqualToString:@"mp3path"]){
+            //            NSLog(@"%@", [e content]);
+            path = [e content];
+        }else if([tagName isEqualToString:@"mp3size"]){
+            //            NSLog(@"%@", [e content]);
+            size = [e content];
+        }
+    }
+    
+    NSDate *dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a = [dat timeIntervalSince1970];
+    NSString *timeString = [[NSString stringWithFormat:@"%8x", (int)a] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];;
+    //    NSLog(@"%@", timeString);
+    NSMutableString *str = [[NSMutableString alloc] init];
+    
+    [str setString:@"kuwo_web@1906/resource/"];
+    
+    [str appendString:path];
+    [str appendString:timeString];
+    //    NSString *str = [[NSMutableString stringWithFormat:@"kuwo_web@1906/resource/%@", path] appendString:timeString];
+    NSString *mUrl = [self md5HexDigest:str];
+    //    NSLog(@"%@", mUrl);
+    downUrl = [NSString stringWithFormat:@"http://%@/%@/%@/%@/%@", dl, mUrl, timeString, @"resource", path];
+    
+    
+    NSLog(@"%@", downUrl);
+    return downUrl;
+}
+
+-(NSString *)md5HexDigest:(NSString*)input
+{
+    const char *cStr = [input UTF8String];
+    unsigned char digest[CC_MD5_DIGEST_LENGTH];
+    CC_MD5(cStr, (CC_LONG)strlen(cStr), digest);
+    NSMutableString *result = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+        [result appendFormat:@"%02x", digest[i]];
+    
+    return result;
+}
+
+
 - (void)requestData{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore:YES withHadData:YES withError:nil];
@@ -131,8 +206,42 @@
 //
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    OnlineMusicModel *model = self.musicList[indexPath.row];
+    NSLog(@"%@",model.mid);
+  [self playMusic:[self getMusic:model.mid]];
 }
 
+- (void)playMusic:(NSString *)playUrl{
+    NSLog(@"playUrl = %@",playUrl);
+//    STKAudioPlayer *audioPlayer = [[STKAudioPlayer alloc] init];
+//    [audioPlayer playURL:[NSURL URLWithString:playUrl]];
+//    NSURL *url = [[NSURL alloc] initWithString:playUrl];
+////    NSURL *url = [[NSURL alloc]initWithString:urlStr];
+//    NSData * audioData = [NSData dataWithContentsOfURL:url];
+//    
+//    //将数据保存到本地指定位置
+//    NSString *docDirPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    NSString *filePath = [NSString stringWithFormat:@"%@/%@.mp3", docDirPath , @"temp"];
+//    [audioData writeToFile:filePath atomically:YES];
+//    
+//    //播放本地音乐
+//    NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+//   AVAudioPlayer* player = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+//    [player play];
+    
+  
+    NSURL *url = [NSURL URLWithString: [playUrl encodeToPercentEscapeString]];
+//    [audioPlayer playURL:url];
+   
+      MPMoviePlayerController*    moivePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+
+    [moivePlayer play];
+    
+    
+    
+    
+}
 #pragma mark ------------------
 #pragma mark - KyoRefreshControlDelegate
 
