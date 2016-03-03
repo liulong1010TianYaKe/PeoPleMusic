@@ -1,5 +1,5 @@
 //
-//  MusicListPlayViewController.h
+//  MusicPlayViewController.h
 //  PeoPleMusic
 //
 //  Created by long on 1/21/16.
@@ -8,7 +8,9 @@
 
 #import "BasicsViewController.h"
 
-@interface MusicListPlayViewController : BasicsViewController
+@interface MusicPlayViewController : BasicsViewController
 @property (nonatomic, strong) NSString *urlString;
++ (MusicPlayViewController *)createMusicPlayViewController;
 
++ (instancetype)sharePlayerViewController;
 @end

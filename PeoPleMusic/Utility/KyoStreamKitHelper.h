@@ -12,11 +12,16 @@
 
 @interface KyoStreamKitHelper : NSObject
 
-@property (nonatomic, strong) STKAudioPlayer *audioPlayer;
+
 
 
 + (id)share;
 
+@property (nonatomic, strong) STKAudioPlayer *audioPlayer;
 
-- (void)audioPlayerFromHTTPWith:(NSString *)url;
+
+// 临时存储当前播放音乐的URL
+@property (nonatomic, strong) NSString *currentSource;
+
+
 @end

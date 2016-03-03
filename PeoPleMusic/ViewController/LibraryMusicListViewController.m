@@ -10,7 +10,7 @@
 #import "MusicCategoryModel.h"
 #import "TFHpple.h"
 #import "LibraryMusicListCell.h"
-#import "MusicListPlayViewController.h"
+#import "MusicPlayViewController.h"
 
 @interface LibraryMusicListViewController ()
 
@@ -86,10 +86,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MusicCategoryModel *model = self.musicList[indexPath.row];
-    MusicListPlayViewController *musicListPlayerVC = [[MusicListPlayViewController alloc] init];
-    musicListPlayerVC.title = model.title;
-    musicListPlayerVC.urlString = model.href;
-    [self.navigationController pushViewController:musicListPlayerVC animated:YES];
+    MusicPlayViewController *musicPlayerVC = [MusicPlayViewController createMusicPlayViewController];
+    musicPlayerVC.title = model.title;
+    musicPlayerVC.urlString = model.href;
+    [self.navigationController pushViewController:musicPlayerVC animated:YES];
     
 }
 

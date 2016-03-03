@@ -8,6 +8,9 @@
 
 #import "KyoStreamKitHelper.h"
 
+@interface KyoStreamKitHelper ()
+
+@end
 @implementation KyoStreamKitHelper
 
 + (id)share{
@@ -23,12 +26,23 @@
 }
 
 - (void)initPlay{
- 
-    _audioPlayer = [[STKAudioPlayer alloc] init];
-}
 
-- (void)audioPlayerFromHTTPWith:(NSString *)url{
-    [_audioPlayer play:url];
+    /*
+        flushQueueOnSeek 刷新音频队列
+        equalizerBandFrequencies均衡器带频率
+        enableVolumeMixer设置为yes,将启用音量控制
+     
+     */
+    _audioPlayer = [[STKAudioPlayer alloc] initWithOptions:(STKAudioPlayerOptions){
+        .flushQueueOnSeek = YES,
+        .enableVolumeMixer = YES,
+        .equalizerBandFrequencies = {50, 100, 200, 400, 800, 1600, 2600, 16000}
+    
+    }];
+    
+    _audioPlayer.volume = 0.5;
     
 }
+
+
 @end
