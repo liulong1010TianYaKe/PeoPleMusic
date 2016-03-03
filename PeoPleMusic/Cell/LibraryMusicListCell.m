@@ -31,6 +31,8 @@
     if (model) {
   
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
+//        [self.imageView setImageWithURL:[NSURL URLWithString:model.image]];
+      
         self.lblTilte.text = model.title;
         self.lblSubTitle.text = model.number;
     }
