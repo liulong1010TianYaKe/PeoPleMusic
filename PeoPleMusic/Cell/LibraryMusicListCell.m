@@ -30,8 +30,14 @@
     _model = model;
     if (model) {
   
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
-//        [self.imageView setImageWithURL:[NSURL URLWithString:model.image]];
+
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+          dispatch_async(dispatch_get_main_queue(), ^{
+              self.imageView.image = image;
+          });
+        }];
+        
+
       
         self.lblTilte.text = model.title;
         self.lblSubTitle.text = model.number;
