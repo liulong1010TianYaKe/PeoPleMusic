@@ -142,6 +142,8 @@
 #endif
 }
 
+CNCopySupportedInterfaces
+
 //从host获取地址
 + (NSString *)getIPAddressForHost:(NSString *)theHost {
     struct hostent *host = gethostbyname([theHost UTF8String]);
