@@ -10,11 +10,12 @@
 #import "MusicCategoryModel.h"
 #define KLibraryMusicListCellTableViewCellHeight 60// 60+38
 #define KLibraryMusicListCellTableViewCellIdentifier  @"KLibraryMusicListCellTableViewCellIdentifier"
+
 @interface LibraryMusicListCell : UITableViewCell
 @property (nonatomic, strong) MusicCategoryModel *model;
-
+@property (nonatomic, strong) NSIndexPath  *indexPath;
 @property (weak, nonatomic) IBOutlet UIImageView *imgMusic;
 @property (weak, nonatomic) IBOutlet UILabel *lblTilte;
 @property (weak, nonatomic) IBOutlet UILabel *lblSubTitle;
-
+@property (nonatomic, weak) UITableView *tableView;
 @end

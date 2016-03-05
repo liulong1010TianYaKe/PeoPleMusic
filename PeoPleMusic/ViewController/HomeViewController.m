@@ -13,6 +13,7 @@
 #import "SpeakerManagerViewController.h"
 #import "FeedBackViewController.h"
 #import "SetHelperViewController.h"
+#import "LinkDeviceViewController.h"
 
 @interface HomeViewController ()
 
@@ -40,10 +41,23 @@
 }
 
 - (void)setupData{
-    
+   
     __weak typeof(self)weekSelf = self;
-    NSMutableArray *tempArr1  = [NSMutableArray array];
+    NSMutableArray *tempArr0  = [NSMutableArray array];
     
+    HomeModel *model0 = [[HomeModel alloc] init];
+//    model0.imgIcon = @"icon_jinbi";
+    model0.title = @"设备扫描连接";
+//    model0.subTitle = @"9088";
+//    model0.subtitleColor = YYColorFromRGB(0xfc4040);
+    model0.blockOperation = ^{
+        [weekSelf.navigationController pushViewController:[[LinkDeviceViewController alloc] init] animated:YES];
+    };
+    
+    [tempArr0 addObject:model0];
+    
+
+    NSMutableArray *tempArr1  = [NSMutableArray array];
     HomeModel *model1 = [[HomeModel alloc] init];
     model1.imgIcon = @"icon_jinbi";
     model1.title = @"我的金币";
@@ -102,7 +116,7 @@
     };
     [tempArr3 addObject:model7];
     
-    _array = [NSMutableArray arrayWithObjects:tempArr1,tempArr2,tempArr3, nil];
+    _array = [NSMutableArray arrayWithObjects:tempArr0,tempArr1,tempArr2,tempArr3, nil];
    
     
 }
@@ -154,13 +168,14 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return @"用户信息";
+        return @"连接设备";
     }else if (section == 1){
-        return @"管理员";
+        return @"用户信息";
     }else if (section == 2){
+       return @"管理员";
+    }else if(section == 3){
         return @"系统设置";
-    }else{
-        return nil;
     }
+    return nil;
 }
 @end

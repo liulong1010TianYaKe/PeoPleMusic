@@ -13,8 +13,6 @@
 @interface KyoStreamKitHelper : NSObject
 
 
-
-
 + (id)share;
 
 @property (nonatomic, strong) STKAudioPlayer *audioPlayer;

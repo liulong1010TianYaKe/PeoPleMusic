@@ -413,7 +413,7 @@
 -(void)audioPlayer:(STKAudioPlayer *)audioPlayer didFinishPlayingQueueItemId:(NSObject *)queueItemId withReason:(STKAudioPlayerStopReason)stopReason andProgress:(double)progress andDuration:(double)duration
 {
     NSLog(@"结束播放");
-    NSLog(   @"stopReason:  %d"    @"progress:  %f"  @"duration: %f",stopReason,progress,duration);
+    NSLog(   @"stopReason:  %ld"    @"progress:  %f"  @"duration: %f",(long)stopReason,progress,duration);
     if (stopReason == 1) {
         [self nextButtonAction];
     }

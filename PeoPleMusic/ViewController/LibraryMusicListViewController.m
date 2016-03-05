@@ -77,7 +77,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LibraryMusicListCell * cell = [tableView dequeueReusableCellWithIdentifier:KLibraryMusicListCellTableViewCellIdentifier];
-
+    cell.tableView = tableView;
+    cell.indexPath = indexPath;
     cell.model = self.musicList[indexPath.row];
 
     return cell;

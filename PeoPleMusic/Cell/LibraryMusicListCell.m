@@ -30,18 +30,31 @@
     _model = model;
     if (model) {
   
-
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-          dispatch_async(dispatch_get_main_queue(), ^{
-              self.imageView.image = image;
-          });
-        }];
+//
+//        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.image] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+////          dispatch_async(dispatch_get_main_queue(), ^{
+////              self.imageView.image = image;
+////              [self.tableView performSelectorOnMainThread:@selector(real) withObject:<#(nullable id)#> waitUntilDone:<#(BOOL)#>]
+////              [self.tableView reloadData];
+////              [self.tableView reloadRowsAtIndexPaths:@[self.indexPath] withRowAnimation:UITableViewRowAnimationFade];
+////          });
+//        }];
         
-
+        [self.imageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:model.image] placeholderImage:nil options:SDWebImageContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            
+        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
+        }];
       
         self.lblTilte.text = model.title;
         self.lblSubTitle.text = model.number;
     }
 }
+
+//- (void)loadImage{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, (unsigned long) NULL), ^{
+//        
+//    });
+//}
 
 @end
