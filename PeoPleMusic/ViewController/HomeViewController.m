@@ -51,7 +51,8 @@
 //    model0.subTitle = @"9088";
 //    model0.subtitleColor = YYColorFromRGB(0xfc4040);
     model0.blockOperation = ^{
-        [weekSelf.navigationController pushViewController:[[LinkDeviceViewController alloc] init] animated:YES];
+    
+        [weekSelf.navigationController pushViewController:[LinkDeviceViewController createLinkDeviceViewController] animated:YES];
     };
     
     [tempArr0 addObject:model0];

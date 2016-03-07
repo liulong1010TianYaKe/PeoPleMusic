@@ -7,16 +7,23 @@
 //
 
 #import "LinkDeviceViewController.h"
+#import "KyoSocketHelper.h"
 
 @interface LinkDeviceViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *lblWiFi;
 @end
 
 @implementation LinkDeviceViewController
 
++ (LinkDeviceViewController *)createLinkDeviceViewController{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+    LinkDeviceViewController *controller = [sb instantiateViewControllerWithIdentifier:NSStringFromClass([LinkDeviceViewController class])];
+    return controller;
+}
 - (void)viewDidLoad{
     [super viewDidLoad];
      self.title = @"连接设备";
-    
+     self.lblWiFi.text = [KyoSocketHelper fetchCurrentWiFiName];
 }
 @end

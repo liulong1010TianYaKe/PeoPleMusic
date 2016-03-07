@@ -142,12 +142,14 @@
 #endif
 }
 
-CNCopySupportedInterfaces
 
 //从host获取地址
 + (NSString *)getIPAddressForHost:(NSString *)theHost {
     struct hostent *host = gethostbyname([theHost UTF8String]);
-    if (!host) {herror("resolv"); return NULL; }
+    if (!host) {
+        herror("resolv");
+        return NULL;
+    }
     struct in_addr **list = (struct in_addr **)host->h_addr_list;
     NSString *addressString = [NSString stringWithCString:inet_ntoa(*list[0]) encoding:NSUTF8StringEncoding];
     return addressString;

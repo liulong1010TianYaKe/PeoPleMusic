@@ -10,4 +10,7 @@
 
 @interface KyoSocketHelper : NSObject
 
+// 获取当前连接的wifi
++ (NSString *)fetchCurrentWiFiName;
+
 @end

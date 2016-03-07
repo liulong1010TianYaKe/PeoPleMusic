@@ -9,5 +9,5 @@
 #import "BasicsViewController.h"
 
 @interface LinkDeviceViewController : BasicsViewController
-
++ (LinkDeviceViewController *)createLinkDeviceViewController;
 @end

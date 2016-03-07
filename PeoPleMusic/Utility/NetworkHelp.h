@@ -14,6 +14,8 @@
 #define kServerBase @"api.m.hzins.com"
 #define kServerAPIUrl(_methodType, _methodName)   [NSString stringWithFormat:@"http://%@%@%@", kServerBase, _methodType, _methodName]
 
+#define kMultipleDevicesSignInErrorCode  @"1005"  //多点登录错误码
+#define kReLogInErrorCode  @"1004" //重新登录的状态码
 
 
 

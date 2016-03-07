@@ -303,7 +303,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIO-DX-ZLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="827" y="1035"/>
+            <point key="canvasLocation" x="915" y="985"/>
+        </scene>
+        <!--Link Device View Controller-->
+        <scene sceneID="Tnf-Bg-lfw">
+            <objects>
+                <viewController storyboardIdentifier="LinkDeviceViewController" id="Yye-a7-CPI" customClass="LinkDeviceViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aIV-c1-weM"/>
+                        <viewControllerLayoutGuide type="bottom" id="bis-LY-iig"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xom-hm-qDc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivT-78-62d">
+                                <rect key="frame" x="87" y="103" width="150" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="YI5-CU-BNP"/>
+                                    <constraint firstAttribute="height" constant="21" id="pSe-Oy-SkI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ivT-78-62d" firstAttribute="leading" secondItem="xom-hm-qDc" secondAttribute="leading" constant="87" id="ZT9-Pg-yc2"/>
+                            <constraint firstItem="ivT-78-62d" firstAttribute="top" secondItem="aIV-c1-weM" secondAttribute="bottom" constant="83" id="sD2-ni-ACW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="lblWiFi" destination="ivT-78-62d" id="sJm-MQ-gwO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ds2-Id-QDO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="235" y="1659"/>
         </scene>
         <!--Speaker Control View Controller-->
         <scene sceneID="ezd-AD-ed7">
