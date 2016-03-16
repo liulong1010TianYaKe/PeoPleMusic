@@ -15,6 +15,7 @@
 #import "KyoTopWindow.h"
 
 #import "KyoURLProtocol.h"
+#import "YMSocketHelper.h"
 
 @interface RootViewController()<RESideMenuDelegate>
 
@@ -71,6 +72,9 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [KyoTopWindow show];
     });
+    
+//    [[YMSocketHelper share] pushSSIDAndPWD];
+    
 }
 
 - (void)dealloc

@@ -41,6 +41,7 @@
 		18EBC9511C4FED8300460546 /* LibraryMusicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9501C4FED8300460546 /* LibraryMusicListViewController.m */; };
 		18EBC9541C4FFBBB00460546 /* LibraryMusicListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9531C4FFBBB00460546 /* LibraryMusicListCell.m */; };
 		18EBC9561C50014600460546 /* LibraryMusicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC9551C50014600460546 /* LibraryMusicListCell.xib */; };
+		F79CBFB61C9846C100E39FC4 /* YMSocketHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F79CBFB51C9846C100E39FC4 /* YMSocketHelper.m */; };
 		F7EAC9571C8A997400A2623F /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9561C8A997400A2623F /* UserInfoModel.m */; };
 		F7EAC95A1C8A9BEA00A2623F /* RegisterSerivceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9591C8A9BEA00A2623F /* RegisterSerivceModel.m */; };
 		F7EAC95D1C8AC66700A2623F /* SongInforModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC95C1C8AC66700A2623F /* SongInforModel.m */; };
@@ -48,7 +49,6 @@
 		F7EAC9661C8AD10700A2623F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9631C8AD10700A2623F /* GCDAsyncSocket.m */; };
 		F7EAC9671C8AD10700A2623F /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9651C8AD10700A2623F /* GCDAsyncUdpSocket.m */; };
 		F7EAC96A1C8AD99C00A2623F /* LinkDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9691C8AD99C00A2623F /* LinkDeviceViewController.m */; };
-		F7EAC96D1C8B302200A2623F /* KyoSocketHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC96C1C8B302200A2623F /* KyoSocketHelper.m */; };
 		FD4338E41C8876D100C9E1DF /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C41C8876D100C9E1DF /* MKAnnotationView+WebCache.m */; };
 		FD4338E51C8876D100C9E1DF /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C61C8876D100C9E1DF /* NSData+ImageContentType.m */; };
 		FD4338E61C8876D100C9E1DF /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C81C8876D100C9E1DF /* SDImageCache.m */; };
@@ -302,6 +302,8 @@
 		18EBC9521C4FFBBB00460546 /* LibraryMusicListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicListCell.h; sourceTree = "<group>"; };
 		18EBC9531C4FFBBB00460546 /* LibraryMusicListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicListCell.m; sourceTree = "<group>"; };
 		18EBC9551C50014600460546 /* LibraryMusicListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusicListCell.xib; sourceTree = "<group>"; };
+		F79CBFB41C9846C100E39FC4 /* YMSocketHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSocketHelper.h; sourceTree = "<group>"; };
+		F79CBFB51C9846C100E39FC4 /* YMSocketHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSocketHelper.m; sourceTree = "<group>"; };
 		F7EAC9551C8A997400A2623F /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoModel.h; path = PeoPleMusic/Utility/UserInfoModel.h; sourceTree = SOURCE_ROOT; };
 		F7EAC9561C8A997400A2623F /* UserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoModel.m; path = PeoPleMusic/Utility/UserInfoModel.m; sourceTree = SOURCE_ROOT; };
 		F7EAC9581C8A9BEA00A2623F /* RegisterSerivceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSerivceModel.h; sourceTree = "<group>"; };
@@ -316,8 +318,6 @@
 		F7EAC9651C8AD10700A2623F /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		F7EAC9681C8AD99C00A2623F /* LinkDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkDeviceViewController.h; sourceTree = "<group>"; };
 		F7EAC9691C8AD99C00A2623F /* LinkDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkDeviceViewController.m; sourceTree = "<group>"; };
-		F7EAC96B1C8B302200A2623F /* KyoSocketHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KyoSocketHelper.h; sourceTree = "<group>"; };
-		F7EAC96C1C8B302200A2623F /* KyoSocketHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KyoSocketHelper.m; sourceTree = "<group>"; };
 		FD4338C31C8876D100C9E1DF /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		FD4338C41C8876D100C9E1DF /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		FD4338C51C8876D100C9E1DF /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -1536,8 +1536,8 @@
 				FD8C2D7B1C0C6ACA007CE036 /* NetworkResultModel.m */,
 				FD8C2D7E1C0C6ACA007CE036 /* VerifyRegexTool.h */,
 				FD8C2D7F1C0C6ACA007CE036 /* VerifyRegexTool.m */,
-				F7EAC96B1C8B302200A2623F /* KyoSocketHelper.h */,
-				F7EAC96C1C8B302200A2623F /* KyoSocketHelper.m */,
+				F79CBFB41C9846C100E39FC4 /* YMSocketHelper.h */,
+				F79CBFB51C9846C100E39FC4 /* YMSocketHelper.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1980,6 +1980,7 @@
 				FD8C2CD51C0C6A98007CE036 /* KyoSelectedEmailSuffixView.m in Sources */,
 				18EBC94E1C4FDC5900460546 /* MusicCategoryModel.m in Sources */,
 				FD8C2CE71C0C6A98007CE036 /* OTCover.m in Sources */,
+				F79CBFB61C9846C100E39FC4 /* YMSocketHelper.m in Sources */,
 				FDBB2BB91C50F51500C8E7B1 /* MusicPlayViewController.m in Sources */,
 				FD8C2CF21C0C6A98007CE036 /* RNOpenSSLEncryptor.m in Sources */,
 				FD8C2D8F1C0C6ACA007CE036 /* KyoBasicsWebMutualHelp.m in Sources */,
@@ -2054,7 +2055,6 @@
 				18EBC93A1C4FD72700460546 /* PlayListCell.m in Sources */,
 				FD8C2CAC1C0C6A98007CE036 /* AFNetworkReachabilityManager.m in Sources */,
 				FD8C2D4B1C0C6AAA007CE036 /* UINavigationItem+Spacing.m in Sources */,
-				F7EAC96D1C8B302200A2623F /* KyoSocketHelper.m in Sources */,
 				1833A0BD1C22FF520024626A /* LibraryMusicHeaderView.m in Sources */,
 				FD4338EA1C8876D100C9E1DF /* SDWebImageDownloaderOperation.m in Sources */,
 				18CF4C4E1C15DE9900362987 /* HomeModel.m in Sources */,

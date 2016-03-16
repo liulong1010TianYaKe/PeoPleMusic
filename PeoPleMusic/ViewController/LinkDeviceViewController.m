@@ -7,7 +7,7 @@
 //
 
 #import "LinkDeviceViewController.h"
-#import "KyoSocketHelper.h"
+
 
 @interface LinkDeviceViewController ()
 
@@ -24,6 +24,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
      self.title = @"连接设备";
-     self.lblWiFi.text = [KyoSocketHelper fetchCurrentWiFiName];
+//     self.lblWiFi.text = [KyoSocketHelper fetchCurrentWiFiName];
 }
 @end
