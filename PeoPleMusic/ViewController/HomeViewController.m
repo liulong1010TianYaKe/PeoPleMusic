@@ -16,7 +16,7 @@
 #import "LinkDeviceViewController.h"
 #import "YMSocketHelper.h"
 
-@interface HomeViewController ()
+@interface HomeViewController ()<NSNetServiceDelegate>
 
 @property (nonatomic, strong) NSDictionary *dictData;
 
@@ -57,7 +57,12 @@
     model2.title = @"我的音响";
     model2.subTitle = @"为连接设备";
     model2.blockOperation = ^{
-        [weekSelf.navigationController pushViewController:[MyDeviceViewController createMyDeviceViewController] animated:YES];
+//        [weekSelf.navigationController pushViewController:[MyDeviceViewController createMyDeviceViewController] animated:YES];
+        
+        // 注册服务
+        NSNetService *netService = [[NSNetService alloc] initWithDomain:@"local." type:@"_znt_rrdg_sp._tcp" name:@"" port:2222];
+        netService.delegate = self;
+        [netService publish];
     };
     [tempArr1 addObject:model2];
     HomeModel *model3 = [[HomeModel alloc] init];
@@ -95,12 +100,24 @@
     model23.title = @"关于我们";
     model23.blockOperation = ^{
 //        [weekSelf.navigationController pushViewController:[SpeakerManagerViewController createMSpeakerManagerViewController ] animated:YES];
-        [[YMSocketHelper share] connectServer];
+        [[YMSocketHelper share] searchAirPlaySevices];
     };
     [tempArr2 addObject:model23];
     
     _array = [NSMutableArray arrayWithObjects:tempArr1,tempArr2, nil];
    
+    
+}
+
+- (void)netServiceWillPublish:(NSNetService *)sender{
+    
+}
+
+- (void)netServiceDidPublish:(NSNetService *)sender{
+    NSLog(@"发布成功!---%@ %@",sender.type,sender.hostName);
+}
+
+- (void)netService:(NSNetService *)sender didNotPublish:(NSDictionary<NSString *, NSNumber *> *)errorDict{
     
 }
 #pragma mark ---------------------

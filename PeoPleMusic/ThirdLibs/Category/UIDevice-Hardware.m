@@ -64,4 +64,12 @@
 {
 	return [self getSysInfo:KIPC_MAXSOCKBUF];
 }
+
++ (NSString *)getUUID{
+    UIDevice *device = [UIDevice currentDevice];//创建设备对象
+    NSUUID *uuID = device.identifierForVendor;
+    
+    NSLog(@"%@",uuID.UUIDString); // 输出设备id
+    return uuID.UUIDString;
+}
 @end

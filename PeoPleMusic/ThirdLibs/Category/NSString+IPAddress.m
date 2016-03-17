@@ -24,6 +24,7 @@
 
 @implementation NSString (IPAddress)
 
+//
 //+ (NSString *)macAddress {
 //    int                    mib[6];
 //    size_t                len;
@@ -76,7 +77,7 @@
 //}
 
 //这是获取本地wifi的ip地址
-+ (NSString *)localWiFiIPAddress {
++ (NSString *)localWiFiIPAddressAndPort {
     BOOL success;
     struct ifaddrs * addrs;
     const struct ifaddrs * cursor;
@@ -90,7 +91,8 @@
             {
                 NSString *name = [NSString stringWithUTF8String:cursor->ifa_name];
                 if ([name isEqualToString:@"en0"])  // Wi-Fi adapter
-                    return [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)cursor->ifa_addr)->sin_addr)];
+                    
+                    return [NSString stringWithFormat:@"%@:%@",[NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)cursor->ifa_addr)->sin_addr)],[NSString stringWithFormat: @"%tu", ((struct sockaddr_in *)cursor)->sin_port]];
             }
             cursor = cursor->ifa_next;
         }

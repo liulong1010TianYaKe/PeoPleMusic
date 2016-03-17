@@ -12,6 +12,7 @@
 #import "TFHpple.h"
 #import "MusicCategoryModel.h"
 #import "LibraryMusicListViewController.h"
+#import "PublicNetwork.h"
 
 @interface LibrayMusicViewController ()<LibraryMusicHeaderViewDelegate>
 
@@ -46,6 +47,9 @@
     
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LibraryMusiceCellTableViewCell class]) bundle:nil] forCellReuseIdentifier:KLibraryMusiceCellTableViewCellIdentifier];
+    
+    NSLog(@"%@",[PublicNetwork sendDeviceJsonForCurrentPlayingSongInfoJson]);
+
 }
 
 - (void)setupData{

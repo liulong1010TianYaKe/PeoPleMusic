@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PublicNetwork.h"
 
 #define DEVICE_HOT_IP  @"192.168.43.1"
 #define SOCKET_PORT1     9997
@@ -18,4 +19,5 @@
 - (BOOL)isLinkToDevice; // 是否链接设备
 
 - (void)connectServer;
+- (void)searchAirPlaySevices;
 @end

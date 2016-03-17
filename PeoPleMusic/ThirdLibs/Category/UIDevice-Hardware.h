@@ -7,9 +7,11 @@
 #import <UIKit/UIKit.h>
 
 @interface UIDevice (Hardware)
+
 + (NSString *) platform;    //平台，通过此检测设备的型号，比如iphone3gs,itouch3等等
 + (NSUInteger) cpuFrequency;
 + (NSUInteger) busFrequency;
 + (NSUInteger) totalMemory;
 + (NSUInteger) userMemory;
++ (NSString *) getUUID;
 @end

@@ -11,7 +11,10 @@
 #import "GCDAsyncSocket.h"
 
 
-@interface YMSocketHelper ()<GCDAsyncSocketDelegate>
+@interface YMSocketHelper ()<GCDAsyncSocketDelegate,NSNetServiceBrowserDelegate>{
+    NSMutableArray *_airPlayDevices;
+    NSNetServiceBrowser *_netServiceBrower;
+}
 @property (nonatomic, strong) GCDAsyncSocket *clientSocket;
 @end
 
@@ -49,68 +52,67 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _shared = [[YMSocketHelper alloc] init];
-        [_shared initSocket];
     });
     return _shared;
 }
 
-// 初始化Socket
-- (void)initSocket{
-    _clientSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-}
+
 
 - (void)connectServer{
     if (_clientSocket == nil) {
         _clientSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     }
     NSError *err = nil;
-    if([_clientSocket connectToHost:DEVICE_HOT_IP onPort:SOCKET_PORT2 error:&err]){
+    if([_clientSocket connectToHost:@"192.168.1.109" onPort:SOCKET_PORT2 error:&err]){
         KyoLog(@"----连接成功!--");
+       
     }else{
         KyoLog(@"----连接失败!--");
     }
     
 }
 
+- (void)destroySocket{
+    
+    if (_clientSocket) {
+        [_clientSocket disconnect];
+        _clientSocket = nil;
+    }
+}
+/**
+ *  通过IOS的AirPlay模块扫描到音响的DNS服务，根据DNS的名称过滤掉其他的服务只保留以znt_rrdg_sp结尾的服务，然后从该服务中获取音响的服务器ip地址，端口号为9997和9998，二者切换连接，直到连接成功.
+ */
+- (void)searchAirPlaySevices{
+    
+    [self destroySocket];
+    
+    _netServiceBrower = [[NSNetServiceBrowser alloc] init];
+    _netServiceBrower.delegate = self;
+//    [_netServiceBrower searchForServicesOfType:@"_znt_rrdg_sp._tcp" inDomain:@"local."];
+//    [_netServiceBrower searchForRegistrationDomains];
+      [_netServiceBrower searchForServicesOfType:@"_sohuhiwifi._tcp." inDomain:@"local."];
+    [_netServiceBrower searchForBrowsableDomains];
+//    NSDefaultRunLoopMode
+    [_netServiceBrower scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    
+}
 #pragma mark -- Method
 - (BOOL)isLinkToDevice{
     return NO;
 }
 
-//-(NSString *)jsonString{
-//    NSDictionary *o2 = [NSDictionary dictionaryWithObjectsAndKeys:
-//                        _wifiPWD.text, @"pwd",
-//                        _wifiSSID.text, @"ssid",
-//                        nil];
-//    NSDictionary *o1 = [NSDictionary dictionaryWithObjectsAndKeys:
-//                        @"0x00", @"result",
-//                        @"10", @"type",
-//                        @"1",@"status",
-//                        o2, @"content",
-//                        nil];
-//    NSData *json;
-//    if([NSJSONSerialization isValidJSONObject:o1]){
-//        json = [NSJSONSerialization dataWithJSONObject:o1 options:NSJSONWritingPrettyPrinted error:nil];
-//        if(json != nil){
-//            NSString *jsonString = [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
-//            NSLog(@"%@", jsonString);
-//            return jsonString;
-//        }
-//    }
-//    return nil;
-//}
+
 #pragma mark --
 
 
 -(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
 {
     NSLog(@"---%@",host);
+
+
+     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForRegister]dataUsingEncoding:NSUTF8StringEncoding]  withTimeout:-1 tag:0];
+//
     [_clientSocket readDataWithTimeout:-1 tag:0];
-//    //    [self addText:[NSString stringWithFormat:@"连接到:%@",host]];
-//    NSString *message = [self jsonString];//[NSString stringWithFormat:@"connect:%@:%@", _wifiSSID.text, _wifiPWD.text];
-//    [socket writeData:[message dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
-//    
-//    [socket readDataWithTimeout:-1 tag:0];
 //    [self searchAirplayServices];
 //    //    [self performSelector:@selector(searchAirplayServices) withObject:nil afterDelay:3.0f];
 }
@@ -124,8 +126,58 @@
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
     NSString *newMessage = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",newMessage);
+    
     
     //    [self addText:[NSString stringWithFormat:@"%@:%@",sock.connectedHost,newMessage]];
     //[socket readDataWithTimeout:-1 tag:0];
 }
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
+    
+}
+
+#pragma mark --  NSNetServiceBrowserDelegate
+/* Sent to the NSNetServiceBrowser instance's delegate before the instance begins a search. The delegate will not receive this message if the instance is unable to begin a search. Instead, the delegate will receive the -netServiceBrowser:didNotSearch: message.
+ */
+- (void)netServiceBrowserWillSearch:(NSNetServiceBrowser *)browser{
+    
+}
+
+/* Sent to the NSNetServiceBrowser instance's delegate when the instance's previous running search request has stopped.
+ */
+- (void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)browser{
+    
+}
+
+/* Sent to the NSNetServiceBrowser instance's delegate when an error in searching for domains or services has occurred. The error dictionary will contain two key/value pairs representing the error domain and code (see the NSNetServicesError enumeration above for error code constants). It is possible for an error to occur after a search has been started successfully.
+ */
+- (void)netServiceBrowser:(NSNetServiceBrowser *)browser didNotSearch:(NSDictionary<NSString *, NSNumber *> *)errorDict{
+    
+}
+
+/* Sent to the NSNetServiceBrowser instance's delegate for each domain discovered. If there are more domains, moreComing will be YES. If for some reason handling discovered domains requires significant processing, accumulating domains until moreComing is NO and then doing the processing in bulk fashion may be desirable.
+ */
+- (void)netServiceBrowser:(NSNetServiceBrowser *)browser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
+    
+    NSLog(@"%@ %@",domainString,[NSNumber numberWithBool:moreComing]);
+}
+
+/* Sent to the NSNetServiceBrowser instance's delegate for each service discovered. If there are more services, moreComing will be YES. If for some reason handling discovered services requires significant processing, accumulating services until moreComing is NO and then doing the processing in bulk fashion may be desirable.
+ */
+- (void)netServiceBrowser:(NSNetServiceBrowser *)browser didFindService:(NSNetService *)service moreComing:(BOOL)moreComing{
+    
+}
+
+/* Sent to the NSNetServiceBrowser instance's delegate when a previously discovered domain is no longer available.
+ */
+- (void)netServiceBrowser:(NSNetServiceBrowser *)browser didRemoveDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
+    
+}
+
+/* Sent to the NSNetServiceBrowser instance's delegate when a previously discovered service is no longer published.
+ */
+- (void)netServiceBrowser:(NSNetServiceBrowser *)browser didRemoveService:(NSNetService *)service moreComing:(BOOL)moreComing{
+    
+}
+
 @end
