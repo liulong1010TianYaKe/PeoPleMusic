@@ -89,6 +89,7 @@
 
 - (void)networkGetMusicCateGoryData{
   
+    [self showLoadingHUD:nil];
     [NetworkSessionHelp NetworkHTML:KLIBLRAYMUCICHTML completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
         
         if (responseStatusCode == 200) {
@@ -106,13 +107,13 @@
             
             self.dataArray = [NSArray arrayWithArray:tempArr];
         
-            
+            [self hideLoadingHUD];
             [self.tableView reloadData];
             
             
         }
     } errorBlock:^(NSError *error) {
-
+        [self hideLoadingHUD];
     }];
  
 }

@@ -24,7 +24,7 @@
 //    leftView.bounds = CGRectMake(0, 0, 30, 30);
 //    self.txtInput.leftView =leftView;
 //    self.txtInput.leftViewMode = UITextFieldViewModeAlways;
-    self.backgroundColor = [UIColor clearColor];
+//    self.backgroundColor = [UIColor clearColor];
 }
 
 

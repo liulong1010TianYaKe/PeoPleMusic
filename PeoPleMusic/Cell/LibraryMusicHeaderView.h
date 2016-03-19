@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define KLibraryMusicHeaderViewHeight  135
+#define KLibraryMusicHeaderViewHeight  130
 @protocol LibraryMusicHeaderViewDelegate;
 @interface LibraryMusicHeaderView : UIView
 

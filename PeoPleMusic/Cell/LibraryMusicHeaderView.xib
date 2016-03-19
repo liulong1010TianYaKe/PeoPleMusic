@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LibraryMusicHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tX-K2-cbG">
@@ -94,7 +94,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="TnD-Jd-PKj" firstAttribute="top" secondItem="Yl4-OA-YBi" secondAttribute="top" id="0CM-Oo-X2A"/>
                         <constraint firstAttribute="bottom" secondItem="G9a-rf-PUI" secondAttribute="bottom" id="5cY-N3-oxi"/>
@@ -126,7 +126,7 @@
                 <constraint firstAttribute="trailing" secondItem="Yl4-OA-YBi" secondAttribute="trailing" id="CwV-wm-DqL"/>
                 <constraint firstAttribute="trailing" secondItem="6tX-K2-cbG" secondAttribute="trailing" id="aez-SX-Brl"/>
                 <constraint firstItem="6tX-K2-cbG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dGb-9M-Ara"/>
-                <constraint firstAttribute="bottom" secondItem="Yl4-OA-YBi" secondAttribute="bottom" constant="10" id="qcP-RK-pHh"/>
+                <constraint firstAttribute="bottom" secondItem="Yl4-OA-YBi" secondAttribute="bottom" constant="5" id="qcP-RK-pHh"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
