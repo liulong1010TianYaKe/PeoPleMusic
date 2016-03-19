@@ -12,16 +12,14 @@
 #import "TFHpple.h"
 #import "MusicCategoryModel.h"
 #import "LibraryMusicListViewController.h"
-#import "PublicNetwork.h"
+#import "SDCycleScrollView.h"
 
-@interface LibrayMusicViewController ()<LibraryMusicHeaderViewDelegate>
+@interface LibrayMusicViewController ()<LibraryMusicHeaderViewDelegate,SDCycleScrollViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UIView *headerView;
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
-- (IBAction)pageControlChange:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+//@property (nonatomic, strong) YMScrollView *tableHeaderView;
 
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
 @end
 
@@ -41,24 +39,41 @@
     self.navigationItem.titleView = nil;
     [self addAutoScrollLabelTitle:@"我的曲库"];
     self.tableView.bounds = CGRectMake(0, 0, kWindowWidth, kWindowHeight);
-    self.headerView.frame = CGRectMake(0, 0, kWindowWidth, 150);
-    self.tableView.tableHeaderView = self.headerView;
-    self.scrollView.pagingEnabled = YES;
+//    self.headerView.frame = CGRectMake(0, 0, kWindowWidth, 150);
+//    self.tableView.tableHeaderView = self.headerView;
+
     
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LibraryMusiceCellTableViewCell class]) bundle:nil] forCellReuseIdentifier:KLibraryMusiceCellTableViewCellIdentifier];
     
-    NSLog(@"%@",[PublicNetwork sendDeviceJsonForCurrentPlayingSongInfoJson]);
+
 
 }
 
+- (void)setupView{
+    
+    NSArray *imageNames = @[@"guide_one",
+                            @"guide_two",
+                            @"guide_three",
+                            @"guide_four"
+                            ];
+    
+    NSArray *titles = @[@"恋爱，是永远最美好的回忆",
+                        @"困了累了,来一首咖啡音乐",
+                        @"安静的午后,一个人在这听歌",
+                        @"那些年，我们一起听过的校园音乐"
+                        ];
+    
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kWindowWidth, 135) imageNamesGroup:imageNames];
+    cycleScrollView.delegate = self;
+    cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+    cycleScrollView.titlesGroup = titles;
+    self.tableView.tableHeaderView = cycleScrollView;
+}
 - (void)setupData{
    
-    
-
     self.dataArray = [self getMusicCategoryModels];
 
-    
 }
 #pragma mark -- 
 

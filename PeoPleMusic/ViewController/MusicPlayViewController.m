@@ -395,7 +395,9 @@
 
 #pragma mark -------------------
 #pragma mark -  STKAudioPlayerDelegate
-
+-(void) audioPlayer:(STKAudioPlayer*)audioPlayer unexpectedError:(STKAudioPlayerErrorCode)errorCode{
+    
+}
 
 -(void)audioPlayer:(STKAudioPlayer *)audioPlayer didStartPlayingQueueItemId:(NSObject *)queueItemId
 {

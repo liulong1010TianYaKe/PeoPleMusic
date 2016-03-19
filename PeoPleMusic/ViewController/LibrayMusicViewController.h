@@ -7,8 +7,8 @@
 //
 
 
-#import "BasicsTableViewController.h"
+#import "BasicsViewController.h"
 
-@interface LibrayMusicViewController : BasicsTableViewController
+@interface LibrayMusicViewController : BasicsViewController
 + (LibrayMusicViewController *)createLibrayMusicViewController;
 @end
