@@ -14,7 +14,6 @@
 #import "HomeViewController.h"
 #import "KyoTopWindow.h"
 
-#import "KyoURLProtocol.h"
 #import "YMSocketHelper.h"
 
 @interface RootViewController()<RESideMenuDelegate>
@@ -165,7 +164,7 @@
     
     
     //注册网络协议，监听每个网络请求
-    [NSURLProtocol registerClass:[KyoURLProtocol class]];
+//    [NSURLProtocol registerClass:[KyoURLProtocol class]];
 }
 
 //检测是否需要显示新特性viewcontroller

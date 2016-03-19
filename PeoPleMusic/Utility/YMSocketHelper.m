@@ -65,7 +65,7 @@
     }
     NSError *err = nil;
 //    92.168.1.112 : 7433
-    if([_clientSocket connectToHost:@"192.168.1.112" onPort:@"7433" error:&err]){
+    if([_clientSocket connectToHost:@"192.168.1.112" onPort:7433 error:&err]){
         KyoLog(@"----连接成功!--");
        [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForRegister]dataUsingEncoding:NSUTF8StringEncoding]  withTimeout:-1 tag:0];
     }else{
