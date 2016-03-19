@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
-            timestampString = "479920121.778415"
+            timestampString = "480045679.549691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "-socketDidDisconnect:withError:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,12 +74,12 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ThirdLibs/Socket/GCDAsyncSocket.m"
-                  timestampString = "479920498.085251"
+                  timestampString = "480045893.934785"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "2656"
                   endingLineNumber = "2656"
-                  offsetFromSymbolStart = "68">
+                  offsetFromSymbolStart = "67">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -89,12 +89,12 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ThirdLibs/Socket/GCDAsyncSocket.m"
-                  timestampString = "479920498.085627"
+                  timestampString = "480045893.935065"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "2656"
                   endingLineNumber = "2656"
-                  offsetFromSymbolStart = "112">
+                  offsetFromSymbolStart = "102">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -138,12 +138,12 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ThirdLibs/Socket/GCDAsyncSocket.m"
-                  timestampString = "479920498.139093"
+                  timestampString = "480045894.002836"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "2737"
                   endingLineNumber = "2737"
-                  offsetFromSymbolStart = "52">
+                  offsetFromSymbolStart = "29">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -153,12 +153,12 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ThirdLibs/Socket/GCDAsyncSocket.m"
-                  timestampString = "479920498.139295"
+                  timestampString = "480045894.003526"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "2737"
                   endingLineNumber = "2737"
-                  offsetFromSymbolStart = "96">
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -170,43 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
-            timestampString = "479920121.778415"
+            timestampString = "480045679.549691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "-socket:didConnectToHost:port:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
-            timestampString = "479920121.778415"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-netServiceBrowser:didFindService:moreComing:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
-            timestampString = "479920121.778415"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-netServiceBrowser:didRemoveDomain:moreComing:"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
-            timestampString = "479920121.778415"
+            timestampString = "480045679.549691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-netServiceBrowser:didRemoveService:moreComing:"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,12 +218,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
-            timestampString = "479920492.131925"
+            timestampString = "480045679.549691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-netServiceBrowser:didNotSearch:"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "-netService:didNotResolve:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
+            timestampString = "480045743.606202"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-socket:didReadData:withTag:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
+            timestampString = "480045832.498937"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "-socket:didConnectToHost:port:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

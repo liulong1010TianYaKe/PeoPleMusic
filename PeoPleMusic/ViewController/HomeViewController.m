@@ -100,13 +100,13 @@
     model23.title = @"关于我们";
     model23.blockOperation = ^{
 //        [weekSelf.navigationController pushViewController:[SpeakerManagerViewController createMSpeakerManagerViewController ] animated:YES];
-        [[YMSocketHelper share] searchAirPlaySevices];
+        
     };
     [tempArr2 addObject:model23];
     
     _array = [NSMutableArray arrayWithObjects:tempArr1,tempArr2, nil];
    
-    
+    [[YMSocketHelper share] searchAirPlaySevices];
 }
 
 - (void)netServiceWillPublish:(NSNetService *)sender{
