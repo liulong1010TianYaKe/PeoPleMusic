@@ -130,13 +130,38 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="qsP-uH-ruM">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LibraryMusiceCell" id="q1i-x2-eMh" customClass="LibraryMusiceCell">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qsP-uH-ruM" id="57h-gv-LGY">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q1i-x2-eMh" id="mrX-hz-Xm2">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_music_category" translatesAutoresizingMaskIntoConstraints="NO" id="qID-rL-PqQ">
+                                                    <rect key="frame" x="15" y="7" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="RDc-JL-8Gb"/>
+                                                        <constraint firstAttribute="height" constant="30" id="lol-fM-JhB"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小清新" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdy-D0-nOW">
+                                                    <rect key="frame" x="60" y="13" width="45" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qID-rL-PqQ" firstAttribute="leading" secondItem="mrX-hz-Xm2" secondAttribute="leading" constant="15" id="8dN-VZ-JVu"/>
+                                                <constraint firstItem="qID-rL-PqQ" firstAttribute="centerY" secondItem="mrX-hz-Xm2" secondAttribute="centerY" id="Beh-jU-zGf"/>
+                                                <constraint firstItem="Wdy-D0-nOW" firstAttribute="leading" secondItem="qID-rL-PqQ" secondAttribute="trailing" constant="15" id="iqc-uN-0mj"/>
+                                                <constraint firstItem="Wdy-D0-nOW" firstAttribute="centerY" secondItem="mrX-hz-Xm2" secondAttribute="centerY" id="nJx-nf-bNo"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="lblTitle" destination="Wdy-D0-nOW" id="Cbt-ZN-JIw"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -148,8 +173,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3OR-dT-F5a" secondAttribute="trailing" id="OrW-nS-Mxn"/>
-                            <constraint firstItem="uC2-A9-Xbb" firstAttribute="top" secondItem="3OR-dT-F5a" secondAttribute="bottom" id="S0Z-a2-cEn"/>
                             <constraint firstItem="3OR-dT-F5a" firstAttribute="leading" secondItem="jvH-Yt-AZC" secondAttribute="leading" id="ne4-zu-dcv"/>
+                            <constraint firstAttribute="bottom" secondItem="3OR-dT-F5a" secondAttribute="bottom" id="sGr-tV-8U5"/>
                             <constraint firstItem="3OR-dT-F5a" firstAttribute="top" secondItem="jvH-Yt-AZC" secondAttribute="top" id="uWI-iF-8HQ"/>
                         </constraints>
                     </view>
@@ -182,5 +207,6 @@
     </scenes>
     <resources>
         <image name="button_0_0_0_2" width="1" height="1"/>
+        <image name="icon_music_category" width="76" height="76"/>
     </resources>
 </document>

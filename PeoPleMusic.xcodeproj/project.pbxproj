@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		1833A0BD1C22FF520024626A /* LibraryMusicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */; };
 		1833A0BF1C22FF600024626A /* LibraryMusicHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */; };
-		1833A0C31C230A290024626A /* LibraryMusiceCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0C11C230A290024626A /* LibraryMusiceCellTableViewCell.m */; };
-		1833A0C41C230A290024626A /* LibraryMusiceCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833A0C21C230A290024626A /* LibraryMusiceCellTableViewCell.xib */; };
+		1833A0C31C230A290024626A /* LibraryMusiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0C11C230A290024626A /* LibraryMusiceCell.m */; };
 		1871F3361C2DB65C009B79DB /* PlayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1871F3341C2DB65C009B79DB /* PlayDetailViewController.m */; };
 		1871F3371C2DB65C009B79DB /* PlayDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1871F3351C2DB65C009B79DB /* PlayDetailViewController.xib */; };
 		18720E041C1C1F670008FA09 /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18720E031C1C1F670008FA09 /* Player.storyboard */; };
@@ -232,9 +231,8 @@
 		1833A0BB1C22FF520024626A /* LibraryMusicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicHeaderView.h; sourceTree = "<group>"; };
 		1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicHeaderView.m; sourceTree = "<group>"; };
 		1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusicHeaderView.xib; sourceTree = "<group>"; };
-		1833A0C01C230A290024626A /* LibraryMusiceCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusiceCellTableViewCell.h; sourceTree = "<group>"; };
-		1833A0C11C230A290024626A /* LibraryMusiceCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusiceCellTableViewCell.m; sourceTree = "<group>"; };
-		1833A0C21C230A290024626A /* LibraryMusiceCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusiceCellTableViewCell.xib; sourceTree = "<group>"; };
+		1833A0C01C230A290024626A /* LibraryMusiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusiceCell.h; sourceTree = "<group>"; };
+		1833A0C11C230A290024626A /* LibraryMusiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusiceCell.m; sourceTree = "<group>"; };
 		1871F3331C2DB65C009B79DB /* PlayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayDetailViewController.h; sourceTree = "<group>"; };
 		1871F3341C2DB65C009B79DB /* PlayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayDetailViewController.m; sourceTree = "<group>"; };
 		1871F3351C2DB65C009B79DB /* PlayDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayDetailViewController.xib; sourceTree = "<group>"; };
@@ -661,9 +659,8 @@
 				1833A0BB1C22FF520024626A /* LibraryMusicHeaderView.h */,
 				1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */,
 				1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */,
-				1833A0C01C230A290024626A /* LibraryMusiceCellTableViewCell.h */,
-				1833A0C11C230A290024626A /* LibraryMusiceCellTableViewCell.m */,
-				1833A0C21C230A290024626A /* LibraryMusiceCellTableViewCell.xib */,
+				1833A0C01C230A290024626A /* LibraryMusiceCell.h */,
+				1833A0C11C230A290024626A /* LibraryMusiceCell.m */,
 				18EBC9521C4FFBBB00460546 /* LibraryMusicListCell.h */,
 				18EBC9531C4FFBBB00460546 /* LibraryMusicListCell.m */,
 				18EBC9551C50014600460546 /* LibraryMusicListCell.xib */,
@@ -1654,7 +1651,6 @@
 				FD055CE31C9D3A4D0054AABF /* SSKeychain.strings in Resources */,
 				FD8C2CD41C0C6A98007CE036 /* com_txt_btn_clear@2x.png in Resources */,
 				FD8C2B9F1C0C6A41007CE036 /* LaunchScreen.storyboard in Resources */,
-				1833A0C41C230A290024626A /* LibraryMusiceCellTableViewCell.xib in Resources */,
 				18777B1E1C1B11F800B74CC3 /* HomeCell.xib in Resources */,
 				1879904A1C219EDA00622BB7 /* LibraryMusic.storyboard in Resources */,
 				FD8C2CC51C0C6A98007CE036 /* KyoTipsView.xib in Resources */,
@@ -1833,7 +1829,7 @@
 				FD8C2DB51C0C6ADF007CE036 /* JMNavigationViewController.m in Sources */,
 				FDBB2BBC1C50FB1100C8E7B1 /* OnlineMusicModel.m in Sources */,
 				18777B1D1C1B11F800B74CC3 /* HomeCell.m in Sources */,
-				1833A0C31C230A290024626A /* LibraryMusiceCellTableViewCell.m in Sources */,
+				1833A0C31C230A290024626A /* LibraryMusiceCell.m in Sources */,
 				FD4338F01C8876D100C9E1DF /* UIImage+WebP.m in Sources */,
 				FDA43B5A1C60872700CC0E75 /* STKCoreFoundationDataSource.m in Sources */,
 				FD8C2CBC1C0C6A98007CE036 /* KyoDataCache.m in Sources */,

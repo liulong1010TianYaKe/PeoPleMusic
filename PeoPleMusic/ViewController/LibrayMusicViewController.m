@@ -8,12 +8,13 @@
 
 #import "LibrayMusicViewController.h"
 #import "LibraryMusicHeaderView.h"
-#import "LibraryMusiceCellTableViewCell.h"
+#import "LibraryMusiceCell.h"
 #import "TFHpple.h"
 #import "MusicCategoryModel.h"
 #import "LibraryMusicListViewController.h"
 #import "SDCycleScrollView.h"
 
+#define KLIBLRAYMUCICHTML @"http://yinyue.kuwo.cn/yy/category.htm"
 @interface LibrayMusicViewController ()<LibraryMusicHeaderViewDelegate,SDCycleScrollViewDelegate>
 
 
@@ -25,6 +26,8 @@
 
 @implementation LibrayMusicViewController
 
+#pragma mark -------------------
+#pragma mark - CycLife
 + (LibrayMusicViewController *)createLibrayMusicViewController{
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LibraryMusic" bundle:nil];
@@ -35,23 +38,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.navigationItem.titleView = nil;
-    [self addAutoScrollLabelTitle:@"我的曲库"];
-    self.tableView.bounds = CGRectMake(0, 0, kWindowWidth, kWindowHeight);
-//    self.headerView.frame = CGRectMake(0, 0, kWindowWidth, 150);
-//    self.tableView.tableHeaderView = self.headerView;
+
 
     
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LibraryMusiceCellTableViewCell class]) bundle:nil] forCellReuseIdentifier:KLibraryMusiceCellTableViewCellIdentifier];
-    
-
 
 }
 
 - (void)setupView{
     
+    self.navigationItem.titleView = nil;
+    [self addAutoScrollLabelTitle:@"我的曲库"];
+    
+    self.tableView.tableFooterView = [[UIView alloc] init];
     NSArray *imageNames = @[@"guide_one",
                             @"guide_two",
                             @"guide_three",
@@ -64,7 +62,7 @@
                         @"那些年，我们一起听过的校园音乐"
                         ];
     
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kWindowWidth, 135) imageNamesGroup:imageNames];
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kWindowWidth, (140*667)/kWindowHeight) imageNamesGroup:imageNames];
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
     cycleScrollView.titlesGroup = titles;
@@ -72,32 +70,58 @@
 }
 - (void)setupData{
    
-    self.dataArray = [self getMusicCategoryModels];
+    [self networkGetMusicCateGoryData];
 
 }
-#pragma mark -- 
 
-// 获取酷我音乐类别
-- (NSArray *)getMusicCategoryModels{
-    NSString *contentHtml = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://yinyue.kuwo.cn/yy/category.htm"] encoding:NSUTF8StringEncoding error:nil];
-    TFHpple *doc = [TFHpple hppleWithHTMLData:[contentHtml dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSArray *TRElements = [doc searchWithXPathQuery:@"//div[@class='sider fl']//div[@class='hotlist']"];
-    NSArray *tempElements = [TRElements[0] searchWithXPathQuery:@"//li"];
-    NSMutableArray *tempArr = [NSMutableArray array];
-    for (TFHppleElement *e in tempElements) {
-        MusicCategoryModel *model = [[MusicCategoryModel alloc] init];
-        model.title = [e.children[0] content];
-        model.href = [NSString stringWithFormat:@"http://yinyue.kuwo.cn%@",[e.children[0] objectForKey:@"href"]];
-        [tempArr addObject:model];
-    }
-    
-    return tempArr;
+
+
+#pragma mark --------------------
+#pragma mark - Settings, Gettings
+
+#pragma mark --------------------
+#pragma mark - Events
+
+#pragma mark -------------------
+#pragma mark - Methods
+
+
+
+- (void)networkGetMusicCateGoryData{
+  
+    [NetworkSessionHelp NetworkHTML:KLIBLRAYMUCICHTML completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
+        
+        if (responseStatusCode == 200) {
+            TFHpple *doc = [TFHpple hppleWithHTMLData:[htmlText dataUsingEncoding:NSUTF8StringEncoding]];
+            
+            NSArray *TRElements = [doc searchWithXPathQuery:@"//div[@class='sider fl']//div[@class='hotlist']"];
+            NSArray *tempElements = [TRElements[0] searchWithXPathQuery:@"//li"];
+            NSMutableArray *tempArr = [NSMutableArray array];
+            for (TFHppleElement *e in tempElements) {
+                MusicCategoryModel *model = [[MusicCategoryModel alloc] init];
+                model.title = [e.children[0] content];
+                model.href = [NSString stringWithFormat:@"http://yinyue.kuwo.cn%@",[e.children[0] objectForKey:@"href"]];
+                [tempArr addObject:model];
+            }
+            
+            self.dataArray = [NSArray arrayWithArray:tempArr];
+        
+            
+            [self.tableView reloadData];
+            
+            
+        }
+    } errorBlock:^(NSError *error) {
+
+    }];
+ 
 }
-#pragma mark -- UITableViewDataSource, UITableViewDelegate
+
+#pragma mark --------------------
+#pragma mark - UITableViewDelegate, UITableViewSourceData
 - (UIView* )tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
 
-  LibraryMusicHeaderView *libView =  [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([LibraryMusicHeaderView class]) owner:tableView options:nil] firstObject];
+    LibraryMusicHeaderView *libView =  [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([LibraryMusicHeaderView class]) owner:tableView options:nil] firstObject];
     libView.delegate = self;
     
     return libView;
@@ -107,17 +131,21 @@
     return KLibraryMusicHeaderViewHeight;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return KLibraryMusiceCellTableViewCellHeight;
+    return KLibraryMusiceCellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LibraryMusiceCellTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:KLibraryMusiceCellTableViewCellIdentifier];
-    cell.model = self.dataArray[indexPath.row];
+    LibraryMusiceCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LibraryMusiceCell"];
+    MusicCategoryModel *model = self.dataArray[indexPath.row];
+    cell.lblTitle.text = model.title;
     
     return cell;
 }
@@ -133,11 +161,14 @@
 }
 
 
-- (IBAction)pageControlChange:(id)sender {
-    
-    
-}
 
+#pragma mark ------------------
+#pragma mark - KyoRefreshControlDelegate
 
+#pragma mark --------------------
+#pragma mark - NSNotification
+
+#pragma mark --------------------
+#pragma mark - KVO/KVC
 
 @end

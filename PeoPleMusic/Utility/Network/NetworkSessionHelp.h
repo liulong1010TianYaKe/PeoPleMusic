@@ -76,6 +76,7 @@ static BOOL reloginAlertMarking;    /**< 是否需要重新登录(比如session�
 
 + (NetworkSessionHelp *)shareNetwork;
 
++ (void)NetworkHTML:(NSString *)urlString completionBlock:(void (^)(NSString *htmlText, NSInteger responseStatusCode))completionBlock errorBlock:(void (^)(NSError *error))errorBlock;
 + (NSDictionary *)getNetworkParams:(id)dict;   //数据体
 //check网络请求是否正确，是否需要提示
 + (BOOL)checkDataFromNetwork:(NSDictionary *)dict;

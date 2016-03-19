@@ -6,13 +6,13 @@
 //  Copyright © 2015年 kyo. All rights reserved.
 //
 
-#import "LibraryMusiceCellTableViewCell.h"
+#import "LibraryMusiceCell.h"
 
-@interface LibraryMusiceCellTableViewCell ()
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@interface LibraryMusiceCell ()
+
 @end
 
-@implementation LibraryMusiceCellTableViewCell
+@implementation LibraryMusiceCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -24,11 +24,6 @@
     // Configure the view for the selected state
 }
 
-- (void)setModel:(MusicCategoryModel *)model{
-    _model = model;
-    if (model) {
-        self.lblTitle.text = model.title;
-    }
-}
+
 
 @end
