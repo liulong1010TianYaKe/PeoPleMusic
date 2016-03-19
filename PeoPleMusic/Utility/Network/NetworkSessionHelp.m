@@ -83,6 +83,7 @@
 
 
 + (void)NetworkHTML:(NSString *)urlString completionBlock:(void (^)(NSString *,NSInteger ))completionBlock errorBlock:(void (^)(NSError *))errorBlock {
+    
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     NSURLSessionTask *sessionTask  = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -90,10 +91,16 @@
         if (!error) {
             
             NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            completionBlock(html, respdose.statusCode);
+            if (completionBlock) {
+                 completionBlock(html, respdose.statusCode);
+            }
+           
           
         }else{
-            errorBlock(error);
+            if (errorBlock) {
+                errorBlock(error);
+            }
+            
         }
     }];
     [sessionTask resume];

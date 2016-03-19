@@ -38,10 +38,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-
-    
-
 }
 
 - (void)setupView{
@@ -66,6 +62,7 @@
     cycleScrollView.delegate = self;
     cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
     cycleScrollView.titlesGroup = titles;
+    cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     self.tableView.tableHeaderView = cycleScrollView;
 }
 - (void)setupData{
@@ -90,11 +87,16 @@
 - (void)networkGetMusicCateGoryData{
   
     [self showLoadingHUD:nil];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self hideLoadingHUD];
+    });
+    
+ 
     [NetworkSessionHelp NetworkHTML:KLIBLRAYMUCICHTML completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
-        
+//        [self hideLoadingHUD];
         if (responseStatusCode == 200) {
             TFHpple *doc = [TFHpple hppleWithHTMLData:[htmlText dataUsingEncoding:NSUTF8StringEncoding]];
-            
             NSArray *TRElements = [doc searchWithXPathQuery:@"//div[@class='sider fl']//div[@class='hotlist']"];
             NSArray *tempElements = [TRElements[0] searchWithXPathQuery:@"//li"];
             NSMutableArray *tempArr = [NSMutableArray array];
@@ -104,16 +106,15 @@
                 model.href = [NSString stringWithFormat:@"http://yinyue.kuwo.cn%@",[e.children[0] objectForKey:@"href"]];
                 [tempArr addObject:model];
             }
-            
             self.dataArray = [NSArray arrayWithArray:tempArr];
-        
-            [self hideLoadingHUD];
+           
             [self.tableView reloadData];
-            
-            
+           
         }
+        
+//          [self hideLoadingHUD];
     } errorBlock:^(NSError *error) {
-        [self hideLoadingHUD];
+//        [self hideLoadingHUD];
     }];
  
 }

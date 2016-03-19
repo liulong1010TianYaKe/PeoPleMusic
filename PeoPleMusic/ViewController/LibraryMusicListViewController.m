@@ -34,9 +34,6 @@
     self.musicList = [self getMusicList:self.urlString];
     
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LibraryMusicListCell class]) bundle:nil] forCellReuseIdentifier:KLibraryMusicListCellTableViewCellIdentifier];
-//    [self.tableView registerClass:NSStringFromClass([LibraryMusicListCell class]) forCellReuseIdentifier:KLibraryMusicListCellTableViewCellIdentifier];
-    
-//    [self.tableView registerClass:[LibraryMusicListCell class] forCellReuseIdentifier:KLibraryMusicListCellTableViewCellIdentifier];
 }
 
 

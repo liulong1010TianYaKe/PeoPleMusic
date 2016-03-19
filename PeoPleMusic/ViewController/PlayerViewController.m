@@ -56,7 +56,7 @@
     self.tableView.backgroundView =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_song_header"]];
     
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 10);
-    
+    self.tableView.tableFooterView = [[UIView alloc] init];
    
 }
 
@@ -93,7 +93,7 @@
 }
 #pragma mark -- UITableViewDataSource,UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _songModels.count;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
