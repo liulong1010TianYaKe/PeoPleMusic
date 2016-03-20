@@ -6,7 +6,7 @@
 //  Copyright © 2016 kyo. All rights reserved.
 //
 
-#import "MusicPlayViewController.h"
+#import "MusicListViewController.h"
 #import "TFHpple.h"
 #import "OnlineMusicModel.h"
 #import "MusicPlayerCell.h"
@@ -14,8 +14,9 @@
 #import "STKAudioPlayer.h"
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "MusicPlayView.h"
 
-@interface MusicPlayViewController ()<UITableViewDataSource,UITableViewDelegate,KyoRefreshControlDelegate,STKAudioPlayerDelegate>
+@interface MusicListViewController ()<UITableViewDataSource,UITableViewDelegate,KyoRefreshControlDelegate,STKAudioPlayerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *musicList;
@@ -38,7 +39,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTime;
 
 @property (nonatomic, strong) UIView *bottomView;
-@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UISlider *playSlider;
 @property (weak, nonatomic) IBOutlet UIButton *btnPlay;
 
@@ -52,25 +52,25 @@
 
 @end
 
-@implementation MusicPlayViewController
+@implementation MusicListViewController
 
 
 #pragma mark -------------------
 #pragma mark - CycLife
 
-+ (MusicPlayViewController *)createMusicPlayViewController{
++ (MusicListViewController *)createMusicListViewController{
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LibraryMusic" bundle:nil];
     
-    MusicPlayViewController *controller = [sb instantiateViewControllerWithIdentifier:NSStringFromClass([MusicPlayViewController class])];
+    MusicListViewController *controller = [sb instantiateViewControllerWithIdentifier:NSStringFromClass([MusicListViewController class])];
     return controller;
 }
 
 + (instancetype)sharePlayerViewController{
-    static MusicPlayViewController *musicPlayVC = nil;
+    static MusicListViewController *musicPlayVC = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        musicPlayVC = [MusicPlayViewController createMusicPlayViewController];
+        musicPlayVC = [MusicListViewController createMusicListViewController];
     });
     return musicPlayVC;
 }
@@ -365,12 +365,20 @@
 //
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    MusicPlayerCell *currentCell = [tableView cellForRowAtIndexPath:indexPath];
     
-    self.indexRow = indexPath.row;
-    OnlineMusicModel *model = self.musicList[indexPath.row];
-    NSLog(@"%@",model.mid);
-//   [self playMusic:[self getMusic:model.mid]];
-    self.aMusic = [self getMusic:model.mid];
+//    self.indexRow = indexPath.row;
+//    OnlineMusicModel *model = self.musicList[indexPath.row];
+//    NSLog(@"%@",model.mid);
+////   [self playMusic:[self getMusic:model.mid]];
+//    self.aMusic = [self getMusic:model.mid];
+    
+    MusicPlayView *musicPlayView = [[[NSBundle mainBundle] loadNibNamed:@"MusicPlayView" owner:self options:nil] objectAtIndex:0];
+
+
+    
+    CTBaseDialogView *dialogView = [KyoUtil showDialogView:musicPlayView fromFrame:[KyoUtil relativeFrameForScreenWithView:currentCell]];
+    dialogView.isNoReposeWhenBackgroundTouched = YES;
 }
 
 - (void)playMusic:(NSString *)playUrl{

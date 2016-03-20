@@ -6,13 +6,13 @@
 //  Copyright © 2015年 kyo. All rights reserved.
 //
 
-#import "LibraryMusiceCell.h"
+#import "LibraryMusicCell.h"
 
-@interface LibraryMusiceCell ()
+@interface LibraryMusicCell ()
 
 @end
 
-@implementation LibraryMusiceCell
+@implementation LibraryMusicCell
 
 - (void)awakeFromNib {
     // Initialization code

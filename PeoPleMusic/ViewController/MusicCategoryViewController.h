@@ -6,9 +6,9 @@
 //  Copyright © 2016年 kyo. All rights reserved.
 //
 
-#import "BasicsTableViewController.h"
+#import "BasicsViewController.h"
 
-@interface LibraryMusicListViewController : BasicsTableViewController
-+ (LibraryMusicListViewController *)createLibraryMusicListViewController;
+@interface MusicCategoryViewController : BasicsViewController
++ (MusicCategoryViewController *)createMusicCategoryViewController;
 @property (nonatomic, strong) NSString *urlString;
 @end

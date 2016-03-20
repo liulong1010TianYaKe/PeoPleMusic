@@ -10,7 +10,6 @@
 
 @interface PlayerCell ()
 @property (weak, nonatomic) IBOutlet UIView *topView;
-@property (weak, nonatomic) IBOutlet UILabel *lblNumb;
 @property (weak, nonatomic) IBOutlet UILabel *lblSongTitle;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblSongerName;
@@ -37,8 +36,7 @@
     // Initialization code
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-//    self.backgroundColor = YYColorRGBA(255, 193, 4,0.6);
-    self.backgroundColor = [UIColor clearColor];
+
     
 }
 
@@ -55,23 +53,23 @@
     _model = model;
     if (model) {
         if (model.isExpect) {
-            self.bottomView.hidden = NO;
-            self.lblNumb.textColor  = YYColor(230, 101, 4);
-            self.lblSongerName.textColor = YYColor(230, 101, 4);
-            self.lblSongTitle.textColor = YYColor(230, 101, 4);
-            self.lblSerNumb.textColor = YYColor(230, 101, 4);
-            self.lblJbNub.textColor = YYColor(230, 101, 4);
-            self.imgDown.image = [UIImage imageNamed:@"icon_pull_down"];
-            self.viewSeg.hidden = NO;
+//            self.bottomView.hidden = NO;
+//            self.lblNumb.textColor  = YYColor(230, 101, 4);
+//            self.lblSongerName.textColor = YYColor(230, 101, 4);
+//            self.lblSongTitle.textColor = YYColor(230, 101, 4);
+//            self.lblSerNumb.textColor = YYColor(230, 101, 4);
+//            self.lblJbNub.textColor = YYColor(230, 101, 4);
+//            self.imgDown.image = [UIImage imageNamed:@"icon_pull_down"];
+//            self.viewSeg.hidden = NO;
         }else{
-            self.viewSeg.hidden = YES;
+//            self.viewSeg.hidden = YES;
             self.bottomView.hidden = YES;
-            self.lblNumb.textColor  = [UIColor whiteColor];
-            self.lblSongerName.textColor = [UIColor whiteColor];
-            self.lblSongTitle.textColor = [UIColor whiteColor];
-            self.lblSerNumb.textColor = [UIColor whiteColor];
-            self.lblJbNub.textColor = [UIColor whiteColor];
-            self.imgDown.image = [UIImage imageNamed:@"icon_pull_up"];
+//            self.lblNumb.textColor  = [UIColor whiteColor];
+//            self.lblSongerName.textColor = [UIColor whiteColor];
+//            self.lblSongTitle.textColor = [UIColor whiteColor];
+//            self.lblSerNumb.textColor = [UIColor whiteColor];
+//            self.lblJbNub.textColor = [UIColor whiteColor];
+//            self.imgDown.image = [UIImage imageNamed:@"icon_pull_up"];
         }
     }
 }

@@ -6,9 +6,9 @@
 //  Copyright © 2015 long. All rights reserved.
 //
 
-#import "BasicsTableViewController.h"
+#import "BasicsViewController.h"
 
-@interface PlayerViewController : BasicsTableViewController
+@interface PlayerViewController : BasicsViewController
 
 + (PlayerViewController *)createPlayerViewController;
 

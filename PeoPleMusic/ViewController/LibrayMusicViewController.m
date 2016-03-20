@@ -8,10 +8,10 @@
 
 #import "LibrayMusicViewController.h"
 #import "LibraryMusicHeaderView.h"
-#import "LibraryMusiceCell.h"
+#import "LibraryMusicCell.h"
 #import "TFHpple.h"
 #import "MusicCategoryModel.h"
-#import "LibraryMusicListViewController.h"
+#import "MusicCategoryViewController.h"
 #import "SDCycleScrollView.h"
 
 #define KLIBLRAYMUCICHTML @"http://yinyue.kuwo.cn/yy/category.htm"
@@ -89,12 +89,13 @@
     [self showLoadingHUD:nil];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self hideLoadingHUD];
+//        [self hideLoadingHUD];
     });
     
  
     [NetworkSessionHelp NetworkHTML:KLIBLRAYMUCICHTML completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
-//        [self hideLoadingHUD];
+      
+        [self hideLoadingHUD];
         if (responseStatusCode == 200) {
             TFHpple *doc = [TFHpple hppleWithHTMLData:[htmlText dataUsingEncoding:NSUTF8StringEncoding]];
             NSArray *TRElements = [doc searchWithXPathQuery:@"//div[@class='sider fl']//div[@class='hotlist']"];
@@ -108,13 +109,17 @@
             }
             self.dataArray = [NSArray arrayWithArray:tempArr];
            
-            [self.tableView reloadData];
            
         }
-        
-//          [self hideLoadingHUD];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hideLoadingHUD];
+            [self.tableView reloadData];
+        });
     } errorBlock:^(NSError *error) {
-//        [self hideLoadingHUD];
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self hideLoadingHUD];
+       
+             });
     }];
  
 }
@@ -141,11 +146,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return KLibraryMusiceCellHeight;
+    return KLibraryMusicCellHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LibraryMusiceCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LibraryMusiceCell"];
+    LibraryMusicCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LibraryMusicCell"];
     MusicCategoryModel *model = self.dataArray[indexPath.row];
     cell.lblTitle.text = model.title;
     
@@ -155,7 +160,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MusicCategoryModel *model = self.dataArray[indexPath.row];
-    LibraryMusicListViewController *listVC = [LibraryMusicListViewController createLibraryMusicListViewController];
+    MusicCategoryViewController *listVC = [MusicCategoryViewController createMusicCategoryViewController];
     listVC.title = model.title;
     listVC.urlString = model.href;
     [self.navigationController pushViewController:listVC animated:YES];

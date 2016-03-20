@@ -13,7 +13,7 @@
 @interface LibraryMusicHeaderView : UIView
 
 @property (nonatomic, weak)id<LibraryMusicHeaderViewDelegate > delegate;
-//+ (LibraryMusicHeaderView *)createLibraryMusiceHeaderView:(UITableView *)tableView withDelegate:(id<LibraryMusicHeaderViewDelegate>)delegate;
+
 
 @end
 

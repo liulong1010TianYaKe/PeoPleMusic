@@ -9,10 +9,9 @@
 #import "BasicsCell.h"
 
 
-#define KLibraryMusiceCellHeight 44// 60+38
-#define KLibraryMusiceCellIdentifier  @"LibraryMusiceCell"
+#define KLibraryMusicCellHeight 44// 60+38
 
 
-@interface LibraryMusiceCell : BasicsCell
+@interface LibraryMusicCell : BasicsCell
 @property (nonatomic, weak) IBOutlet UILabel *lblTitle;
 @end

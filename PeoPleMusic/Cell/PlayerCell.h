@@ -6,7 +6,7 @@
 //  Copyright © 2015年 kyo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BasicsCell.h"
 #import "SongModel.h"
 
 #define KPlayerCellHeight 60 // 60+38
@@ -20,8 +20,8 @@ typedef enum : NSUInteger {
 } PlayerCellBtnTypes;
 
 @protocol PlayerCellDelegate;
-@interface PlayerCell : UITableViewCell
-@property (nonatomic, strong) NSIndexPath *indexPath;
+@interface PlayerCell : BasicsCell
+
 @property (nonatomic, strong) SongModel *model;
 
 

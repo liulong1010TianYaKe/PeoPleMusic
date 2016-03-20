@@ -15,17 +15,28 @@
 #import "ChaboView.h"
 #import "PlayDetailViewController.h"
 
+
 @interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate>{
     SongModel *_oldModel;
 }
-@property (weak, nonatomic) IBOutlet UIView *tableHeaderView;
-- (IBAction)btnPlayTouchInside:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *lblLyrics;
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>topView
+@property (weak, nonatomic) IBOutlet UIView *topView;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblSongNumb;
-- (IBAction)btnSongListTouchInside:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *lblSongInfo;
+@property (weak, nonatomic) IBOutlet UIImageView *imgSong;
+
+- (IBAction)showSongListClicked:(id)sender;
+
+// >>>>>>>>>>>>>>>>>>>>>>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+//>>>>>>>>>>>>>>>>>
+@property (weak, nonatomic) IBOutlet UIButton *btnStartPlay;  //开始点播
+@property (weak, nonatomic) IBOutlet UILabel *lblNoStartPlay;  // 暂时没有点播信息～
 
 @property (nonatomic, strong) NSArray *songModels;
-@property (weak, nonatomic) IBOutlet UIImageView *imgBg;
 
 @property (nonatomic, strong) FeedBackView *feedBackView;
 
@@ -34,7 +45,8 @@
 
 @implementation PlayerViewController
 
-#pragma mark -- Life
+#pragma mark -------------------
+#pragma mark - CycLife
 
 + (PlayerViewController *)createPlayerViewController{
     
@@ -46,18 +58,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    self.tableView.tableHeaderView = self.tableHeaderView;
-    self.lblLyrics.textColor = YYColor(244, 151, 24);
-//    self.imgBg.image = nil;
-//    self.tableHeaderView.backgroundColor = [UIColor clearColor];
-
-    self.tableView.backgroundView =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_song_header"]];
-    
-    self.tableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, 10);
-    self.tableView.tableFooterView = [[UIView alloc] init];
-   
+  
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -71,14 +72,14 @@
 }
 
 - (void)setupView{
-    self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
-    __weak typeof(self)weekSelf = self;
-    [self.imgBg whenDoubleTapped:^{
-        if (_oldModel.isExpect) {
-            _oldModel.isExpect = NO;
-            [weekSelf.tableView reloadData];
-        }
-    }];
+
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    self.btnStartPlay.layer.cornerRadius = 4;
+    self.btnStartPlay.layer.borderWidth = 1;
+    self.btnStartPlay.layer.borderColor = [UIColor redColor].CGColor;
+    self.btnStartPlay.layer.masksToBounds = YES;
+    
 }
 
 - (void)setupData{
@@ -91,23 +92,29 @@
     }
     _songModels = tempArr;
 }
+#pragma mark -------------------
 #pragma mark -- UITableViewDataSource,UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:KPlayerCellIdentifier];
+    PlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayerCell"];
     cell.indexPath = indexPath;
     cell.delegate = self;
-    cell.model = _songModels[indexPath.row];
+//    cell.model = _songModels[indexPath.row];
+    
+//    UITableViewCell *cell = [[UITableViewCell alloc] init];
+//    cell.textLabel.text = @"ads";
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [PlayerCell getPlayCellHeight:_songModels[indexPath.row]];
+//    return [PlayerCell getPlayCellHeight:_songModels[indexPath.row]];
+    return 98;
 }
 
+#pragma mark -------------------
 #pragma mark -- PlayerCellDelegate
 - (void)playerCellTouchInside:(PlayerCell *)cell withModel:(SongModel *)model{
     _oldModel.isExpect = NO;
@@ -142,37 +149,39 @@
     }
 }
 
-// 播放
-- (IBAction)btnPlayTouchInside:(id)sender {
-}
+//// 播放
+//- (IBAction)btnPlayTouchInside:(id)sender {
+//}
+//
+//- (IBAction)btnSongListTouchInside:(id)sender {
+//    
+//
+//    [[PlayListView createPlayListViewFromWindow] show];
+//  
+//}
 
-- (IBAction)btnSongListTouchInside:(id)sender {
-    
-
-    [[PlayListView createPlayListViewFromWindow] show];
-  
-}
-
-- (void)keyboardWillShow:(NSNotification *)notification{
-    [super keyboardWillShow:notification];
-//    keyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    self.currentKeyBoradRect = keyboardRect;
-    CGRect kyRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    KyoLog(@"%@",NSStringFromCGRect(self.currentKeyBoradRect));
-    if (self.feedBackView && self.feedBackView.frame.origin.x == 0) {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.feedBackView.frame = CGRectMake(0, -kyRect.size.height   , kWindowWidth, kWindowHeight);
-        }];
-    }
-    
-    if (self.chaoboView) {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.chaoboView.frame = CGRectMake(0, -kyRect.size.height   , kWindowWidth, kWindowHeight);
-        }];
-    }
-
-}
-- (void)keyboardWillHide:(NSNotification *)notification{
-    [super keyboardWillHide:notification];
+//- (void)keyboardWillShow:(NSNotification *)notification{
+//    [super keyboardWillShow:notification];
+////    keyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+////    self.currentKeyBoradRect = keyboardRect;
+//    CGRect kyRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    KyoLog(@"%@",NSStringFromCGRect(self.currentKeyBoradRect));
+//    if (self.feedBackView && self.feedBackView.frame.origin.x == 0) {
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.feedBackView.frame = CGRectMake(0, -kyRect.size.height   , kWindowWidth, kWindowHeight);
+//        }];
+//    }
+//    
+//    if (self.chaoboView) {
+//        [UIView animateWithDuration:0.5 animations:^{
+//            self.chaoboView.frame = CGRectMake(0, -kyRect.size.height   , kWindowWidth, kWindowHeight);
+//        }];
+//    }
+//
+//}
+//- (void)keyboardWillHide:(NSNotification *)notification{
+//    [super keyboardWillHide:notification];
+//}
+- (IBAction)showSongListClicked:(id)sender {
 }
 @end

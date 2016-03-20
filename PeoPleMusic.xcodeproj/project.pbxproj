@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1833A0BD1C22FF520024626A /* LibraryMusicHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */; };
 		1833A0BF1C22FF600024626A /* LibraryMusicHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */; };
-		1833A0C31C230A290024626A /* LibraryMusiceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0C11C230A290024626A /* LibraryMusiceCell.m */; };
+		1833A0C31C230A290024626A /* LibraryMusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1833A0C11C230A290024626A /* LibraryMusicCell.m */; };
 		1871F3361C2DB65C009B79DB /* PlayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1871F3341C2DB65C009B79DB /* PlayDetailViewController.m */; };
 		1871F3371C2DB65C009B79DB /* PlayDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1871F3351C2DB65C009B79DB /* PlayDetailViewController.xib */; };
 		18720E041C1C1F670008FA09 /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18720E031C1C1F670008FA09 /* Player.storyboard */; };
@@ -37,12 +37,15 @@
 		18EBC9471C4FD98000460546 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9441C4FD98000460546 /* XPathQuery.m */; };
 		18EBC9491C4FDADD00460546 /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EBC9481C4FDADD00460546 /* libxml2.2.tbd */; };
 		18EBC94E1C4FDC5900460546 /* MusicCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC94D1C4FDC5900460546 /* MusicCategoryModel.m */; };
-		18EBC9511C4FED8300460546 /* LibraryMusicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9501C4FED8300460546 /* LibraryMusicListViewController.m */; };
-		18EBC9541C4FFBBB00460546 /* LibraryMusicListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9531C4FFBBB00460546 /* LibraryMusicListCell.m */; };
-		18EBC9561C50014600460546 /* LibraryMusicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EBC9551C50014600460546 /* LibraryMusicListCell.xib */; };
+		18EBC9511C4FED8300460546 /* MusicCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9501C4FED8300460546 /* MusicCategoryViewController.m */; };
+		18EBC9541C4FFBBB00460546 /* MusicCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9531C4FFBBB00460546 /* MusicCategoryCell.m */; };
 		F77F99721C99952E00D10AE8 /* HeadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99711C99952E00D10AE8 /* HeadModel.m */; };
 		F77F99751C9AD60300D10AE8 /* PublicNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99741C9AD60300D10AE8 /* PublicNetwork.m */; };
 		F77F99781C9ADCEA00D10AE8 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99771C9ADCEA00D10AE8 /* DeviceModel.m */; };
+		F780D22E1C9E9E4000036C6C /* SongDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F780D22D1C9E9E4000036C6C /* SongDemandViewController.m */; };
+		F780D2311C9EA17000036C6C /* MusicPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F780D2301C9EA17000036C6C /* MusicPlayView.m */; };
+		F780D2331C9EA18B00036C6C /* MusicPlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F780D2321C9EA18B00036C6C /* MusicPlayView.xib */; };
+		F780D2381C9EC8A000036C6C /* PlayerCelld.xib in Resources */ = {isa = PBXBuildFile; fileRef = F780D2371C9EC8A000036C6C /* PlayerCelld.xib */; };
 		F79CBFB61C9846C100E39FC4 /* YMSocketHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F79CBFB51C9846C100E39FC4 /* YMSocketHelper.m */; };
 		F7EAC9571C8A997400A2623F /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9561C8A997400A2623F /* UserInfoModel.m */; };
 		F7EAC95A1C8A9BEA00A2623F /* RegisterSerivceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9591C8A9BEA00A2623F /* RegisterSerivceModel.m */; };
@@ -211,7 +214,7 @@
 		FDA43B5E1C60872700CC0E75 /* STKLocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA43B531C60872700CC0E75 /* STKLocalFileDataSource.m */; };
 		FDA43B5F1C60872700CC0E75 /* STKQueueEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA43B551C60872700CC0E75 /* STKQueueEntry.m */; };
 		FDA43B631C60887700CC0E75 /* KyoStreamKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA43B621C60887700CC0E75 /* KyoStreamKitHelper.m */; };
-		FDBB2BB91C50F51500C8E7B1 /* MusicPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBB2BB81C50F51500C8E7B1 /* MusicPlayViewController.m */; };
+		FDBB2BB91C50F51500C8E7B1 /* MusicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBB2BB81C50F51500C8E7B1 /* MusicListViewController.m */; };
 		FDBB2BBC1C50FB1100C8E7B1 /* OnlineMusicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBB2BBB1C50FB1100C8E7B1 /* OnlineMusicModel.m */; };
 		FDBB2BC01C51109D00C8E7B1 /* MusicPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDBB2BBE1C51109D00C8E7B1 /* MusicPlayerCell.m */; };
 		FDBB2BC11C51109D00C8E7B1 /* MusicPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDBB2BBF1C51109D00C8E7B1 /* MusicPlayerCell.xib */; };
@@ -231,8 +234,8 @@
 		1833A0BB1C22FF520024626A /* LibraryMusicHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicHeaderView.h; sourceTree = "<group>"; };
 		1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicHeaderView.m; sourceTree = "<group>"; };
 		1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusicHeaderView.xib; sourceTree = "<group>"; };
-		1833A0C01C230A290024626A /* LibraryMusiceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusiceCell.h; sourceTree = "<group>"; };
-		1833A0C11C230A290024626A /* LibraryMusiceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusiceCell.m; sourceTree = "<group>"; };
+		1833A0C01C230A290024626A /* LibraryMusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicCell.h; sourceTree = "<group>"; };
+		1833A0C11C230A290024626A /* LibraryMusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicCell.m; sourceTree = "<group>"; };
 		1871F3331C2DB65C009B79DB /* PlayDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayDetailViewController.h; sourceTree = "<group>"; };
 		1871F3341C2DB65C009B79DB /* PlayDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayDetailViewController.m; sourceTree = "<group>"; };
 		1871F3351C2DB65C009B79DB /* PlayDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayDetailViewController.xib; sourceTree = "<group>"; };
@@ -278,17 +281,22 @@
 		18EBC9481C4FDADD00460546 /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		18EBC94C1C4FDC5900460546 /* MusicCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCategoryModel.h; sourceTree = "<group>"; };
 		18EBC94D1C4FDC5900460546 /* MusicCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCategoryModel.m; sourceTree = "<group>"; };
-		18EBC94F1C4FED8300460546 /* LibraryMusicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicListViewController.h; sourceTree = "<group>"; };
-		18EBC9501C4FED8300460546 /* LibraryMusicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicListViewController.m; sourceTree = "<group>"; };
-		18EBC9521C4FFBBB00460546 /* LibraryMusicListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryMusicListCell.h; sourceTree = "<group>"; };
-		18EBC9531C4FFBBB00460546 /* LibraryMusicListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryMusicListCell.m; sourceTree = "<group>"; };
-		18EBC9551C50014600460546 /* LibraryMusicListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryMusicListCell.xib; sourceTree = "<group>"; };
+		18EBC94F1C4FED8300460546 /* MusicCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCategoryViewController.h; sourceTree = "<group>"; };
+		18EBC9501C4FED8300460546 /* MusicCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCategoryViewController.m; sourceTree = "<group>"; };
+		18EBC9521C4FFBBB00460546 /* MusicCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCategoryCell.h; sourceTree = "<group>"; };
+		18EBC9531C4FFBBB00460546 /* MusicCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCategoryCell.m; sourceTree = "<group>"; };
 		F77F99701C99952E00D10AE8 /* HeadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadModel.h; sourceTree = "<group>"; };
 		F77F99711C99952E00D10AE8 /* HeadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadModel.m; sourceTree = "<group>"; };
 		F77F99731C9AD60300D10AE8 /* PublicNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicNetwork.h; sourceTree = "<group>"; };
 		F77F99741C9AD60300D10AE8 /* PublicNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicNetwork.m; sourceTree = "<group>"; };
 		F77F99761C9ADCEA00D10AE8 /* DeviceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceModel.h; sourceTree = "<group>"; };
 		F77F99771C9ADCEA00D10AE8 /* DeviceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceModel.m; sourceTree = "<group>"; };
+		F780D22C1C9E9E4000036C6C /* SongDemandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongDemandViewController.h; sourceTree = "<group>"; };
+		F780D22D1C9E9E4000036C6C /* SongDemandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongDemandViewController.m; sourceTree = "<group>"; };
+		F780D22F1C9EA17000036C6C /* MusicPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlayView.h; sourceTree = "<group>"; };
+		F780D2301C9EA17000036C6C /* MusicPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayView.m; sourceTree = "<group>"; };
+		F780D2321C9EA18B00036C6C /* MusicPlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicPlayView.xib; sourceTree = "<group>"; };
+		F780D2371C9EC8A000036C6C /* PlayerCelld.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCelld.xib; sourceTree = "<group>"; };
 		F79CBFB41C9846C100E39FC4 /* YMSocketHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMSocketHelper.h; sourceTree = "<group>"; };
 		F79CBFB51C9846C100E39FC4 /* YMSocketHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMSocketHelper.m; sourceTree = "<group>"; };
 		F7EAC9551C8A997400A2623F /* UserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoModel.h; path = PeoPleMusic/Utility/UserInfoModel.h; sourceTree = SOURCE_ROOT; };
@@ -621,8 +629,8 @@
 		FDA43B561C60872700CC0E75 /* StreamingKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "StreamingKit-Prefix.pch"; sourceTree = "<group>"; };
 		FDA43B611C60887700CC0E75 /* KyoStreamKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KyoStreamKitHelper.h; sourceTree = "<group>"; };
 		FDA43B621C60887700CC0E75 /* KyoStreamKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KyoStreamKitHelper.m; sourceTree = "<group>"; };
-		FDBB2BB71C50F51500C8E7B1 /* MusicPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlayViewController.h; sourceTree = "<group>"; };
-		FDBB2BB81C50F51500C8E7B1 /* MusicPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayViewController.m; sourceTree = "<group>"; };
+		FDBB2BB71C50F51500C8E7B1 /* MusicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicListViewController.h; sourceTree = "<group>"; };
+		FDBB2BB81C50F51500C8E7B1 /* MusicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicListViewController.m; sourceTree = "<group>"; };
 		FDBB2BBA1C50FB1100C8E7B1 /* OnlineMusicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineMusicModel.h; sourceTree = "<group>"; };
 		FDBB2BBB1C50FB1100C8E7B1 /* OnlineMusicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineMusicModel.m; sourceTree = "<group>"; };
 		FDBB2BBD1C51109D00C8E7B1 /* MusicPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlayerCell.h; sourceTree = "<group>"; };
@@ -659,11 +667,10 @@
 				1833A0BB1C22FF520024626A /* LibraryMusicHeaderView.h */,
 				1833A0BC1C22FF520024626A /* LibraryMusicHeaderView.m */,
 				1833A0BE1C22FF600024626A /* LibraryMusicHeaderView.xib */,
-				1833A0C01C230A290024626A /* LibraryMusiceCell.h */,
-				1833A0C11C230A290024626A /* LibraryMusiceCell.m */,
-				18EBC9521C4FFBBB00460546 /* LibraryMusicListCell.h */,
-				18EBC9531C4FFBBB00460546 /* LibraryMusicListCell.m */,
-				18EBC9551C50014600460546 /* LibraryMusicListCell.xib */,
+				1833A0C01C230A290024626A /* LibraryMusicCell.h */,
+				1833A0C11C230A290024626A /* LibraryMusicCell.m */,
+				18EBC9521C4FFBBB00460546 /* MusicCategoryCell.h */,
+				18EBC9531C4FFBBB00460546 /* MusicCategoryCell.m */,
 				FDBB2BBD1C51109D00C8E7B1 /* MusicPlayerCell.h */,
 				FDBB2BBE1C51109D00C8E7B1 /* MusicPlayerCell.m */,
 				FDBB2BBF1C51109D00C8E7B1 /* MusicPlayerCell.xib */,
@@ -676,6 +683,7 @@
 			children = (
 				18720E061C1C2E490008FA09 /* PlayerCell.h */,
 				18720E071C1C2E490008FA09 /* PlayerCell.m */,
+				F780D2371C9EC8A000036C6C /* PlayerCelld.xib */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -907,6 +915,9 @@
 			children = (
 				FD055D531C9D441D0054AABF /* BasicsCell.h */,
 				FD055D541C9D441D0054AABF /* BasicsCell.m */,
+				F780D22F1C9EA17000036C6C /* MusicPlayView.h */,
+				F780D2301C9EA17000036C6C /* MusicPlayView.m */,
+				F780D2321C9EA18B00036C6C /* MusicPlayView.xib */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1477,10 +1488,12 @@
 				FD94F3E01C0E804A006AA37C /* LibrayMusicViewController.h */,
 				FD94F3E11C0E804A006AA37C /* LibrayMusicViewController.m */,
 				187990491C219EDA00622BB7 /* LibraryMusic.storyboard */,
-				18EBC94F1C4FED8300460546 /* LibraryMusicListViewController.h */,
-				18EBC9501C4FED8300460546 /* LibraryMusicListViewController.m */,
-				FDBB2BB71C50F51500C8E7B1 /* MusicPlayViewController.h */,
-				FDBB2BB81C50F51500C8E7B1 /* MusicPlayViewController.m */,
+				18EBC94F1C4FED8300460546 /* MusicCategoryViewController.h */,
+				18EBC9501C4FED8300460546 /* MusicCategoryViewController.m */,
+				FDBB2BB71C50F51500C8E7B1 /* MusicListViewController.h */,
+				FDBB2BB81C50F51500C8E7B1 /* MusicListViewController.m */,
+				F780D22C1C9E9E4000036C6C /* SongDemandViewController.h */,
+				F780D22D1C9E9E4000036C6C /* SongDemandViewController.m */,
 			);
 			name = LibraryMusic;
 			sourceTree = "<group>";
@@ -1640,9 +1653,10 @@
 				FD8C2CB71C0C6A98007CE036 /* dialog_btn_close@2x.png in Resources */,
 				18EBC9391C4FD72700460546 /* FeedBackView.xib in Resources */,
 				1871F3371C2DB65C009B79DB /* PlayDetailViewController.xib in Resources */,
+				F780D2381C9EC8A000036C6C /* PlayerCelld.xib in Resources */,
 				18720E041C1C1F670008FA09 /* Player.storyboard in Resources */,
+				F780D2331C9EA18B00036C6C /* MusicPlayView.xib in Resources */,
 				18EBC93B1C4FD72700460546 /* PlayListCell.xib in Resources */,
-				18EBC9561C50014600460546 /* LibraryMusicListCell.xib in Resources */,
 				FD8C2DB81C0C6ADF007CE036 /* RootViewController.xib in Resources */,
 				FD055D411C9D40290054AABF /* Info.plist in Resources */,
 				FD94F3EC1C0F0C57006AA37C /* Home.storyboard in Resources */,
@@ -1694,7 +1708,7 @@
 				FD4338E81C8876D100C9E1DF /* SDWebImageDecoder.m in Sources */,
 				FD8C2D8D1C0C6ACA007CE036 /* UIImage-RoundCorner.m in Sources */,
 				FD8C2D811C0C6ACA007CE036 /* ApplicationInfo.m in Sources */,
-				18EBC9541C4FFBBB00460546 /* LibraryMusicListCell.m in Sources */,
+				18EBC9541C4FFBBB00460546 /* MusicCategoryCell.m in Sources */,
 				FD055D131C9D3B9D0054AABF /* KyoFPSLabel.m in Sources */,
 				FD8C2CD71C0C6A98007CE036 /* KyoTopWindow.m in Sources */,
 				FD8C2CD61C0C6A98007CE036 /* KyoTextField.m in Sources */,
@@ -1717,7 +1731,7 @@
 				F77F99751C9AD60300D10AE8 /* PublicNetwork.m in Sources */,
 				FD8C2CB31C0C6A98007CE036 /* AutoScrollView.m in Sources */,
 				FD8C2DC01C0C6AFA007CE036 /* main.m in Sources */,
-				18EBC9511C4FED8300460546 /* LibraryMusicListViewController.m in Sources */,
+				18EBC9511C4FED8300460546 /* MusicCategoryViewController.m in Sources */,
 				18EBC9451C4FD98000460546 /* TFHpple.m in Sources */,
 				FD8C2DB11C0C6ADF007CE036 /* BasicsViewController.m in Sources */,
 				FD94F3E81C0E8077006AA37C /* PlayerViewController.m in Sources */,
@@ -1744,7 +1758,7 @@
 				FD8C2CD51C0C6A98007CE036 /* KyoSelectedEmailSuffixView.m in Sources */,
 				18EBC94E1C4FDC5900460546 /* MusicCategoryModel.m in Sources */,
 				F79CBFB61C9846C100E39FC4 /* YMSocketHelper.m in Sources */,
-				FDBB2BB91C50F51500C8E7B1 /* MusicPlayViewController.m in Sources */,
+				FDBB2BB91C50F51500C8E7B1 /* MusicListViewController.m in Sources */,
 				FD8C2D8F1C0C6ACA007CE036 /* KyoBasicsWebMutualHelp.m in Sources */,
 				FD8C2D941C0C6ACA007CE036 /* VerifyRegexTool.m in Sources */,
 				FD8C2D441C0C6AAA007CE036 /* UIDevice-Hardware.m in Sources */,
@@ -1774,6 +1788,7 @@
 				FD055CE51C9D3A4D0054AABF /* SSKeychainQuery.m in Sources */,
 				FD055CEF1C9D3B4A0054AABF /* NSProgress+KyoDownload.m in Sources */,
 				F7EAC95A1C8A9BEA00A2623F /* RegisterSerivceModel.m in Sources */,
+				F780D2311C9EA17000036C6C /* MusicPlayView.m in Sources */,
 				FD8C2DB31C0C6ADF007CE036 /* MABasicsViewController.m in Sources */,
 				FD8C2D3D1C0C6AAA007CE036 /* NSString+Convert.m in Sources */,
 				F7EAC95D1C8AC66700A2623F /* SongInforModel.m in Sources */,
@@ -1829,7 +1844,7 @@
 				FD8C2DB51C0C6ADF007CE036 /* JMNavigationViewController.m in Sources */,
 				FDBB2BBC1C50FB1100C8E7B1 /* OnlineMusicModel.m in Sources */,
 				18777B1D1C1B11F800B74CC3 /* HomeCell.m in Sources */,
-				1833A0C31C230A290024626A /* LibraryMusiceCell.m in Sources */,
+				1833A0C31C230A290024626A /* LibraryMusicCell.m in Sources */,
 				FD4338F01C8876D100C9E1DF /* UIImage+WebP.m in Sources */,
 				FDA43B5A1C60872700CC0E75 /* STKCoreFoundationDataSource.m in Sources */,
 				FD8C2CBC1C0C6A98007CE036 /* KyoDataCache.m in Sources */,
@@ -1847,6 +1862,7 @@
 				FD8C2DB61C0C6ADF007CE036 /* NewfeatureViewController.m in Sources */,
 				FD4338EE1C8876D100C9E1DF /* UIImage+GIF.m in Sources */,
 				FD8C2DD71C0C6DBC007CE036 /* BasicsUserInfo.m in Sources */,
+				F780D22E1C9E9E4000036C6C /* SongDemandViewController.m in Sources */,
 				FD8C2D831C0C6ACA007CE036 /* NSDate+Easy.m in Sources */,
 				F7EAC96A1C8AD99C00A2623F /* LinkDeviceViewController.m in Sources */,
 				FD055D0E1C9D3B820054AABF /* AFURLSessionManager.m in Sources */,

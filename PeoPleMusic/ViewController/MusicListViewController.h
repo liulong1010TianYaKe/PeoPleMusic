@@ -8,9 +8,9 @@
 
 #import "BasicsViewController.h"
 
-@interface MusicPlayViewController : BasicsViewController
+@interface MusicListViewController : BasicsViewController
 @property (nonatomic, strong) NSString *urlString;
-+ (MusicPlayViewController *)createMusicPlayViewController;
++ (MusicListViewController *)createMusicListViewController;
 
 + (instancetype)sharePlayerViewController;
 @end
