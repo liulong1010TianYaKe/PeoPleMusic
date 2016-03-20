@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
+#import "YMBonjourHelp.h"
 
 @interface AppDelegate ()
 
@@ -31,6 +32,8 @@
     
     NSError* error;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+    
+    [[YMBonjourHelp shareInstance] startSearch];
     return YES;
 }
 
