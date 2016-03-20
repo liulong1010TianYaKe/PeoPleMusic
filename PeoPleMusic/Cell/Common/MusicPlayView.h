@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SongInforModel.h"
 
 @interface MusicPlayView : UIView
-@property (weak, nonatomic) IBOutlet UILabel *lblSongName;
-@property (weak, nonatomic) IBOutlet UILabel *lblPlayTime;
-@property (weak, nonatomic) IBOutlet UISlider *slider;
+
 - (IBAction)btnPreTouchInside:(id)sender;
 
 - (IBAction)btnNextTouchInside:(id)sender;
@@ -22,5 +21,8 @@
 - (IBAction)btnCloseTouchInside:(id)sender;
 
 @property (nonatomic, assign) BOOL isPlaying;
+@property (nonatomic, strong) NSArray *songlist;
+@property(nonatomic,assign)NSInteger indexRow;
+
 
 @end

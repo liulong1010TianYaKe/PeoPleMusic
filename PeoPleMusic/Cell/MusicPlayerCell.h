@@ -6,14 +6,15 @@
 //  Copyright © 2016 kyo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "OnlineMusicModel.h"
+
+#import "BasicsCell.h"
 
 #define KMusicPlayerCellHeight 65// 60+38
 #define KMusicPlayerCellIdentifier  @"KMusicPlayerCellIdentifier"
 
-@interface MusicPlayerCell : UITableViewCell
+@interface MusicPlayerCell : BasicsCell
 
-@property (nonatomic, strong) OnlineMusicModel *onlineMusicModel;
 
+@property (weak, nonatomic) IBOutlet UILabel *lblM_Name;
+@property (weak, nonatomic) IBOutlet UILabel *lblS_Name;
 @end

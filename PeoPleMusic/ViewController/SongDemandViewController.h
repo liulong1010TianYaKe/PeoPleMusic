@@ -6,8 +6,12 @@
 //  Copyright © 2016年 kyo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BasicsViewController.h"
+#import "SongInforModel.h"
 
-@interface SongDemandViewController : UIViewController
+@interface SongDemandViewController : BasicsViewController
+
+@property (nonatomic, strong)SongInforModel *songInfoModel;
++ (SongDemandViewController *)createSongDemandViewController;
 
 @end

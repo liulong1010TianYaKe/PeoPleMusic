@@ -13,6 +13,9 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲，播放失败，请重试!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G50-61-ezm">
                     <rect key="frame" x="78" y="8" width="144.5" height="17"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="17" id="2kn-s7-Jrk"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="1" green="0.68142311639999997" blue="0.36540326740000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -37,6 +40,9 @@
                     </constraints>
                     <color key="minimumTrackTintColor" red="1" green="0.68142311639999997" blue="0.36540326740000001" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="thumbTintColor" red="1" green="0.68142311639999997" blue="0.36540326740000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="musicSliderTouchInside:" destination="iN0-l3-epB" eventType="valueChanged" id="Keb-wQ-79d"/>
+                    </connections>
                 </slider>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75B-7j-AFR" userLabel="ViewSeg">
                     <rect key="frame" x="0.0" y="126" width="300" height="1"/>

@@ -9,8 +9,7 @@
 #import "MusicPlayerCell.h"
 
 @interface MusicPlayerCell ()
-@property (weak, nonatomic) IBOutlet UILabel *lblM_Name;
-@property (weak, nonatomic) IBOutlet UILabel *lblS_Name;
+
 
 @end
 
@@ -27,11 +26,5 @@
     // Configure the view for the selected state
 }
 
-- (void)setOnlineMusicModel:(OnlineMusicModel *)onlineMusicModel{
-    _onlineMusicModel = onlineMusicModel;
-    if (onlineMusicModel) {
-        self.lblM_Name.text = onlineMusicModel.m_name;
-        self.lblS_Name.text = onlineMusicModel.s_name;
-    }
-}
+
 @end

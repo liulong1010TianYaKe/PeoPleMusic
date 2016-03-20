@@ -10,4 +10,16 @@
 
 @implementation SongDemandViewController
 
++ (SongDemandViewController *)createSongDemandViewController{
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LibraryMusic" bundle:nil];
+    
+    SongDemandViewController *controller = [sb instantiateViewControllerWithIdentifier:NSStringFromClass([SongDemandViewController class])];
+    return controller;
+}
+
+- (void)setupView{
+    self.title = @"歌曲点播";
+}
+
 @end
