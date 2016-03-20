@@ -15,6 +15,7 @@
 #import "ChaboView.h"
 #import "PlayDetailViewController.h"
 #import "YMBonjourHelp.h"
+#import "YMSocketHelper.h"
 
 
 @interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate>{
@@ -60,9 +61,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
         if ([YMBonjourHelp shareInstance].isAirSuccess) {
-            NSLog(@"%@  %d", [YMBonjourHelp shareInstance].deviceIp,[YMBonjourHelp shareInstance].port);
+            NSString *ips =  [YMBonjourHelp shareInstance].deviceIp;
+            NSLog(@"%@  %ld", [YMBonjourHelp shareInstance].deviceIp,[YMBonjourHelp shareInstance].port);
+            [[YMSocketHelper share] connectServer:ips port:SOCKET_PORT2];
         }
+        
+        
     });
    
  

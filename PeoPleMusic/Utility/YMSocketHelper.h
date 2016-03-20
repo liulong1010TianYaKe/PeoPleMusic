@@ -18,6 +18,6 @@
 + (NSString *)fetchCurrentWiFiName;
 - (BOOL)isLinkToDevice; // 是否链接设备
 
-- (void)connectServer;
-- (void)searchAirPlaySevices;
+- (void)connectServer:(NSString *)ip port:(long)port;
+
 @end

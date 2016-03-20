@@ -106,7 +106,7 @@
     
     _array = [NSMutableArray arrayWithObjects:tempArr1,tempArr2, nil];
    
-    [[YMSocketHelper share] searchAirPlaySevices];
+
 }
 
 - (void)netServiceWillPublish:(NSNetService *)sender{
