@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/ViewController/LibrayMusicViewController.m"
-            timestampString = "480087307.20625"
+            filePath = "PeoPleMusic/Cell/Common/MusicPlayView.m"
+            timestampString = "480413815.648085"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "-networkGetMusicCateGoryData"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-playMusic:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PeoPleMusic/Cell/Common/MusicPlayView.m"
+            timestampString = "480430939.324042"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-playMusic:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
