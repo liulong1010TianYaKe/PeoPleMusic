@@ -14,7 +14,7 @@
 #import "FeedBackViewController.h"
 #import "SetHelperViewController.h"
 #import "LinkDeviceViewController.h"
-#import "YMSocketHelper.h"
+#import "YMTCPClient.h"
 
 @interface HomeViewController ()<NSNetServiceDelegate>
 

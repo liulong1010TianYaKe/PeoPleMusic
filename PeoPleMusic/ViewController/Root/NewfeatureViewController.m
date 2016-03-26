@@ -145,7 +145,7 @@
     
     //判断类型
     if (self.newfeatureType == NewfeatureTypeFromeWelcom) {
-        [[KyoDataCache shared] writeToTempDataWithFolderName:kUserDefaultKey_CFBundleShortVersionString withData:[KyoUtil getAppstoreVersion]];   //记录当前版本到缓存
+        [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName: kUserDefaultKey_CFBundleShortVersionString withData:[KyoUtil getAppstoreVersion]];   //记录当前版本到缓存
         
         [UIView animateWithDuration:0.3 animations:^{
             self.view.alpha = 0;

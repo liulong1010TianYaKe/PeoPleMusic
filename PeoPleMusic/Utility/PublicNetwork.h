@@ -12,10 +12,16 @@
 #import "DeviceModel.h"
 
 @interface PublicNetwork : NSObject
+
++ (NSString *)fetchCurrentWiFiName;
+
 + (NSString *)getJsonStr:(NSDictionary *)dictJson; // 字典转换成json字符串
 
 #pragma mark ---- 向设备音响 发送 消息的 json 字符串
 + (NSString *)sendDeviceJsonForRegister; // 设备注册
 
 + (NSString *)sendDeviceJsonForCurrentPlayingSongInfoJson; // 获取当前正在播放的歌曲信息：
+
+
+
 @end

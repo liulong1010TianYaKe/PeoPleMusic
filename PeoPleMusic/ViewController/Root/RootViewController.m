@@ -14,7 +14,7 @@
 #import "HomeViewController.h"
 #import "KyoTopWindow.h"
 
-#import "YMSocketHelper.h"
+#import "YMTCPClient.h"
 
 @interface RootViewController()<RESideMenuDelegate>
 
@@ -72,7 +72,6 @@
         [KyoTopWindow show];
     });
     
-//    [[YMSocketHelper share] pushSSIDAndPWD];
     
 }
 
@@ -170,10 +169,13 @@
 //检测是否需要显示新特性viewcontroller
 - (void)checkShowNewFeatureViewController
 {
-    NSString *cacheVersion = [[KyoDataCache shared] readTempDataWithFolderName:kUserDefaultKey_CFBundleShortVersionString];
+//    NSString *cacheVersion = [[KyoDataCache shared] readTempDataWithFolderName:kUserDefaultKey_CFBundleShortVersionString];
+    NSString *cacheVersion = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:kUserDefaultKey_CFBundleShortVersionString];
+    
     NSString *currentVersion = [KyoUtil getAppstoreVersion];
     if (!cacheVersion || ![cacheVersion isEqualToString:currentVersion]) {  //如果没有缓存版本或缓存的版本和当前版本不一样，显示新特性
-        [[KyoDataCache shared] deleteAllTempData];  //由于是新版本，删除以前的所有缓存
+//        [[KyoDataCache shared] deleteAllTempData];  //由于是新版本，删除以前的所有缓存
+        [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] deleteAllData];
         NewfeatureViewController *newFeatureViewController = [[NewfeatureViewController alloc] init];
         newFeatureViewController.newfeatureType = NewfeatureTypeFromeWelcom;
         [self addChildViewController:newFeatureViewController];
