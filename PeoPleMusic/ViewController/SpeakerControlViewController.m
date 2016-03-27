@@ -29,7 +29,7 @@
 
 
 + (SpeakerControlViewController *)createSpeakerControlViewController{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
     SpeakerControlViewController *controller = [sb instantiateViewControllerWithIdentifier:NSStringFromClass([SpeakerControlViewController class])];
     return controller;
 }

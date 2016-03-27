@@ -21,6 +21,11 @@
 #define SOCKET_PORT2     9998
 
 
+#define YNotificationName_CMDTYPE_REGISTERED_FEEDBACK   @"YNotificationName_CMDTYPE_REGISTERED_FEEDBACK"  //获册反馈通知
+#define YNotificationName_GET_PLAY_SONGINFO_FEEDBACK   @"YNotificationName_GET_PLAY_SONGINFO_FEEDBACK"  //获取播放的歌曲信
+#define YNotificationName_GET_SONG_LIST_FEEDBACK   @"YNotificationName_GET_SONG_LIST_FEEDBACK"  //获取点播列表反馈
+
+
 @interface YMTCPClient : NSObject
 
 + (instancetype)share;

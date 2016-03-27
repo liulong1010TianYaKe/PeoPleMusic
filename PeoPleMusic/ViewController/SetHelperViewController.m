@@ -17,7 +17,7 @@
 
 
 + (SetHelperViewController *)createSetHelperViewController{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
     SetHelperViewController *controller = [sb instantiateViewControllerWithIdentifier:NSStringFromClass([SetHelperViewController class])];
     return controller;
 }

@@ -36,22 +36,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
-            timestampString = "480180576.327456"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "-socketDidDisconnect:withError:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/Utility/YMSocketHelper.m"
             timestampString = "480180613.827572"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"

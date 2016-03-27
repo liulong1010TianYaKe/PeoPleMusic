@@ -11,7 +11,7 @@
 #import "NewfeatureViewController.h"
 #import "PlayerViewController.h"
 #import "LibrayMusicViewController.h"
-#import "HomeViewController.h"
+#import "UserCenterViewController.h"
 #import "KyoTopWindow.h"
 
 #import "YMTCPClient.h"
@@ -135,8 +135,8 @@
      PlayerViewController *playerVC = [PlayerViewController createPlayerViewController];
     [self.tabBarViewController addOneChildVc:playerVC title:@"点播" imageName:@"icon_indicator_dianbo_off" selectedImageName:@"icon_indicator_dianbo_on"];
     
-    HomeViewController *homeVC = [[HomeViewController alloc] init];
-    [self.tabBarViewController addOneChildVc:homeVC title:@"我的" imageName:@"icon_indicator_personal_off" selectedImageName:@"icon_indicator_personal_on"];
+    UserCenterViewController *userCenterVC = [UserCenterViewController createUserCenterViewController];
+    [self.tabBarViewController addOneChildVc:userCenterVC title:@"个人中心" imageName:@"icon_indicator_personal_off" selectedImageName:@"icon_indicator_personal_on"];
  
     [self.tabBarViewController addCustomTabBar];
     self.tabBarViewController.lastSelectedViewContoller = playerVC;

@@ -25,7 +25,7 @@
 
 
 + (SpeakerManagerViewController *)createMSpeakerManagerViewController{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
     SpeakerManagerViewController *controller = [sb instantiateViewControllerWithIdentifier:NSStringFromClass([SpeakerManagerViewController class])];
     return controller;
 }

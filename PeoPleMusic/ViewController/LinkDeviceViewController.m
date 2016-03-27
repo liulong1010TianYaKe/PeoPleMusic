@@ -17,7 +17,7 @@
 @implementation LinkDeviceViewController
 
 + (LinkDeviceViewController *)createLinkDeviceViewController{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
     LinkDeviceViewController *controller = [sb instantiateViewControllerWithIdentifier:NSStringFromClass([LinkDeviceViewController class])];
     return controller;
 }
