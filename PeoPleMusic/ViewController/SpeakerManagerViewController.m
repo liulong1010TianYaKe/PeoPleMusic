@@ -72,18 +72,21 @@
 }
 
 #pragma mark --
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+//    
+//    textField.layer.borderWidth = 2;
+//    textField.layer.borderColor = YYColor(218, 140, 80).CGColor;
+//    textField.layer.cornerRadius = 3;
+//    textField.layer.masksToBounds = YES;
+//    return YES;
+//}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{           // became first responder
     textField.layer.borderWidth = 2;
     textField.layer.borderColor = YYColor(218, 140, 80).CGColor;
     textField.layer.cornerRadius = 3;
     textField.layer.masksToBounds = YES;
-    return YES;
-}
-
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField{           // became first responder
-//    textField.layer.borderColor = [UIColor clearColor].CGColor;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{

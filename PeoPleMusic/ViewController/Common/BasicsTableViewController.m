@@ -49,7 +49,7 @@ static char kLoadingInNavigationKey;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self addObserversWithKeyboard];
+//    [self addObserversWithKeyboard];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_ViewControllerWillAppear object:[NSString stringWithFormat:@"%@_%@",self.navigationItem.title,NSStringFromClass([self class])]];
     //手势滑动pop
     [self configInteractivePopGestureRecognizer:YES];
@@ -87,7 +87,7 @@ static char kLoadingInNavigationKey;
 {
     [super viewDidDisappear:animated];
     
-    [self removeObserversWithKeyboard];
+//    [self removeObserversWithKeyboard];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_ViewControllerWillDisappear object:[NSString stringWithFormat:@"%@_%@",self.navigationItem.title,NSStringFromClass([self class])]];
     //手势滑动pop

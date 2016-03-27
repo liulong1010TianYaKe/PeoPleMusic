@@ -447,7 +447,7 @@
         <!--关于我们-->
         <scene sceneID="css-XY-zr3">
             <objects>
-                <viewController title="关于我们" id="Eaw-49-CZ3" sceneMemberID="viewController">
+                <viewController title="关于我们" id="Eaw-49-CZ3" customClass="AboutMeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6on-7z-0vp"/>
                         <viewControllerLayoutGuide type="bottom" id="ZMa-yU-VyH"/>
@@ -455,7 +455,94 @@
                     <view key="view" contentMode="scaleToFill" id="QzP-Gm-fSN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_76" translatesAutoresizingMaskIntoConstraints="NO" id="z68-EM-bZV">
+                                <rect key="frame" x="130" y="99" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="LGw-dp-lWF"/>
+                                    <constraint firstAttribute="width" secondItem="z68-EM-bZV" secondAttribute="height" multiplier="1:1" id="cYQ-Pe-AXz"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人人点歌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwT-j8-QJL">
+                                <rect key="frame" x="136" y="169" width="48" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyp-oC-qtn">
+                                <rect key="frame" x="0.0" y="213" width="320" height="1"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="nlo-XY-2eS"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJH-Of-NKo">
+                                <rect key="frame" x="30" y="224" width="260" height="54.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="   ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="人人点歌是一款在餐厅、咖啡厅等公开场所的大众的点歌系统，旨在为用户提供一种自助点歌的服务，给用户一个全新的听歌方式。">
+                                        <attributes>
+                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <font key="NSFont" size="12" name="STHeitiSC-Light"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="2"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果您的店铺有需求，可联系我们的客服：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sB1-bn-q3k">
+                                <rect key="frame" x="30" y="298" width="247" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客户 QQ : 2724730997" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Zs-1p-4Ll">
+                                <rect key="frame" x="30" y="334" width="138.5" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7N-aH-L0C">
+                                <rect key="frame" x="30" y="370" width="68.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6t-FR-2O0">
+                                <rect key="frame" x="106.5" y="364" width="99" height="30"/>
+                                <state key="normal" title="18682429955"/>
+                                <connections>
+                                    <action selector="btnCallTouchInside:" destination="Eaw-49-CZ3" eventType="touchUpInside" id="IfL-KG-kJW"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="z68-EM-bZV" firstAttribute="top" secondItem="6on-7z-0vp" secondAttribute="bottom" constant="35" id="61u-sV-26r"/>
+                            <constraint firstItem="3Zs-1p-4Ll" firstAttribute="top" secondItem="sB1-bn-q3k" secondAttribute="bottom" constant="20" id="BYs-1o-eOH"/>
+                            <constraint firstAttribute="trailing" secondItem="fyp-oC-qtn" secondAttribute="trailing" id="EeN-Ij-4gt"/>
+                            <constraint firstItem="d6t-FR-2O0" firstAttribute="centerY" secondItem="g7N-aH-L0C" secondAttribute="centerY" id="Idl-pP-Vga"/>
+                            <constraint firstItem="AwT-j8-QJL" firstAttribute="centerX" secondItem="QzP-Gm-fSN" secondAttribute="centerX" id="Ixk-27-RaY"/>
+                            <constraint firstItem="sB1-bn-q3k" firstAttribute="leading" secondItem="eJH-Of-NKo" secondAttribute="leading" id="KVK-7v-dKu"/>
+                            <constraint firstItem="eJH-Of-NKo" firstAttribute="top" secondItem="fyp-oC-qtn" secondAttribute="bottom" constant="10" id="OUn-ql-CVr"/>
+                            <constraint firstItem="g7N-aH-L0C" firstAttribute="leading" secondItem="3Zs-1p-4Ll" secondAttribute="leading" id="Rj8-2x-TDd"/>
+                            <constraint firstItem="d6t-FR-2O0" firstAttribute="leading" secondItem="g7N-aH-L0C" secondAttribute="trailing" constant="8" id="TjH-5U-8vK"/>
+                            <constraint firstItem="fyp-oC-qtn" firstAttribute="leading" secondItem="QzP-Gm-fSN" secondAttribute="leading" id="XNz-k1-uq6"/>
+                            <constraint firstItem="g7N-aH-L0C" firstAttribute="top" secondItem="3Zs-1p-4Ll" secondAttribute="bottom" constant="20" id="XPP-68-a1v"/>
+                            <constraint firstItem="z68-EM-bZV" firstAttribute="centerX" secondItem="QzP-Gm-fSN" secondAttribute="centerX" id="b6V-Wr-RIC"/>
+                            <constraint firstItem="3Zs-1p-4Ll" firstAttribute="leading" secondItem="sB1-bn-q3k" secondAttribute="leading" id="bYq-dU-pv6"/>
+                            <constraint firstAttribute="trailing" secondItem="eJH-Of-NKo" secondAttribute="trailing" constant="30" id="lm8-vz-ZKb"/>
+                            <constraint firstItem="AwT-j8-QJL" firstAttribute="top" secondItem="z68-EM-bZV" secondAttribute="bottom" constant="10" id="n0g-He-fbw"/>
+                            <constraint firstItem="fyp-oC-qtn" firstAttribute="top" secondItem="AwT-j8-QJL" secondAttribute="bottom" constant="30" id="wkC-Aa-Wo4"/>
+                            <constraint firstItem="sB1-bn-q3k" firstAttribute="top" secondItem="eJH-Of-NKo" secondAttribute="bottom" constant="20" id="x44-ly-gBm"/>
+                            <constraint firstItem="eJH-Of-NKo" firstAttribute="leading" secondItem="QzP-Gm-fSN" secondAttribute="leading" constant="30" id="zFJ-sb-Ig1"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="关于我们" id="IRH-Hh-pIr"/>
                 </viewController>
@@ -809,13 +896,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的手机或邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XQh-do-TPW">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入您的手机或邮箱" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XQh-do-TPW">
                                 <rect key="frame" x="15" y="323" width="278" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="XK7-WM-pTs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                 <connections>
                                     <outlet property="delegate" destination="ebO-zV-6ei" id="Abl-dt-NQK"/>
                                 </connections>
@@ -837,13 +924,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="反馈信息：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ig-lt-v0V">
                                 <rect key="frame" x="15" y="89" width="80" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系方式：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZc-hk-R1J">
                                 <rect key="frame" x="15" y="293.5" width="80" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="16"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  十分感谢您的意见与建议,请输入您的反馈信息" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJW-Qs-h3Q">
@@ -910,5 +997,6 @@
         <image name="icon_song_msg" width="76" height="76"/>
         <image name="icon_speaker_controll" width="76" height="76"/>
         <image name="icon_speaker_manager" width="76" height="76"/>
+        <image name="logo_76" width="56" height="56"/>
     </resources>
 </document>

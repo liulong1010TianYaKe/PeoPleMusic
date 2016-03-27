@@ -56,6 +56,7 @@
 #import "UITableView+EmptyOrError.h"
 //#import "UMAnalyticsHelp.h"
 #import "MAWebViewController.h"
+#import "KeyboardManager.h"
 
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "NSString+Html.h"

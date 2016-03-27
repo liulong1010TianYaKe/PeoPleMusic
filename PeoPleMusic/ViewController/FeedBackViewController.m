@@ -7,6 +7,8 @@
 //
 
 #import "FeedBackViewController.h"
+#import "NSString+Easy.h"
+
 
 
 @interface FeedBackViewController ()<UITextViewDelegate,UITextFieldDelegate>
@@ -16,6 +18,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textFieldContact;
 @property (weak, nonatomic) IBOutlet UIButton *btnCommit;
+
+@property (nonatomic, strong)KyoKeyboardReturnKeyHandler *returnKeyHandler;
 
 - (IBAction)btnCommitTouchInside:(id)sender;
 @end
@@ -46,27 +50,66 @@
     _textViewFeed.layer.masksToBounds = YES;
     
    
+    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 30;
+    [IQKeyboardManager sharedManager].canAdjustTextView = YES;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.returnKeyHandler = [[KyoKeyboardReturnKeyHandler alloc] initWithViewController:self];
+        [self.returnKeyHandler setLastTextFieldReturnKeyType:UIReturnKeyDone];
+    });
+    
+    [self.textViewFeed addPreviousNextDoneOnKeyboardWithTarget:self previousAction:@selector(preAction) nextAction:@selector(nextAction) doneAction:@selector(doneAction)];
+     [self.textFieldContact addPreviousNextDoneOnKeyboardWithTarget:self previousAction:@selector(preAction) nextAction:@selector(nextAction) doneAction:@selector(doneAction)];
+    
+    [self.textViewFeed setEnablePrevious:NO next:YES];
+    [self.textFieldContact setEnablePrevious:YES next:NO];
   
 }
 
-- (IBAction)btnCommitTouchInside:(id)sender {
-//    STKAudioPlayer *play = [[KyoStreamKitHelper share] player];
-//    [play play:@" http://other.web.ra01.sycdn.kuwo.cn/885f6780b5335393d0f9d94a6875e60f/56b0587c/resource/n1/128/72/84/2040807972.mp3"];
-//    [play play:@"http://other.web.re01.sycdn.kuwo.cn/0e06620df2cb68aab17b5544af3e4e11/56b04611/resource/n3/14/72/1978377000.mp3"];
-//    [play playURL:[NSURL URLWithString:@"http://other.web.re01.sycdn.kuwo.cn/0e06620df2cb68aab17b5544af3e4e11/56b04611/resource/n3/14/72/1978377000.mp3"]]; 
-   
+- (void)preAction{
+    
+    [self.textViewFeed becomeFirstResponder];
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-    self.lblPlaceHolde.hidden = YES;
+- (void)nextAction{
+    [self.textFieldContact becomeFirstResponder];
+}
+
+- (void)doneAction{
+    [self.view endEditing:YES];
+}
+
+- (IBAction)btnCommitTouchInside:(id)sender {
+    if (![[self.textViewFeed.text trim] isMatchedByRegex:kRegex_NotEmpty] ) {
+        [self showMessageHUD:@"亲，反馈信息不为空哦~" withTimeInterval:kShowMessageTimeOne];
+        return ;
+    }
+    
+    if(![[self.textFieldContact.text trim] isMatchedByRegex:kRegex11Phone]){
+        [self showMessageHUD:@"请输入有效的手机号" withTimeInterval:kShowMessageTimeOne];
+        return;
+    }
+   
+    [self showLoadingHUD:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self hideLoadingHUD];
+        [self showMessageHUD:@"亲，感谢宝贵的反馈信息!" withTimeInterval:kShowMessageTimeOne];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+        
+    });
+}
+
+
+
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
     textView.layer.borderWidth = 2;
     textView.layer.borderColor = YYColor(218, 140, 80).CGColor;
     textView.layer.cornerRadius = 3;
     textView.layer.masksToBounds = YES;
-    return YES;
 }
-
-
 - (void)textViewDidEndEditing:(UITextView *)textView{
     
     if ([textView.text isEqualToString:@""]) {
@@ -79,15 +122,14 @@
     textView.layer.masksToBounds = YES;
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
     textField.layer.borderWidth = 2;
     textField.layer.borderColor = YYColor(218, 140, 80).CGColor;
     textField.layer.cornerRadius = 3;
     textField.layer.masksToBounds = YES;
-    return YES;
 }
-
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     textField.layer.borderWidth = 1.5;
