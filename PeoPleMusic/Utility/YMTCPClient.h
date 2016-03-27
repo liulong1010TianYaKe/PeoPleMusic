@@ -20,6 +20,8 @@
 #define SOCKET_PORT1     9997
 #define SOCKET_PORT2     9998
 
+#define YNotificationName_SOCKETDIDCONNECT @"YNotificationName_SOCKETDIDCONNECT"  //连接上服务器
+#define YNotificationName_SOCKETDIDDISCONNECT @"YNotificationName_SOCKETDIDDISCONNECT"  //服务器断连
 
 #define YNotificationName_CMDTYPE_REGISTERED_FEEDBACK   @"YNotificationName_CMDTYPE_REGISTERED_FEEDBACK"  //获册反馈通知
 #define YNotificationName_GET_PLAY_SONGINFO_FEEDBACK   @"YNotificationName_GET_PLAY_SONGINFO_FEEDBACK"  //获取播放的歌曲信

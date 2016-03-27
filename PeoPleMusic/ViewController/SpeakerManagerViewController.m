@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *textFieldPassworld;
 @property (weak, nonatomic) IBOutlet UIButton *btnCommit;
 
+@property (nonatomic, strong) DeviceInfor *deviceInfo;
 @end
 
 @implementation SpeakerManagerViewController
@@ -33,29 +34,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _textFieldName.layer.borderWidth = 1.5;
-    _textFieldName.layer.borderColor = YYColor(199, 199, 199).CGColor;
-    _textFieldName.layer.cornerRadius = 4;
-    _textFieldName.layer.masksToBounds = YES;
-    _textFieldName.text = @"人人点歌－2号音响";
+//    _textFieldName.layer.borderWidth = 1.5;
+//    _textFieldName.layer.borderColor = YYColor(199, 199, 199).CGColor;
+//    _textFieldName.layer.cornerRadius = 4;
+//    _textFieldName.layer.masksToBounds = YES;
+//    _textFieldName.text = @"人人点歌－2号音响";
     
-    _textFieldNumb.layer.borderWidth = 1.5;
-    _textFieldNumb.layer.borderColor = YYColor(199, 199, 199).CGColor;
-    _textFieldNumb.layer.cornerRadius = 4;
-    _textFieldNumb.layer.masksToBounds = YES;
-    _textFieldNumb.text = @"c5c4d3d300d3d3";
+//    _textFieldNumb.layer.borderWidth = 1.5;
+//    _textFieldNumb.layer.borderColor = YYColor(199, 199, 199).CGColor;
+//    _textFieldNumb.layer.cornerRadius = 4;
+//    _textFieldNumb.layer.masksToBounds = YES;
+//    _textFieldNumb.text = @"c5c4d3d300d3d3";
     
-    _textFieldWiFi.layer.borderWidth = 1.5;
-    _textFieldWiFi.layer.borderColor = YYColor(199, 199, 199).CGColor;
-    _textFieldWiFi.layer.cornerRadius = 4;
-    _textFieldWiFi.layer.masksToBounds = YES;
-    _textFieldWiFi.text = @"wifi-12345";
+//    _textFieldWiFi.layer.borderWidth = 1.5;
+//    _textFieldWiFi.layer.borderColor = YYColor(199, 199, 199).CGColor;
+//    _textFieldWiFi.layer.cornerRadius = 4;
+//    _textFieldWiFi.layer.masksToBounds = YES;
+//    _textFieldWiFi.text = @"wifi-12345";
     
-    _textFieldPassworld.layer.borderWidth = 1.5;
-    _textFieldPassworld.layer.borderColor = YYColor(199, 199, 199).CGColor;
-    _textFieldPassworld.layer.cornerRadius = 4;
-    _textFieldPassworld.layer.masksToBounds = YES;
+//    _textFieldPassworld.layer.borderWidth = 1.5;
+//    _textFieldPassworld.layer.borderColor = YYColor(199, 199, 199).CGColor;
+//    _textFieldPassworld.layer.cornerRadius = 4;
+//    _textFieldPassworld.layer.masksToBounds = YES;
     
+}
+
+- (void)setupTextFieldStyle:(UITextField *)textField{
+    textField.layer.borderWidth = 1.5;
+    textField.layer.borderColor = YYColor(199, 199, 199).CGColor;
+    textField.layer.cornerRadius = 4;
+    textField.layer.masksToBounds = YES;
 }
 
 - (void)setupView{
@@ -65,21 +73,41 @@
     _btnCommit.clipsToBounds = YES;
     origColor = _textFieldName.layer.borderColor;
     
+    [self setupTextFieldStyle:_textFieldName];
+    [self setupTextFieldStyle:_textFieldNumb];
+    [self setupTextFieldStyle:_textFieldWiFi];
+    [self setupTextFieldStyle:_textFieldPassworld];
 }
+
+- (void)setupData{
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfofor:) name:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //连接音响通知
+    
+    self.deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self refreshSubViews];
+    });
+    
+}
+
 - (IBAction)btnTouchInside:(id)sender {
     
    
 }
 
+
+- (void)refreshSubViews{
+    
+    _textFieldName.text = self.deviceInfo.name;
+    _textFieldNumb.text = self.deviceInfo.Id;
+    _textFieldWiFi.text = self.deviceInfo.wifiName;
+    _textFieldPassworld.text = self.deviceInfo.wifiPwd;
+}
 #pragma mark --
-//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-//    
-//    textField.layer.borderWidth = 2;
-//    textField.layer.borderColor = YYColor(218, 140, 80).CGColor;
-//    textField.layer.cornerRadius = 3;
-//    textField.layer.masksToBounds = YES;
-//    return YES;
-//}
+
 
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{           // became first responder
@@ -109,4 +137,11 @@
     }
     return YES;
 }
+
+#pragma mark --------------------
+#pragma mark - NSNotification
+- (void)receiveDeviceInfofor:(NSNotification *)noti{
+    
+}
+
 @end

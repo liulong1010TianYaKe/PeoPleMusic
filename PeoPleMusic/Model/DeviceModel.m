@@ -8,6 +8,12 @@
 
 #import "DeviceModel.h"
 
+
+@implementation DeviceInfor
+
+
+
+@end
 @implementation DeviceModel
 + (NSDictionary *)dictDeviceWithModel:(DeviceModel *)model{
     if (!model) {

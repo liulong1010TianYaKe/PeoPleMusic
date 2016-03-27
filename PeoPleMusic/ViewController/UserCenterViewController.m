@@ -12,8 +12,19 @@
 @interface UserCenterSectionHeaderView : UIView
 @property (nonatomic, strong) NSString *title;
 
+
+
 @end
 
+
+@interface UserCenterViewController (){
+    BOOL _isConnect;
+}
+
+
+- (void)socketDidConnect:(NSNotification *)noti;
+- (void)socketDidDisconnect:(NSNotification *)noti;
+@end
 @implementation UserCenterSectionHeaderView{
     UILabel *_label;
 }
@@ -49,6 +60,11 @@
 
 @interface UserCenterViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *lblCoreNumb; // 金币
+@property (weak, nonatomic) IBOutlet UILabel *lblMyDev;  // 我的音响
+@property (weak, nonatomic) IBOutlet UILabel *lblManager;  // 音响配置
+@property (weak, nonatomic) IBOutlet UILabel *lblControl;  // 音响控制
+
 - (IBAction)switchChangeValue:(UISwitch *)sender;
 
 @end
@@ -70,6 +86,24 @@
     self.title = @"个人中心";
     
     self.tableView.tableFooterView = [[UIView alloc] init];
+    _isConnect = NO;
+}
+
+- (void)setupData{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(socketDidConnect:) name:YNotificationName_SOCKETDIDCONNECT object:nil];  //连接音响通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(socketDidDisconnect:) name:YNotificationName_SOCKETDIDDISCONNECT object:nil];  //断开音响连接通知
+}
+
+#pragma mark -------------------
+#pragma mark - Method
+- (void)refreshViews{
+    
+    if (_isConnect) {
+        self.lblMyDev.text = @"未连接设备";
+    }else{
+//        self.l
+    }
 }
 
 #pragma mark -------------------
@@ -97,5 +131,19 @@
     }else{
         KyoLog(@"关闭");
     }
+}
+
+#pragma mark --------------------
+#pragma mark - NSNotification
+
+//连接音响通知
+- (void)socketDidConnect:(NSNotification *)noti{
+    _isConnect = YES;
+    [self refreshViews];
+}
+//断开音响连接通知
+- (void)socketDidDisconnect:(NSNotification *)noti{
+    _isConnect = NO;
+    [self refreshViews];
 }
 @end

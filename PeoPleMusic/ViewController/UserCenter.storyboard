@@ -401,6 +401,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="aEy-h8-b9L"/>
+                    <connections>
+                        <outlet property="lblControl" destination="GBV-2k-D6l" id="o0v-X4-1aW"/>
+                        <outlet property="lblCoreNumb" destination="gOQ-nn-nRt" id="QeK-Gq-zdg"/>
+                        <outlet property="lblManager" destination="GBV-2k-D6l" id="TrA-XN-oM5"/>
+                        <outlet property="lblMyDev" destination="gZY-lY-eyY" id="dRu-Ki-lfU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Im4-S1-QC2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

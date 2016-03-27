@@ -8,9 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+
+@interface DeviceInfor : NSObject
+@property (nonatomic, strong) NSString *wifiPwd;
+@property (nonatomic, strong) NSString *Id;
+@property (nonatomic, strong) NSString *wifiName;
+@property (nonatomic, strong) NSString *version;
+@property (nonatomic, strong) NSString *name;
+@end
+
 @interface DeviceModel : NSObject
 @property (nonatomic, strong) NSString *deviceId;  //音响id，扫描音响二维码时获取
 @property (nonatomic, strong) NSString *deviceVersion;  //音响系统的版本号
+
+
 
 + (NSDictionary *)dictDeviceWithModel:(DeviceModel *)model;
 @end

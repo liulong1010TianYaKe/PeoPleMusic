@@ -782,7 +782,6 @@
 		18EBC9261C4FD65100460546 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				18EBC9291C4FD67500460546 /* Home */,
 				18EBC9271C4FD65B00460546 /* Player */,
 			);
 			path = View;
@@ -805,13 +804,6 @@
 				18EBC9351C4FD72700460546 /* PlayListView.xib */,
 			);
 			name = Player;
-			sourceTree = "<group>";
-		};
-		18EBC9291C4FD67500460546 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Home;
 			sourceTree = "<group>";
 		};
 		18EBC93E1C4FD98000460546 /* TFHpple */ = {
