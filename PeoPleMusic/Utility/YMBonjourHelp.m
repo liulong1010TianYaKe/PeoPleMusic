@@ -46,6 +46,9 @@
 
 #pragma mark -------------------
 #pragma mark - NSNetServiceBrowserDelegate
+- (void)netServiceBrowser:(NSNetServiceBrowser *)browser didNotSearch:(NSDictionary<NSString *, NSNumber *> *)errorDict{
+    KyoLog(@"未搜到服务!");
+}
 - (void)netServiceBrowser:(NSNetServiceBrowser *)browser didFindService:(NSNetService *)service moreComing:(BOOL)moreComing{
     
 //    NSLog(@"-----%@ %@",service.name ,service.type);

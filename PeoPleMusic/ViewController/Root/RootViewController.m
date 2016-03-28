@@ -93,6 +93,8 @@
             NSString *ips =  [YMBonjourHelp shareInstance].deviceIp;
             NSLog(@"%@  %ld", [YMBonjourHelp shareInstance].deviceIp,[YMBonjourHelp shareInstance].port);
             [[YMTCPClient share] connectServer:ips port:SOCKET_PORT2];
+        }else{
+          [[YMTCPClient share] connectServer:@"192.168.1.106" port:SOCKET_PORT2];
         }
         
     });

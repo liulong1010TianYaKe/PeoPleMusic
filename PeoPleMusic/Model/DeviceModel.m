@@ -13,6 +13,7 @@
 
 
 
+
 @end
 @implementation DeviceModel
 + (NSDictionary *)dictDeviceWithModel:(DeviceModel *)model{

@@ -27,4 +27,15 @@
 
 + (NSString *)sendDeviceJsonForBookIngPlaySong:(SongInforModel *)songInfoModel withPlayType:(NSInteger)playType;  // 点歌命令
 
++ (NSString *)sendDeviceJsonForDeleteSongInfo; // 8.删除歌曲
+
++ (NSString *)sendDeviceJsonForSetDevice:(DeviceInfor*)deviceInfo; //13,配置设备
++ (NSString *)sendDeviceJsonForSetDeviceVolume:(NSInteger)volume; //17.	设置设备音量
++ (NSString *)sendDeviceJsonForGetDeviceVolume;
+/**<20.	获取播放状态	 */
++ (NSString *)sendDeviceJsonForGetDevicePlayState;
+/**<21.	设置播放状态	 */
++ (NSString *)sendDeviceJsonForSetDevicePlayState:(NSInteger)playState;
+/**<29.设置点播权限	 */
++ (NSString *)sendDeviceJsonForSetDevicePlayPermission:(NSInteger)permission;
 @end

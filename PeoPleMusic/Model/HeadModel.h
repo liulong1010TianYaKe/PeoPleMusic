@@ -51,13 +51,16 @@
 #define  YM_HEAD_CMDTYPE_UPDATE_BRAODCAST             @"10"  //更新广播
 #define  YM_HEAD_CMDTYPE_STOP_PLAYING                 @"11"  //停止播放
 #define  YM_HEAD_CMDTYPE_STOP_PLAYING_FEEDBACK        @"12"  //停止播放反馈
-#define  YM_HEAD_CMDTYPE_SETING_DEVICE                   @"13"  //设置设备
-#define  YM_HEAD_CMDTYPE_SET_DEVICE _FEEDBACK         @"14"  //设置设备反馈反馈
+#define  YM_HEAD_CMDTYPE_SETING_DEVICE                @"13"  //配置设备
+#define  YM_HEAD_CMDTYPE_SET_DEVICE_FEEDBACK         @"14"  //设置设备反馈反馈
 #define  YM_HEAD_CMDTYPE_GET_DEVICEINFO               @"16"  //获取设备信息
 #define  YM_HEAD_CMDTYPE_SET_DEVICE_VOICE             @"17"  //设置设备音量
 #define  YM_HEAD_CMDTYPE_SET_DEVICE_VOICE_FEEDBACK    @"18"  //设置设备音量反馈
+#define  YM_HEAD_CMDTYPE_GET_DEVICE_VOICE             @"19"  //	获取播放音量
+#define  YM_HEAD_CMDTYPE_GET_DEVICE_PLAYSTATE         @"20"  // 设置播放状态
+#define  YM_HEAD_CMDTYPE_SET_DEVICE_PLAYSTATE         @"21"  // 设置播放状态
 
-
+#define  YM_HEAD_CMDTYPE_SET_DEVICE_PLAYPERMISSION     @"29"  //设置点播权限
 @interface HeadModel : NSObject
 @property (nonatomic, strong) NSString *head;// 数据包头 00  必须
 @property (nonatomic, strong) NSString *end;  //数据包尾  11  必须

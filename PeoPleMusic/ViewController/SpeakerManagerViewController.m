@@ -82,13 +82,14 @@
 - (void)setupData{
     
     
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfofor:) name:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //连接音响通知
-    
+ 
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfofor:) name:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //连接音响通知
+//    
     self.deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
+    [self refreshSubViews];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self refreshSubViews];
+        [self requstNetwork];
     });
     
 }
@@ -105,6 +106,28 @@
     _textFieldNumb.text = self.deviceInfo.Id;
     _textFieldWiFi.text = self.deviceInfo.wifiName;
     _textFieldPassworld.text = self.deviceInfo.wifiPwd;
+}
+
+- (void)requstNetwork{
+    
+    [self showLoadingInNavigation];
+    __weak typeof(self) weakSelf = self;
+    [[YMTCPClient share] networkSendDeviceForRegisterWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+        if (result == 0) {
+            NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
+            self.deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
+            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:self.deviceInfo];
+            [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf hideLoadingInNavigation];
+                [weakSelf refreshSubViews];
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf hideLoadingInNavigation];
+            });
+        }
+    }];
 }
 #pragma mark --
 

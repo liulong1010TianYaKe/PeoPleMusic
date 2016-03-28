@@ -34,11 +34,35 @@
 
 - (void)connectServer:(NSString *)ip port:(long)port;
 @property (nonatomic, assign) BOOL isConnect;  /**< 是否连接上服务器 */
+/**< 0,设备注册 */
+- (void)networkSendDeviceForRegisterWithCompletionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
+/**< 2,发送获取当前正在播放的歌曲信息 */
+- (void)networkSendCmdForPlaySongInforWithCompletionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
+ /**<4 获取点播列表 */
+- (void)networkSendBookingSongListWithPageNum:(NSInteger)pageNum withPageSize:(NSInteger)pageSize completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
 
-- (void)sendCmdForPlaySongInfo; /**< 发送获取当前正在播放的歌曲信息 */
+/**< 6,点播歌曲 */
+- (void)networkSendBookSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
+/**< 8,删除歌曲 */
+- (void)networkSendDeleteSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
 
-- (void)getBookingSongListWithPageNum:(NSInteger)pageNum withPageSize:(NSInteger)pageSize; /**< 获取点播列表 */
+/**< 11,停止播放 */
+- (void)networkSendStopPlaySongInfoWithCompletionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
 
-- (void)sendBookSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(void(^)(BOOL success,NSError *err))completionBlock; /**< 点播歌曲 */
+/**< 13,配置设备 */
+- (void)networkSendSetDeviceWithDeviceinfo:(DeviceInfor *)deviceInfo completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
 
+/**<17.	设置设备音量	 */
+
+-(void)networkSendSetDeviceVolumeWithVolume:(NSInteger )volume completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
+/**<19.	获取音量	 */
+- (void)networkSendDeviceForGetDeviceVolumeCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock;
+/**<20.	获取播放状态	 */
+- (void)networkSendDeviceForSetDevicePlayStateCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock;
+/**<21.	设置播放状态	 */
+- (void)networkSendDeviceForSetDevicePlayState:(NSInteger)playState completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock;
+/**<24.	获取音响本地歌曲目录 */
+
+/**<29.设置点播权限	 */
+- (void)networkSendDeviceForSetDevicePlayPermission:(NSInteger)permission completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock;
 @end

@@ -86,4 +86,63 @@
     
     return [PublicNetwork getJsonStr:dictJson];
 }
+
++ (NSString *)sendDeviceJsonForDeleteSongInfo{
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_DEL_SONG]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson addEntriesFromDictionary:[DeviceModel dictDeviceWithModel:nil]];
+    return [PublicNetwork getJsonStr:dictJson];
+}
+
++ (NSString *)sendDeviceJsonForSetDevice:(DeviceInfor*)deviceInfo{ //13,配置设备
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_SETING_DEVICE]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson addEntriesFromDictionary:[DeviceModel dictDeviceWithModel:nil]];
+    [dictJson setObject:[deviceInfo keyValues] forKey:@"deviceInfor"];
+    return [PublicNetwork getJsonStr:dictJson];
+}
+
++ (NSString *)sendDeviceJsonForSetDeviceVolume:(NSInteger)volume{
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_SET_DEVICE_VOICE]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson setObject:@(volume) forKey:@"volume"];
+    return [PublicNetwork getJsonStr:dictJson];
+}
+
++ (NSString *)sendDeviceJsonForGetDeviceVolume{
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_GET_DEVICE_VOICE]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson setObject:@(0) forKey:@"maxVolume"];
+    [dictJson setObject:@(0) forKey:@"volume"];
+    return [PublicNetwork getJsonStr:dictJson];
+}
+/**<20.	获取播放状态	 */
++ (NSString *)sendDeviceJsonForGetDevicePlayState{
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_GET_DEVICE_PLAYSTATE]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson setObject:@(0) forKey:@"playState"];
+    return [PublicNetwork getJsonStr:dictJson];
+}
+/**<21.	设置播放状态	 */
++ (NSString *)sendDeviceJsonForSetDevicePlayState:(NSInteger)playState{
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_SET_DEVICE_PLAYSTATE]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson setObject:@(playState) forKey:@"playState"];
+    return [PublicNetwork getJsonStr:dictJson];
+}
+
+/**<29.设置点播权限	 */
++ (NSString *)sendDeviceJsonForSetDevicePlayPermission:(NSInteger)permission{
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_SET_DEVICE_PLAYPERMISSION]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson setObject:@(permission) forKey:@"permission"];
+    return [PublicNetwork getJsonStr:dictJson];
+}
 @end

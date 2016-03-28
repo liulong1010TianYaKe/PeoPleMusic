@@ -80,7 +80,7 @@
     self.navigationController.navigationBar.hidden = NO;
     
     if ([YMTCPClient share].isConnect) {
-        [[YMTCPClient share] sendCmdForPlaySongInfo]; // 获取当前播放歌曲信息
+//        [[YMTCPClient share] sendCmdForPlaySongInfo]; // 获取当前播放歌曲信息
     }
 }
 
@@ -186,7 +186,7 @@
 
 - (IBAction)btnSongListTouchInside:(id)sender {
     
-    [[YMTCPClient share] getBookingSongListWithPageNum:1 withPageSize:20];
+//    [[YMTCPClient share] getBookingSongListWithPageNum:1 withPageSize:20];
     [[PlayListView createPlayListViewFromWindow] show];
   
 }
