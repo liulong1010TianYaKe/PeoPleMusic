@@ -89,4 +89,17 @@
     
     return result;
 }
+
++ (NSDictionary *)getSongInfoDictWtihSongInfo:(SongInforModel *)songInfo{
+    
+    return [songInfo keyValues];
+}
+@end
+
+@implementation SongInfoList
+
+- (NSDictionary *)objectClassInArray{
+    return @{@"songList": [SongInforModel class]};
+}
+
 @end

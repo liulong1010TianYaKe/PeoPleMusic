@@ -68,7 +68,7 @@
 - (void)insertDownloadUrl:(NSString *)url withProgress:(NSProgress *)progress withCurrentProcess:(void (^)(long long countByte, long long currentByte))currentProcess; //存储下载需要的progress
 - (void)deleteDownloadProgress:(NSString *)url; //删除下载需要的progress
 
-+ (void)thePopUpDialogSecurityTips:(NSString *)tip;    //多点登录被破下线提示
+//+ (void)thePopUpDialogSecurityTips:(NSString *)tip;    //多点登录被破下线提示
 //+ (void)reLoginWithTips:(NSString *)msg;    /**< 需要重新登录被迫下线提示（大多数是session过期） */
 
 - (void)loginSuccessNotification:(NSNotification *)notification;
@@ -162,7 +162,7 @@
     NSMutableDictionary *dictParams = [NSMutableDictionary dictionary];
     [dictParams setObject:kAppPlatform forKey:@"appType"];
     [dictParams setObject:[[NSDate date] strLongDate] forKey:@"timestamp"];
-    [dictParams setObject:[UserInfo sharedUserInfo].session ? : @"12345" forKey:@"session"];
+//    [dictParams setObject:[UserInfo sharedUserInfo].session ? : @"12345" forKey:@"session"];
 //    [dictParams setObject:[KyoUtil rootViewController].appConfig.longTail forKey:@"lt"];    //保险公司标示
     [dictParams setObject:args forKey:@"args"];
     
@@ -264,7 +264,7 @@
         @try {
             result = responseObject ? [NetworkResultModel objectWithKeyValues:responseObject] : nil;
             if ([result.State isEqualToString:kMultipleDevicesSignInErrorCode]) {
-                [NetworkSessionHelp thePopUpDialogSecurityTips:result.Msg];
+//                [NetworkSessionHelp thePopUpDialogSecurityTips:result.Msg];
             } else if ([result.State isEqualToString:kReLogInErrorCode]) {
 //                [NetworkSessionHelp reLoginWithTips:result.Msg];
             }
@@ -305,7 +305,7 @@
         @try {
             result = responseObject ? [NetworkResultModel objectWithKeyValues:responseObject] : nil;
             if ([result.State isEqualToString:kMultipleDevicesSignInErrorCode]) {
-                [NetworkSessionHelp thePopUpDialogSecurityTips:result.Msg];
+//                [NetworkSessionHelp thePopUpDialogSecurityTips:result.Msg];
             } else if ([result.State isEqualToString:kReLogInErrorCode]) {
 //                [NetworkSessionHelp reLoginWithTips:result.Msg];
             }
@@ -450,21 +450,21 @@
     }
 }
 
-//多点登录被破下线提示
-+ (void)thePopUpDialogSecurityTips:(NSString *)tip
-{
-    if (!manyPeopleLogOnElasticBoxMarking &&
-        ![manyPeopleLogOnElasticBoxMarking isEqualToString:tip] &&
-        !networkTipAlertView) {
-        networkTipAlertView = [[UIAlertView alloc]initWithTitle:@"提示" message:tip delegate:[NetworkSessionHelp shareNetwork]  cancelButtonTitle:@"知道了" otherButtonTitles:@"重新登录", nil];
-        networkTipAlertView.tag = kNetworkKeyAlertViewTag;
-        [networkTipAlertView show];
-        
-        manyPeopleLogOnElasticBoxMarking = tip;
-        
-        [UserInfo sharedUserInfo].session = @"12345";
-    }
-}
+////多点登录被破下线提示
+//+ (void)thePopUpDialogSecurityTips:(NSString *)tip
+//{
+//    if (!manyPeopleLogOnElasticBoxMarking &&
+//        ![manyPeopleLogOnElasticBoxMarking isEqualToString:tip] &&
+//        !networkTipAlertView) {
+//        networkTipAlertView = [[UIAlertView alloc]initWithTitle:@"提示" message:tip delegate:[NetworkSessionHelp shareNetwork]  cancelButtonTitle:@"知道了" otherButtonTitles:@"重新登录", nil];
+//        networkTipAlertView.tag = kNetworkKeyAlertViewTag;
+//        [networkTipAlertView show];
+//        
+//        manyPeopleLogOnElasticBoxMarking = tip;
+//        
+////        [UserInfo sharedUserInfo].session = @"12345";
+//    }
+//}
 
 ///**< 需要重新登录被迫下线提示（大多数是session过期） */
 //+ (void)reLoginWithTips:(NSString *)msg
@@ -482,26 +482,26 @@
 
 #pragma mark --------------------
 #pragma mark - UIAlertViewDelegate
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == kNetworkKeyAlertViewTag) {  //多点登录被T下线
-        if (alertView.cancelButtonIndex == buttonIndex) {
-            [[UserInfo sharedUserInfo] logout];
-            [[KyoUtil getCurrentNavigationViewController] popToRootViewControllerAnimated:YES];
-            networkTipAlertView = nil;
-        } else {  //重新登录
-            UIWindow *targetWindow = kShowMessageView();
-            [MBProgressHUD showLoadingHUD:nil inView:targetWindow withDelegate:nil userInteractionEnabled:YES];
-            [[KyoUtil rootViewController] networkLogin:^(BOOL result, NSError *error) {
-                if (!result) {
-                    [[UserInfo sharedUserInfo] logout];
-                }
-                [MBProgressHUD hideLoadingHUD:0 withView:targetWindow];
-                networkTipAlertView = nil;
-            }];
-        }
-    }
-}
+//
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    if (alertView.tag == kNetworkKeyAlertViewTag) {  //多点登录被T下线
+//        if (alertView.cancelButtonIndex == buttonIndex) {
+//            [[UserInfo sharedUserInfo] logout];
+//            [[KyoUtil getCurrentNavigationViewController] popToRootViewControllerAnimated:YES];
+//            networkTipAlertView = nil;
+//        } else {  //重新登录
+//            UIWindow *targetWindow = kShowMessageView();
+//            [MBProgressHUD showLoadingHUD:nil inView:targetWindow withDelegate:nil userInteractionEnabled:YES];
+//            [[KyoUtil rootViewController] networkLogin:^(BOOL result, NSError *error) {
+//                if (!result) {
+//                    [[UserInfo sharedUserInfo] logout];
+//                }
+//                [MBProgressHUD hideLoadingHUD:0 withView:targetWindow];
+//                networkTipAlertView = nil;
+//            }];
+//        }
+//    }
+//}
 
 
 #pragma mark --------------------

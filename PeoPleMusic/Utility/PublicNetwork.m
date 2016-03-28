@@ -62,4 +62,28 @@
     [dictJson addEntriesFromDictionary:[DeviceModel dictDeviceWithModel:nil]];
     return [PublicNetwork getJsonStr:dictJson];
 }
+
++ (NSString *)sendDeviceJsonForBooKingSongListWithpageNum:(NSInteger)pageNum withPageSize:(NSInteger)pageSize { // 获取点播列表
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_GET_SONG_LIST]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson addEntriesFromDictionary:[DeviceModel dictDeviceWithModel:nil]];
+    [dictJson setObject:@(0) forKey:@"total"];
+    [dictJson setObject:@(pageSize) forKey:@"pageSize"];
+    [dictJson setObject:@(pageNum) forKey:@"pageNum"];
+    return [PublicNetwork getJsonStr:dictJson];
+}
+
+
++ (NSString *)sendDeviceJsonForBookIngPlaySong:(SongInforModel *)songInfoModel withPlayType:(NSInteger)playType{  // 点歌命令
+    
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson addEntriesFromDictionary:[DeviceModel dictDeviceWithModel:nil]];
+    [dictJson setObject:[SongInforModel getSongInfoDictWtihSongInfo:songInfoModel] forKey:@"songInfor"];
+    [dictJson setObject:@(playType) forKey:@"playType"];
+    
+    return [PublicNetwork getJsonStr:dictJson];
+}
 @end

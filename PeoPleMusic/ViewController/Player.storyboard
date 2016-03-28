@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hIB-a0-FfY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="hIB-a0-FfY">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Player View Controller-->
@@ -38,11 +38,11 @@
                                         <state key="normal" image="icon_my_song_list"/>
                                         <state key="highlighted" backgroundImage="button_0_0_0_2"/>
                                         <connections>
-                                            <action selector="showSongListClicked:" destination="hIB-a0-FfY" eventType="touchUpInside" id="ngj-v6-RUu"/>
+                                            <action selector="btnSongListTouchInside:" destination="hIB-a0-FfY" eventType="touchUpInside" id="bxs-Qi-F5p"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总共：2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6x-bd-GY4">
-                                        <rect key="frame" x="30" y="190" width="43.5" height="14.5"/>
+                                        <rect key="frame" x="30" y="190" width="44" height="15"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -89,7 +89,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="99"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ilo-s1-1pe" id="vMZ-EM-Yx1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="98.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAK-gI-zVG" userLabel="TopView">
@@ -109,13 +109,13 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="林志炫" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cL-BI-2yp">
-                                                            <rect key="frame" x="53" y="31" width="36" height="14.5"/>
+                                                            <rect key="frame" x="53" y="31" width="36" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="1" green="0.52549019610000003" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DG-H60-L02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMV-kt-Q4O">
-                                                            <rect key="frame" x="235" y="34" width="75" height="14.5"/>
+                                                            <rect key="frame" x="235" y="34" width="75" height="15"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="1" green="0.68142311639999997" blue="0.36540326740000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -128,7 +128,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fU-7K-0Xw">
-                                                            <rect key="frame" x="301" y="10" width="8.5" height="16"/>
+                                                            <rect key="frame" x="301" y="10" width="9" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <color key="textColor" red="1" green="0.52549019610000003" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -294,7 +294,7 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂时没有点播信息~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cH4-Fe-8Ns">
-                                <rect key="frame" x="112" y="363" width="95" height="13.5"/>
+                                <rect key="frame" x="112" y="363" width="95" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -339,9 +339,9 @@
         <image name="icon_music" width="76" height="76"/>
         <image name="icon_my_song_list" width="32" height="32"/>
         <image name="icon_pull_down" width="91" height="64"/>
-        <image name="icon_song_item_chabo" width="18" height="18"/>
-        <image name="icon_song_item_delete" width="18" height="18"/>
-        <image name="icon_song_item_detail" width="18" height="18"/>
-        <image name="icon_song_item_msg" width="18" height="18"/>
+        <image name="icon_song_item_chabo" width="36" height="36"/>
+        <image name="icon_song_item_delete" width="9" height="9"/>
+        <image name="icon_song_item_detail" width="36" height="36"/>
+        <image name="icon_song_item_msg" width="36" height="36"/>
     </resources>
 </document>

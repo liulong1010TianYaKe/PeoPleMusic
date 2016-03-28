@@ -20,6 +20,7 @@
 
 @interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate>{
     SongModel *_oldModel;
+  
 }
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>topView
@@ -30,6 +31,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSongInfo;
 @property (weak, nonatomic) IBOutlet UIImageView *imgSong;
 
+
+@property (nonatomic, strong) SongInforModel *currentSongInfo;
+
+@property (nonatomic, strong)  SongInfoList *songList;
 - (IBAction)showSongListClicked:(id)sender;
 
 // >>>>>>>>>>>>>>>>>>>>>>
@@ -73,6 +78,10 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    
+    if ([YMTCPClient share].isConnect) {
+        [[YMTCPClient share] sendCmdForPlaySongInfo]; // 获取当前播放歌曲信息
+    }
 }
 
 - (void)setupView{
@@ -88,6 +97,10 @@
 
 - (void)setupData{
     
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCurrentSongInfo:) name:YNotificationName_GET_PLAY_SONGINFO_FEEDBACK object:nil];  //获取音响当前正在播放的歌曲信息
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveSonglist:) name:YNotificationName_GET_SONG_LIST_FEEDBACK object:nil];   //获取点播列表反馈
     NSMutableArray *tempArr = [NSMutableArray array];
     
     for (int i = 0; i < 10; i++) {
@@ -95,6 +108,8 @@
         [tempArr addObject:songModel];
     }
     _songModels = tempArr;
+    
+    self.currentSongInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK];
 }
 #pragma mark -------------------
 #pragma mark -- UITableViewDataSource,UITableViewDelegate
@@ -153,16 +168,28 @@
     }
 }
 
+#pragma mark --------------------
+#pragma mark - NSNotification
+
+//获取音响当前正在播放的歌曲信息
+- (void)receiveCurrentSongInfo:(NSNotification *)noti{
+    self.currentSongInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK];
+}
+
+//获取点播列表反馈
+- (void)receiveSonglist:(NSNotification *)noti{
+    self.songList = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_GET_SONG_LIST_FEEDBACK];
+}
 //// 播放
-//- (IBAction)btnPlayTouchInside:(id)sender {
-//}
-//
-//- (IBAction)btnSongListTouchInside:(id)sender {
-//    
-//
-//    [[PlayListView createPlayListViewFromWindow] show];
-//  
-//}
+- (IBAction)btnPlayTouchInside:(id)sender {
+}
+
+- (IBAction)btnSongListTouchInside:(id)sender {
+    
+    [[YMTCPClient share] getBookingSongListWithPageNum:1 withPageSize:20];
+    [[PlayListView createPlayListViewFromWindow] show];
+  
+}
 
 //- (void)keyboardWillShow:(NSNotification *)notification{
 //    [super keyboardWillShow:notification];

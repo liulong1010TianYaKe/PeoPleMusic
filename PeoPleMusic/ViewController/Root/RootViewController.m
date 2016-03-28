@@ -13,7 +13,7 @@
 #import "LibrayMusicViewController.h"
 #import "UserCenterViewController.h"
 #import "KyoTopWindow.h"
-
+#import "YMBonjourHelp.h"
 #import "YMTCPClient.h"
 
 @interface RootViewController()<RESideMenuDelegate>
@@ -67,6 +67,8 @@
 //        [VerifyRegexTool verifyIsNotEmpty:[UserInfo sharedUserInfo].loginPassWord]) {
 //        [self networkLogin:nil];
 //    }
+    
+    [self startConnectSongServer]; // 连接音响
     //延迟2秒后添加window用于点击滑动到top
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [KyoTopWindow show];
@@ -80,6 +82,20 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
 
+}
+
+- (void)startConnectSongServer{
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        if ([YMBonjourHelp shareInstance].isAirSuccess) {
+            NSString *ips =  [YMBonjourHelp shareInstance].deviceIp;
+            NSLog(@"%@  %ld", [YMBonjourHelp shareInstance].deviceIp,[YMBonjourHelp shareInstance].port);
+            [[YMTCPClient share] connectServer:ips port:SOCKET_PORT2];
+        }
+        
+    });
 }
 
 #pragma mark ------------------------

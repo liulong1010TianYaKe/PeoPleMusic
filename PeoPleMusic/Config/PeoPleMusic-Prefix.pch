@@ -31,7 +31,6 @@
 #import <Foundation/Foundation.h>
 #import "Global.h"
 #import "MJExtension.h"
-#import "UserInfo.h"
 #import "UIView+Extension.h"
 #import "NSString+MD5.h"
 #import "NetworkSessionHelp.h"

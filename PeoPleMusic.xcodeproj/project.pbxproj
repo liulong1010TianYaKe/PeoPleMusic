@@ -215,8 +215,6 @@
 		FD8C2DBA1C0C6ADF007CE036 /* YYTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2DAF1C0C6ADF007CE036 /* YYTabBar.m */; };
 		FD8C2DC01C0C6AFA007CE036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2DBD1C0C6AFA007CE036 /* main.m */; };
 		FD8C2DC41C0C6B07007CE036 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD8C2DC31C0C6B07007CE036 /* Assets.xcassets */; };
-		FD8C2DD61C0C6DBC007CE036 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2DD31C0C6DBC007CE036 /* UserInfo.m */; };
-		FD8C2DD71C0C6DBC007CE036 /* BasicsUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2DD51C0C6DBC007CE036 /* BasicsUserInfo.m */; };
 		FD8C2DDA1C0C6E31007CE036 /* BasicsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8C2DD91C0C6E31007CE036 /* BasicsView.m */; };
 		FD94F3E21C0E804A006AA37C /* LibrayMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD94F3E11C0E804A006AA37C /* LibrayMusicViewController.m */; };
 		FD94F3E81C0E8077006AA37C /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD94F3E71C0E8077006AA37C /* PlayerViewController.m */; };
@@ -648,10 +646,6 @@
 		FD8C2DBD1C0C6AFA007CE036 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FD8C2DBE1C0C6AFA007CE036 /* PeoPleMusic-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PeoPleMusic-Prefix.pch"; sourceTree = "<group>"; };
 		FD8C2DC31C0C6B07007CE036 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FD8C2DD21C0C6DBC007CE036 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
-		FD8C2DD31C0C6DBC007CE036 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
-		FD8C2DD41C0C6DBC007CE036 /* BasicsUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicsUserInfo.h; sourceTree = "<group>"; };
-		FD8C2DD51C0C6DBC007CE036 /* BasicsUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicsUserInfo.m; sourceTree = "<group>"; };
 		FD8C2DD81C0C6E31007CE036 /* BasicsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicsView.h; sourceTree = "<group>"; };
 		FD8C2DD91C0C6E31007CE036 /* BasicsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicsView.m; sourceTree = "<group>"; };
 		FD94F3E01C0E804A006AA37C /* LibrayMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibrayMusicViewController.h; sourceTree = "<group>"; };
@@ -770,13 +764,6 @@
 				189E25B31CA691E300653163 /* YMTCPClient.m */,
 			);
 			name = YMTCPClient;
-			sourceTree = "<group>";
-		};
-		18CF4C4B1C15DE7700362987 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Home;
 			sourceTree = "<group>";
 		};
 		18EBC9261C4FD65100460546 /* View */ = {
@@ -1446,11 +1433,6 @@
 				F7EAC9541C8A98FD00A2623F /* Connect */,
 				18EBC94B1C4FDBF700460546 /* LibraryMusic */,
 				18720E091C1C64550008FA09 /* Player */,
-				18CF4C4B1C15DE7700362987 /* Home */,
-				FD8C2DD21C0C6DBC007CE036 /* UserInfo.h */,
-				FD8C2DD31C0C6DBC007CE036 /* UserInfo.m */,
-				FD8C2DD41C0C6DBC007CE036 /* BasicsUserInfo.h */,
-				FD8C2DD51C0C6DBC007CE036 /* BasicsUserInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1857,7 +1839,6 @@
 				188492381C1731A7004C3330 /* SpeakerControlViewController.m in Sources */,
 				FD055D751C9D61A50054AABF /* TAPageControl.m in Sources */,
 				FD1442131CA40F830029060A /* IQTitleBarButtonItem.m in Sources */,
-				FD8C2DD61C0C6DBC007CE036 /* UserInfo.m in Sources */,
 				FD1442161CA40F830029060A /* KyoKeyboardReturnKeyHandler.m in Sources */,
 				FD4338E91C8876D100C9E1DF /* SDWebImageDownloader.m in Sources */,
 				FD8C2DDA1C0C6E31007CE036 /* BasicsView.m in Sources */,
@@ -2014,7 +1995,6 @@
 				FD8C2DB61C0C6ADF007CE036 /* NewfeatureViewController.m in Sources */,
 				FD14420F1CA40F830029060A /* IQKeyboardManager.m in Sources */,
 				FD4338EE1C8876D100C9E1DF /* UIImage+GIF.m in Sources */,
-				FD8C2DD71C0C6DBC007CE036 /* BasicsUserInfo.m in Sources */,
 				F780D22E1C9E9E4000036C6C /* SongDemandViewController.m in Sources */,
 				FD8C2D831C0C6ACA007CE036 /* NSDate+Easy.m in Sources */,
 				F7EAC96A1C8AD99C00A2623F /* LinkDeviceViewController.m in Sources */,

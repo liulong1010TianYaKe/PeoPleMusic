@@ -38,16 +38,7 @@
 
 // 本地下载
 - (IBAction)btnLoadTouchInside:(id)sender {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        if ([YMBonjourHelp shareInstance].isAirSuccess) {
-            NSString *ips =  [YMBonjourHelp shareInstance].deviceIp;
-            NSLog(@"%@  %ld", [YMBonjourHelp shareInstance].deviceIp,[YMBonjourHelp shareInstance].port);
-            [[YMTCPClient share] connectServer:ips port:SOCKET_PORT2];
-        }
-        
-        
-    });
+ 
 //    [[YMTCPClient share] connectServer:<#(NSString *)#> port:<#(long)#>]
 }
 

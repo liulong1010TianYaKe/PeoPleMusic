@@ -84,7 +84,7 @@
     
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfofor:) name:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //连接音响通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfofor:) name:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //连接音响通知
     
     self.deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
+
 @interface SongInforModel : NSObject
 
 @property (nonatomic, strong) NSString  *albumName;//专辑名称;
@@ -28,4 +29,16 @@
 @property (nonatomic, strong) NSString *number; // 歌曲序号
 @property (nonatomic, strong) NSString *listen_href; // 歌曲地址
 
+
+/**
+ *  返回用户手机信息
+ */
++ (NSDictionary *)getSongInfoDictWtihSongInfo:(SongInforModel *)songInfo;
+@end
+
+
+@interface SongInfoList : NSObject
+@property (nonatomic, assign) NSInteger total;
+@property (nonatomic, assign) NSInteger pageNumb;
+@property (nonatomic, strong) NSArray *songList;
 @end

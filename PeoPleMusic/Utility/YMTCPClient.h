@@ -33,4 +33,12 @@
 + (instancetype)share;
 
 - (void)connectServer:(NSString *)ip port:(long)port;
+@property (nonatomic, assign) BOOL isConnect;  /**< 是否连接上服务器 */
+
+- (void)sendCmdForPlaySongInfo; /**< 发送获取当前正在播放的歌曲信息 */
+
+- (void)getBookingSongListWithPageNum:(NSInteger)pageNum withPageSize:(NSInteger)pageSize; /**< 获取点播列表 */
+
+- (void)sendBookSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(void(^)(BOOL success,NSError *err))completionBlock; /**< 点播歌曲 */
+
 @end

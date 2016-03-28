@@ -10,6 +10,7 @@
 #import "HeadModel.h"
 #import "UserInfoModel.h"
 #import "DeviceModel.h"
+#import "SongInforModel.h"
 
 @interface PublicNetwork : NSObject
 
@@ -22,6 +23,8 @@
 
 + (NSString *)sendDeviceJsonForCurrentPlayingSongInfoJson; // 获取当前正在播放的歌曲信息：
 
++ (NSString *)sendDeviceJsonForBooKingSongListWithpageNum:(NSInteger)pageNum withPageSize:(NSInteger)pageSize; // 获取点播列表
 
++ (NSString *)sendDeviceJsonForBookIngPlaySong:(SongInforModel *)songInfoModel withPlayType:(NSInteger)playType;  // 点歌命令
 
 @end
