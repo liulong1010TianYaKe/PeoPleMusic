@@ -59,7 +59,8 @@
 #define  YM_HEAD_CMDTYPE_GET_DEVICE_VOICE             @"19"  //	获取播放音量
 #define  YM_HEAD_CMDTYPE_GET_DEVICE_PLAYSTATE         @"20"  // 设置播放状态
 #define  YM_HEAD_CMDTYPE_SET_DEVICE_PLAYSTATE         @"21"  // 设置播放状态
-
+#define  YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR          @"24"  // 获取音响本地歌曲目录
+#define  YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR_FEEDBACK @"25"  // 获取音响本地歌曲目录反馈
 #define  YM_HEAD_CMDTYPE_SET_DEVICE_PLAYPERMISSION     @"29"  //设置点播权限
 @interface HeadModel : NSObject
 @property (nonatomic, strong) NSString *head;// 数据包头 00  必须

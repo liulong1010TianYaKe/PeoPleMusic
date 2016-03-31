@@ -112,7 +112,7 @@
 }
 
 /**< 11,停止播放 */
-- (void)networkSendStopPlaySongInfoWithCompletionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock{
+- (void)networkSendStopPlaySongInfoWithCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
     _cmdType = YM_HEAD_CMDTYPE_STOP_PLAYING_FEEDBACK;
     self.completionBlock = completionBlock;
 }
@@ -126,7 +126,7 @@
 
 /**<17.	设置设备音量	 */
 
--(void)networkSendSetDeviceVolumeWithVolume:(NSInteger )volume completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock{
+-(void)networkSendSetDeviceVolumeWithVolume:(NSInteger )volume completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock {
     _cmdType = YM_HEAD_CMDTYPE_SET_DEVICE_VOICE_FEEDBACK;
     self.completionBlock = completionBlock;
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForSetDeviceVolume:volume] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
@@ -152,8 +152,17 @@
     self.completionBlock = completionBlock;
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForSetDevicePlayState:playState] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
-
-
+/**<24.	获取音响本地歌曲目录 */
+- (void)networkSendDeviceForSongDirWithCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
+    _cmdType = YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR;
+    self.completionBlock = completionBlock;
+    [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForGetDeviceSongDir] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
+}
+/**<24.	获取音响本地歌曲目录歌曲 */
+- (void)networkSendDeviceForSongDirWithRequestKey:(NSString *)requestKey withTotalSize:(NSInteger)totalSize completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
+    self.completionBlock = completionBlock;
+    [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForGetDeviceSongWithRequestKey:requestKey withTotalSize:0] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
+}
 /**<21.设置点播权限	 */
 - (void)networkSendDeviceForSetDevicePlayPermission:(NSInteger)permission completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
     _cmdType = YM_HEAD_CMDTYPE_SET_DEVICE_PLAYPERMISSION;
@@ -178,7 +187,7 @@
     //    _clientSocket = nil;
     KyoLog(@"断开连接。。。");
     if (self.completionBlock) {
-        self.completionBlock(2, nil, err);
+        self.completionBlock(6000, nil, err);
     }
     _isConnect  = NO;
     [_clientSocket connectToHost:_serverIp onPort:_serverPort error:&err];
@@ -202,43 +211,46 @@
         if (self.completionBlock) {
             self.completionBlock(result,dict,nil);
         }
+    }else if ([_cmdType isEqualToString:YM_HEAD_CMDTYPE_UPDATE_BRAODCAST]){ // 接收更新命令
+        
+           [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_GET_PLAY_SONGINFO_FEEDBACK object:nil];
     }
+//    
+//    if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK]) { // 注册反馈
+//        
+//        NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
+//        DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
+//        NSLog(@"%@",deviceInfo.wifiName);
     
-    if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK]) { // 注册反馈
-        
-        NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
-        DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
-        NSLog(@"%@",deviceInfo.wifiName);
-       
         
         
-    }else if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK]){ // 当前播放歌曲
-        NSDictionary *tempDict = [dict objectForKey:@"songInfor"];
-        SongInforModel *songInfoModle = [SongInforModel objectWithKeyValues:tempDict];
-        [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK withData:songInfoModle];
-        [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_GET_PLAY_SONGINFO_FEEDBACK object:nil];
-    }else if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_GET_SONG_LIST_FEEDBACK]){ //获取点播列表反馈
-        SongInfoList *songList = [[SongInfoList alloc] init];
-        songList.pageNumb =  [[dict objectForKey:@"pageNum"] integerValue];
-        songList.total = [[dict objectForKey:@"total"] integerValue];
-        songList.songList  = [SongInfoList objectArrayWithKeyValuesArray:[dict objectForKey:@"songList"]];
+//    }else if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK]){ // 当前播放歌曲
+//        NSDictionary *tempDict = [dict objectForKey:@"songInfor"];
+//        SongInforModel *songInfoModle = [SongInforModel objectWithKeyValues:tempDict];
+//        [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK withData:songInfoModle];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_GET_PLAY_SONGINFO_FEEDBACK object:nil];
+//    }else if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_GET_SONG_LIST_FEEDBACK]){ //获取点播列表反馈
+//        SongInfoList *songList = [[SongInfoList alloc] init];
+//        songList.pageNumb =  [[dict objectForKey:@"pageNum"] integerValue];
+//        songList.total = [[dict objectForKey:@"total"] integerValue];
+//        songList.songList  = [SongInfoList objectArrayWithKeyValuesArray:[dict objectForKey:@"songList"]];
         
-        [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_GET_SONG_LIST_FEEDBACK withData:songList];
-        [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_GET_SONG_LIST_FEEDBACK object:nil];
-        NSLog(@"%@",songList);
-    }else if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG_FEEDBACK])  { //点播反馈
-        NSInteger result = [[dict objectForKey:@"result"] integerValue];
-        if (result == 0) {
-            if (self.completionBlock) {
-//                self.CompletionBlock(YES, nil);  // 点播成功
-            }
-        }else{
-            if (self.completionBlock) {
-//                self.CompletionBlock(NO, nil); // 点播失败
-            }
-        }
-        
-    }
+//        [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_GET_SONG_LIST_FEEDBACK withData:songList];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_GET_SONG_LIST_FEEDBACK object:nil];
+//        NSLog(@"%@",songList);
+//    }else if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG_FEEDBACK])  { //点播反馈
+//        NSInteger result = [[dict objectForKey:@"result"] integerValue];
+//        if (result == 0) {
+//            if (self.completionBlock) {
+////                self.CompletionBlock(YES, nil);  // 点播成功
+//            }
+//        }else{
+//            if (self.completionBlock) {
+////                self.CompletionBlock(NO, nil); // 点播失败
+//            }
+//        }
+//        
+//    }
     //    [self addText:[NSString stringWithFormat:@"%@:%@",sock.connectedHost,newMessage]];
     [_clientSocket readDataWithTimeout:-1 tag:0];
 }

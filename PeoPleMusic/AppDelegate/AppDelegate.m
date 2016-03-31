@@ -33,7 +33,7 @@
     NSError* error;
     [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
     
-    [[YMBonjourHelp shareInstance] startSearch];
+    
     return YES;
 }
 

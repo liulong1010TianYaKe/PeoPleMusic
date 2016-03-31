@@ -136,7 +136,22 @@
     [dictJson setObject:@(playState) forKey:@"playState"];
     return [PublicNetwork getJsonStr:dictJson];
 }
-
+/**<24.	获取音响本地歌曲目录	 */
++ (NSString *)sendDeviceJsonForGetDeviceSongDir{
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    return [PublicNetwork getJsonStr:dictJson];
+}
+/**<24.	获取音响目录下的歌曲	 */
++ (NSString *)sendDeviceJsonForGetDeviceSongWithRequestKey:(NSString *)requestKey withTotalSize:(NSInteger)totalSize{
+    NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
+    [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR]];
+    [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson setObject:requestKey forKey:@"requestKey"];
+    [dictJson setObject:@(totalSize) forKey:@"totalSize"];
+    return [PublicNetwork getJsonStr:dictJson];
+}
 /**<29.设置点播权限	 */
 + (NSString *)sendDeviceJsonForSetDevicePlayPermission:(NSInteger)permission{
     NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典

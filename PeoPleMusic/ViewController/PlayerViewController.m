@@ -191,28 +191,7 @@
   
 }
 
-//- (void)keyboardWillShow:(NSNotification *)notification{
-//    [super keyboardWillShow:notification];
-////    keyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-////    self.currentKeyBoradRect = keyboardRect;
-//    CGRect kyRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    KyoLog(@"%@",NSStringFromCGRect(self.currentKeyBoradRect));
-//    if (self.feedBackView && self.feedBackView.frame.origin.x == 0) {
-//        [UIView animateWithDuration:0.5 animations:^{
-//            self.feedBackView.frame = CGRectMake(0, -kyRect.size.height   , kWindowWidth, kWindowHeight);
-//        }];
-//    }
-//    
-//    if (self.chaoboView) {
-//        [UIView animateWithDuration:0.5 animations:^{
-//            self.chaoboView.frame = CGRectMake(0, -kyRect.size.height   , kWindowWidth, kWindowHeight);
-//        }];
-//    }
-//
-//}
-//- (void)keyboardWillHide:(NSNotification *)notification{
-//    [super keyboardWillHide:notification];
-//}
+
 - (IBAction)showSongListClicked:(id)sender {
 }
 @end

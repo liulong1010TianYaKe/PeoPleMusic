@@ -26,7 +26,7 @@
 #define YNotificationName_CMDTYPE_REGISTERED_FEEDBACK   @"YNotificationName_CMDTYPE_REGISTERED_FEEDBACK"  //获册反馈通知
 #define YNotificationName_GET_PLAY_SONGINFO_FEEDBACK   @"YNotificationName_GET_PLAY_SONGINFO_FEEDBACK"  //获取播放的歌曲信
 #define YNotificationName_GET_SONG_LIST_FEEDBACK   @"YNotificationName_GET_SONG_LIST_FEEDBACK"  //获取点播列表反馈
-
+#define YNotificationName_UPDATE_BRAODCAST   @"YNotificationName_UPDATE_BRAODCAST"  //接收更新命令通知
 
 @interface YMTCPClient : NSObject
 
@@ -56,13 +56,15 @@
 
 -(void)networkSendSetDeviceVolumeWithVolume:(NSInteger )volume completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
 /**<19.	获取音量	 */
-- (void)networkSendDeviceForGetDeviceVolumeCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock;
+- (void)networkSendDeviceForGetDeviceVolumeCompletionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
 /**<20.	获取播放状态	 */
-- (void)networkSendDeviceForSetDevicePlayStateCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock;
+- (void)networkSendDeviceForSetDevicePlayStateCompletionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
 /**<21.	设置播放状态	 */
 - (void)networkSendDeviceForSetDevicePlayState:(NSInteger)playState completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock;
 /**<24.	获取音响本地歌曲目录 */
-
+- (void)networkSendDeviceForSongDirWithCompletionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
+/**<24.	获取音响本地歌曲目录歌曲 */
+- (void)networkSendDeviceForSongDirWithRequestKey:(NSString *)requestKey withTotalSize:(NSInteger)totalSize completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
 /**<29.设置点播权限	 */
-- (void)networkSendDeviceForSetDevicePlayPermission:(NSInteger)permission completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock;
+- (void)networkSendDeviceForSetDevicePlayPermission:(NSInteger)permission completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;
 @end

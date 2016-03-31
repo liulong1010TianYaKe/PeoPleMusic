@@ -9,6 +9,7 @@
 #import "LibraryMusicHeaderView.h"
 #import "YMTCPClient.h"
 #import "YMBonjourHelp.h"
+#import "DeviceMusicViewController.h"
 
 
 @interface LibraryMusicHeaderView ()
@@ -44,5 +45,8 @@
 
 // 音响本地
 - (IBAction)btnSpeakerTouchInside:(id)sender {
+    
+    DeviceMusicViewController *controller = [DeviceMusicViewController createDeviceMusicViewController];
+    [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
 }
 @end

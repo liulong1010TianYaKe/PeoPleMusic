@@ -38,6 +38,7 @@
 		18EBC9511C4FED8300460546 /* MusicCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9501C4FED8300460546 /* MusicCategoryViewController.m */; };
 		18EBC9541C4FFBBB00460546 /* MusicCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9531C4FFBBB00460546 /* MusicCategoryCell.m */; };
 		F75B8A0E1CA7E31C00340C5E /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B8A0D1CA7E31C00340C5E /* AboutMeViewController.m */; };
+		F77D3CDD1CAD61D20065C57A /* DeviceMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77D3CDC1CAD61D20065C57A /* DeviceMusicViewController.m */; };
 		F77F99721C99952E00D10AE8 /* HeadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99711C99952E00D10AE8 /* HeadModel.m */; };
 		F77F99751C9AD60300D10AE8 /* PublicNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99741C9AD60300D10AE8 /* PublicNetwork.m */; };
 		F77F99781C9ADCEA00D10AE8 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99771C9ADCEA00D10AE8 /* DeviceModel.m */; };
@@ -297,6 +298,8 @@
 		18EBC9531C4FFBBB00460546 /* MusicCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCategoryCell.m; sourceTree = "<group>"; };
 		F75B8A0C1CA7E31C00340C5E /* AboutMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutMeViewController.h; sourceTree = "<group>"; };
 		F75B8A0D1CA7E31C00340C5E /* AboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutMeViewController.m; sourceTree = "<group>"; };
+		F77D3CDB1CAD61D20065C57A /* DeviceMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMusicViewController.h; sourceTree = "<group>"; };
+		F77D3CDC1CAD61D20065C57A /* DeviceMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMusicViewController.m; sourceTree = "<group>"; };
 		F77F99701C99952E00D10AE8 /* HeadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadModel.h; sourceTree = "<group>"; };
 		F77F99711C99952E00D10AE8 /* HeadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadModel.m; sourceTree = "<group>"; };
 		F77F99731C9AD60300D10AE8 /* PublicNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicNetwork.h; sourceTree = "<group>"; };
@@ -1611,6 +1614,8 @@
 				FDBB2BB81C50F51500C8E7B1 /* MusicListViewController.m */,
 				F780D22C1C9E9E4000036C6C /* SongDemandViewController.h */,
 				F780D22D1C9E9E4000036C6C /* SongDemandViewController.m */,
+				F77D3CDB1CAD61D20065C57A /* DeviceMusicViewController.h */,
+				F77D3CDC1CAD61D20065C57A /* DeviceMusicViewController.m */,
 			);
 			name = LibraryMusic;
 			sourceTree = "<group>";
@@ -1929,6 +1934,7 @@
 				18720E081C1C2E490008FA09 /* PlayerCell.m in Sources */,
 				FD8C2CC71C0C6A98007CE036 /* RHRefreshControl.m in Sources */,
 				FDA43B5B1C60872700CC0E75 /* STKDataSource.m in Sources */,
+				F77D3CDD1CAD61D20065C57A /* DeviceMusicViewController.m in Sources */,
 				FD8C2DB21C0C6ADF007CE036 /* BasicsWebViewController.m in Sources */,
 				FD055D741C9D61A50054AABF /* TADotView.m in Sources */,
 				1884923B1C173271004C3330 /* FeedBackViewController.m in Sources */,
