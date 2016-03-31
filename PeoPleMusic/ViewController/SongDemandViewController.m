@@ -49,12 +49,18 @@
         
         if (result == 0) { // 点播成功
             
+            dispatch_sync(dispatch_get_main_queue(), ^{
                 [self hideLoadingHUD];
                 [self showMessageHUD:@"点播成功！" withTimeInterval:kShowMessageTime];
+            });
+            
            
         }else{
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
             [self hideLoadingHUD];
             [self showMessageHUD:@"点播失败！" withTimeInterval:kShowMessageTime];
+            });
 
         }
     }];

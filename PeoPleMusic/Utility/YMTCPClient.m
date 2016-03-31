@@ -32,8 +32,9 @@
 }
 
 - (void)configurationInit{
-    _clientSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    
+    dispatch_queue_t client_queue = dispatch_queue_create("client.socked.com", NULL);
+    _clientSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:client_queue];
+  
 }
 
 - (void)destroySocket{
