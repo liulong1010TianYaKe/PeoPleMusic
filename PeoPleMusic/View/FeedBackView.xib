@@ -45,7 +45,7 @@
                                 <constraint firstAttribute="height" constant="1" id="WKz-pT-1fk"/>
                             </constraints>
                         </imageView>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Gqo-Dh-5AE">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Gqo-Dh-5AE" customClass="IQTextView">
                             <rect key="frame" x="10" y="52" width="300" height="144"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -63,24 +63,16 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="说点什么吧..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUT-Bt-Muc">
-                            <rect key="frame" x="18" y="60" width="82.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Gqo-Dh-5AE" secondAttribute="trailing" constant="10" id="4WY-Kz-0QG"/>
                         <constraint firstItem="44t-0l-Laj" firstAttribute="top" secondItem="Gqo-Dh-5AE" secondAttribute="bottom" constant="10" id="4fd-yC-W1h"/>
-                        <constraint firstItem="MUT-Bt-Muc" firstAttribute="top" secondItem="Gqo-Dh-5AE" secondAttribute="top" constant="8" id="59a-Zb-REe"/>
                         <constraint firstItem="Gqo-Dh-5AE" firstAttribute="leading" secondItem="JEF-Ik-XOA" secondAttribute="leading" constant="10" id="5JE-Pi-beg"/>
                         <constraint firstItem="2Cd-wB-d8T" firstAttribute="top" secondItem="JEF-Ik-XOA" secondAttribute="top" id="6Mv-je-sRf"/>
                         <constraint firstItem="zyX-u3-VLq" firstAttribute="top" secondItem="44t-0l-Laj" secondAttribute="top" id="9u6-uK-ceG"/>
                         <constraint firstAttribute="trailing" secondItem="W07-YC-BnG" secondAttribute="trailing" id="Bzd-Bw-5b0"/>
                         <constraint firstAttribute="height" constant="250" id="D4v-mb-Knl"/>
-                        <constraint firstItem="MUT-Bt-Muc" firstAttribute="leading" secondItem="Gqo-Dh-5AE" secondAttribute="leading" constant="8" id="FcU-bc-8fi"/>
                         <constraint firstAttribute="bottom" secondItem="zyX-u3-VLq" secondAttribute="bottom" id="I2t-F9-won"/>
                         <constraint firstAttribute="bottom" secondItem="W07-YC-BnG" secondAttribute="bottom" id="fei-XX-PmQ"/>
                         <constraint firstAttribute="trailing" secondItem="2Cd-wB-d8T" secondAttribute="trailing" id="gCU-Zc-EaF"/>
@@ -110,7 +102,6 @@
             </constraints>
             <connections>
                 <outlet property="backView" destination="1TT-Qf-f2f" id="aI8-Mg-Y1K"/>
-                <outlet property="lblPlaceHolder" destination="MUT-Bt-Muc" id="kbF-G4-PJ6"/>
                 <outlet property="textView" destination="Gqo-Dh-5AE" id="udU-nR-dXd"/>
             </connections>
             <point key="canvasLocation" x="280" y="185"/>

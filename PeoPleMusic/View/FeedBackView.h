@@ -12,6 +12,6 @@
 
 + (instancetype)createFeedBackViewFromWindow;
 - (void)show;
-
+@property (nonatomic, copy) void(^btnSubmitBlockOperation)();
 - (void)close;
 @end

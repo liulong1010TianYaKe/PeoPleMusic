@@ -36,6 +36,7 @@
     [self bringSubviewToFront:self.imgSeg2];
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecoginzer:)];
     [self.backView addGestureRecognizer:tapGR];
+    
 }
 
 
@@ -50,9 +51,9 @@
         return;
     }
     self.frame = CGRectMake(0, kWindowHeight, kWindowWidth, kWindowHeight);
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+
     
-    [window addSubview:self];
+    [[KyoUtil getRootViewController].view addSubview:self];
     
     [UIView animateWithDuration:0.5 animations:^{
         self.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight);
@@ -63,6 +64,8 @@
 
 - (void)close{
     
+    [self.txtField resignFirstResponder];
+    
     [UIView animateWithDuration:0.5 animations:^{
         self.frame = CGRectMake(0, kWindowHeight, kWindowWidth, kWindowHeight);
     }];
@@ -71,7 +74,10 @@
     });
 }
 - (IBAction)btnCommitTouchInside:(id)sender {
-    [self close];
+//    [self close];
+    if (self.btnSubmitBlockOperation) {
+        self.btnSubmitBlockOperation();
+    }
 }
 
 - (IBAction)btnCancelTouchInside:(id)sender {

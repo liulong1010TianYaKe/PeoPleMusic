@@ -8,9 +8,11 @@
 
 #import "PlayListView.h"
 #import "PlayListCell.h"
+#import "SongDemandViewController.h"
 
 
-@interface PlayListView ()<UITableViewDataSource>
+@interface PlayListView ()<UITableViewDataSource,UITableViewDelegate>
+- (IBAction)btnTopTouchInside:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -23,11 +25,11 @@
 
 - (void)awakeFromNib{
     [super awakeFromNib];
+
     
-    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecoginzer:)];
-    [self addGestureRecognizer:tapGR];
-    
+   
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([PlayListCell class]) bundle:nil] forCellReuseIdentifier:KPlayListCellIdentify];
+   
     
 }
 + (instancetype)createPlayListViewFromWindow{
@@ -37,9 +39,7 @@
     
     return playListView;
 }
-- (void)tapGestureRecoginzer:(UITapGestureRecognizer *)GR{
-    [self close];
-}
+
 
 - (void)show{
     
@@ -47,13 +47,17 @@
         return;
     }
     self.frame = CGRectMake(0, kWindowHeight, kWindowWidth, kWindowHeight);
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    
-    [window addSubview:self];
+    self.layoutBottViewHeight.constant = 60 +40+ 44*3;
+//    self.tableView.bounces = NO;
+    self.tableView.scrollEnabled = NO;
+    [self setNeedsLayout];
+//    [[KyoUtil getRootViewController].view addSubview:self];
+    [[KyoUtil getRootViewController].view addSubview:self];
     
     [UIView animateWithDuration:0.5 animations:^{
         self.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight);
     }];
+    
     
     
 }
@@ -63,7 +67,7 @@
     [UIView animateWithDuration:0.5 animations:^{
         self.frame = CGRectMake(0, kWindowHeight, kWindowWidth, kWindowHeight);
     }];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self removeFromSuperview];
     });
 }
@@ -72,21 +76,47 @@
     [self close];
 }
 
-#pragma mark -- 
+
+#pragma mark --
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PlayListCell *cell = [tableView dequeueReusableCellWithIdentifier:KPlayListCellIdentify];
-    __weak typeof(self)weekSelf = self;
+//    __weak typeof(self)weekSelf = self;
     cell.cancelOperationBlock = ^{
-        [weekSelf close];
+//        [weekSelf close];
     };
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return KPlayListCelllHeight;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  
+    [self close];
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        SongDemandViewController *songVC = [SongDemandViewController createSongDemandViewController];
+        songVC.title = @"歌曲点播";
+        __weak typeof(self) weakSelf = self;
+        songVC.btnBackBlockOperation = ^{
+            if (weakSelf.reShowBlockOperation) {
+                weakSelf.reShowBlockOperation();
+            }
+        };
+        //    songVC.songInfoModel = self.songlist[self.indexRow];
+        [[KyoUtil getCurrentNavigationViewController] pushViewController:songVC animated:YES];
+    });
+  
+}
+
+- (IBAction)btnTopTouchInside:(id)sender {
+    [self close];
 }
 @end

@@ -13,5 +13,5 @@
 
 @property (nonatomic, strong)SongInforModel *songInfoModel;
 + (SongDemandViewController *)createSongDemandViewController;
-
+@property (nonatomic, copy) void (^btnBackBlockOperation)();
 @end

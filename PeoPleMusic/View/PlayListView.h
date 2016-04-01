@@ -12,10 +12,11 @@
 
 
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutBottViewHeight;
 + (instancetype)createPlayListViewFromWindow;
 
 - (void)show;
-
+@property (nonatomic,copy) void(^reShowBlockOperation)();
 - (void)close;
 
 @end

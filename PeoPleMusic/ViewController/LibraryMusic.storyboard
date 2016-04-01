@@ -184,9 +184,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2Mm-3V-xAd" firstAttribute="top" secondItem="PAo-mq-tw4" secondAttribute="bottom" id="DWM-Z4-MML"/>
                             <constraint firstItem="PAo-mq-tw4" firstAttribute="top" secondItem="Hgw-90-gVN" secondAttribute="bottom" constant="-20" id="Rc5-2D-7Vn"/>
                             <constraint firstItem="PAo-mq-tw4" firstAttribute="leading" secondItem="9zc-bI-qvN" secondAttribute="leading" id="iuR-Au-NJf"/>
+                            <constraint firstAttribute="bottom" secondItem="PAo-mq-tw4" secondAttribute="bottom" id="mNa-Hx-AUK"/>
                             <constraint firstAttribute="trailing" secondItem="PAo-mq-tw4" secondAttribute="trailing" id="v58-ic-hP2"/>
                         </constraints>
                     </view>

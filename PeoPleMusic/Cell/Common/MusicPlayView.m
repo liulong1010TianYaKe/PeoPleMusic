@@ -157,6 +157,7 @@
     [self btnCloseTouchInside:nil];
     
     SongDemandViewController *songVC = [SongDemandViewController createSongDemandViewController];
+    songVC.title = @"歌曲点播";
     songVC.songInfoModel = self.songlist[self.indexRow];
     [[KyoUtil getCurrentNavigationViewController] pushViewController:songVC animated:YES];
 }

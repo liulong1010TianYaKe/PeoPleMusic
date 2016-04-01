@@ -29,7 +29,7 @@
 }
 
 - (void)setupView{
-    self.title = @"歌曲点播";
+    
     self.lblSongName.text = self.songInfoModel.mediaName;
     self.lblAlbumName.text = self.songInfoModel.albumName;
     self.btnDianBo.layer.cornerRadius = 4;
@@ -39,8 +39,19 @@
     self.btnDianBo.layer.masksToBounds = YES;
     self.textView.placeholder = @"说点什么呢～";
     
+    [self reSetBackButtonMethod:@selector(btnBackTouchIn:)];
+    
 }
 
+//- (void)
+
+- (void)btnBackTouchIn:(UIButton *)btn{
+  
+    [self.navigationController popViewControllerAnimated:YES];
+    if (self.btnBackBlockOperation) {
+        self.btnBackBlockOperation();
+    }
+}
 - (IBAction)btnDianBoTouchInside:(id)sender {
     
     self.songInfoModel.playMsg = self.textView.text;

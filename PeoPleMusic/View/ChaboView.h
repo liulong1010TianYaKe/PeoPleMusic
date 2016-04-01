@@ -11,6 +11,6 @@
 @interface ChaboView : UIView
 + (instancetype)createChaboViewFromWindow;
 - (void)show;
-
+@property (nonatomic, copy) void (^btnSubmitBlockOperation)();
 - (void)close;
 @end

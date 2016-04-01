@@ -13,7 +13,7 @@
 #import "PlayListView.h"
 #import "Feedbackview.h"
 #import "ChaboView.h"
-#import "PlayDetailViewController.h"
+#import "SongDemandViewController.h"
 #import "YMBonjourHelp.h"
 #import "YMTCPClient.h"
 
@@ -49,6 +49,8 @@
 @property (nonatomic, strong) FeedBackView *feedBackView;
 
 @property (nonatomic, strong) ChaboView *chaoboView;
+
+@property (nonatomic, strong) PlayListView *playListView;
 @end
 
 @implementation PlayerViewController
@@ -182,7 +184,8 @@
     switch (type) {
 
         case PlayerCellBtnTypeDetail:{
-            PlayDetailViewController *VC = [PlayDetailViewController createViewController];
+            SongDemandViewController *VC = [SongDemandViewController createSongDemandViewController];
+            VC.title = @"我的点播";
             [self.navigationController pushViewController:VC animated:YES];
           
             break;
@@ -194,12 +197,21 @@
             [self.feedBackView show];
             break;
         case PlayerCellBtnTypeChabo:
-            self.chaoboView = [ChaboView createChaboViewFromWindow];
+            if (!self.chaoboView) {
+                self.chaoboView = [ChaboView createChaboViewFromWindow];
+            }
+            
             [self.chaoboView show];
             break;
             
         default:
             break;
+    }
+}
+- (void)creatFeedBackViewAndShow{
+    
+    if (!self) {
+        self.feedBackView = [FeedBackView createFeedBackViewFromWindow];
     }
 }
 #pragma mark --------------------
@@ -224,10 +236,26 @@
 }
 
 - (IBAction)btnSongListTouchInside:(id)sender {
-    
-//    [[YMTCPClient share] getBookingSongListWithPageNum:1 withPageSize:20];
-    [[PlayListView createPlayListViewFromWindow] show];
+
+    if (!self.playListView) {
+        self.playListView = [PlayListView createPlayListViewFromWindow];
+        __weak typeof(self) weakSelf = self;
+        self.playListView.reShowBlockOperation = ^{
+            weakSelf.playListView = nil;
+          
+                [weakSelf reshowPlayListView];
+        
+        };
+    }
+    [self.playListView show];
   
+}
+
+- (void)reshowPlayListView{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [self btnSongListTouchInside:nil];
+    });
+   
 }
 
 
