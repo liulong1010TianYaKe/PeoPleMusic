@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon_song_item_chabo.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icon_song_item_chabo@2x.png",
       "scale" : "2x"
     },
     {

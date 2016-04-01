@@ -17,10 +17,11 @@
 #import "YMBonjourHelp.h"
 #import "YMTCPClient.h"
 
+#define KTopViewHeight  (210*kWindowHeight/667)
 
 @interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate>{
     SongModel *_oldModel;
-  
+    double   angle;
 }
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>topView
@@ -31,7 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSongInfo;
 @property (weak, nonatomic) IBOutlet UIImageView *imgSong;
 
-
+@property (nonatomic, strong) NSLayoutConstraint *layoutTopViewHeight;
 @property (nonatomic, strong) SongInforModel *currentSongInfo;
 
 @property (nonatomic, strong)  SongInfoList *songList;
@@ -66,8 +67,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-   
- 
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -79,6 +78,8 @@
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
     
+    
+    
     if ([YMTCPClient share].isConnect) {
 //        [[YMTCPClient share] sendCmdForPlaySongInfo]; // 获取当前播放歌曲信息
     }
@@ -86,12 +87,31 @@
 
 - (void)setupView{
 
-    self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    
+    [self.view addSubview:self.topView];
+     self.topView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subView]-0-|" options:0 metrics:nil views:@{@"subView" : self.topView}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[subView]" options:0 metrics:nil views:@{@"subView" : self.topView}]];
+    
+    self.layoutTopViewHeight = [NSLayoutConstraint constraintWithItem:self.topView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
+    [self.topView addConstraint:self.layoutTopViewHeight];
+    
+    
     
     self.btnStartPlay.layer.cornerRadius = 4;
     self.btnStartPlay.layer.borderWidth = 1;
     self.btnStartPlay.layer.borderColor = [UIColor redColor].CGColor;
     self.btnStartPlay.layer.masksToBounds = YES;
+    self.btnStartPlay.hidden = YES;
+    self.lblNoStartPlay.hidden = YES;
+    self.layoutTopViewHeight.constant = KTopViewHeight;
+    self.tableView.contentInset = UIEdgeInsetsMake(KTopViewHeight, 0, 0, 0);
+    [self.view setNeedsLayout];
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    [self startAnimation];
     
 }
 
@@ -110,6 +130,21 @@
     _songModels = tempArr;
     
     self.currentSongInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK];
+}
+-(void) startAnimation
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.01];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(endAnimation)];
+    self.imgSong.transform = CGAffineTransformMakeRotation(angle * (M_PI / 180.0f));
+    [UIView commitAnimations];
+}
+
+-(void)endAnimation
+{
+    angle += 1;
+    [self startAnimation];
 }
 #pragma mark -------------------
 #pragma mark -- UITableViewDataSource,UITableViewDelegate
@@ -167,7 +202,11 @@
             break;
     }
 }
-
+#pragma mark --------------------
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    self.layoutTopViewHeight.constant = -scrollView.contentOffset.y;
+}
 #pragma mark --------------------
 #pragma mark - NSNotification
 

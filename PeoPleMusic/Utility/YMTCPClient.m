@@ -50,7 +50,7 @@
     
     NSError *err = nil;
     //    92.168.1.112 : 7433
-    if([_clientSocket connectToHost:ip onPort:port error:&err]){
+    if([_clientSocket connectToHost:ip onPort:port withTimeout:60  error:&err]){
         KyoLog(@"----连接成功!--");
         _isConnect = YES;
         _serverIp = ip;
@@ -191,7 +191,7 @@
         self.completionBlock(6000, nil, err);
     }
     _isConnect  = NO;
-    [_clientSocket connectToHost:_serverIp onPort:_serverPort error:&err];
+    [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
 }
 
 

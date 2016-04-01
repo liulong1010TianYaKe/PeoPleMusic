@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon_song_item_detail.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icon_song_item_detail@2x.png",
       "scale" : "2x"
     },
     {
