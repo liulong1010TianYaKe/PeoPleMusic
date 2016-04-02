@@ -35,6 +35,7 @@
 
 - (void)startSearch{
     [_brower searchForServicesOfType:@"_raop._tcp." inDomain:@"local."];
+   
 }
 
 - (void)stopSearch{
@@ -61,7 +62,7 @@
         _netService = service;
         [service setDelegate:self];
         //    aNetService.delegate = self;
-        [service resolveWithTimeout:15.0];
+        [service resolveWithTimeout:6.0];
     }
     
 }

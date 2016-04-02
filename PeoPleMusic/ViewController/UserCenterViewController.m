@@ -7,6 +7,7 @@
 //
 
 #import "UserCenterViewController.h"
+#import "AddDeviceViewController.h"
 
 
 @interface UserCenterSectionHeaderView : UIView
@@ -17,7 +18,7 @@
 @end
 
 
-@interface UserCenterViewController (){
+@interface UserCenterViewController ()<UIAlertViewDelegate>{
     BOOL _isConnect;
 }
 
@@ -87,6 +88,7 @@
     
     self.tableView.tableFooterView = [[UIView alloc] init];
     _isConnect = NO;
+    
 }
 
 - (void)setupData{
@@ -94,6 +96,27 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(socketDidConnect:) name:YNotificationName_SOCKETDIDCONNECT object:nil];  //连接音响通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(socketDidDisconnect:) name:YNotificationName_SOCKETDIDDISCONNECT object:nil];  //断开音响连接通知
 }
+#pragma mark - Navigation
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(nullable id)sender{
+    
+    if ([identifier isEqualToString:@"SegueMyDevice"] ||
+        [identifier isEqualToString:@"SegueManage"]||
+        [identifier isEqualToString:@"SegueControl"]) {
+        if ([YMTCPClient share].isConnect) {
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未连接音响设备，确定添加吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alertView show];
+            return NO;
+        }else{
+            return YES;
+        }
+        
+    }else{
+        return YES;
+    }
+    
+}
+
 
 #pragma mark -------------------
 #pragma mark - Method
@@ -131,7 +154,12 @@
         KyoLog(@"关闭");
     }
 }
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        AddDeviceViewController *addVC = [AddDeviceViewController createAddDeviceViewController];
+        [self.navigationController pushViewController:addVC animated:YES];
+    }
+}
 #pragma mark --------------------
 #pragma mark - NSNotification
 

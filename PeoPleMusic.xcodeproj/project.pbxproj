@@ -36,6 +36,7 @@
 		18EBC9541C4FFBBB00460546 /* MusicCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9531C4FFBBB00460546 /* MusicCategoryCell.m */; };
 		F75B8A0E1CA7E31C00340C5E /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B8A0D1CA7E31C00340C5E /* AboutMeViewController.m */; };
 		F77D3CDD1CAD61D20065C57A /* DeviceMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77D3CDC1CAD61D20065C57A /* DeviceMusicViewController.m */; };
+		F77EE1A41CAFF7D7009B8A04 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77EE1A31CAFF7D7009B8A04 /* AddDeviceViewController.m */; };
 		F77F99721C99952E00D10AE8 /* HeadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99711C99952E00D10AE8 /* HeadModel.m */; };
 		F77F99751C9AD60300D10AE8 /* PublicNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99741C9AD60300D10AE8 /* PublicNetwork.m */; };
 		F77F99781C9ADCEA00D10AE8 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99771C9ADCEA00D10AE8 /* DeviceModel.m */; };
@@ -292,6 +293,8 @@
 		F75B8A0D1CA7E31C00340C5E /* AboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutMeViewController.m; sourceTree = "<group>"; };
 		F77D3CDB1CAD61D20065C57A /* DeviceMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMusicViewController.h; sourceTree = "<group>"; };
 		F77D3CDC1CAD61D20065C57A /* DeviceMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMusicViewController.m; sourceTree = "<group>"; };
+		F77EE1A21CAFF7D7009B8A04 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
+		F77EE1A31CAFF7D7009B8A04 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
 		F77F99701C99952E00D10AE8 /* HeadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadModel.h; sourceTree = "<group>"; };
 		F77F99711C99952E00D10AE8 /* HeadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadModel.m; sourceTree = "<group>"; };
 		F77F99731C9AD60300D10AE8 /* PublicNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicNetwork.h; sourceTree = "<group>"; };
@@ -1630,6 +1633,8 @@
 				F7DEB65B1CA78B9A00BBDC9E /* UserCenter.storyboard */,
 				F75B8A0C1CA7E31C00340C5E /* AboutMeViewController.h */,
 				F75B8A0D1CA7E31C00340C5E /* AboutMeViewController.m */,
+				F77EE1A21CAFF7D7009B8A04 /* AddDeviceViewController.h */,
+				F77EE1A31CAFF7D7009B8A04 /* AddDeviceViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -1807,6 +1812,7 @@
 				FD8C2BB81C0C6A8D007CE036 /* AppDelegate.m in Sources */,
 				FD8C2DB71C0C6ADF007CE036 /* RootViewController.m in Sources */,
 				FD8C2CDE1C0C6A98007CE036 /* MJIvar.m in Sources */,
+				F77EE1A41CAFF7D7009B8A04 /* AddDeviceViewController.m in Sources */,
 				FD8C2DB01C0C6ADF007CE036 /* BasicsTableViewController.m in Sources */,
 				FD8C2DB41C0C6ADF007CE036 /* MAWebViewController.m in Sources */,
 				FD055D3B1C9D3DF20054AABF /* NSDate+Convert.m in Sources */,
