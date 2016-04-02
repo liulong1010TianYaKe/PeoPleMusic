@@ -25,7 +25,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="林志炫－单身情歌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mda-tI-J9a">
-                                <rect key="frame" x="53" y="8" width="120" height="18"/>
+                                <rect key="frame" x="53" y="8" width="212" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" red="1" green="0.68142311639999997" blue="0.36540326740000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -37,7 +37,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DG-H60-L02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGM-Xx-oZr">
-                                <rect key="frame" x="235" y="35" width="75" height="14.5"/>
+                                <rect key="frame" x="225" y="35" width="85" height="14.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="O4M-wT-4Ck"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.68142311639999997" blue="0.36540326740000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -88,6 +91,7 @@
                             <constraint firstAttribute="trailing" secondItem="Llx-u5-pXY" secondAttribute="trailing" constant="15" id="PMe-OX-jdw"/>
                             <constraint firstAttribute="bottom" secondItem="Llx-u5-pXY" secondAttribute="bottom" id="RCf-tg-Tsp"/>
                             <constraint firstAttribute="bottom" secondItem="bGM-Xx-oZr" secondAttribute="bottom" constant="10" id="TCS-T7-RgQ"/>
+                            <constraint firstAttribute="trailing" secondItem="mda-tI-J9a" secondAttribute="trailing" constant="55" id="Vqb-9x-CYI"/>
                             <constraint firstItem="mda-tI-J9a" firstAttribute="top" secondItem="X8Y-9t-ide" secondAttribute="top" constant="8" id="chr-Pi-Yvo"/>
                             <constraint firstItem="F4S-4y-sns" firstAttribute="top" secondItem="mda-tI-J9a" secondAttribute="bottom" constant="5" id="dag-Jd-C06"/>
                             <constraint firstItem="mda-tI-J9a" firstAttribute="leading" secondItem="EfX-6n-bx9" secondAttribute="trailing" constant="8" id="eVS-0r-21e"/>
@@ -99,8 +103,14 @@
                             <constraint firstAttribute="height" constant="60" id="olS-d1-GL0"/>
                             <constraint firstAttribute="trailing" secondItem="wju-LN-eyQ" secondAttribute="trailing" constant="10" id="pMy-gA-KeO"/>
                             <constraint firstItem="EfX-6n-bx9" firstAttribute="centerY" secondItem="X8Y-9t-ide" secondAttribute="centerY" id="r5K-TX-0ha"/>
+                            <constraint firstItem="Jg8-bY-rnS" firstAttribute="leading" secondItem="mda-tI-J9a" secondAttribute="trailing" constant="5" id="uLg-C0-1eA"/>
                             <constraint firstItem="Llx-u5-pXY" firstAttribute="leading" secondItem="X8Y-9t-ide" secondAttribute="leading" constant="15" id="yEq-pa-as6"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="uLg-C0-1eA"/>
+                            </mask>
+                        </variation>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dPL-ZV-yaK" userLabel="BottomView">
                         <rect key="frame" x="0.0" y="60" width="320" height="38"/>

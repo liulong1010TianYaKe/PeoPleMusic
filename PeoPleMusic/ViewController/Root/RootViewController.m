@@ -92,7 +92,10 @@
         if ([YMBonjourHelp shareInstance].isAirSuccess) {
             NSString *ips =  [YMBonjourHelp shareInstance].deviceIp;
             NSLog(@"%@  %ld", [YMBonjourHelp shareInstance].deviceIp,[YMBonjourHelp shareInstance].port);
-            [[YMTCPClient share] connectServer:ips port:SOCKET_PORT2];
+            
+            if ([[YMTCPClient share] connectServer:ips port:SOCKET_PORT2]) {
+                [self getDeviceInfo];
+            }
         }else{
           [[YMTCPClient share] connectServer:@"192.168.1.107" port:SOCKET_PORT2];
         }
@@ -100,6 +103,17 @@
     });
 }
 
+- (void)getDeviceInfo{
+    [[YMTCPClient share] networkSendDeviceForRegisterWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+        if (result == 0) {
+            NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
+           DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
+            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
+            [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
+            
+        }
+    }];
+}
 #pragma mark ------------------------
 #pragma mark - Methods
 

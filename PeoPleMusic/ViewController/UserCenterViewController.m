@@ -102,7 +102,6 @@
     if (_isConnect) {
         self.lblMyDev.text = @"未连接设备";
     }else{
-//        self.l
     }
 }
 

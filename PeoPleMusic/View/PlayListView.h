@@ -10,13 +10,12 @@
 
 @interface PlayListView : UIView
 
-
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *layoutBottViewHeight;
 + (instancetype)createPlayListViewFromWindow;
-
+@property (nonatomic, strong) NSMutableArray *songList;
 - (void)show;
 @property (nonatomic,copy) void(^reShowBlockOperation)();
 - (void)close;
 
 @end
+

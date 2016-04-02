@@ -11,7 +11,9 @@
 #import "SongDemandViewController.h"
 
 
-@interface PlayListView ()<UITableViewDataSource,UITableViewDelegate>
+@interface PlayListView ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>{
+    NSInteger  deleteRow;
+}
 - (IBAction)btnTopTouchInside:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -47,7 +49,8 @@
         return;
     }
     self.frame = CGRectMake(0, kWindowHeight, kWindowWidth, kWindowHeight);
-    self.layoutBottViewHeight.constant = 60 +40+ 44*3;
+    
+    self.layoutBottViewHeight.constant = 60 +40+ 44*self.songList.count;
 //    self.tableView.bounces = NO;
     self.tableView.scrollEnabled = NO;
     [self setNeedsLayout];
@@ -57,7 +60,6 @@
     [UIView animateWithDuration:0.5 animations:^{
         self.frame = CGRectMake(0, 0, kWindowWidth, kWindowHeight);
     }];
-    
     
     
 }
@@ -77,16 +79,23 @@
 }
 
 
-#pragma mark --
+- (void)deleteSongWithIndexPath:(NSIndexPath *)indexPath{
+    deleteRow = indexPath.row;
+    SongInforModel *model = _songList[indexPath.row];
+    
+    [[[UIAlertView alloc] initWithTitle:nil message:model.mediaName delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.songList.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PlayListCell *cell = [tableView dequeueReusableCellWithIdentifier:KPlayListCellIdentify];
-//    __weak typeof(self)weekSelf = self;
-    cell.cancelOperationBlock = ^{
-//        [weekSelf close];
+    cell.indexPath = indexPath;
+    cell.model = self.songList[indexPath.row];
+    __weak typeof(self)weekSelf = self;
+    cell.CancelOperationBlock = ^(NSIndexPath *index){
+        [weekSelf deleteSongWithIndexPath:index];
     };
     return cell;
 }
@@ -115,7 +124,18 @@
     });
   
 }
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self.songList removeObjectAtIndex:deleteRow];
+        if (self.songList.count > 0) {
+            [self.tableView reloadData];
+        }else{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self close];
+            });
+        }
+    }
+}
 - (IBAction)btnTopTouchInside:(id)sender {
     [self close];
 }

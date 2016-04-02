@@ -45,34 +45,25 @@
 
     // Configure the view for the selected state
 }
-+ (CGFloat)getPlayCellHeight:(SongModel *)model{
-    return model.isExpect ? KPlayerCellHeight + 38 : KPlayerCellHeight;
-}
-
-- (void)setModel:(SongModel *)model{
+- (void)setModel:(SongInforModel *)model{
     _model = model;
     if (model) {
-        if (model.isExpect) {
-//            self.bottomView.hidden = NO;
-//            self.lblNumb.textColor  = YYColor(230, 101, 4);
-//            self.lblSongerName.textColor = YYColor(230, 101, 4);
-//            self.lblSongTitle.textColor = YYColor(230, 101, 4);
-//            self.lblSerNumb.textColor = YYColor(230, 101, 4);
-//            self.lblJbNub.textColor = YYColor(230, 101, 4);
-//            self.imgDown.image = [UIImage imageNamed:@"icon_pull_down"];
-//            self.viewSeg.hidden = NO;
+        self.lblSongTitle.text = model.mediaName;
+        self.lblSongerName.text = model.artist;
+        self.lblJbNub.text = model.coin;
+        self.lblSerNumb.text = model.userId;
+        
+        if (model.isExtend) {
+            self.bottomView.hidden = NO;
+            self.imgDown.image = [UIImage imageNamed:@"icon_pull_down"];
         }else{
-//            self.viewSeg.hidden = YES;
             self.bottomView.hidden = YES;
-//            self.lblNumb.textColor  = [UIColor whiteColor];
-//            self.lblSongerName.textColor = [UIColor whiteColor];
-//            self.lblSongTitle.textColor = [UIColor whiteColor];
-//            self.lblSerNumb.textColor = [UIColor whiteColor];
-//            self.lblJbNub.textColor = [UIColor whiteColor];
-//            self.imgDown.image = [UIImage imageNamed:@"icon_pull_up"];
+            self.imgDown.image = [UIImage imageNamed:@"icon_pull_up"];
         }
+     
     }
 }
+
 
 
 - (IBAction)btnCellTouchInside:(id)sender {

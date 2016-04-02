@@ -28,9 +28,16 @@
     // Configure the view for the selected state
 }
 
+- (void)setModel:(SongInforModel *)model{
+    _model = model;
+    if (model) {
+        self.lblSongName.text = model.mediaName;
+        self.lblSonger.text = model.albumName;
+    }
+}
 - (IBAction)btnCancelTouchInside:(id)sender {
-    if (self.cancelOperationBlock) {
-        self.cancelOperationBlock();
+    if (self.CancelOperationBlock) {
+        self.CancelOperationBlock(self.indexPath);
     }
 }
 @end

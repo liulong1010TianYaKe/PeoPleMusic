@@ -32,7 +32,7 @@
 
 + (instancetype)share;
 
-- (void)connectServer:(NSString *)ip port:(long)port;
+- (BOOL)connectServer:(NSString *)ip port:(long)port;
 @property (nonatomic, assign) BOOL isConnect;  /**< 是否连接上服务器 */
 /**< 0,设备注册 */
 - (void)networkSendDeviceForRegisterWithCompletionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock;

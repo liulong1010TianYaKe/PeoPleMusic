@@ -6,15 +6,16 @@
 //  Copyright © 2015年 kyo. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BasicsCell.h"
+#import "SongInforModel.h"
 #define KPlayListCellIdentify @"KPlayListCellIdentify"
 #define KPlayListCelllHeight 60
 
-typedef void(^CancelOperationBlock)();
 
-@interface PlayListCell : UITableViewCell
 
-@property (nonatomic, copy)CancelOperationBlock cancelOperationBlock;
+@interface PlayListCell : BasicsCell
 
+@property (nonatomic, strong)SongInforModel *model;
+@property (nonatomic, copy)void(^CancelOperationBlock)(NSIndexPath *indexPath);
 @end
                                                                                                                                                                     

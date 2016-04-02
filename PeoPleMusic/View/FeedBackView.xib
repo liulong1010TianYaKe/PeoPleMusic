@@ -49,7 +49,7 @@
                             <rect key="frame" x="10" y="52" width="300" height="144"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             <connections>
                                 <outlet property="delegate" destination="iN0-l3-epB" id="142-IW-L4b"/>
                             </connections>

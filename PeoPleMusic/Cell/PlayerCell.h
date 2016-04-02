@@ -7,7 +7,7 @@
 //
 
 #import "BasicsCell.h"
-#import "SongModel.h"
+#import "SongInforModel.h"
 
 #define KPlayerCellHeight 60 // 60+38
 #define KPlayerCellIdentifier  @"KPlayerCellIdentifier"
@@ -22,17 +22,17 @@ typedef enum : NSUInteger {
 @protocol PlayerCellDelegate;
 @interface PlayerCell : BasicsCell
 
-@property (nonatomic, strong) SongModel *model;
+@property (nonatomic, strong) SongInforModel *model;
 
 
 @property (nonatomic, weak)id<PlayerCellDelegate> delegate;
 
-+ (CGFloat)getPlayCellHeight:(SongModel *)model;
+//+ (CGFloat)getPlayCellHeight:(SongModel *)model;
 
 @end
 
 @protocol PlayerCellDelegate <NSObject>
 @optional
-- (void)playerCellTouchInside:(PlayerCell *)cell withModel:(SongModel *)model;
+- (void)playerCellTouchInside:(PlayerCell *)cell withModel:(SongInforModel *)model;
 - (void)playerCellTouchInside:(PlayerCell *)cell withBtnType:(PlayerCellBtnTypes )type;
 @end

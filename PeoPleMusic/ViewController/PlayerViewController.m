@@ -8,7 +8,7 @@
 
 #import "PlayerViewController.h"
 #import "PlayerCell.h"
-#import "SongModel.h"
+
 #import "UIView-WhenTappedBlocks.h"
 #import "PlayListView.h"
 #import "Feedbackview.h"
@@ -20,7 +20,6 @@
 #define KTopViewHeight  (210*kWindowHeight/667)
 
 @interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate>{
-    SongModel *_oldModel;
     double   angle;
 }
 
@@ -33,10 +32,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgSong;
 
 @property (nonatomic, strong) NSLayoutConstraint *layoutTopViewHeight;
-@property (nonatomic, strong) SongInforModel *currentSongInfo;
+@property (nonatomic, strong)  SongInforModel *currentSongInfo;
 
-@property (nonatomic, strong)  SongInfoList *songList;
-- (IBAction)showSongListClicked:(id)sender;
+@property (nonatomic, strong)  NSArray *songList;
+
 
 // >>>>>>>>>>>>>>>>>>>>>>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -68,29 +67,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    
+    if ([YMTCPClient share].isConnect) {
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self requestCurrentSong];
+           
+        });
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+             [self requestGetSonglist];
+        });
+    }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
-    
-    
-    
-    if ([YMTCPClient share].isConnect) {
-//        [[YMTCPClient share] sendCmdForPlaySongInfo]; // 获取当前播放歌曲信息
-    }
 }
 
 - (void)setupView{
-
-    
-    
     [self.view addSubview:self.topView];
      self.topView.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -99,7 +101,6 @@
     
     self.layoutTopViewHeight = [NSLayoutConstraint constraintWithItem:self.topView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
     [self.topView addConstraint:self.layoutTopViewHeight];
-    
     
     
     self.btnStartPlay.layer.cornerRadius = 4;
@@ -121,19 +122,22 @@
     
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCurrentSongInfo:) name:YNotificationName_GET_PLAY_SONGINFO_FEEDBACK object:nil];  //获取音响当前正在播放的歌曲信息
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveSonglist:) name:YNotificationName_GET_SONG_LIST_FEEDBACK object:nil];   //获取点播列表反馈
-    NSMutableArray *tempArr = [NSMutableArray array];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveupdataCmd:) name:YNotificationName_UPDATE_BRAODCAST object:nil];  //获取音响当前正在播放的歌曲信息
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDidConnect:) name:YNotificationName_SOCKETDIDCONNECT object:nil];  //连接上服务器
     
-    for (int i = 0; i < 10; i++) {
-        SongModel *songModel = [[SongModel alloc] init];
-        [tempArr addObject:songModel];
-    }
-    _songModels = tempArr;
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveuDisConnect:) name:YNotificationName_SOCKETDIDDISCONNECT object:nil];  //断开连接
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfo:) name:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //断开连接
     
-    self.currentSongInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK];
+    DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
+    
+    self.lblTitle.text = deviceInfo.name;
+ 
 }
--(void) startAnimation
+
+
+
+
+-(void)startAnimation
 {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.01];
@@ -142,40 +146,70 @@
     self.imgSong.transform = CGAffineTransformMakeRotation(angle * (M_PI / 180.0f));
     [UIView commitAnimations];
 }
-
 -(void)endAnimation
 {
     angle += 1;
     [self startAnimation];
 }
 #pragma mark -------------------
+#pragma mark - NetWork
+//发送获取当前正在播放的歌曲信息
+- (void)requestCurrentSong{
+    
+    [[YMTCPClient share] networkSendCmdForPlaySongInforWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+//        KyoLog(@"%@",dict);
+        if (result == 0) {
+            NSDictionary *songInfoDict = [dict objectForKey:@"songInfor"];
+//            NSDictionary *userDict = [dict objectForKey:@"userInfor"];
+            self.currentSongInfo = [SongInforModel objectWithKeyValues:songInfoDict];
+//            UserInfoModel *userModel = [UserInfoModel objectWithKeyValues:userDict];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                self.lblSongInfo.text = self.currentSongInfo.mediaName;
+                 [self.tableView reloadData];
+            });
+           
+            
+        }else{
+            self.currentSongInfo = nil;
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }
+    }];
+}
+
+- (void)requestGetSonglist{
+    [[YMTCPClient share] networkSendBookingSongListWithPageNum:0 withPageSize:100 completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+         KyoLog(@"%@",dict);
+        NSArray *arr = dict[@"songList"];
+        if (arr) {
+             self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
+        }
+       
+    }];
+}
+#pragma mark -------------------
 #pragma mark -- UITableViewDataSource,UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return self.currentSongInfo? 1: 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayerCell"];
     cell.indexPath = indexPath;
     cell.delegate = self;
-//    cell.model = _songModels[indexPath.row];
-    
-//    UITableViewCell *cell = [[UITableViewCell alloc] init];
-//    cell.textLabel.text = @"ads";
+    cell.model = self.currentSongInfo;
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return [PlayerCell getPlayCellHeight:_songModels[indexPath.row]];
-    return 98;
+    return self.currentSongInfo.isExtend ? KPlayerCellHeight + 38 : KPlayerCellHeight;
 }
 
 #pragma mark -------------------
 #pragma mark -- PlayerCellDelegate
-- (void)playerCellTouchInside:(PlayerCell *)cell withModel:(SongModel *)model{
-    _oldModel.isExpect = NO;
-     model.isExpect = YES;
-    _oldModel = model;
+- (void)playerCellTouchInside:(PlayerCell *)cell withModel:(SongInforModel *)model{
+     _currentSongInfo.isExtend = !_currentSongInfo.isExtend;
     [self.tableView reloadData];
     
 }
@@ -185,6 +219,7 @@
 
         case PlayerCellBtnTypeDetail:{
             SongDemandViewController *VC = [SongDemandViewController createSongDemandViewController];
+            VC.songInfoModel = cell.model;
             VC.title = @"我的点播";
             [self.navigationController pushViewController:VC animated:YES];
           
@@ -219,21 +254,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     self.layoutTopViewHeight.constant = -scrollView.contentOffset.y;
 }
-#pragma mark --------------------
-#pragma mark - NSNotification
 
-//获取音响当前正在播放的歌曲信息
-- (void)receiveCurrentSongInfo:(NSNotification *)noti{
-    self.currentSongInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK];
-}
-
-//获取点播列表反馈
-- (void)receiveSonglist:(NSNotification *)noti{
-    self.songList = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_GET_SONG_LIST_FEEDBACK];
-}
-//// 播放
-- (IBAction)btnPlayTouchInside:(id)sender {
-}
 
 - (IBAction)btnSongListTouchInside:(id)sender {
 
@@ -247,6 +268,9 @@
         
         };
     }
+    if (!self.songList) {
+        self.playListView.songList = [NSMutableArray arrayWithObject: self.currentSongInfo];
+    }
     [self.playListView show];
   
 }
@@ -257,8 +281,42 @@
     });
    
 }
+#pragma mark --------------------
+#pragma mark - NSNotification
 
-
-- (IBAction)showSongListClicked:(id)sender {
+//获取音响当前正在播放的歌曲信息
+- (void)receiveupdataCmd:(NSNotification *)noti{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self requestCurrentSong];
+       
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+         [self requestGetSonglist];
+    });
 }
+//获取音响当前正在播放的歌曲信息
+- (void)receiveDidConnect:(NSNotification *)noti{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self requestCurrentSong];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self requestGetSonglist];
+    });
+}
+//获取音响当前正在播放的歌曲信息
+- (void)receiveuDisConnect:(NSNotification *)noti{
+    self.currentSongInfo = nil;
+    [self.tableView reloadData];
+    [self showMessageHUD:@"音响断开了连接" withTimeInterval:kShowMessageTime];
+}
+
+- (void)receiveDeviceInfo:(NSNotification *)noti{
+    
+    DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
+    
+    self.lblTitle.text = deviceInfo.name;
+}
+
 @end
