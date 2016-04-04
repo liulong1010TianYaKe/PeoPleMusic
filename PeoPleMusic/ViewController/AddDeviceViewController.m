@@ -7,6 +7,7 @@
 //
 
 #import "AddDeviceViewController.h"
+#import "YMBonjourHelp.h"
 
 // 正在自动扫描当前网络设备...
 // 未扫描到设备，请切换其他网络设备重试
@@ -37,7 +38,7 @@
 @property (nonatomic, assign) BOOL isStopBtnUpdateAnimation;
 - (IBAction)btnBackTouchInside:(id)sender;
 
-@property (nonatomic,strong) NSArray *arr;
+@property (nonatomic,strong) NSMutableArray *arrDevices;
 @end
 
 @implementation AddDeviceViewController
@@ -66,7 +67,24 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.scrollEnabled = NO;
     self.tableView.tableFooterView = [[UIView alloc] init];
+ 
+    if ([YMTCPClient share].isConnect) {
+          DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
+        if (!_arrDevices) {
+            _arrDevices = [NSMutableArray array];
+        }
+        [_arrDevices removeAllObjects];
+        [_arrDevices addObject:deviceInfo];
+    }
     
+}
+
+
+- (void)setupData{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvDidBonjour:) name:YNotificationName_DIDSUCESSFINDSERVICE object:nil];  //连接音响通知
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvDeviceInfo:) name:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //连接音响通知
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDiDConnect:) name:YNotificationName_SOCKETDIDCONNECT object:nil];  //断开连接
 }
 
 - (void)setIsStopBtnUpdateAnimation:(BOOL)isStopBtnUpdateAnimation{
@@ -95,7 +113,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.arr.count;
+    return self.arrDevices.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -109,10 +127,9 @@
     
     AddDeviceCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"AddDeviceCell"];
     cell.indexPath = indexPath;
-    
-   
-    
-    
+    DeviceInfor *deviceInfo = [_arrDevices objectAtIndex:indexPath.row];
+    cell.lblDevice.text = deviceInfo.name;
+    cell.lblWiFiName.text = deviceInfo.wifiName;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -124,14 +141,23 @@
 
 - (IBAction)btnUpdateTouchInside:(id)sender {
     [self startAnimation];
-    self.lblScanText.hidden = NO;
-    self.lblScanText.text = @"在自动扫描当前网络设备...";
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.isStopBtnUpdateAnimation = YES;
-        self.lblScanText.text = @"在未扫描到设备，请切换其他网络设备重试";
+    if (![YMTCPClient share].isConnect) {
+        [[YMBonjourHelp shareInstance] startSearch];
+        [_arrDevices removeAllObjects];
+        [self.tableView reloadData];
+        self.lblScanText.hidden = NO;
+        self.lblScanText.text = @"在自动扫描当前网络设备...";
         
-    });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.isStopBtnUpdateAnimation = YES;
+            self.lblScanText.text = @"在未扫描到设备，请切换其他网络设备重试";
+            
+        });
+    }
+
+    
+ 
 }
 
 - (IBAction)btnScanTouchInside:(id)sender {
@@ -140,4 +166,73 @@
 - (IBAction)btnBackTouchInside:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark --------------------
+#pragma mark - NSNotification
+
+//连接音响通知
+- (void)recvDidBonjour:(NSNotification *)noti{
+    
+   
+    if([[YMTCPClient share] connectServer:[YMBonjourHelp shareInstance].deviceIp port:SOCKET_PORT2]){
+        KyoLog(@"连接成功。。");
+        [[YMTCPClient share] networkSendDeviceForRegisterWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+            if (result == 0) {
+                NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
+                DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
+                [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
+                [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
+                if (!_arrDevices) {
+                    _arrDevices = [NSMutableArray array];
+                }
+                [_arrDevices removeAllObjects];
+                [_arrDevices addObject:deviceInfo];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                    self.lblScanText.hidden = YES;
+                    self.isStopBtnUpdateAnimation = YES;
+                });
+                
+            }
+        }];
+    }else{
+         [_arrDevices removeAllObjects];
+    }
+}
+- (void)recvDeviceInfo:(NSNotification *)noti{
+    DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
+    if (!_arrDevices) {
+        _arrDevices = [NSMutableArray array];
+    }
+    [_arrDevices removeAllObjects];
+    [_arrDevices addObject:deviceInfo];
+    [self.tableView reloadData];
+    self.lblScanText.hidden = YES;
+    self.isStopBtnUpdateAnimation = YES;
+}
+- (void)receiveDiDConnect:(NSNotification *)noti{
+    [[YMTCPClient share] networkSendDeviceForRegisterWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+        if (result == 0) {
+            NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
+            DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
+            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
+            [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
+            if (!_arrDevices) {
+                _arrDevices = [NSMutableArray array];
+            }
+            [_arrDevices removeAllObjects];
+            [_arrDevices addObject:deviceInfo];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                self.lblScanText.hidden = YES;
+                self.isStopBtnUpdateAnimation = YES;
+            });
+            
+        }
+    }];
+}
+
+
 @end

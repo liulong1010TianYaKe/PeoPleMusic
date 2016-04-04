@@ -9,7 +9,7 @@
 #import "BasicsCell.h"
 #import "SongInforModel.h"
 #define KPlayListCellIdentify @"KPlayListCellIdentify"
-#define KPlayListCelllHeight 60
+#define KPlayListCelllHeight 44
 
 
 

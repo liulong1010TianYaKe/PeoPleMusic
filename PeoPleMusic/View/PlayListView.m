@@ -50,9 +50,16 @@
     }
     self.frame = CGRectMake(0, kWindowHeight, kWindowWidth, kWindowHeight);
     
-    self.layoutBottViewHeight.constant = 60 +40+ 44*self.songList.count;
+    if(self.songList.count > 6){
+        self.layoutBottViewHeight.constant =  44 + 44*6;
+        
+    }else{
+       self.layoutBottViewHeight.constant = 44 + 44*self.songList.count;
+        self.tableView.scrollEnabled = NO;
+    }
+  
 //    self.tableView.bounces = NO;
-    self.tableView.scrollEnabled = NO;
+    
     [self setNeedsLayout];
 //    [[KyoUtil getRootViewController].view addSubview:self];
     [[KyoUtil getRootViewController].view addSubview:self];

@@ -43,7 +43,6 @@
 		F780D22E1C9E9E4000036C6C /* SongDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F780D22D1C9E9E4000036C6C /* SongDemandViewController.m */; };
 		F780D2311C9EA17000036C6C /* MusicPlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = F780D2301C9EA17000036C6C /* MusicPlayView.m */; };
 		F780D2331C9EA18B00036C6C /* MusicPlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F780D2321C9EA18B00036C6C /* MusicPlayView.xib */; };
-		F780D2381C9EC8A000036C6C /* PlayerCelld.xib in Resources */ = {isa = PBXBuildFile; fileRef = F780D2371C9EC8A000036C6C /* PlayerCelld.xib */; };
 		F780D23B1C9EEFA700036C6C /* YMAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F780D23A1C9EEFA700036C6C /* YMAudioPlayer.m */; };
 		F780D23F1C9EF05900036C6C /* YMBonjourHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = F780D23E1C9EF05900036C6C /* YMBonjourHelp.m */; };
 		F7DEB65A1CA782A900BBDC9E /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DEB6591CA782A900BBDC9E /* UserCenterViewController.m */; };
@@ -306,7 +305,6 @@
 		F780D22F1C9EA17000036C6C /* MusicPlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicPlayView.h; sourceTree = "<group>"; };
 		F780D2301C9EA17000036C6C /* MusicPlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicPlayView.m; sourceTree = "<group>"; };
 		F780D2321C9EA18B00036C6C /* MusicPlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicPlayView.xib; sourceTree = "<group>"; };
-		F780D2371C9EC8A000036C6C /* PlayerCelld.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCelld.xib; sourceTree = "<group>"; };
 		F780D2391C9EEFA700036C6C /* YMAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMAudioPlayer.h; sourceTree = "<group>"; };
 		F780D23A1C9EEFA700036C6C /* YMAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAudioPlayer.m; sourceTree = "<group>"; };
 		F780D23D1C9EF05900036C6C /* YMBonjourHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMBonjourHelp.h; sourceTree = "<group>"; };
@@ -723,7 +721,6 @@
 			children = (
 				18720E061C1C2E490008FA09 /* PlayerCell.h */,
 				18720E071C1C2E490008FA09 /* PlayerCell.m */,
-				F780D2371C9EC8A000036C6C /* PlayerCelld.xib */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -1768,7 +1765,6 @@
 			files = (
 				FD8C2CB71C0C6A98007CE036 /* dialog_btn_close@2x.png in Resources */,
 				18EBC9391C4FD72700460546 /* FeedBackView.xib in Resources */,
-				F780D2381C9EC8A000036C6C /* PlayerCelld.xib in Resources */,
 				18720E041C1C1F670008FA09 /* Player.storyboard in Resources */,
 				F780D2331C9EA18B00036C6C /* MusicPlayView.xib in Resources */,
 				18EBC93B1C4FD72700460546 /* PlayListCell.xib in Resources */,

@@ -67,14 +67,17 @@
 //        [VerifyRegexTool verifyIsNotEmpty:[UserInfo sharedUserInfo].loginPassWord]) {
 //        [self networkLogin:nil];
 //    }
-    [[YMBonjourHelp shareInstance] startSearch];
-    [self startConnectSongServer]; // 连接音响
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YMBonjourHelp shareInstance] startSearch];
+
+    });
+   
     //延迟2秒后添加window用于点击滑动到top
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [KyoTopWindow show];
     });
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvDidBonjour:) name:YNotificationName_DIDSUCESSFINDSERVICE object:nil];  //连接音响通知
 }
 
 - (void)dealloc
@@ -85,9 +88,8 @@
 }
 
 - (void)startConnectSongServer{
-    
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         if ([YMBonjourHelp shareInstance].isAirSuccess) {
             NSString *ips =  [YMBonjourHelp shareInstance].deviceIp;
@@ -96,8 +98,6 @@
             if ([[YMTCPClient share] connectServer:ips port:SOCKET_PORT2]) {
                 [self getDeviceInfo];
             }
-        }else{
-          [[YMTCPClient share] connectServer:@"192.168.1.107" port:SOCKET_PORT2];
         }
         
     });
@@ -119,17 +119,7 @@
 
 - (void)setupTabBarViewController
 {
-//    self.tabBarViewController = [[JMTabBarViewController alloc] init];
-//    [self addChildViewController:self.tabBarViewController];
-//    [self.contentView addSubview:self.tabBarViewController.view];
-    
-//    self.tabBarViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-//    NSLayoutConstraint *lcLeft = [NSLayoutConstraint constraintWithItem:self.tabBarViewController.view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1 constant:0]; //左
-//    NSLayoutConstraint *lcRight = [NSLayoutConstraint constraintWithItem:self.tabBarViewController.view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1 constant:0];   //右
-//    NSLayoutConstraint *lcTop = [NSLayoutConstraint constraintWithItem:self.tabBarViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1 constant:0]; //上
-//    NSLayoutConstraint *lcBottom = [NSLayoutConstraint constraintWithItem:self.tabBarViewController.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:0]; //下
-//    [self.contentView addConstraints:@[lcLeft, lcRight, lcTop, lcBottom]];
-//    [self.contentView layoutIfNeeded];
+
     
     self.tabBarViewController = [[JMTabBarViewController alloc] init];
   
@@ -310,7 +300,13 @@
 
 #pragma mark -------------------
 #pragma mark - NSNotification
+#pragma mark --------------------
+#pragma mark - NSNotification
 
+//连接音响通知
+- (void)recvDidBonjour:(NSNotification *)noti{
+        [self startConnectSongServer]; // 连接音响
+}
 //监听网络状态通知
 -(void)receivingTheNetworkStateChangeNotification:(NSNotification *)notification
 {

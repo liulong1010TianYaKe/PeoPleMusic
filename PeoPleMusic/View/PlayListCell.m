@@ -32,7 +32,7 @@
     _model = model;
     if (model) {
         self.lblSongName.text = model.mediaName;
-        self.lblSonger.text = model.albumName;
+        self.lblSonger.text = model.albumName ? model.albumName : @"未知";
     }
 }
 - (IBAction)btnCancelTouchInside:(id)sender {

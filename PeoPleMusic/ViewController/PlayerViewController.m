@@ -126,7 +126,7 @@
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDidConnect:) name:YNotificationName_SOCKETDIDCONNECT object:nil];  //连接上服务器
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveuDisConnect:) name:YNotificationName_SOCKETDIDDISCONNECT object:nil];  //断开连接
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfo:) name:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //断开连接
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfo:) name:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //断开连接
     
     DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
     
@@ -269,7 +269,7 @@
         };
     }
     if (!self.songList) {
-        self.playListView.songList = [NSMutableArray arrayWithObject: self.currentSongInfo];
+        self.playListView.songList = [NSMutableArray arrayWithObjects:self.currentSongInfo,nil];
     }
     [self.playListView show];
   
@@ -309,7 +309,8 @@
 - (void)receiveuDisConnect:(NSNotification *)noti{
     self.currentSongInfo = nil;
     [self.tableView reloadData];
-    [self showMessageHUD:@"音响断开了连接" withTimeInterval:kShowMessageTime];
+
+//    [KyoUtil showMessageHUD:@"音响断开了连接" withTimeInterval:kShowMessageTime inView:self.view];
 }
 
 - (void)receiveDeviceInfo:(NSNotification *)noti{

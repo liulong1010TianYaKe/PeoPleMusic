@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
+#define YNotificationName_DIDSUCESSFINDSERVICE   @"YNotificationName_DIDSUCESSFINDSERVICE"  //发现网络配置
+#define YNotificationName_DISSUCESSFINDSERVICE   @"YNotificationName_DISSUCESSFINDSERVICE"  //未找到网络配置
 @interface YMBonjourHelp : NSObject
 + (instancetype)shareInstance;
 

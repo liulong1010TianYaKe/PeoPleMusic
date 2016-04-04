@@ -14,6 +14,7 @@
     NSString *_serverIp;
     NSInteger _serverPort;
     NSString *_cmdType;
+    NSInteger  connectCout;
 }
 @property (nonatomic, strong) GCDAsyncSocket *clientSocket;
 
@@ -48,6 +49,7 @@
 
 - (BOOL)connectServer:(NSString *)ip port:(long)port{
     
+    connectCout = 0;
     NSError *err = nil;
     //    92.168.1.112 : 7433
     if([_clientSocket connectToHost:ip onPort:port withTimeout:60  error:&err]){
@@ -197,7 +199,11 @@
         self.completionBlock(6000, nil, err);
     }
     _isConnect  = NO;
-    [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
+    if (connectCout < 100) {
+        connectCout++;
+         [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
+    }
+   
 }
 
 

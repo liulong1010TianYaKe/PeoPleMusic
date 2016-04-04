@@ -35,7 +35,7 @@
 
 - (void)startSearch{
     [_brower searchForServicesOfType:@"_raop._tcp." inDomain:@"local."];
-   
+//    [_brower scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
 }
 
 - (void)stopSearch{
@@ -49,6 +49,10 @@
 #pragma mark - NSNetServiceBrowserDelegate
 - (void)netServiceBrowser:(NSNetServiceBrowser *)browser didNotSearch:(NSDictionary<NSString *, NSNumber *> *)errorDict{
     KyoLog(@"未搜到服务!");
+    _isAirSuccess = NO;
+}
+- (void)netServiceBrowser:(NSNetServiceBrowser *)browser didFindDomain:(NSString *)domainString moreComing:(BOOL)moreComing{
+    
 }
 - (void)netServiceBrowser:(NSNetServiceBrowser *)browser didFindService:(NSNetService *)service moreComing:(BOOL)moreComing{
     
@@ -58,7 +62,7 @@
     
     if ([serviceName rangeOfString:@"_znt_ios_rrdg_sp"].location != NSNotFound) {
         //        [_airPlayDevices addObject:service];
-        _isAirSuccess = YES;
+        
         _netService = service;
         [service setDelegate:self];
         //    aNetService.delegate = self;
@@ -72,14 +76,15 @@
 //    NSLog(@"Ip ----%@ : %@ : %ld----", [sender name], ip, (long)sender.port);
     
     if ([[sender name] rangeOfString:@"_znt_ios_rrdg_sp"].location != NSNotFound){
-        //save ip
-//        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-//        [ud setObject:ip forKey:@"DEVICE_HOT_IP_NAME"];
-        
+
+       
+        _isAirSuccess = YES;
         _deviceIp = ip;
         _port =  sender.port;
+         [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_DIDSUCESSFINDSERVICE object:nil];
         
         [_brower stop];
+        
 
     }
 }
