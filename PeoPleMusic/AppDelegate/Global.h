@@ -219,24 +219,9 @@ UIViewAutoresizingFlexibleBottomMargin
 
 //***** Public Enum
 
-typedef enum {
-    ProductMakeTypeCategory = 0, //按险种
-    ProductMakeTypeBrand = 1,   //按品牌
-    ProductMakeTypePeople = 2   //按人群
-} ProductMakeType;   //挑选产品的分类
-
-typedef enum {
-    ProductCategoryAccident = 1,  //意外险
-    ProductCategoryTravel = 2,  //旅游险
-    ProductCategoryHealth = 3,  //健康险
-    ProductCategoryLife = 7,  //人寿险
-    ProductCategoryProperty = 10,  //家财险
-} ProductCategory;
-
-typedef enum : NSInteger {
-    ProductTableViewTypebasicConditions = 0,    //基本条件
-    ProductTableViewTypeProtectItems = 1,   //保障项目
-    ProductTableViewTypeProductNeedKnow = 2 //投保须知
-} ProductTableViewType;  //table的类型（决定这个table要显示的数据）
+typedef NS_ENUM(NSInteger, MusiclistViewStyle) {
+    MusiclistViewStyleDeviceLoc,          // 音响本地
+    MusiclistViewStyleNetwork,         // 网络音乐
+};
 
 

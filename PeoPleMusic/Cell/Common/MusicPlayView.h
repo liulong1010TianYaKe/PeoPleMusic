@@ -11,6 +11,7 @@
 
 @interface MusicPlayView : UIView
 
+@property (nonatomic, assign) MusiclistViewStyle type;
 - (IBAction)btnPreTouchInside:(id)sender;
 
 - (IBAction)btnNextTouchInside:(id)sender;

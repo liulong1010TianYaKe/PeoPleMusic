@@ -112,7 +112,7 @@
     
     [self showLoadingInNavigation];
     __weak typeof(self) weakSelf = self;
-    [[YMTCPClient share] networkSendDeviceForRegisterWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+    [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
         if (result == 0) {
             NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
             self.deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];

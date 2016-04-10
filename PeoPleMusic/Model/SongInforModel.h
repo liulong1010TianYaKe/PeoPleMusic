@@ -26,8 +26,12 @@
 @property (nonatomic, strong) NSString  *mediaType;//歌曲类型  0，手机本地；1，音响本地；2， 网络
 @property (nonatomic, strong) NSString  *playMsg;//留言信息
 
+@property (nonatomic, assign) BOOL      isDir;
+@property (nonatomic, assign) NSInteger  childCount;
+
 @property (nonatomic, strong) NSString *number; // 歌曲序号
 @property (nonatomic, strong) NSString *listen_href; // 歌曲地址
+
 
 
 @property (nonatomic, strong) NSString *userId;

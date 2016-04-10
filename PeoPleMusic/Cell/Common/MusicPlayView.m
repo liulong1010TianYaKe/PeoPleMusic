@@ -69,7 +69,17 @@
     _indexRow = indexRow;
     SongInforModel *model = self.songlist[indexRow];
     self.lblSongName.text = model.mediaName;
-    self.aMusic = [self.songlist[indexRow] mediaUrl];
+    if (self.type == MusiclistViewStyleNetwork) {
+      self.aMusic = [self.songlist[indexRow] mediaUrl];
+    }else if (self.type == MusiclistViewStyleDeviceLoc){
+        
+        NSString *mediaUrl = [NSString stringWithFormat:@"http://www.192.168.1.107:1574/%%25/%@",@"http://192.168.1.107:1230/%25/Music/陈奕迅-十年.mp3"];
+        NSLog(@"%@",mediaUrl);
+        self.aMusic = mediaUrl;
+        
+    }
+   
+    
 }
 #pragma mark -------------------
 #pragma mark - Methods
@@ -99,7 +109,17 @@
         }
         SongInforModel *model = self.songlist[self.indexRow];
         self.lblSongName.text = model.mediaName;
-        self.aMusic = model.mediaUrl;
+//        self.aMusic = model.mediaUrl;
+    if (self.type == MusiclistViewStyleNetwork) {
+        self.aMusic = [model mediaUrl];
+    }else if (self.type == MusiclistViewStyleDeviceLoc){
+        
+    
+        NSString *mediaUrl = [NSString stringWithFormat:@"http://www.192.168.1.107:1574/%%25/%@",[model mediaUrl]];
+        NSLog(@"%@",mediaUrl);
+        self.aMusic = mediaUrl;
+        
+    }
 }
 
 -(void)lastButtonAction
@@ -110,7 +130,15 @@
         }
         SongInforModel *model = self.songlist[self.indexRow];
         self.lblSongName.text = model.mediaName;
-        self.aMusic = model.mediaUrl;
+    if (self.type == MusiclistViewStyleNetwork) {
+        self.aMusic = [model mediaUrl];
+    }else if (self.type == MusiclistViewStyleDeviceLoc){
+        NSString *mediaUrl = [NSString stringWithFormat:@"http://www.192.168.1.107:1574/%%25/%@",[model mediaUrl]];
+        NSLog(@"%@",mediaUrl);
+        self.aMusic = mediaUrl;
+        
+    }
+//        self.aMusic = model.mediaUrl;
 }
 
 

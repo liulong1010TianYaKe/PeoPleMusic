@@ -13,12 +13,14 @@
 @interface YMTCPClient (){
     NSString *_serverIp;
     NSInteger _serverPort;
-    NSString *_cmdType;
     NSInteger  connectCout;
 }
 @property (nonatomic, strong) GCDAsyncSocket *clientSocket;
 
-@property (nonatomic, copy) void (^completionBlock)(NSInteger result,NSDictionary *dict, NSError *err);
+@property (nonatomic, strong) NSMutableString* recvStr;
+
+@property (nonatomic, strong) NSMutableDictionary *cmdDict;
+
 @end
 @implementation YMTCPClient
 + (instancetype)share{
@@ -35,6 +37,7 @@
 - (void)configurationInit{
     dispatch_queue_t client_queue = dispatch_queue_create("client.socked.com", NULL);
     _clientSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:client_queue];
+    _cmdDict = [NSMutableDictionary dictionary];
   
 }
 
@@ -52,15 +55,17 @@
     connectCout = 0;
     NSError *err = nil;
     //    92.168.1.112 : 7433
+    
+    [_cmdDict removeAllObjects];
     if([_clientSocket connectToHost:ip onPort:port withTimeout:60  error:&err]){
         KyoLog(@"----连接成功!--");
-        _isConnect = YES;
+        
         _serverIp = ip;
         _serverPort = port;
+        
         return YES;
     }else{
         KyoLog(@"----连接失败!--");
-        _isConnect = NO;
         return NO;
     }
     
@@ -68,21 +73,21 @@
 
 #pragma mark -------------------
 #pragma mark -  CMDTYPE
+
 /**< 设备注册 */
-- (void)networkSendDeviceForRegisterWithCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-      _cmdType = YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK;
-     self.completionBlock = completionBlock;
-     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForRegister]dataUsingEncoding:NSUTF8StringEncoding]  withTimeout:-1 tag:0];
-   
+- (void)networkSendDeviceForRegister:(CompletionBlock)completionBlock{
+     [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
+      [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForRegister] dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
 }
+
 /**
  *  发送获取当前正在播放的歌曲信息
  */
-- (void)networkSendCmdForPlaySongInforWithCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK;
-    self.completionBlock = completionBlock;
+- (void)networkSendCmdForPlaySongInfor:(CompletionBlock)completionBlock{
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_GET_PLAY_SONGINFO_FEEDBACK];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForCurrentPlayingSongInfoJson] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
+
 
 /**
  *  获取点播列表
@@ -90,88 +95,83 @@
  *  @param pageNum  页数
  *  @param pageSize 每页数量
  */
-- (void)networkSendBookingSongListWithPageNum:(NSInteger)pageNum withPageSize:(NSInteger)pageSize completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-     _cmdType = YM_HEAD_CMDTYPE_GET_SONG_LIST_FEEDBACK;
-     self.completionBlock = completionBlock;
-     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForBooKingSongListWithpageNum:pageNum withPageSize:pageSize] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
+- (void)networkSendBookingSongListWithPageNum:(NSInteger)pageNum withPageSize:(NSInteger)pageSize completionBlock:(CompletionBlock)completionBlock{
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_GET_SONG_LIST_FEEDBACK];
+
+    [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForBooKingSongListWithpageNum:pageNum withPageSize:pageSize] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 
 /**
  *   点播歌曲
  *
  *  @param songInfo 需要点播的歌曲
- *  @param playType 点播的歌曲类型 ，网络 还是音响
+ *  @param playType 点播的类型  0 点播  1是更新
  */
-- (void)networkSendBookSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG_FEEDBACK;
-    self.completionBlock = completionBlock;
-         [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForBookIngPlaySong:songInfo withPlayType:playType] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
-//    self.CompletionBlock = completionBlock;
+- (void)networkSendBookSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(CompletionBlock)completionBlock{
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG_FEEDBACK];
+      [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForBookIngPlaySong:songInfo withPlayType:playType] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 
+
 /**< 删除歌曲 */
-- (void)networkSendDeleteSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_DEL_SONG_FEEDBACK;
-    self.completionBlock = completionBlock;
+- (void)networkSendDeleteSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(CompletionBlock)completionBlock{
+    
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_DEL_SONG_FEEDBACK];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForDeleteSongInfo] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 
 /**< 11,停止播放 */
-- (void)networkSendStopPlaySongInfoWithCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_STOP_PLAYING_FEEDBACK;
-    self.completionBlock = completionBlock;
+- (void)networkSendStopPlaySongInfo:(CompletionBlock)completionBlock{
+     [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_STOP_PLAYING_FEEDBACK];
 }
 
 /**< 13,配置设备 */
-- (void)networkSendSetDeviceWithDeviceinfo:(DeviceInfor *)deviceInfo completionBlock:(void (^)(NSInteger result,NSDictionary *dict, NSError *err)) completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_SET_DEVICE_FEEDBACK;
-    self.completionBlock = completionBlock;
+- (void)networkSendSetDeviceWithDeviceinfo:(DeviceInfor *)deviceInfo completionBlock:(CompletionBlock)completionBlock{
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_SET_DEVICE_FEEDBACK];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForSetDevice:deviceInfo] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 
 /**<17.	设置设备音量	 */
 
--(void)networkSendSetDeviceVolumeWithVolume:(NSInteger )volume completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock {
-    _cmdType = YM_HEAD_CMDTYPE_SET_DEVICE_VOICE_FEEDBACK;
-    self.completionBlock = completionBlock;
+-(void)networkSendSetDeviceVolumeWithVolume:(NSInteger )volume completionBlock:(CompletionBlock)completionBlock {
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_SET_DEVICE_VOICE_FEEDBACK];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForSetDeviceVolume:volume] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 
 /**<19.	获取音量	 */
-- (void)networkSendDeviceForGetDeviceVolumeCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_GET_DEVICE_VOICE;
-    self.completionBlock = completionBlock;
+- (void)networkSendDeviceForGetDeviceVolume:(CompletionBlock)completionBlock{
+
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_GET_DEVICE_VOICE];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForGetDeviceVolume] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 
 /**<20.	获取播放状态	 */
-- (void)networkSendDeviceForSetDevicePlayStateCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_GET_DEVICE_PLAYSTATE;
-    self.completionBlock = completionBlock;
+- (void)networkSendDeviceForSetDevicePlayState:(CompletionBlock)completionBlock{
+  
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_GET_DEVICE_PLAYSTATE];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForGetDevicePlayState] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 
 /**<21.	设置播放状态	 */
-- (void)networkSendDeviceForSetDevicePlayState:(NSInteger)playState completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_SET_DEVICE_PLAYSTATE;
-    self.completionBlock = completionBlock;
+- (void)networkSendDeviceForSetDevicePlayState:(NSInteger)playState completionBlock:(CompletionBlock)completionBlock{
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_SET_DEVICE_PLAYSTATE];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForSetDevicePlayState:playState] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 /**<24.	获取音响本地歌曲目录 */
-- (void)networkSendDeviceForSongDirWithCompletionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR;
-    self.completionBlock = completionBlock;
+- (void)networkSendDeviceForSongDir:(CompletionBlock)completionBlock{
+  
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR_FEEDBACK];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForGetDeviceSongDir] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 /**<24.	获取音响本地歌曲目录歌曲 */
-- (void)networkSendDeviceForSongDirWithRequestKey:(NSString *)requestKey withTotalSize:(NSInteger)totalSize completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-    self.completionBlock = completionBlock;
+- (void)networkSendDeviceForSonglistWithRequestKey:(NSString *)requestKey withTotalSize:(NSInteger)totalSize completionBlock:(CompletionBlock)completionBlock{
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR_FEEDBACK];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForGetDeviceSongWithRequestKey:requestKey withTotalSize:0] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 /**<21.设置点播权限	 */
-- (void)networkSendDeviceForSetDevicePlayPermission:(NSInteger)permission completionBlock:(void (^)(NSInteger, NSDictionary *, NSError *))completionBlock{
-    _cmdType = YM_HEAD_CMDTYPE_SET_DEVICE_PLAYPERMISSION;
-    self.completionBlock = completionBlock;
+- (void)networkSendDeviceForSetDevicePlayPermission:(NSInteger)permission completionBlock:(CompletionBlock)completionBlock{
+
+  [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_SET_DEVICE_PLAYPERMISSION];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForSetDevicePlayPermission:permission] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
 #pragma mark --
@@ -181,11 +181,16 @@
 {
     NSLog(@"---%@",host);
     
-    _isConnect = YES;
+   
     [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_SOCKETDIDCONNECT object:nil];
 
     [_clientSocket readDataWithTimeout:-1 tag:0];
     
+    
+}
+
+- (BOOL)isConnect{
+    return _clientSocket.isConnected;
 }
 
 
@@ -195,12 +200,21 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_SOCKETDIDDISCONNECT object:nil];
     KyoLog(@"断开连接。。。");
-    if (self.completionBlock) {
-        self.completionBlock(6000, nil, err);
-    }
-    _isConnect  = NO;
-    if (connectCout < 100) {
-        connectCout++;
+
+//    for (CompletionBlock block in _cmdDict) {
+//        if (block) {
+//            block(6000,nil, err);
+//        }
+//    }
+ 
+    if (connectCout < 30) {
+          KyoLog(@"重新连接。。。%ld",(long)connectCout++);
+        if (_serverPort == 9997) {
+            _serverPort = 9998;
+        }else if(_serverPort == 9998){
+            _serverPort = 9997;
+        }
+     [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
          [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
     }
    
@@ -212,24 +226,52 @@
         NSString *newMessage = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
 //    NSDictionary *dict = [NSDictionary objectWithJSONData:data];
-        NSLog(@"----%@",newMessage);
+    NSLog(@"----%@",newMessage);
     
-    
-    NSDictionary *dict = [KyoUtil changeJsonStringToDictionary:newMessage];
-    
-    NSString *cmdType =  [dict objectForKey:@"cmdType"] ;
-    NSInteger result = [[dict objectForKey:@"result"] integerValue];
-    
-    if ([_cmdType isEqualToString:cmdType]) {
-        if (self.completionBlock) {
-            self.completionBlock(result,dict,nil);
+    NSLog(@"--%ld",tag);
+    if ([newMessage containsString:@"znt_pkg_end"]) {
+        NSInteger pos = [newMessage rangeOfString:@"znt_pkg_end"].location;
+//        [newMessage]
+        newMessage = [newMessage substringToIndex:pos];
+        NSDictionary *dict = [KyoUtil changeJsonStringToDictionary:newMessage];
+        if (!dict) {
+            [self.recvStr appendString:newMessage];
+            dict = [KyoUtil changeJsonStringToDictionary:self.recvStr];
         }
-    }else if ([_cmdType isEqualToString:YM_HEAD_CMDTYPE_UPDATE_BRAODCAST]){ // 接收更新命令
+        NSString *cmdType =  [dict objectForKey:@"cmdType"] ;
+        NSInteger result = [[dict objectForKey:@"result"] integerValue];
         
-           [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_UPDATE_BRAODCAST object:nil];
+        CompletionBlock completionblock =  [_cmdDict objectForKey:cmdType];
+        
+        if (completionblock) {
+            completionblock(result,dict,nil);
+        }
+        
+        if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_UPDATE_BRAODCAST]){ // 接收更新命令
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_UPDATE_BRAODCAST object:nil];
+        }
+        
+        self.recvStr = nil;
+        [_clientSocket readDataWithTimeout:-1 tag:0];
+    }else{
+        if (!self.recvStr) {
+            self.recvStr = [NSMutableString stringWithString:newMessage];
+        }else{
+            [self.recvStr appendString:newMessage];
+        }
+         [_clientSocket readDataWithTimeout:-1 tag:tag];
+        NSLog(@"----%@",newMessage);
     }
+    NSLog(@"----------------");
+    NSLog(@"----%@",newMessage);
+ 
+    
+  
 
-    [_clientSocket readDataWithTimeout:-1 tag:0];
+   
+
+   
 }
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
     

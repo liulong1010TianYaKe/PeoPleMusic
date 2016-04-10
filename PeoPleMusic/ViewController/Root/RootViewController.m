@@ -72,6 +72,9 @@
 
     });
    
+//    if ([[YMTCPClient share] connectServer:@"192.168.1.107" port:SOCKET_PORT2]) {
+////        [self getDeviceInfo];
+//    }
     //延迟2秒后添加window用于点击滑动到top
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [KyoTopWindow show];
@@ -98,21 +101,27 @@
             if ([[YMTCPClient share] connectServer:ips port:SOCKET_PORT2]) {
                 [self getDeviceInfo];
             }
+        }else{
+            
+            if ([[YMTCPClient share] connectServer:@"192.168.1.107" port:SOCKET_PORT2]) {
+                [self getDeviceInfo];
+            }
         }
         
     });
 }
 
 - (void)getDeviceInfo{
-    [[YMTCPClient share] networkSendDeviceForRegisterWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+    [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
         if (result == 0) {
             NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
-           DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
+            DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
             [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
             [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
             
         }
     }];
+
 }
 #pragma mark ------------------------
 #pragma mark - Methods

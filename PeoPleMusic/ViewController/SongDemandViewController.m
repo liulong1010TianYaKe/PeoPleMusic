@@ -56,7 +56,7 @@
     
     self.songInfoModel.playMsg = self.textView.text;
     [self showLoadingHUD:@"点播歌曲"];
-    [[YMTCPClient share] networkSendBookSongInfo:self.songInfoModel withPlayType:1 completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+    [[YMTCPClient share] networkSendBookSongInfo:self.songInfoModel withPlayType:0 completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
         
         if (result == 0) { // 点播成功
             

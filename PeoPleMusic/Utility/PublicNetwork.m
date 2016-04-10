@@ -41,7 +41,8 @@
     NSData *dataJson = [NSJSONSerialization dataWithJSONObject:dictJson options:0 error:NULL];
     if (dataJson) {
         NSString *strJson = [[NSString alloc] initWithData:dataJson encoding:NSUTF8StringEncoding];
-        return strJson;
+         NSString *cmdStr = [NSString stringWithFormat:@"%@znt_pkg_end",strJson];
+        return cmdStr;
     } else {
         return nil;
     }
@@ -141,6 +142,7 @@
     NSMutableDictionary *dictJson = [NSMutableDictionary dictionary];   //传入服务器的json字典
     [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR]];
     [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
+    [dictJson setObject:@(0) forKey:@"requestType"];
     return [PublicNetwork getJsonStr:dictJson];
 }
 /**<24.	获取音响目录下的歌曲	 */
@@ -149,6 +151,7 @@
     [dictJson setDictionary:[HeadModel getJSONHead:YM_HEAD_CMDTYPE_GET_DEVICE_SONGSDIR]];
     [dictJson setObject:[UserInfoModel getUserInfoDict:NO] forKey:@"userInfor"];
     [dictJson setObject:requestKey forKey:@"requestKey"];
+     [dictJson setObject:@(1) forKey:@"requestType"];
     [dictJson setObject:@(totalSize) forKey:@"totalSize"];
     return [PublicNetwork getJsonStr:dictJson];
 }

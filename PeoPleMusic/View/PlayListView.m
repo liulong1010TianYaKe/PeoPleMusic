@@ -50,8 +50,8 @@
     }
     self.frame = CGRectMake(0, kWindowHeight, kWindowWidth, kWindowHeight);
     
-    if(self.songList.count > 6){
-        self.layoutBottViewHeight.constant =  44 + 44*6;
+    if(self.songList.count > 8){
+        self.layoutBottViewHeight.constant =  44 + 44*8;
         
     }else{
        self.layoutBottViewHeight.constant = 44 + 44*self.songList.count;

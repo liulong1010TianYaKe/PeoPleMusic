@@ -156,7 +156,7 @@
 //发送获取当前正在播放的歌曲信息
 - (void)requestCurrentSong{
     
-    [[YMTCPClient share] networkSendCmdForPlaySongInforWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+    [[YMTCPClient share] networkSendCmdForPlaySongInfor:^(NSInteger result, NSDictionary *dict, NSError *err) {
 //        KyoLog(@"%@",dict);
         if (result == 0) {
             NSDictionary *songInfoDict = [dict objectForKey:@"songInfor"];
@@ -180,11 +180,14 @@
 
 - (void)requestGetSonglist{
     [[YMTCPClient share] networkSendBookingSongListWithPageNum:0 withPageSize:100 completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
-         KyoLog(@"%@",dict);
-        NSArray *arr = dict[@"songList"];
-        if (arr) {
-             self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
+//         KyoLog(@"%@",dict);
+        if (result == 0) {
+            NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"songList"]];
+            if (arr) {
+                self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
+            }
         }
+       
        
     }];
 }
@@ -270,6 +273,8 @@
     }
     if (!self.songList) {
         self.playListView.songList = [NSMutableArray arrayWithObjects:self.currentSongInfo,nil];
+    }else{
+        self.playListView.songList = [NSMutableArray arrayWithArray:self.songList];
     }
     [self.playListView show];
   

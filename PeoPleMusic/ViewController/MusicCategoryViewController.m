@@ -112,6 +112,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MusicCategoryModel *model = self.dataSource[indexPath.row];
     MusicListViewController *musicPlayerVC = [MusicListViewController createMusicListViewController];
+    musicPlayerVC.style = MusiclistViewStyleNetwork;
     musicPlayerVC.title = model.title;
     musicPlayerVC.urlString = model.href;
     [self.navigationController pushViewController:musicPlayerVC animated:YES];

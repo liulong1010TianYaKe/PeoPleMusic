@@ -8,8 +8,13 @@
 
 #import "BasicsViewController.h"
 
+
 @interface MusicListViewController : BasicsViewController
 @property (nonatomic, strong) NSString *urlString;
+
+@property (nonatomic,strong) NSString  *requestKey;
+@property (nonatomic, assign) NSInteger tatolSize;
+@property (nonatomic, assign) MusiclistViewStyle style;
 + (MusicListViewController *)createMusicListViewController;
 
 + (instancetype)sharePlayerViewController;

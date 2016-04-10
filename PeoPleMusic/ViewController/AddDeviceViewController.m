@@ -176,7 +176,7 @@
    
     if([[YMTCPClient share] connectServer:[YMBonjourHelp shareInstance].deviceIp port:SOCKET_PORT2]){
         KyoLog(@"连接成功。。");
-        [[YMTCPClient share] networkSendDeviceForRegisterWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+        [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
             if (result == 0) {
                 NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
                 DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
@@ -212,7 +212,7 @@
     self.isStopBtnUpdateAnimation = YES;
 }
 - (void)receiveDiDConnect:(NSNotification *)noti{
-    [[YMTCPClient share] networkSendDeviceForRegisterWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+    [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
         if (result == 0) {
             NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
             DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];

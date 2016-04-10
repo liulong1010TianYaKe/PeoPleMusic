@@ -63,12 +63,34 @@
 
 - (void)setupData{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self networkGetMusicListData];
+        if (self.style == MusiclistViewStyleNetwork) {
+              [self networkGetMusicListData];
+        }else if (self.style == MusiclistViewStyleDeviceLoc){
+            [self requestNetwork:self.requestKey withTotalSize:self.tatolSize];
+        }
+      
     });
 }
 
 #pragma mark --------------------
 #pragma mark - Settings, Gettings
+/**
+ *  请求音响本地音乐
+ */
+- (void)requestNetwork:(NSString *)requestKey withTotalSize:(NSInteger)totalSize{
+    [[YMTCPClient share] networkSendDeviceForSonglistWithRequestKey:requestKey withTotalSize:totalSize completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+        if (result == 0) {
+            NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
+            if (arr) {
+                self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
+            }
+        }
+    }];
+}
+
 
 - (void)networkGetMusicListData{
     
@@ -166,6 +188,7 @@
     MusicPlayView *musicPlayView = [[[NSBundle mainBundle] loadNibNamed:@"MusicPlayView" owner:self options:nil] objectAtIndex:0];
     musicPlayView.songlist = self.songList;
     musicPlayView.indexRow = indexPath.row;
+    musicPlayView.type = self.style;
 
     CTBaseDialogView *dialogView = [KyoUtil showDialogView:musicPlayView fromFrame:[KyoUtil relativeFrameForScreenWithView:currentCell]];
     dialogView.isNoReposeWhenBackgroundTouched = YES;

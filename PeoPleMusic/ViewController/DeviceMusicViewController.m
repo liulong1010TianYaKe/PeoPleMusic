@@ -8,6 +8,7 @@
 
 #import "DeviceMusicViewController.h"
 #import "LibraryMusicCell.h"
+#import "MusicListViewController.h"
 
 @interface DeviceMusicViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -46,8 +47,18 @@
 
 - (void)requestNetWork{
     
-    [[YMTCPClient share] networkSendDeviceForSongDirWithCompletionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
-        KyoLog(@"%@",dict);
+    [[YMTCPClient share] networkSendDeviceForSongDir:^(NSInteger result, NSDictionary *dict, NSError *err) {
+//        KyoLog(@"%@",dict);
+        if (result == 0) {
+            NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
+            if (arr) {
+//                self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
+                self.musicList = [SongInforModel objectArrayWithKeyValuesArray:arr];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
+            }
+        }
     }];
 }
 #pragma mark --------------------
@@ -59,7 +70,7 @@
     return 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.musicList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -68,19 +79,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LibraryMusicCell * cell = [tableView dequeueReusableCellWithIdentifier:@"LibraryMusicCell"];
-//    MusicCategoryModel *model = self.dataArray[indexPath.row];
-//    cell.lblTitle.text = model.title;
+    SongInforModel *model = self.musicList[indexPath.row];
+    cell.lblTitle.text = model.mediaName;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    MusicCategoryModel *model = self.dataArray[indexPath.row];
-//    MusicCategoryViewController *listVC = [MusicCategoryViewController createMusicCategoryViewController];
-//    listVC.title = model.title;
-//    listVC.urlString = model.href;
-//    [self.navigationController pushViewController:listVC animated:YES];
+    SongInforModel *model = self.musicList[indexPath.row];
+    MusicListViewController *musicPlayerVC = [MusicListViewController createMusicListViewController];
+    musicPlayerVC.style = MusiclistViewStyleDeviceLoc;
+    musicPlayerVC.title = model.mediaName;
+    musicPlayerVC.requestKey = model.mediaUrl;
+    musicPlayerVC.tatolSize = model.childCount;
+    [self.navigationController pushViewController:musicPlayerVC animated:YES];
     
 }
 @end
