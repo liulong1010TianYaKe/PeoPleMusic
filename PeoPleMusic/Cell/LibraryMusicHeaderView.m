@@ -10,9 +10,10 @@
 #import "YMTCPClient.h"
 #import "YMBonjourHelp.h"
 #import "DeviceMusicViewController.h"
+#import "SeachSongViewController.h"
 
 
-@interface LibraryMusicHeaderView ()
+@interface LibraryMusicHeaderView ()<UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searBar;
 
 //@property (weak, nonatomic) IBOutlet UITextField *txtInput;
@@ -23,6 +24,7 @@
 @implementation LibraryMusicHeaderView
 - (void)awakeFromNib{
     [super awakeFromNib];
+    self.searBar.delegate = self;
 //    UIImageView *leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_search"]];
 //    leftView.bounds = CGRectMake(0, 0, 30, 30);
 //    self.txtInput.leftView =leftView;
@@ -47,6 +49,12 @@
 - (IBAction)btnSpeakerTouchInside:(id)sender {
     
     DeviceMusicViewController *controller = [DeviceMusicViewController createDeviceMusicViewController];
+    [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    SeachSongViewController *controller = [[SeachSongViewController alloc] init];
+    controller.title = @"搜索歌曲";
     [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
 }
 @end

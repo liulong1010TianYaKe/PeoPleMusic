@@ -19,8 +19,10 @@
 
 #define KTopViewHeight  (210*kWindowHeight/667)
 
-@interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate>{
+@interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate,UIAlertViewDelegate>{
     double   angle;
+    
+    SongInforModel *deleteSongInfo;
 }
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>topView
@@ -34,7 +36,7 @@
 @property (nonatomic, strong) NSLayoutConstraint *layoutTopViewHeight;
 @property (nonatomic, strong)  SongInforModel *currentSongInfo;
 
-@property (nonatomic, strong)  NSArray *songList;
+@property (nonatomic, strong)  NSMutableArray *songList;
 
 
 // >>>>>>>>>>>>>>>>>>>>>>
@@ -165,15 +167,13 @@
 //            UserInfoModel *userModel = [UserInfoModel objectWithKeyValues:userDict];
             dispatch_sync(dispatch_get_main_queue(), ^{
                 self.lblSongInfo.text = self.currentSongInfo.mediaName;
-                 [self.tableView reloadData];
+                
             });
            
             
         }else{
-            self.currentSongInfo = nil;
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
+           
+           
         }
     }];
 }
@@ -184,35 +184,46 @@
         if (result == 0) {
             NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"songList"]];
             if (arr) {
-                self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
+                NSArray *tempArr = [SongInforModel objectArrayWithKeyValuesArray:arr];
+                self.songList = [NSMutableArray arrayWithArray:tempArr];
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
             }
         }
        
        
     }];
 }
+
+
+
 #pragma mark -------------------
 #pragma mark -- UITableViewDataSource,UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.currentSongInfo? 1: 0;
+    return self.songList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PlayerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayerCell"];
     cell.indexPath = indexPath;
     cell.delegate = self;
-    cell.model = self.currentSongInfo;
+    cell.model = self.songList[indexPath.row];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return self.currentSongInfo.isExtend ? KPlayerCellHeight + 38 : KPlayerCellHeight;
+    SongInforModel *model = self.songList[indexPath.row];
+    return model.isExtend ? KPlayerCellHeight + 38 : KPlayerCellHeight;
 }
 
 #pragma mark -------------------
 #pragma mark -- PlayerCellDelegate
 - (void)playerCellTouchInside:(PlayerCell *)cell withModel:(SongInforModel *)model{
-     _currentSongInfo.isExtend = !_currentSongInfo.isExtend;
+//     _currentSongInfo.isExtend = !_currentSongInfo.isExtend;
+    model.isExtend = !model.isExtend;
+    self.songList[cell.indexPath.row] = model;
+
     [self.tableView reloadData];
     
 }
@@ -225,11 +236,16 @@
             VC.songInfoModel = cell.model;
             VC.title = @"我的点播";
             [self.navigationController pushViewController:VC animated:YES];
-          
+        
             break;
         }
-        case PlayerCellBtnTypeDelete:
+        case PlayerCellBtnTypeDelete:{
+            NSString *message = [NSString stringWithFormat:@"是否删除-%@?",cell.model.mediaName];
+            deleteSongInfo = cell.model;
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"删除歌曲" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alertView show];
             break;
+        }
         case PlayerCellBtnTypeMsg:
            self.feedBackView = [FeedBackView createFeedBackViewFromWindow] ;
             [self.feedBackView show];
@@ -325,4 +341,22 @@
     self.lblTitle.text = deviceInfo.name;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        [self  showLoadingHUD:@"删除歌曲"];
+        [[YMTCPClient share] networkSendDeleteSongInfo:deleteSongInfo completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+            if(result == 0){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                  [self  hideLoadingHUD];
+                  [self  showMessageHUD:@"删除歌曲成功!" withTimeInterval:kShowMessageTime];
+                });
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self  hideLoadingHUD];
+                    [self  showMessageHUD:@"删除歌曲失败!" withTimeInterval:kShowMessageTime];
+                });
+            }
+        }];
+    }
+}
 @end

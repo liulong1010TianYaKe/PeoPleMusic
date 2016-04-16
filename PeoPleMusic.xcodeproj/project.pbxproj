@@ -53,6 +53,7 @@
 		F7EAC9661C8AD10700A2623F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9631C8AD10700A2623F /* GCDAsyncSocket.m */; };
 		F7EAC9671C8AD10700A2623F /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9651C8AD10700A2623F /* GCDAsyncUdpSocket.m */; };
 		F7EAC96A1C8AD99C00A2623F /* LinkDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9691C8AD99C00A2623F /* LinkDeviceViewController.m */; };
+		F7EB41971CBA729400214A44 /* SeachSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EB41961CBA729400214A44 /* SeachSongViewController.m */; };
 		FD055CE31C9D3A4D0054AABF /* SSKeychain.strings in Resources */ = {isa = PBXBuildFile; fileRef = FD055CDC1C9D3A4D0054AABF /* SSKeychain.strings */; };
 		FD055CE41C9D3A4D0054AABF /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = FD055CDF1C9D3A4D0054AABF /* SSKeychain.m */; };
 		FD055CE51C9D3A4D0054AABF /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = FD055CE11C9D3A4D0054AABF /* SSKeychainQuery.m */; };
@@ -324,6 +325,8 @@
 		F7EAC9651C8AD10700A2623F /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		F7EAC9681C8AD99C00A2623F /* LinkDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkDeviceViewController.h; sourceTree = "<group>"; };
 		F7EAC9691C8AD99C00A2623F /* LinkDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkDeviceViewController.m; sourceTree = "<group>"; };
+		F7EB41951CBA729400214A44 /* SeachSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeachSongViewController.h; sourceTree = "<group>"; };
+		F7EB41961CBA729400214A44 /* SeachSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeachSongViewController.m; sourceTree = "<group>"; };
 		FD055CDD1C9D3A4D0054AABF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SSKeychain.strings; sourceTree = "<group>"; };
 		FD055CDE1C9D3A4D0054AABF /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
 		FD055CDF1C9D3A4D0054AABF /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
@@ -1606,6 +1609,8 @@
 				F780D22D1C9E9E4000036C6C /* SongDemandViewController.m */,
 				F77D3CDB1CAD61D20065C57A /* DeviceMusicViewController.h */,
 				F77D3CDC1CAD61D20065C57A /* DeviceMusicViewController.m */,
+				F7EB41951CBA729400214A44 /* SeachSongViewController.h */,
+				F7EB41961CBA729400214A44 /* SeachSongViewController.m */,
 			);
 			name = LibraryMusic;
 			sourceTree = "<group>";
@@ -1799,6 +1804,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7EB41971CBA729400214A44 /* SeachSongViewController.m in Sources */,
 				FD8C2CC31C0C6A98007CE036 /* KyoDataTipsView.m in Sources */,
 				FD8C2D421C0C6AAA007CE036 /* NSString+Validate.m in Sources */,
 				FD8C2CC21C0C6A98007CE036 /* KyoDataTipsModel.m in Sources */,

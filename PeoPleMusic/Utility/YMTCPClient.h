@@ -49,7 +49,7 @@ typedef void(^CompletionBlock)(NSInteger result,NSDictionary *dict, NSError *err
 - (void)networkSendBookSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(CompletionBlock)completionBlock;
 
 /**< 8,删除歌曲 */
-- (void)networkSendDeleteSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(CompletionBlock)completionBlock;
+- (void)networkSendDeleteSongInfo:(SongInforModel *)songInfo  completionBlock:(CompletionBlock)completionBlock;
 
 /**< 11,停止播放 */
 - (void)networkSendStopPlaySongInfo:(CompletionBlock)completionBlock;

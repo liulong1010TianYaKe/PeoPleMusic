@@ -105,7 +105,7 @@
  *   点播歌曲
  *
  *  @param songInfo 需要点播的歌曲
- *  @param playType 点播的类型  0 点播  1是更新
+ *  @param playType 点播的类型  0 点播  1是更新 2强制更新重复点播
  */
 - (void)networkSendBookSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(CompletionBlock)completionBlock{
     [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG_FEEDBACK];
@@ -114,7 +114,7 @@
 
 
 /**< 删除歌曲 */
-- (void)networkSendDeleteSongInfo:(SongInforModel *)songInfo withPlayType:(NSInteger)playType completionBlock:(CompletionBlock)completionBlock{
+- (void)networkSendDeleteSongInfo:(SongInforModel *)songInfo completionBlock:(CompletionBlock)completionBlock{
     
     [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_DEL_SONG_FEEDBACK];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForDeleteSongInfo] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];

@@ -337,7 +337,7 @@
         <image name="icon_my_song_list" width="32" height="32"/>
         <image name="icon_pull_down" width="45" height="32"/>
         <image name="icon_song_item_chabo" width="18" height="18"/>
-        <image name="icon_song_item_delete" width="9" height="9"/>
+        <image name="icon_song_item_delete" width="18" height="18"/>
         <image name="icon_song_item_detail" width="18" height="18"/>
         <image name="icon_song_item_msg" width="18" height="18"/>
     </resources>

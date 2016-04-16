@@ -186,9 +186,10 @@
 
     
     MusicPlayView *musicPlayView = [[[NSBundle mainBundle] loadNibNamed:@"MusicPlayView" owner:self options:nil] objectAtIndex:0];
+    musicPlayView.type = self.style;
     musicPlayView.songlist = self.songList;
     musicPlayView.indexRow = indexPath.row;
-    musicPlayView.type = self.style;
+    
 
     CTBaseDialogView *dialogView = [KyoUtil showDialogView:musicPlayView fromFrame:[KyoUtil relativeFrameForScreenWithView:currentCell]];
     dialogView.isNoReposeWhenBackgroundTouched = YES;
