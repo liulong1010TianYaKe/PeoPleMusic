@@ -34,6 +34,7 @@
 		18EBC94E1C4FDC5900460546 /* MusicCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC94D1C4FDC5900460546 /* MusicCategoryModel.m */; };
 		18EBC9511C4FED8300460546 /* MusicCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9501C4FED8300460546 /* MusicCategoryViewController.m */; };
 		18EBC9541C4FFBBB00460546 /* MusicCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EBC9531C4FFBBB00460546 /* MusicCategoryCell.m */; };
+		F7524C881CC3A5A30020F2CB /* AutoScrollTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7524C861CC3A5A30020F2CB /* AutoScrollTextView.m */; };
 		F75B8A0E1CA7E31C00340C5E /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B8A0D1CA7E31C00340C5E /* AboutMeViewController.m */; };
 		F77D3CDD1CAD61D20065C57A /* DeviceMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77D3CDC1CAD61D20065C57A /* DeviceMusicViewController.m */; };
 		F77EE1A41CAFF7D7009B8A04 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77EE1A31CAFF7D7009B8A04 /* AddDeviceViewController.m */; };
@@ -291,6 +292,8 @@
 		18EBC9501C4FED8300460546 /* MusicCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCategoryViewController.m; sourceTree = "<group>"; };
 		18EBC9521C4FFBBB00460546 /* MusicCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCategoryCell.h; sourceTree = "<group>"; };
 		18EBC9531C4FFBBB00460546 /* MusicCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCategoryCell.m; sourceTree = "<group>"; };
+		F7524C861CC3A5A30020F2CB /* AutoScrollTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoScrollTextView.m; sourceTree = "<group>"; };
+		F7524C871CC3A5A30020F2CB /* AutoScrollTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoScrollTextView.h; sourceTree = "<group>"; };
 		F75B8A0C1CA7E31C00340C5E /* AboutMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutMeViewController.h; sourceTree = "<group>"; };
 		F75B8A0D1CA7E31C00340C5E /* AboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutMeViewController.m; sourceTree = "<group>"; };
 		F77D3CDB1CAD61D20065C57A /* DeviceMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMusicViewController.h; sourceTree = "<group>"; };
@@ -1210,6 +1213,8 @@
 		FD8C2BD01C0C6A98007CE036 /* AutoScrollLabel */ = {
 			isa = PBXGroup;
 			children = (
+				F7524C861CC3A5A30020F2CB /* AutoScrollTextView.m */,
+				F7524C871CC3A5A30020F2CB /* AutoScrollTextView.h */,
 				FD8C2BD11C0C6A98007CE036 /* AutoScrollView.h */,
 				FD8C2BD21C0C6A98007CE036 /* AutoScrollView.m */,
 			);
@@ -1917,6 +1922,7 @@
 				FD1442091CA40F830029060A /* IQNSArray+Sort.m in Sources */,
 				FD8C2D8E1C0C6ACA007CE036 /* KyoUtil.m in Sources */,
 				FD055D731C9D61A50054AABF /* TAAnimatedDotView.m in Sources */,
+				F7524C881CC3A5A30020F2CB /* AutoScrollTextView.m in Sources */,
 				FD8C2D411C0C6AAA007CE036 /* NSString+Size.m in Sources */,
 				FD055D0D1C9D3B820054AABF /* AFURLResponseSerialization.m in Sources */,
 				FD4338EC1C8876D100C9E1DF /* SDWebImagePrefetcher.m in Sources */,

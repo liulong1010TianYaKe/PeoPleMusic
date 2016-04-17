@@ -95,12 +95,6 @@
                                         <color key="textColor" red="1" green="0.68142311639999997" blue="0.36540326740000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkx-Lu-2w3">
-                                        <rect key="frame" x="100" y="167" width="9.5" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="1" green="0.49185049730000002" blue="0.31369338000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示：金币越多，点歌的歌曲越靠前哦～" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jch-bt-Vx0">
                                         <rect key="frame" x="30" y="210" width="198" height="13.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -146,6 +140,16 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XA5-gz-MuX">
+                                        <rect key="frame" x="105.5" y="164" width="40" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Dld-8G-iim"/>
+                                            <constraint firstAttribute="width" constant="40" id="bCt-0V-Rwp"/>
+                                        </constraints>
+                                        <color key="textColor" red="1" green="0.68142311639999997" blue="0.36540326740000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -158,13 +162,13 @@
                                     <constraint firstItem="5qk-4u-QdM" firstAttribute="top" secondItem="Uom-mu-ysw" secondAttribute="bottom" constant="15" id="Dwe-8b-1jo"/>
                                     <constraint firstItem="hBz-E3-p7K" firstAttribute="top" secondItem="bcD-bM-J30" secondAttribute="bottom" constant="30" id="EHY-ee-3LW"/>
                                     <constraint firstItem="ywx-nB-Gix" firstAttribute="top" secondItem="hBz-E3-p7K" secondAttribute="bottom" constant="15" id="EOa-MY-8gk"/>
+                                    <constraint firstItem="XA5-gz-MuX" firstAttribute="centerY" secondItem="bIM-R2-E7R" secondAttribute="centerY" id="ETL-E1-1S3"/>
                                     <constraint firstItem="jch-bt-Vx0" firstAttribute="leading" secondItem="HFY-DF-5pC" secondAttribute="leading" id="FxG-Fn-w5Z"/>
                                     <constraint firstItem="bIM-R2-E7R" firstAttribute="top" secondItem="ywx-nB-Gix" secondAttribute="bottom" constant="20" id="H8x-ti-rxM"/>
-                                    <constraint firstItem="dkx-Lu-2w3" firstAttribute="centerY" secondItem="bIM-R2-E7R" secondAttribute="centerY" id="KJ3-1z-9Mh"/>
                                     <constraint firstItem="cbU-Px-pfa" firstAttribute="leading" secondItem="HFY-DF-5pC" secondAttribute="leading" id="Lfx-4e-tKe"/>
                                     <constraint firstItem="HFY-DF-5pC" firstAttribute="top" secondItem="PAo-mq-tw4" secondAttribute="top" constant="40" id="PKh-5B-f3M"/>
                                     <constraint firstItem="Xd1-5B-Trf" firstAttribute="centerX" secondItem="PAo-mq-tw4" secondAttribute="centerX" id="SvV-hU-JMs"/>
-                                    <constraint firstItem="dkx-Lu-2w3" firstAttribute="leading" secondItem="bIM-R2-E7R" secondAttribute="trailing" constant="10" id="Two-bc-Q4H"/>
+                                    <constraint firstItem="XA5-gz-MuX" firstAttribute="leading" secondItem="bIM-R2-E7R" secondAttribute="trailing" constant="15" id="T6Y-Cn-iM5"/>
                                     <constraint firstItem="bcD-bM-J30" firstAttribute="top" secondItem="HFY-DF-5pC" secondAttribute="bottom" constant="10" id="Vj9-s7-VXY"/>
                                     <constraint firstItem="Uom-mu-ysw" firstAttribute="top" secondItem="jch-bt-Vx0" secondAttribute="bottom" constant="25" id="YWf-Xx-IaA"/>
                                     <constraint firstAttribute="trailing" secondItem="ILE-l8-svz" secondAttribute="trailing" constant="15" id="aEt-43-kW6"/>
@@ -195,9 +199,9 @@
                         <outlet property="btnDianBo" destination="ILE-l8-svz" id="z6b-7G-IIh"/>
                         <outlet property="lblAlbumName" destination="bcD-bM-J30" id="tcZ-Qv-Vwl"/>
                         <outlet property="lblCornNum" destination="EVr-8v-Fcg" id="HoD-xd-3Ue"/>
-                        <outlet property="lblNeedCorn" destination="dkx-Lu-2w3" id="ZqY-Jv-467"/>
                         <outlet property="lblSongName" destination="HFY-DF-5pC" id="Cr5-9L-sJD"/>
                         <outlet property="textView" destination="5qk-4u-QdM" id="hvJ-4y-2VP"/>
+                        <outlet property="txtlblCornNumb" destination="5qk-4u-QdM" id="KbU-J7-xyL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKF-m0-JaO" userLabel="First Responder" sceneMemberID="firstResponder"/>

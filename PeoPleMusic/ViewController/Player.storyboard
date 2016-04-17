@@ -233,6 +233,9 @@
                                 <state key="normal" title="开始点播">
                                     <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnStartPlaying:" destination="hIB-a0-FfY" eventType="touchUpInside" id="Gez-xC-z77"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂时没有点播信息~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cH4-Fe-8Ns">
                                 <rect key="frame" x="112" y="363" width="95" height="13.5"/>
@@ -254,6 +257,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="autoTextView" destination="eBm-0o-Ss4" id="VQV-eG-UzM"/>
                         <outlet property="btnStartPlay" destination="B6w-lG-8or" id="dk0-nr-X5M"/>
                         <outlet property="imgSong" destination="dXo-j0-08m" id="orC-Vh-gA6"/>
                         <outlet property="lblNoStartPlay" destination="cH4-Fe-8Ns" id="Odj-2o-qS3"/>
@@ -289,7 +293,7 @@
                                 <action selector="btnSongListTouchInside:" destination="hIB-a0-FfY" eventType="touchUpInside" id="bxs-Qi-F5p"/>
                             </connections>
                         </button>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总共：2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6x-bd-GY4">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总共：0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6x-bd-GY4">
                             <rect key="frame" x="30" y="190" width="43.5" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -308,6 +312,13 @@
                                 <constraint firstAttribute="width" secondItem="dXo-j0-08m" secondAttribute="height" multiplier="1:1" id="X3D-bw-nAs"/>
                             </constraints>
                         </imageView>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eBm-0o-Ss4" customClass="AutoScrollTextView">
+                            <rect key="frame" x="40" y="60" width="240" height="90.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="textColor" white="1" alpha="0.87" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -321,11 +332,15 @@
                         <constraint firstAttribute="bottom" secondItem="RKk-Pu-BaL" secondAttribute="bottom" id="GDX-GY-jpD"/>
                         <constraint firstAttribute="bottom" secondItem="zCG-Nw-g3r" secondAttribute="bottom" constant="8" id="Hqj-mi-CMN"/>
                         <constraint firstItem="h6x-bd-GY4" firstAttribute="leading" secondItem="5pb-eF-4hY" secondAttribute="leading" constant="30" id="LKL-nh-EOo"/>
+                        <constraint firstItem="3eu-d3-9cf" firstAttribute="top" secondItem="eBm-0o-Ss4" secondAttribute="bottom" constant="20" id="TtH-Je-3eC"/>
+                        <constraint firstItem="eBm-0o-Ss4" firstAttribute="top" secondItem="5pb-eF-4hY" secondAttribute="top" constant="60" id="bBV-o6-9gF"/>
                         <constraint firstAttribute="trailing" secondItem="zCG-Nw-g3r" secondAttribute="trailing" constant="15" id="bhA-sa-ehq"/>
                         <constraint firstItem="dXo-j0-08m" firstAttribute="centerX" secondItem="5pb-eF-4hY" secondAttribute="centerX" id="eht-nl-5We"/>
                         <constraint firstItem="RKk-Pu-BaL" firstAttribute="leading" secondItem="5pb-eF-4hY" secondAttribute="leading" id="ftb-1y-Ilf"/>
                         <constraint firstItem="jfu-z4-SFx" firstAttribute="top" secondItem="5pb-eF-4hY" secondAttribute="top" constant="25" id="hin-u0-9Q5"/>
                         <constraint firstItem="RKk-Pu-BaL" firstAttribute="top" secondItem="5pb-eF-4hY" secondAttribute="top" id="rTz-wj-FFj"/>
+                        <constraint firstItem="eBm-0o-Ss4" firstAttribute="leading" secondItem="5pb-eF-4hY" secondAttribute="leading" constant="40" id="wmP-Cl-KTL"/>
+                        <constraint firstAttribute="trailing" secondItem="eBm-0o-Ss4" secondAttribute="trailing" constant="40" id="yYK-he-A68"/>
                     </constraints>
                 </view>
             </objects>

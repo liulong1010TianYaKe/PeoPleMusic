@@ -16,6 +16,7 @@
 #import "SongDemandViewController.h"
 #import "YMBonjourHelp.h"
 #import "YMTCPClient.h"
+#import "AutoScrollTextView.h"
 
 #define KTopViewHeight  (210*kWindowHeight/667)
 
@@ -38,12 +39,14 @@
 
 @property (nonatomic, strong)  NSMutableArray *songList;
 
+@property (weak, nonatomic) IBOutlet AutoScrollTextView *autoTextView;
 
 // >>>>>>>>>>>>>>>>>>>>>>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 //>>>>>>>>>>>>>>>>>
 @property (weak, nonatomic) IBOutlet UIButton *btnStartPlay;  //开始点播
 @property (weak, nonatomic) IBOutlet UILabel *lblNoStartPlay;  // 暂时没有点播信息～
+- (IBAction)btnStartPlaying:(id)sender;
 
 @property (nonatomic, strong) NSArray *songModels;
 
@@ -124,6 +127,8 @@
     
     [self startAnimation];
     
+    [self.autoTextView startAutoScroll];
+    
 }
 
 - (void)setupData{
@@ -173,6 +178,8 @@
 //            UserInfoModel *userModel = [UserInfoModel objectWithKeyValues:userDict];
             dispatch_sync(dispatch_get_main_queue(), ^{
                 self.lblSongInfo.text = self.currentSongInfo.mediaName;
+                self.autoTextView.text = self.currentSongInfo.playMsg;
+                [self.autoTextView startAutoScroll];
                 
             });
            
@@ -198,8 +205,19 @@
                         model.isExtend = YES;
                     }
                 }
+                
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
+                    self.lblSongNumb.text = [NSString stringWithFormat:@"总共: %lu",(unsigned long)self.songList.count];
+                    if (self.songList.count == 0) {
+                        self.btnStartPlay.hidden = NO;
+                        self.lblNoStartPlay.hidden = NO;
+                    }else{
+                        self.btnStartPlay.hidden = YES;
+                        self.lblNoStartPlay.hidden = YES;
+                        
+                    }
+                    
                 });
             }
         }
@@ -439,5 +457,8 @@
         }
 
     }
+}
+- (IBAction)btnStartPlaying:(id)sender {
+    [[KyoUtil rootViewController] gotoLibrayMusicViewController];
 }
 @end
