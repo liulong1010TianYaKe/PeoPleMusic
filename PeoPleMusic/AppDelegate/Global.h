@@ -224,4 +224,9 @@ typedef NS_ENUM(NSInteger, MusiclistViewStyle) {
     MusiclistViewStyleNetwork,         // 网络音乐
 };
 
-
+//0 点播  1是更新 2强制更新重复点播
+typedef NS_ENUM(NSInteger, MusicSongPlayStyle) {
+    MusicSongPlayStylePlaying,          // 点播
+    MusicSongPlayStyleUpdate,         //  更新
+    MusicSongPlayStyleReplayPlaying   // 重复点播
+};

@@ -84,6 +84,8 @@
     }
 }
 
+
+
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
 //    self.lblPlaceHolder.hidden = YES;
     textView.layer.borderWidth = 2;

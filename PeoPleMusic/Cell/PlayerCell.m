@@ -51,15 +51,22 @@
         self.lblSongTitle.text = model.mediaName;
         self.lblSongerName.text = model.artist;
         self.lblJbNub.text = model.coin;
-        self.lblSerNumb.text = model.userId;
+        self.lblSerNumb.text = model.userInfor.userId;
         
-        if (model.isExtend) {
-            self.bottomView.hidden = NO;
-            self.imgDown.image = [UIImage imageNamed:@"icon_pull_down"];
+        
+        if ([model.userInfor.userId isEqualToString:[UIDevice getUUID]]) {
+            if (model.isExtend) {
+                self.bottomView.hidden = NO;
+                self.imgDown.image = [UIImage imageNamed:@"icon_pull_down"];
+            }else{
+                self.bottomView.hidden = YES;
+                self.imgDown.image = [UIImage imageNamed:@"icon_pull_up"];
+            }
         }else{
             self.bottomView.hidden = YES;
-            self.imgDown.image = [UIImage imageNamed:@"icon_pull_up"];
+            self.imgDown.hidden = YES;
         }
+       
      
     }
 }

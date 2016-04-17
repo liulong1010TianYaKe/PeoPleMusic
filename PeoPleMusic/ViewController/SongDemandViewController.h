@@ -11,6 +11,8 @@
 
 @interface SongDemandViewController : BasicsViewController
 
+@property (nonatomic, assign) MusicSongPlayStyle playStyle;
+
 @property (nonatomic, strong)SongInforModel *songInfoModel;
 + (SongDemandViewController *)createSongDemandViewController;
 @property (nonatomic, copy) void (^btnBackBlockOperation)();

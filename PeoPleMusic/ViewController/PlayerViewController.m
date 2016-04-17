@@ -192,6 +192,12 @@
             if (arr) {
                 NSArray *tempArr = [SongInforModel objectArrayWithKeyValuesArray:arr];
                 self.songList = [NSMutableArray arrayWithArray:tempArr];
+                
+                for (SongInforModel *model in self.songList) {
+                    if ([model.userInfor.userId isEqualToString:[UIDevice getUUID]]){
+                        model.isExtend = YES;
+                    }
+                }
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];
                 });
@@ -202,7 +208,48 @@
     }];
 }
 
-
+- (void)requestNetworkwithPlayStye:(MusicSongPlayStyle)style withSongInfo:(SongInforModel *)songInfoModel withMessage:(NSString *)message  withView:(UIView *)view{
+  
+    [self showLoadingHUD:nil];
+    [[YMTCPClient share] networkSendBookSongInfo:songInfoModel withPlayType:style completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+        
+        if (result == 0) { // 点播成功
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self hideLoadingHUD];
+                [self showMessageHUD:[NSString stringWithFormat:@"%@成功!",message] withTimeInterval:kShowMessageTime];
+                if (self.feedBackView == view){
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.feedBackView close];
+                    });
+                
+                }else if(self.chaoboView == view){
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.chaoboView close];
+                    });
+                }
+            });
+            
+            
+        }else {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self hideLoadingHUD];
+                [self showMessageHUD:[NSString stringWithFormat:@"%@!失败",message] withTimeInterval:kShowMessageTime];
+                if (self.feedBackView == view){
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.feedBackView close];
+                    });
+                    
+                }else if(self.chaoboView == view){
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.chaoboView close];
+                    });
+                }
+            });
+        }
+    }];
+    
+}
 
 #pragma mark -------------------
 #pragma mark -- UITableViewDataSource,UITableViewDelegate
@@ -235,12 +282,15 @@
 }
 
 - (void)playerCellTouchInside:(PlayerCell *)cell withBtnType:(PlayerCellBtnTypes)type{
+     __weak typeof(self) weakSelf = self;
     switch (type) {
 
         case PlayerCellBtnTypeDetail:{
             SongDemandViewController *VC = [SongDemandViewController createSongDemandViewController];
             VC.songInfoModel = cell.model;
-            VC.title = @"我的点播";
+            VC.playStyle = MusicSongPlayStyleUpdate;
+            VC.title = @"歌曲详细";
+            
             [self.navigationController pushViewController:VC animated:YES];
         
             break;
@@ -253,17 +303,27 @@
             [alertView show];
             break;
         }
-        case PlayerCellBtnTypeMsg:
+        case PlayerCellBtnTypeMsg:{
+           
            self.feedBackView = [FeedBackView createFeedBackViewFromWindow] ;
+           
+            self.feedBackView.btnSubmitBlockOperation = ^{
+                [weakSelf requestNetworkwithPlayStye:MusicSongPlayStyleUpdate withSongInfo:cell.model withMessage:@"更新留言" withView:weakSelf.feedBackView];
+            };
             [self.feedBackView show];
+        }
             break;
-        case PlayerCellBtnTypeChabo:
+        case PlayerCellBtnTypeChabo:{
             if (!self.chaoboView) {
                 self.chaoboView = [ChaboView createChaboViewFromWindow];
             }
+            self.chaoboView.btnSubmitBlockOperation= ^{
+                [weakSelf requestNetworkwithPlayStye:MusicSongPlayStyleUpdate withSongInfo:cell.model withMessage:@"插播" withView:weakSelf.chaoboView];
+            };
             
             [self.chaoboView show];
             break;
+        }
             
         default:
             break;
@@ -363,6 +423,7 @@
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self  hideLoadingHUD];
                         [self  showMessageHUD:@"删除歌曲成功!" withTimeInterval:kShowMessageTime];
+                        [self requestGetSonglist];
                     });
                 }else{
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -370,6 +431,7 @@
                         [self  showMessageHUD:@"删除歌曲失败!" withTimeInterval:kShowMessageTime];
                     });
                 }
+               
             }];
         }else if(alertView.tag == 2000){
 //            [KyoUtil rootViewController].tabBarViewController.selectedIndex = 0;

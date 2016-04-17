@@ -56,12 +56,13 @@
     
     self.songInfoModel.playMsg = self.textView.text;
     [self showLoadingHUD:@"点播歌曲"];
-    [[YMTCPClient share] networkSendBookSongInfo:self.songInfoModel withPlayType:0 completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+    [[YMTCPClient share] networkSendBookSongInfo:self.songInfoModel withPlayType:self.playStyle completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
         
         if (result == 0) { // 点播成功
             
             dispatch_sync(dispatch_get_main_queue(), ^{
                 [self hideLoadingHUD];
+                
                 [self showMessageHUD:@"点播成功！" withTimeInterval:kShowMessageTime];
             });
             

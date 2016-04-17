@@ -49,18 +49,8 @@
         return;
     }
     self.frame = CGRectMake(0, kWindowHeight, kWindowWidth, kWindowHeight);
-    
-    if(self.songList.count > 8){
-        self.layoutBottViewHeight.constant =  44 + 44*8;
-        
-    }else{
-       self.layoutBottViewHeight.constant = 44 + 44*self.songList.count;
-        self.tableView.scrollEnabled = NO;
-    }
-  
-//    self.tableView.bounces = NO;
-    
-    [self setNeedsLayout];
+
+    [self refreshView];
 //    [[KyoUtil getRootViewController].view addSubview:self];
     [[KyoUtil getRootViewController].view addSubview:self];
     
@@ -69,6 +59,21 @@
     }];
     
     
+}
+
+- (void)refreshView{
+    
+    if(self.songList.count > 8){
+        self.layoutBottViewHeight.constant =  44 + 44*8;
+        
+    }else{
+        self.layoutBottViewHeight.constant = 44 + 44*self.songList.count;
+        self.tableView.scrollEnabled = NO;
+    }
+    
+    //    self.tableView.bounces = NO;
+    
+    [self setNeedsLayout];
 }
 
 - (void)close{
@@ -121,6 +126,7 @@
         SongDemandViewController *songVC = [SongDemandViewController createSongDemandViewController];
         songVC.title = @"歌曲点播";
         __weak typeof(self) weakSelf = self;
+        songVC.songInfoModel = self.songList[indexPath.row];
         songVC.btnBackBlockOperation = ^{
             if (weakSelf.reShowBlockOperation) {
                 weakSelf.reShowBlockOperation();
@@ -137,6 +143,7 @@
     
         
         [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG withData:self.songList];
+        [self refreshView];
         if (self.songList.count > 0) {
             [self.tableView reloadData];
         }else{
