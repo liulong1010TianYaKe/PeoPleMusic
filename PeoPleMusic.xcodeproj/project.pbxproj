@@ -45,6 +45,8 @@
 		F780D2331C9EA18B00036C6C /* MusicPlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F780D2321C9EA18B00036C6C /* MusicPlayView.xib */; };
 		F780D23B1C9EEFA700036C6C /* YMAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F780D23A1C9EEFA700036C6C /* YMAudioPlayer.m */; };
 		F780D23F1C9EF05900036C6C /* YMBonjourHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = F780D23E1C9EF05900036C6C /* YMBonjourHelp.m */; };
+		F78279F51CC285C00013101A /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F78279F41CC285C00013101A /* RecordCell.m */; };
+		F78279F81CC33CA30013101A /* AbsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F78279F71CC33CA30013101A /* AbsListModel.m */; };
 		F7DEB65A1CA782A900BBDC9E /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DEB6591CA782A900BBDC9E /* UserCenterViewController.m */; };
 		F7DEB65C1CA78B9A00BBDC9E /* UserCenter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7DEB65B1CA78B9A00BBDC9E /* UserCenter.storyboard */; };
 		F7EAC9571C8A997400A2623F /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9561C8A997400A2623F /* UserInfoModel.m */; };
@@ -310,6 +312,10 @@
 		F780D23A1C9EEFA700036C6C /* YMAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMAudioPlayer.m; sourceTree = "<group>"; };
 		F780D23D1C9EF05900036C6C /* YMBonjourHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMBonjourHelp.h; sourceTree = "<group>"; };
 		F780D23E1C9EF05900036C6C /* YMBonjourHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMBonjourHelp.m; sourceTree = "<group>"; };
+		F78279F31CC285C00013101A /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
+		F78279F41CC285C00013101A /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
+		F78279F61CC33CA30013101A /* AbsListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbsListModel.h; sourceTree = "<group>"; };
+		F78279F71CC33CA30013101A /* AbsListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbsListModel.m; sourceTree = "<group>"; };
 		F7DEB6581CA782A900BBDC9E /* UserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterViewController.h; sourceTree = "<group>"; };
 		F7DEB6591CA782A900BBDC9E /* UserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterViewController.m; sourceTree = "<group>"; };
 		F7DEB65B1CA78B9A00BBDC9E /* UserCenter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserCenter.storyboard; sourceTree = "<group>"; };
@@ -715,6 +721,8 @@
 				FDBB2BBD1C51109D00C8E7B1 /* MusicPlayerCell.h */,
 				FDBB2BBE1C51109D00C8E7B1 /* MusicPlayerCell.m */,
 				FDBB2BBF1C51109D00C8E7B1 /* MusicPlayerCell.xib */,
+				F78279F31CC285C00013101A /* RecordCell.h */,
+				F78279F41CC285C00013101A /* RecordCell.m */,
 			);
 			name = LibraryMusic;
 			sourceTree = "<group>";
@@ -821,6 +829,8 @@
 				18EBC94D1C4FDC5900460546 /* MusicCategoryModel.m */,
 				FDBB2BBA1C50FB1100C8E7B1 /* OnlineMusicModel.h */,
 				FDBB2BBB1C50FB1100C8E7B1 /* OnlineMusicModel.m */,
+				F78279F61CC33CA30013101A /* AbsListModel.h */,
+				F78279F71CC33CA30013101A /* AbsListModel.m */,
 			);
 			name = LibraryMusic;
 			sourceTree = "<group>";
@@ -1912,6 +1922,7 @@
 				FD4338EC1C8876D100C9E1DF /* SDWebImagePrefetcher.m in Sources */,
 				FD14420C1CA40F830029060A /* IQUIView+Hierarchy.m in Sources */,
 				FD8C2D4D1C0C6AAA007CE036 /* UIView+Extension.m in Sources */,
+				F78279F81CC33CA30013101A /* AbsListModel.m in Sources */,
 				FD055D341C9D3CF40054AABF /* MBProgressHUD+MJ.m in Sources */,
 				FDA43B571C60872700CC0E75 /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				FD055CE51C9D3A4D0054AABF /* SSKeychainQuery.m in Sources */,
@@ -1953,6 +1964,7 @@
 				189E25B41CA691E300653163 /* YMTCPClient.m in Sources */,
 				FD14420A1CA40F830029060A /* IQUIScrollView+Additions.m in Sources */,
 				18EBC93C1C4FD72700460546 /* PlayListView.m in Sources */,
+				F78279F51CC285C00013101A /* RecordCell.m in Sources */,
 				F7EAC9661C8AD10700A2623F /* GCDAsyncSocket.m in Sources */,
 				FD8C2D891C0C6ACA007CE036 /* NSObject+Easy.m in Sources */,
 				FD8C2CE81C0C6A98007CE036 /* RECommonFunctions.m in Sources */,

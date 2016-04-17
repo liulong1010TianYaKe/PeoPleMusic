@@ -8,6 +8,7 @@
 
 #import "BasicsViewController.h"
 
-@interface SeachSongViewController : BasicsViewController
 
+@interface SeachSongViewController : BasicsViewController
++ (SeachSongViewController *)createSeachSongViewController;
 @end

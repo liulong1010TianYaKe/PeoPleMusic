@@ -58,8 +58,8 @@
 
 
 @end
-
-@interface UserCenterViewController ()
+@import StoreKit;
+@interface UserCenterViewController ()<SKStoreProductViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *lblCoreNumb; // 金币
 @property (weak, nonatomic) IBOutlet UILabel *lblMyDev;  // 我的音响
@@ -91,6 +91,27 @@
     
 }
 
+
+- (void)openAppWithIndentifier:(NSString *)appId{
+    BOOL openInApp = NO;
+    if (openInApp) {
+        [self showLoadingHUD:nil];
+        SKStoreProductViewController *storeProductVC = [[SKStoreProductViewController alloc] init];
+        storeProductVC.delegate = self;
+        
+        NSDictionary *dict = [NSDictionary dictionaryWithObject:appId forKey:SKStoreProductParameterITunesItemIdentifier];
+        [storeProductVC loadProductWithParameters:dict completionBlock:^(BOOL result, NSError * _Nullable error) {
+            if (result) {
+                [self presentViewController:storeProductVC animated:YES completion:nil];
+            }
+        }];
+        
+    }else{
+        NSString *urlStr = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/cn/app/id%@?mt=8",appId];
+        NSURL *url = [NSURL URLWithString:urlStr];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
 - (void)setupData{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(socketDidConnect:) name:YNotificationName_SOCKETDIDCONNECT object:nil];  //连接音响通知
@@ -102,7 +123,7 @@
     if ([identifier isEqualToString:@"SegueMyDevice"] ||
         [identifier isEqualToString:@"SegueManage"]||
         [identifier isEqualToString:@"SegueControl"]) {
-        if ([YMTCPClient share].isConnect) {
+        if (![YMTCPClient share].isConnect) {
             
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未连接音响设备，确定添加吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
             [alertView show];
@@ -145,6 +166,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 2 && indexPath.row == 0) { // 给我打分
+         [self openAppWithIndentifier:@"1038333077"];
+    }
+    
 }
 - (IBAction)switchChangeValue:(UISwitch *)sender {
 

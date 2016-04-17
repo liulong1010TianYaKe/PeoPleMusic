@@ -7,8 +7,9 @@
 //
 
 #import "SetHelperViewController.h"
+#import "SDCycleScrollView.h"
 
-@interface SetHelperViewController ()
+@interface SetHelperViewController ()<SDCycleScrollViewDelegate>
 
 @end
 
@@ -25,6 +26,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSArray *imageNames = @[@"icon_help_one",
+                            @"icon_help_two",
+                            @"icon_help_three",
+                            @"icon_help_four",
+                            @"icon_help_five"
+                            ];
+    
+
+    
+    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 20, kWindowWidth, kWindowHeight-20) imageNamesGroup:imageNames];
+   
+    cycleScrollView.delegate = self;
+    cycleScrollView.autoScroll =  NO;
+    cycleScrollView.infiniteLoop = NO;
+    cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+    cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+    cycleScrollView.pageControlDotSize = CGSizeMake(15, 15);
+    
+    [self.view addSubview:cycleScrollView];
+
+    
 }
 
 - (void)setupView{

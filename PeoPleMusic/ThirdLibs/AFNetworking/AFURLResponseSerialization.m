@@ -243,6 +243,12 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     NSError *serializationError = nil;
     @autoreleasepool {
         NSString *responseString = [[NSString alloc] initWithData:data encoding:stringEncoding];
+        
+       
+        responseString = [KyoUtil changeJsonStringToTrueJsonString:responseString];
+        
+//        [KyoUtil changeJsonStringToDictionary:[KyoUtil changeJsonStringToTrueJsonString:responseString]];
+        
         if (responseString && ![responseString isEqualToString:@" "]) {
             // Workaround for a bug in NSJSONSerialization when Unicode character escape codes are used instead of the actual character
             // See http://stackoverflow.com/a/12843465/157142
@@ -250,7 +256,9 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 
             if (data) {
                 if ([data length] > 0) {
+                    
                     responseObject = [NSJSONSerialization JSONObjectWithData:data options:self.readingOptions error:&serializationError];
+
                 } else {
                     return nil;
                 }

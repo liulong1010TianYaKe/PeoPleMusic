@@ -25,19 +25,10 @@
 - (void)awakeFromNib{
     [super awakeFromNib];
     self.searBar.delegate = self;
-//    UIImageView *leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_search"]];
-//    leftView.bounds = CGRectMake(0, 0, 30, 30);
-//    self.txtInput.leftView =leftView;
-//    self.txtInput.leftViewMode = UITextFieldViewModeAlways;
-//    self.backgroundColor = [UIColor clearColor];
+
 }
 
 
-//+ (LibraryMusicHeaderView *)createLibraryMusiceHeaderView:(UITableView *)tableView withDelegate:(id<LibraryMusicHeaderViewDelegate>)delegate{
-//    tableView.bounds = CGRectMake(0, 0, kWindowWidth, kWindowHeight);
-//    LibraryMusicHeaderView *libView =  [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([LibraryMusicHeaderView class]) owner:tableView options:nil] firstObject];
-//    libView.delegate = delegate;
-//}
 
 // 本地下载
 - (IBAction)btnLoadTouchInside:(id)sender {
@@ -52,9 +43,11 @@
     [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
 }
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    SeachSongViewController *controller = [[SeachSongViewController alloc] init];
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+    SeachSongViewController *controller = [SeachSongViewController createSeachSongViewController];
     controller.title = @"搜索歌曲";
     [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
+    return NO;
 }
+
 @end

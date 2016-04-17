@@ -293,9 +293,6 @@
                                                 <constraint firstItem="Zg3-xt-BIL" firstAttribute="centerY" secondItem="pXM-Ft-xbx" secondAttribute="centerY" id="cSf-l1-zuQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="gAs-fH-ZaN" kind="push" id="3Sa-M6-vq3"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="fXa-th-wGv">
                                         <rect key="frame" x="0.0" y="456" width="320" height="44"/>
@@ -413,29 +410,10 @@
             </objects>
             <point key="canvasLocation" x="630" y="794"/>
         </scene>
-        <!--给我打分-->
-        <scene sceneID="3Zo-Xi-6uh">
-            <objects>
-                <viewController title="给我打分" id="gAs-fH-ZaN" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="A3p-EE-VGG"/>
-                        <viewControllerLayoutGuide type="bottom" id="d6h-bd-sGe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0QR-n1-U9e">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="给我打分" id="HfY-Hq-P3Q"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="45S-4u-slw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="264" y="1458"/>
-        </scene>
         <!--操作指南-->
         <scene sceneID="hna-Cv-ONZ">
             <objects>
-                <viewController title="操作指南" id="mwI-PZ-O6z" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SetHelperViewController" title="操作指南" id="mwI-PZ-O6z" customClass="SetHelperViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fQJ-bk-EiG"/>
                         <viewControllerLayoutGuide type="bottom" id="fqQ-Y4-wM9"/>
@@ -463,28 +441,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo_76" translatesAutoresizingMaskIntoConstraints="NO" id="z68-EM-bZV">
-                                <rect key="frame" x="130" y="99" width="60" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_76" translatesAutoresizingMaskIntoConstraints="NO" id="z68-EM-bZV">
+                                <rect key="frame" x="130" y="55" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="LGw-dp-lWF"/>
                                     <constraint firstAttribute="width" secondItem="z68-EM-bZV" secondAttribute="height" multiplier="1:1" id="cYQ-Pe-AXz"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="人人点歌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwT-j8-QJL">
-                                <rect key="frame" x="136" y="169" width="48" height="14.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人人点歌" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AwT-j8-QJL">
+                                <rect key="frame" x="136" y="125" width="48" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyp-oC-qtn">
-                                <rect key="frame" x="0.0" y="213" width="320" height="1"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyp-oC-qtn">
+                                <rect key="frame" x="0.0" y="169" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="nlo-XY-2eS"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJH-Of-NKo">
-                                <rect key="frame" x="30" y="224" width="260" height="54.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJH-Of-NKo">
+                                <rect key="frame" x="30" y="180" width="260" height="54.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="   ">
                                         <attributes>
@@ -503,26 +481,26 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="如果您的店铺有需求，可联系我们的客服：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sB1-bn-q3k">
-                                <rect key="frame" x="30" y="298" width="247" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如果您的店铺有需求，可联系我们的客服：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sB1-bn-q3k">
+                                <rect key="frame" x="30" y="254" width="247" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="客户 QQ : 2724730997" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Zs-1p-4Ll">
-                                <rect key="frame" x="30" y="334" width="138.5" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客户 QQ : 2724730997" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Zs-1p-4Ll">
+                                <rect key="frame" x="30" y="290" width="138.5" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="联系电话 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7N-aH-L0C">
-                                <rect key="frame" x="30" y="370" width="68.5" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7N-aH-L0C">
+                                <rect key="frame" x="30" y="326" width="68.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6t-FR-2O0">
-                                <rect key="frame" x="106.5" y="364" width="99" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6t-FR-2O0">
+                                <rect key="frame" x="106.5" y="320" width="99" height="30"/>
                                 <state key="normal" title="18682429955"/>
                                 <connections>
                                     <action selector="btnCallTouchInside:" destination="Eaw-49-CZ3" eventType="touchUpInside" id="IfL-KG-kJW"/>
@@ -575,10 +553,10 @@
                                     <constraint firstAttribute="height" constant="210" id="uov-yK-ON4"/>
                                 </constraints>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="content_icon_logo_2_normal" translatesAutoresizingMaskIntoConstraints="NO" id="uls-Sf-lUW">
-                                <rect key="frame" x="135" y="80" width="50" height="50"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="uls-Sf-lUW">
+                                <rect key="frame" x="120" y="65" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="QWG-xT-q4l"/>
+                                    <constraint firstAttribute="width" constant="80" id="QWG-xT-q4l"/>
                                     <constraint firstAttribute="width" secondItem="uls-Sf-lUW" secondAttribute="height" multiplier="1:1" id="zAY-2f-tI9"/>
                                 </constraints>
                             </imageView>
@@ -1168,7 +1146,6 @@
     <resources>
         <image name="bg_song_header" width="1000" height="684"/>
         <image name="button_0_0_0_2" width="1" height="1"/>
-        <image name="content_icon_logo_2_normal" width="36" height="36"/>
         <image name="icon_device_select_item" width="48" height="48"/>
         <image name="icon_jinbi" width="76" height="76"/>
         <image name="icon_my_device" width="76" height="76"/>
@@ -1182,11 +1159,12 @@
         <image name="icon_song_msg" width="38" height="38"/>
         <image name="icon_speaker_controll" width="76" height="76"/>
         <image name="icon_speaker_manager" width="76" height="76"/>
+        <image name="logo" width="300" height="300"/>
         <image name="logo_76" width="56" height="56"/>
         <image name="nav_icon_back_normal" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8yn-zj-9HB"/>
-        <segue reference="bEf-oJ-h2P"/>
+        <segue reference="3VV-Lg-yQQ"/>
+        <segue reference="Yfj-Mp-vsf"/>
     </inferredMetricsTieBreakers>
 </document>

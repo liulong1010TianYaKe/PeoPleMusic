@@ -95,6 +95,12 @@
 }
 
 - (void)setupView{
+    self.imgSong.layer.cornerRadius = self.imgSong.bounds.size.height/2;
+    
+    
+    self.imgSong.layer.borderColor = [UIColor colorWithWhite:255 alpha:0.8].CGColor;
+    self.imgSong.layer.borderWidth = 1;
+    self.imgSong.layer.masksToBounds = YES;
     [self.view addSubview:self.topView];
      self.topView.translatesAutoresizingMaskIntoConstraints = NO;
     

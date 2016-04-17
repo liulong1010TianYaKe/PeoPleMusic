@@ -117,11 +117,11 @@
         
         //开启允许https模式
         AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-        securityPolicy.allowInvalidCertificates = YES;
+        securityPolicy.allowInvalidCertificates = NO;
         _sharedClient.httpSessionManager.securityPolicy = securityPolicy;
         _sharedClient.urlSessionManager.securityPolicy = securityPolicy;
         
-        [[NSNotificationCenter defaultCenter] addObserver:_sharedClient selector:@selector(loginSuccessNotification:) name:kNotificationName_LoginSuccess object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:_sharedClient selector:@selector(loginSuccessNotification:) name:kNotificationName_LoginSuccess object:nil];
     });
     
     return _sharedClient;
@@ -249,6 +249,23 @@
     }
 }
 
++ (BOOL)checkDictFromNetwork:(NSDictionary *)dict withKyoRefreshControl:(KyoRefreshControl *)kyoRefreshControl{
+    kyoRefreshControl.errorMsg = kKyoRefreshControlErrorMsgDefault;
+    kyoRefreshControl.errorState = nil;
+    
+    if (dict && dict.count > 0) {
+        return YES;
+    }else{
+        id errorMsg = [dict objectForKey:kNetworkKeyMsg];
+        if (!errorMsg || errorMsg == [NSNull null]) {
+            errorMsg = @"操作失败，请稍后重试.";
+        }
+        kyoRefreshControl.errorMsg = errorMsg;
+        kyoRefreshControl.errorState = [dict objectForKey:kNetworkKeyState] ? [[dict objectForKey:kNetworkKeyState] stringValue] : nil;
+        
+        return NO;
+    }
+}
 #pragma mark --------------------
 #pragma mark - Network
 

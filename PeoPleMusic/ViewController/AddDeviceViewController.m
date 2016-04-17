@@ -64,6 +64,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.imgCycle.layer.cornerRadius = self.imgCycle.bounds.size.width/2;
+    self.imgCycle.layer.masksToBounds = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView.scrollEnabled = NO;
     self.tableView.tableFooterView = [[UIView alloc] init];

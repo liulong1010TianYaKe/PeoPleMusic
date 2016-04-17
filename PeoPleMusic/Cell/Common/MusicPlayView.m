@@ -78,6 +78,8 @@
         self.aMusic = mediaUrl;
         
     }
+    
+    KyoLog(@"%@",self.aMusic);
    
     
 }

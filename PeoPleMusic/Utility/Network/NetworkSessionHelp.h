@@ -84,7 +84,7 @@ static BOOL reloginAlertMarking;    /**< 是否需要重新登录(比如session�
 + (BOOL)checkDataFromNetwork:(NSDictionary *)dict showAlertView:(BOOL)isShow;
 + (BOOL)checkDataFromNetwork:(NSDictionary *)dict withKyoRefreshControl:(KyoRefreshControl *)kyoRefreshControl;
 
-
++ (BOOL)checkDictFromNetwork:(NSDictionary *)dict withKyoRefreshControl:(KyoRefreshControl *)kyoRefreshControl;
 // Post
 - (KyoURLSessionTask *)postNetwork:(NSDictionary *)params
                            serverAPIUrl:(NSString *)serverAPIUrl
