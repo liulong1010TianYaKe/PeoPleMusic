@@ -179,7 +179,11 @@
             dispatch_sync(dispatch_get_main_queue(), ^{
                 self.lblSongInfo.text = self.currentSongInfo.mediaName;
                 self.autoTextView.text = self.currentSongInfo.playMsg;
-                [self.autoTextView startAutoScroll];
+                if(![self.currentSongInfo.playMsg isEqualToString:@""]){
+                    [self.autoTextView startAutoScroll];
+                }else{
+                    [self.autoTextView stopAutoScroll];
+                }
                 
             });
            
