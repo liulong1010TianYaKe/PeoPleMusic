@@ -7,8 +7,7 @@
 //
 
 #import "UserInfoModel.h"
-#import "UIDevice-Hardware.h"
-#import "NSString+IPAddress.h"
+
 
 @implementation UserInfoModel
 + (NSDictionary *)getUserInfoDict:(BOOL)isAdmin{

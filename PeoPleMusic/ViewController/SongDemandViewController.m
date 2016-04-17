@@ -65,6 +65,11 @@
                 [self showMessageHUD:@"点播成功！" withTimeInterval:kShowMessageTime];
             });
             
+            NSArray *teamArr = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG];
+            NSMutableArray *arr = [NSMutableArray arrayWithArray:teamArr];
+            [arr addObject:self.songInfoModel];
+            
+            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG withData:arr];
            
         }else if(result==3){ // 重复点播
             

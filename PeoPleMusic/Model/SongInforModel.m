@@ -26,10 +26,16 @@
 
 - (NSString *)getMusic:(NSString *)musicID{
     
+    NSString *str1 =  nil;
+    if ([musicID containsString:@"MUSIC"]) {
+        str1 = musicID;
+    }else{
+        str1 = [NSString stringWithFormat:@"MUSIC_%@",musicID];
+    }
     
     NSString *downUrl = nil;
     
-    NSString *midUrl = [NSString stringWithFormat:@"http://player.kuwo.cn/webmusic/st/getNewMuiseByRid?rid=MUSIC_%@", musicID];
+    NSString *midUrl = [NSString stringWithFormat:@"http://player.kuwo.cn/webmusic/st/getNewMuiseByRid?rid=%@", str1];
     
     NSString *title=[NSString stringWithContentsOfURL:[NSURL URLWithString:midUrl] encoding:NSUTF8StringEncoding error:nil];
     
@@ -92,7 +98,12 @@
 }
 
 + (NSDictionary *)getSongInfoDictWtihSongInfo:(SongInforModel *)songInfo{
-    
+    UserInfoModel *model = [[UserInfoModel alloc] init];
+    model.isAdmin = NO;
+    model.userIp = [NSString localWiFiIPAddressAndPort];
+    model.userName = [NSString stringWithFormat:@"%@%@%@",[UIDevice currentDevice].name,[UIDevice currentDevice].systemName,[UIDevice currentDevice].systemVersion];
+    model.userId = [UIDevice getUUID];
+    songInfo.userInfor = model;
     return [songInfo keyValues];
 }
 @end

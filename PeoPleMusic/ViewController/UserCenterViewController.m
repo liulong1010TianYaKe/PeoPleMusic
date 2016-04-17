@@ -10,6 +10,7 @@
 #import "AddDeviceViewController.h"
 
 
+
 @interface UserCenterSectionHeaderView : UIView
 @property (nonatomic, strong) NSString *title;
 
@@ -87,11 +88,14 @@
     self.title = @"个人中心";
     
     self.tableView.tableFooterView = [[UIView alloc] init];
-    _isConnect = NO;
+  
     
 }
 
-
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self refreshViews];
+}
 - (void)openAppWithIndentifier:(NSString *)appId{
     BOOL openInApp = NO;
     if (openInApp) {
@@ -143,9 +147,11 @@
 #pragma mark - Method
 - (void)refreshViews{
     
-    if (_isConnect) {
+    if (![YMTCPClient share].isConnect) {
         self.lblMyDev.text = @"未连接设备";
     }else{
+        DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
+        self.lblMyDev.text = deviceInfo.name;
     }
 }
 
@@ -190,12 +196,12 @@
 
 //连接音响通知
 - (void)socketDidConnect:(NSNotification *)noti{
-    _isConnect = YES;
+
     [self refreshViews];
 }
 //断开音响连接通知
 - (void)socketDidDisconnect:(NSNotification *)noti{
-    _isConnect = NO;
+
     [self refreshViews];
 }
 @end

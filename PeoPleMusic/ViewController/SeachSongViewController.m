@@ -91,6 +91,10 @@
     NSLog(@"%@",urlString);
     
     __block NSDictionary *tempDict = nil;
+    
+
+   
+    
     [[NetworkSessionHelp shareNetwork] postNetwork:nil serverAPIUrl:urlString completionBlock:^(NSDictionary *dict, NetworkResultModel *resultModel) {
         tempDict = dict;
         if ([NetworkSessionHelp checkDictFromNetwork:dict withKyoRefreshControl:self.kyoRefreshControl]) {
@@ -117,7 +121,7 @@
         
     } finishedBlock:^(NSError *error) {
         
-        [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore:index ==0 ? YES : NO withHadData:tempDict.count > 0 ? YES : NO withError:error];
+        [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore:index ==0 ? YES : NO withHadData:tempDict ? YES : NO withError:error];
     }];
 }
 #pragma mark --------------------
@@ -240,14 +244,12 @@
 
 //刷新
 - (void)kyoRefreshDidTriggerRefresh:(KyoRefreshControl *)refreshControl {
-   
-    
       [self requestNetwork:currentSearchString withIndex:0];
 }
 
 //加载下一页
 - (void)kyoRefreshLoadMore:(KyoRefreshControl *)refreshControl loadPage:(NSInteger)index {
-    [self requestNetwork:[self.searchBar.text trim] withIndex:index + 1];
+    [self requestNetwork:currentSearchString withIndex:index + 1];
 }
 
 @end

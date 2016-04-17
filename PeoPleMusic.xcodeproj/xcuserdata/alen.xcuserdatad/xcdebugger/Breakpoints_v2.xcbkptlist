@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PeoPleMusic/Utility/Network/NetworkSessionHelp.m"
-            timestampString = "482561837.128447"
+            timestampString = "482574849.217292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "+checkDataFromNetwork:withKyoRefreshControl:"
             landmarkType = "5">
          </BreakpointContent>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/ViewController/UserCenterViewController.m"
-            timestampString = "482563916.002848"
+            filePath = "PeoPleMusic/Model/AbsListModel.m"
+            timestampString = "482571855.393067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "-shouldPerformSegueWithIdentifier:sender:"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "+getMusicWithMusicULRString:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/ViewController/UserCenterViewController.m"
-            timestampString = "482563923.097517"
+            filePath = "PeoPleMusic/Utility/Network/NetworkSessionHelp.m"
+            timestampString = "482574415.166549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "-shouldPerformSegueWithIdentifier:sender:"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "+Network:completionBlock:errorBlock:finishedBlock:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/ViewController/SeachSongViewController.m"
-            timestampString = "482567449.227294"
+            filePath = "PeoPleMusic/ViewController/Root/RootViewController.m"
+            timestampString = "482577879.979896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-requestNetwork:withIndex:"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-startConnectSongServer"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[RootViewController startConnectSongServer]"
+                  moduleName = "PeoPleMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ViewController/Root/RootViewController.m"
+                  timestampString = "482578777.516479"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "31">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__44-[RootViewController startConnectSongServer]_block_invoke"
+                  moduleName = "PeoPleMusic"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ViewController/Root/RootViewController.m"
+                  timestampString = "482578777.516855"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PeoPleMusic/Utility/YMBonjourHelp.m"
+            timestampString = "482575680.514039"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-netServiceDidResolveAddress:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

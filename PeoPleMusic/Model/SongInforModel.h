@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserInfoModel.h"
 
 
 
@@ -33,6 +34,7 @@
 @property (nonatomic, strong) NSString *listen_href; // 歌曲地址
 
 
+@property (nonatomic, strong) UserInfoModel *userInfor;
 
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, assign) BOOL isExtend; //  是否展开

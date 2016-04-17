@@ -134,6 +134,9 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
         [self.songList removeObjectAtIndex:deleteRow];
+    
+        
+        [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG withData:self.songList];
         if (self.songList.count > 0) {
             [self.tableView reloadData];
         }else{

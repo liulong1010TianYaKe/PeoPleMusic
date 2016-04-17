@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIDevice-Hardware.h"
+#import "NSString+IPAddress.h"
 
 @interface UserInfoModel : NSObject
 @property (nonatomic, assign) BOOL isAdmin; // 管理员权限 必须

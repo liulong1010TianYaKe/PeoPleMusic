@@ -244,10 +244,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     @autoreleasepool {
         NSString *responseString = [[NSString alloc] initWithData:data encoding:stringEncoding];
         
-       
         responseString = [KyoUtil changeJsonStringToTrueJsonString:responseString];
-        
-//        [KyoUtil changeJsonStringToDictionary:[KyoUtil changeJsonStringToTrueJsonString:responseString]];
         
         if (responseString && ![responseString isEqualToString:@" "]) {
             // Workaround for a bug in NSJSONSerialization when Unicode character escape codes are used instead of the actual character

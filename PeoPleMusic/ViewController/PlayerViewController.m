@@ -249,6 +249,7 @@
             NSString *message = [NSString stringWithFormat:@"是否删除-%@?",cell.model.mediaName];
             deleteSongInfo = cell.model;
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"删除歌曲" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alertView.tag =  1000;
             [alertView show];
             break;
         }
@@ -293,12 +294,18 @@
         
         };
     }
-    if (!self.songList) {
-        self.playListView.songList = [NSMutableArray arrayWithObjects:self.currentSongInfo,nil];
+    NSArray *teamArr = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG];
+    
+  
+    if (teamArr.count > 0) {
+          self.playListView.songList = [NSMutableArray arrayWithArray:teamArr];
+        [self.playListView show];
     }else{
-        self.playListView.songList = [NSMutableArray arrayWithArray:self.songList];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"亲，未有点播点播纪录～" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去点播", nil];
+        alertView.tag = 2000;
+        [alertView show];
     }
-    [self.playListView show];
+
   
 }
 
@@ -349,20 +356,26 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-        [self  showLoadingHUD:@"删除歌曲"];
-        [[YMTCPClient share] networkSendDeleteSongInfo:deleteSongInfo completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
-            if(result == 0){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                  [self  hideLoadingHUD];
-                  [self  showMessageHUD:@"删除歌曲成功!" withTimeInterval:kShowMessageTime];
-                });
-            }else{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self  hideLoadingHUD];
-                    [self  showMessageHUD:@"删除歌曲失败!" withTimeInterval:kShowMessageTime];
-                });
-            }
-        }];
+        if (alertView.tag == 1000) {
+            [self  showLoadingHUD:@"删除歌曲"];
+            [[YMTCPClient share] networkSendDeleteSongInfo:deleteSongInfo completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+                if(result == 0){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self  hideLoadingHUD];
+                        [self  showMessageHUD:@"删除歌曲成功!" withTimeInterval:kShowMessageTime];
+                    });
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self  hideLoadingHUD];
+                        [self  showMessageHUD:@"删除歌曲失败!" withTimeInterval:kShowMessageTime];
+                    });
+                }
+            }];
+        }else if(alertView.tag == 2000){
+//            [KyoUtil rootViewController].tabBarViewController.selectedIndex = 0;
+            [[KyoUtil rootViewController] gotoLibrayMusicViewController];
+        }
+
     }
 }
 @end

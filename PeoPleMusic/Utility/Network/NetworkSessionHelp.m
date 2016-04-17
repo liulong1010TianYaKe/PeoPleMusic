@@ -106,6 +106,44 @@
     [sessionTask resume];
 }
 
++ (void)Network:(NSString *)urlString completionBlock:(void (^)(NSDictionary *,NSInteger ))completionBlock errorBlock:(void (^)(NSError *))errorBlock finishedBlock:(void (^)(NSError *error))finishedBlock {
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    NSURLSessionTask *sessionTask  = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSHTTPURLResponse *respdose = (NSHTTPURLResponse*)response;
+        if (!error) {
+            
+            NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            
+            responseString = [KyoUtil changeJsonStringToTrueJsonString:responseString];
+           
+           NSData *tempdata = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *dict  = [NSJSONSerialization JSONObjectWithData:tempdata options:0 error:nil];
+//            [KyoUtil ]
+            if (completionBlock) {
+//                completionBlock(html, respdose.statusCode);
+            }
+            
+            if (finishedBlock) {
+                finishedBlock(nil);
+            }
+            
+            
+        }else{
+            if (errorBlock) {
+                errorBlock(error);
+            }
+            
+            if (finishedBlock) {
+                finishedBlock(error);
+            }
+        }
+    }];
+    [sessionTask resume];
+}
+
 + (NetworkSessionHelp *)shareNetwork
 {
     static NetworkSessionHelp *_sharedClient = nil;

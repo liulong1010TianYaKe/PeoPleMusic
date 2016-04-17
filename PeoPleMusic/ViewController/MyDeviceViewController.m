@@ -57,7 +57,11 @@
     
 //    NSData *data=[@"http://user.qzone.qq.com/576272411/infocenter?ptsig=Dm6Nl39A*rcF*REn7b7Q59p-YZaEUDw0tYjYAEy13v8_" dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSData *data=[@"123asdkhf我回家阿维塞哦啊我还是当初哇额武器jsadjljo428342" dataUsingEncoding:NSUTF8StringEncoding];
+    DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
+    
+//    NSData *data=[@"123asdkhf我回家阿维塞哦啊我还是当初哇额武器jsadjljo428342" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData *data=[deviceInfo.name dataUsingEncoding:NSUTF8StringEncoding];
     
     //通过KVO设置滤镜inputmessage数据
     
