@@ -1750,7 +1750,7 @@
 				TargetAttributes = {
 					FD8C2B8B1C0C6A41007CE036 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 5WDBX5Z66V;
+						DevelopmentTeam = 3LS9X2629Z;
 					};
 					FD8C2BA41C0C6A42007CE036 = {
 						CreatedOnToolsVersion = 7.1;
@@ -2079,7 +2079,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2123,8 +2124,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2150,8 +2151,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 1309283509@qq.com (UY5P7A4KH6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: yu yan (3LS9X2629Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yu yan (3LS9X2629Z)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
@@ -2163,9 +2164,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PeoPleMusic/ThirdLibs/UMAnalyticsSdk",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hzins.PeoPleMusic;
+				PRODUCT_BUNDLE_IDENTIFIER = zhuni.PeoPleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9fd30804-fe87-4458-8ef0-b23922d171b1";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2175,8 +2176,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 1309283509@qq.com (UY5P7A4KH6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: yu yan (3LS9X2629Z)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yu yan (3LS9X2629Z)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
@@ -2188,9 +2189,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/PeoPleMusic/ThirdLibs/UMAnalyticsSdk",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = hzins.PeoPleMusic;
+				PRODUCT_BUNDLE_IDENTIFIER = zhuni.PeoPleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9fd30804-fe87-4458-8ef0-b23922d171b1";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

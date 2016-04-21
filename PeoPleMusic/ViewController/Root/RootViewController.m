@@ -55,7 +55,7 @@
     
     [self startMonitoringNetworkState]; //开始监听网络状态
     [self setupTabBarViewController];   //设置tabbarviewcontroller
-    [self checkShowNewFeatureViewController];   //检测是否需要显示新特性viewcontroller
+//    [self checkShowNewFeatureViewController];   //检测是否需要显示新特性viewcontroller
     
     //添加手势
     [KyoUtil addTagGesture:self performSelector:@selector(clearAllTextField:) withView:self.view];
@@ -65,14 +65,14 @@
 //        [VerifyRegexTool verifyIsNotEmpty:[UserInfo sharedUserInfo].loginPassWord]) {
 //        [self networkLogin:nil];
 //    }
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [[YMBonjourHelp shareInstance] startSearch];
-//
-//    });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YMBonjourHelp shareInstance] startSearch];
+
+    });
    
-    if ([[YMTCPClient share] connectServer:@"192.168.1.106" port:SOCKET_PORT2]) {
-//        [self getDeviceInfo];
-    }
+//    if ([[YMTCPClient share] connectServer:@"192.168.1.106" port:SOCKET_PORT2]) {
+////        [self getDeviceInfo];
+//    }
     //延迟2秒后添加window用于点击滑动到top
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [KyoTopWindow show];
