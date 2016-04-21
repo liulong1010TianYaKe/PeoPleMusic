@@ -98,6 +98,7 @@
             
             if ([[YMTCPClient share] connectServer:ips port:SOCKET_PORT2]) {
                 [self getDeviceInfo];
+                [[YMBonjourHelp shareInstance] stopSearch];
             }
         }else{
             

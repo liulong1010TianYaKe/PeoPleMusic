@@ -23,6 +23,7 @@
     dispatch_once(&onceToken, ^{
         _share = [[YMBonjourHelp alloc] init];
         [_share configurationInit];
+        
     });
     return _share;
 }
@@ -30,6 +31,7 @@
 - (void)configurationInit{
     _brower = [[NSNetServiceBrowser alloc] init];
     _brower.delegate = self;
+    self.arrIp = [NSMutableArray array];
     
 }
 
@@ -83,7 +85,13 @@
         _port =  sender.port;
          [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_DIDSUCESSFINDSERVICE object:nil];
         
-        [_brower stop];
+//        [_brower stop];
+        for (NSString *ip2 in self.arrIp) {
+            if ([ip2 isEqualToString:ip]) {
+                return;
+            }
+        }
+        [self.arrIp addObject:ip];
         
 
     }
