@@ -27,7 +27,7 @@
 @property (strong, nonatomic) AFHTTPRequestOperation *queryDefaultCityOpertaion;
 @property (nonatomic, strong) NSMutableArray *arrayCart;
 
-
+@property (nonatomic, strong) YMTCPClient *clientTcp;
 - (void)setupTabBarViewController;
 - (void)startMonitoringNetworkState;    //开始监听网络状态
 - (void)checkShowNewFeatureViewController;  //检测是否需要显示新特性viewcontroller
@@ -69,9 +69,13 @@
         [[YMBonjourHelp shareInstance] startSearch];
 
     });
+    self.clientTcp = [YMTCPClient share];
    
-//    if ([[YMTCPClient share] connectServer:@"192.168.1.106" port:SOCKET_PORT2]) {
-////        [self getDeviceInfo];
+//    if ([self.clientTcp connectServer:@"192.168.1.117" port:SOCKET_PORT2]) {
+//        [self getDeviceInfo];
+//    }
+//    if ([[YMTCPClient share] connectServer:@"192.168.1.100" port:SOCKET_PORT2]) {
+//        [self getDeviceInfo];
 //    }
     //延迟2秒后添加window用于点击滑动到top
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -88,6 +92,14 @@
 
 }
 
+- (void)connectSeriver:(NSString *)ip{
+    
+ 
+    if ([[YMTCPClient share] connectServer:ip port:SOCKET_PORT2]) {
+        [self getDeviceInfo];
+        [[YMBonjourHelp shareInstance] stopSearch];
+    }
+}
 - (void)startConnectSongServer{
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -101,10 +113,10 @@
                 [[YMBonjourHelp shareInstance] stopSearch];
             }
         }else{
-            
-            if ([[YMTCPClient share] connectServer:@"192.168.1.107" port:SOCKET_PORT2]) {
-                [self getDeviceInfo];
-            }
+//            
+//            if ([[YMTCPClient share] connectServer:@"192.168.1.100" port:SOCKET_PORT2]) {
+//                [self getDeviceInfo];
+//            }
         }
         
     });
@@ -127,8 +139,6 @@
 
 - (void)setupTabBarViewController
 {
-
-    
     self.tabBarViewController = [[JMTabBarViewController alloc] init];
   
     UIViewController *leftVC = [[UIViewController alloc] init];
@@ -316,7 +326,13 @@
 
 //连接音响通知
 - (void)recvDidBonjour:(NSNotification *)noti{
+    
+    NSString *ip = noti.object;
+    if (ip) {
+        [self connectSeriver:ip];
+    }else{
         [self startConnectSongServer]; // 连接音响
+    }
 }
 //监听网络状态通知
 -(void)receivingTheNetworkStateChangeNotification:(NSNotification *)notification

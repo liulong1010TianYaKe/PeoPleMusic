@@ -27,7 +27,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, weak)id<PlayerCellDelegate> delegate;
 
-//+ (CGFloat)getPlayCellHeight:(SongModel *)model;
+//+ (CGFloat)getPlayCellHeight:(SongInforModel *)model;
 
 @end
 

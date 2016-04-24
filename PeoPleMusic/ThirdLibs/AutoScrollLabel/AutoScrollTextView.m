@@ -60,7 +60,7 @@
     }else{
         
     }
-    NSLog(@"%f %f %f",self.contentOffset.y + self.scrollingIncrement,self.contentOffset.y,self.contentSize.height);
+//    NSLog(@"%f %f %f",self.contentOffset.y + self.scrollingIncrement,self.contentOffset.y,self.contentSize.height);
 }
 
 - (BOOL)isScrolling {

@@ -55,22 +55,25 @@
     connectCout = 0;
     NSError *err = nil;
     //    92.168.1.112 : 7433
+//    [_cmdDict removeAllObjects];
+    _serverIp = ip;
+    _serverPort = port;
     
-    [_cmdDict removeAllObjects];
-    if([_clientSocket connectToHost:ip onPort:port withTimeout:60  error:&err]){
-        KyoLog(@"----连接成功!--");
+    if([_clientSocket connectToHost:_serverIp onPort:port withTimeout:60  error:&err]){
+        KyoLog(@"----连接成功!-- %@ %ld",_serverIp,port);
         
-        _serverIp = ip;
-        _serverPort = port;
         
         return YES;
     }else{
-        KyoLog(@"----连接失败!--");
+        KyoLog(@"----连接失败!--%@ %ld",_serverIp,port);
         return NO;
     }
     
 }
 
+- (void)dealloc{
+    
+}
 #pragma mark -------------------
 #pragma mark -  CMDTYPE
 
@@ -207,7 +210,7 @@
 //        }
 //    }
  
-    if (connectCout < 30) {
+    if (connectCout < 10) {
           KyoLog(@"重新连接。。。%ld",(long)connectCout++);
         if (_serverPort == 9997) {
             _serverPort = 9998;
@@ -215,7 +218,6 @@
             _serverPort = 9997;
         }
      [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
-         [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
     }
    
 }
@@ -267,10 +269,6 @@
     NSLog(@"----%@",newMessage);
  
     
-  
-
-   
-
    
 }
 - (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{

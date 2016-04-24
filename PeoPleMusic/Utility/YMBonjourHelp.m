@@ -83,16 +83,18 @@
         _isAirSuccess = YES;
         _deviceIp = ip;
         _port =  sender.port;
-         [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_DIDSUCESSFINDSERVICE object:nil];
         
-//        [_brower stop];
+         KyoLog(@"搜索 到 IP-- %@",_deviceIp);
+        [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_DIDSUCESSFINDSERVICE object:_deviceIp];
+        
+
         for (NSString *ip2 in self.arrIp) {
-            if ([ip2 isEqualToString:ip]) {
+            if ([_deviceIp isEqualToString:ip2]) {
                 return;
             }
         }
-        [self.arrIp addObject:ip];
-        
+        [self.arrIp addObject:_deviceIp];
+        [_brower stop];
 
     }
 }

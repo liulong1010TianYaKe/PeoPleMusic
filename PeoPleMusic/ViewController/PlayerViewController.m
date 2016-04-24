@@ -22,7 +22,6 @@
 
 @interface PlayerViewController ()<UITableViewDataSource,UITableViewDelegate,PlayerCellDelegate,UIAlertViewDelegate>{
     double   angle;
-    
     SongInforModel *deleteSongInfo;
 }
 
@@ -100,7 +99,6 @@
 - (void)setupView{
     self.imgSong.layer.cornerRadius = self.imgSong.bounds.size.height/2;
     
-    
     self.imgSong.layer.borderColor = [UIColor colorWithWhite:255 alpha:0.8].CGColor;
     self.imgSong.layer.borderWidth = 1;
     self.imgSong.layer.masksToBounds = YES;
@@ -124,7 +122,6 @@
     self.tableView.contentInset = UIEdgeInsetsMake(KTopViewHeight, 0, 0, 0);
     [self.view setNeedsLayout];
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
     [self startAnimation];
     
     [self.autoTextView startAutoScroll];
@@ -146,8 +143,6 @@
     self.lblTitle.text = deviceInfo.name;
  
 }
-
-
 
 
 -(void)startAnimation
@@ -179,11 +174,15 @@
             dispatch_sync(dispatch_get_main_queue(), ^{
                 self.lblSongInfo.text = self.currentSongInfo.mediaName;
                 self.autoTextView.text = self.currentSongInfo.playMsg;
-                if(![self.currentSongInfo.playMsg isEqualToString:@""]){
-                    [self.autoTextView startAutoScroll];
-                }else{
-                    [self.autoTextView stopAutoScroll];
-                }
+//                self.autoTextView.text = @"难兄难弟扭扭捏捏很多很多华东交大家电家具四季酒店俊男坊就记得记得得劲儿加尔肯我看是你可能吃难念的经";
+//                [self.autoTextView startAutoScroll];
+                NSLog(@"留言 %@",self.currentSongInfo.playMsg);
+                [self.autoTextView startAutoScroll];
+//                if(![self.currentSongInfo.playMsg isEqualToString:@""]){
+//                    [self.autoTextView startAutoScroll];
+//                }else{
+//                    [self.autoTextView stopAutoScroll];
+//                }
                 
             });
            
@@ -289,7 +288,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     SongInforModel *model = self.songList[indexPath.row];
-    return model.isExtend ? KPlayerCellHeight + 38 : KPlayerCellHeight;
+    if ([model.userInfor.userId isEqualToString:[UIDevice getUUID]]) {
+        return model.isExtend ? KPlayerCellHeight + 38 : KPlayerCellHeight;
+    }
+    return KPlayerCellHeight;
 }
 
 #pragma mark -------------------

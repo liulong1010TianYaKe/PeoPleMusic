@@ -39,7 +39,19 @@
 
     
 }
-
+//
+//+ (CGFloat)getPlayCellHeight:(SongInforModel *)model{
+//    
+//    if ([model.userInfor.userId isEqualToString:[UIDevice getUUID]]) {
+//        if (model.isExtend) {
+//           model.isExtend ? KPlayerCellHeight + 38 : KPlayerCellHeight;
+//        }else{
+//           
+//        }
+//    }else{
+//      
+//    }
+//}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
