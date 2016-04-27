@@ -27,10 +27,9 @@
 
 @property (nonatomic, strong) YMTCPClient *clientTcp;
 - (void)setupTabBarViewController;
-- (void)startMonitoringNetworkState;    //开始监听网络状态
+
 - (void)checkShowNewFeatureViewController;  //检测是否需要显示新特性viewcontroller
 
--(void)receivingTheNetworkStateChangeNotification:(NSNotification *)notification;   //监听网络状态通知
 
 @end
 
@@ -207,34 +206,6 @@
     }
 }
 
-- (void)networkLogin:(void (^)(BOOL result, NSError *error))resultBlock {
-//    NSDictionary *dict = @{@"AppId":kAppPlatform,
-//                           @"loginName":[UserInfo sharedUserInfo].loginName,
-//                           @"password":[UserInfo sharedUserInfo].loginPassWord};
-//    
-//    [KyoUtil clearOperation:self.loginOperation];
-//    self.loginOperation = [[NetworkHelp shareNetwork] postNetwork:[NetworkHelp getNetworkParams:dict] serverAPIUrl:kServerAPIUrl(kNetworkTypeHome, kNetworkLogin) completionBlock:^(NSDictionary *dict, NetworkResultModel *resultModel) {
-//        if ([NetworkHelp checkDataFromNetwork:dict showAlertView:NO]) {
-//            [UserInfo sharedUserInfo].session = resultModel.Data[@"Session"];
-//            [[UserInfo sharedUserInfo] setKeyValues:resultModel.Data[@"UserInfo"]];
-//            
-//            if (resultBlock) {
-//                resultBlock(YES, nil);
-//            }
-//            
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName_LoginSuccess object:nil];
-//        } else {
-//            if (resultBlock) {
-//                resultBlock(NO, nil);
-//            }
-//        }
-//    } errorBlock:^(NSError *error) {
-//        if (resultBlock) {
-//            resultBlock(NO, error);
-//        }
-//    } finishedBlock:^(NSError *error) {
-//    }];
-}
 
 
 

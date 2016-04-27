@@ -203,9 +203,10 @@
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        UIImage *img = [UIImage createImageWithColor:[UIColor clearColor] withSize:CGSizeMake(kWindowWidth/10, 21)];
-//        imgArrow = [KyoUtil compoundImageWithSize:img.size withMainImage:img withMainImageRect:CGRectMake(0, 0, 60, 21) withSubImage:[UIImage imageNamed:@"nav_icon_back_normal"] withSubImageRect:CGRectMake(0, 0, 20, 20)];
-//        imgArrowHighlight = [KyoUtil compoundImageWithSize:img.size withMainImage:img withMainImageRect:CGRectMake(0, 0, 60, 21) withSubImage:[UIImage imageNamed:@"nav_icon_back_normal"] withSubImageRect:CGRectMake(0, 0, 20, 20)];
+//        UIImage *img = [UIImage createImageWithColor:[UIColor clearColor] withSize:CGSizeMake(kWindowWidth/10, 21)];
+        imgArrow = [UIImage imageNamed:@"nav_icon_back_normal"];
+        imgArrowHighlight = [UIImage imageNamed:@"nav_icon_back_normal"];
+
 
     });
     

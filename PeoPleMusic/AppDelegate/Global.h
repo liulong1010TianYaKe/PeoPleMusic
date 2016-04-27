@@ -92,33 +92,8 @@
 //UserDefault
 #define kUserDefaultKey_CFBundleShortVersionString  @"kUserDefaultKey_CFBundleShortVersionString"   //版本号
 #define kUserDefaultKey_KeyChar @"kUserDefaultKey_KeyChar"  //唯一标示
-//保障
-#define KProtectBaseInfoModel  @"KProtectBaseInfoModel"
 
-//通知
-#define kNotificationName_ViewControllerWillAppear  @"ViewControllerWillAppear" //viewcontroller显示时触发
-#define kNotificationName_ViewControllerWillDisappear   @"ViewControllerWillDisappear" //viewcontroller隐藏时触发
-#define kNotificationName_WeiXinPaySuccess    @"WeiXinPaySuccess" //微信支付成功通知
-#define kNotificationName_AlixPaySuccess    @"alixPaySuccess" //跳转到支付宝客户端支付成功通知
-#define kNotificationName_LoginSuccess    @"LoginSuccess"  //登录成功通知
-#define kNotificationName_LogOutSuccess    @"LogOutSuccess"  //退出登录成功通知
-#define kNotificationName_UserChanged   @"UserChanged"  //用户修改资料成功通知
-#define kNotificationName_GetMyDetail   @"GetMyDetail"  //获取用户信息成功通知
-#define kNotificationName_HistoryFoot   @"HistoryFoot"  //更改了足迹缓存通知
-#define kNotificationName_ProjectHistoryFoot   @"ProjectHistoryFoot"  //更改了方案缓存通知
-#define kNotificationProductDetailModelChangeSelected   @"kNotificationProductDetailModelChangeSelected"    //更改了保险选择项
-#define kNotificationProductDetailModelChangeIsShowRemark   @"kNotificationProductDetailModelChangeIsShowRemark"    //改变是否显示产品详情说明通知
-#define kNotificationName_CollectionStateDidChange  @"kNotificationName_CollectionStateDidChange"   //产品收藏或取消收藏成功通知
-#define kNotificationName_ChatViewBack   @"ChatViewBack"  //首次进入聊天界面后返回通知
-#define kNotificationName_bindPhoneSuccess   @"bindPhoneSuccess"  //首次进入聊天界面后返回通知
-#define kNotificationName_commitCommentSuccess   @"commitCommentSuccess"  //提交评分成功通知
-#define kNotificationName_unBindCounselor   @"unBindCounselor"  //解绑顾问通知
-#define kNotificationName_ProjectIdChangeSelected   @"ProjectIdChangeSelected"    //更改了方案选择项
-#define kNotificationName_SecurityPersonListChange  @"SecurityPersonListChange" // 更改保障头部联系人
-#define kNotificationName_ContactDataChange  @"kNotificationName_ContactDataChange" // 更改联系人信息
-#define kNotificationName_AdvisorStatus @"advisorStatus"    //顾问状态变更通知
-#define kNotificationName_GotoOnlineServicePage @"gotoOnlineServicePage"    //跳转到在线客服通知
-#define kNotificationName_InitShareInfo @"initShareInfo"    //h5返回的分享内容通知
+
 
 //*****AppStyle
 #define kGlobalStyleColor kStyleFontColorFC4949 //主题色
@@ -146,16 +121,7 @@
 
 
 //*****默认图片
-#define kImageDefaultUserPhoto  [UIImage imageNamed:@"com_user_defaultPhoto"]
-#define kImageDefault640x318   [UIImage imageNamed:@"com_image_640x318"]
-#define kImageDefault130x50   [UIImage imageNamed:@"com_image_130x50"]
-#define kImageDefault140x140   [UIImage imageNamed:@"com_image_140x140"]
-#define kImageDefault580x360   [UIImage imageNamed:@"com_image_580x360"]
-#define kImageDefault640x420   [UIImage imageNamed:@"consultant_img_nopic_normal"]
-#define kImageDefault90x90   [UIImage imageNamed:@"com_image_90x90"]
-#define kImageDefault580x320   [UIImage imageNamed:@"consultant_img_nopic2_normal(1)"]
 
-#define KImageDefaultCompanyLogo [UIImage imageNamed:@"com_image_130x50"]
 //*****颜色
 #define YYColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define YYColorRGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
