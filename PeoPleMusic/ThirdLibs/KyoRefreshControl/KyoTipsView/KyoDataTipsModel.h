@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 typedef void (^ReloadDataBlock)();
 typedef void (^OperationBlock)();
@@ -19,6 +20,7 @@ typedef void (^OperationBlock)();
 @property (strong, nonatomic) id tip;   /**< 提示文字，可以是富文本 */
 @property (assign, nonatomic) BOOL isShowOperationButton;    /**< 是否显示按钮 默认不显示*/
 @property (strong, nonatomic) id buttonText;    /**< 按钮的提示文字，可以是富文本 */
+@property (strong, nonatomic) UIColor *buttonBackgroundColor;/**< 按钮的背景颜色颜色，默认红色,如果同时设置了按钮背景图片，此属性设置无效*/
 @property (strong, nonatomic) UIColor *buttonTextColor; /**< 按钮的文字颜色，默认白色，富文本时无效 */
 @property (assign, nonatomic) CGFloat buttonTextSize;   /**< 按钮字体大小，默认15 */
 @property (assign, nonatomic) CGFloat operationButtonTop;  /**< 按钮距离上面的间距 默认16 */

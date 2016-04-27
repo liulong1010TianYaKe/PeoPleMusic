@@ -96,7 +96,7 @@ typedef enum
         
         self.lblNoMore = [[UILabel alloc] initWithFrame:self.bounds];
         self.lblNoMore.backgroundColor = [UIColor clearColor];
-        self.lblNoMore.textColor = kStyleFontColor999999;
+        self.lblNoMore.textColor = [UIColor colorWithRed:(153)/255.0 green:(153)/255.0 blue:(153)/255.0 alpha:1.0];
         self.lblNoMore.font = [UIFont systemFontOfSize:12];
         self.lblNoMore.text = @"没有更多了";
         self.lblNoMore.textAlignment = NSTextAlignmentCenter;

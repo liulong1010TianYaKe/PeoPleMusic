@@ -8,14 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "KyoDataTipsView.h"
+#import "RHRefreshControl.h"
+
 
 #define kKyoRefreshControlErrorMsgDefault @"抱歉！当前没有数据"
 #define KYOLOADMORECONTROL_NUMBER_OF_PAGES(_total,_rowsAPage)   ((_total + _rowsAPage - 1) / _rowsAPage)
-
-typedef enum : NSInteger {
-    RefreshDisplayTypeDefault = 0,  //默认方式，刷新时上面出现菊花
-    RefreshDisplayTypeBody = 1  //刷新时在tableview中出现一个view
-} RefreshDisplayType;   //刷新样式
 
 typedef enum : NSInteger {
     KyoDataTipsViewTypeNone = 0,    //什么鸟也没有
@@ -34,6 +31,8 @@ typedef enum : NSInteger {
 @property (nonatomic, assign) NSInteger currentPage;   //当前加载到第几页
 @property (assign, nonatomic) UIEdgeInsets tableViewDefaultInsets;   //tableview默认的insets
 @property (assign, nonatomic) CGFloat yOffset;  /**< tipsview的y偏移量 */
+@property (assign, nonatomic) KyoRefreshDisplayType refreshDisplayType;    /**< 刷新样式，默认RefreshDisplayTypeDefault */
+@property (assign, nonatomic) CGFloat refreshViewOffsetY;   /**< refreshView的y轴偏移量 */
 
 
 @property (nonatomic, readonly) BOOL isLoading; //是否正在刷新
@@ -47,6 +46,7 @@ typedef enum : NSInteger {
 
 - (id)initWithScrollView:(UIScrollView *)scrollView withDelegate:(id<KyoRefreshControlDelegate>)delegate;
 - (id)initWithScrollView:(UIScrollView *)scrollView withDelegate:(id<KyoRefreshControlDelegate>)delegate withIsCanShowNoMore:(BOOL)isCanShowNoMore;
+- (id)initWithScrollView:(UIScrollView *)scrollView withDelegate:(id<KyoRefreshControlDelegate>)delegate withIsCanShowNoMore:(BOOL)isCanShowNoMore withKyoRefreshDisplayType:(KyoRefreshDisplayType)type;
 
 //- (void)kyoRefreshOperationWithRefreshDisplayType:(RefreshDisplayType)refreshDisplayType;   //手动刷新，根据类型显示刷新样式
 - (void)kyoRefreshOperation;   //手动刷新
@@ -56,6 +56,8 @@ typedef enum : NSInteger {
 - (void)kyoReset;   //重置
 - (void)kyoRefreshDoneRefreshOrLoadMore:(BOOL)isLoadFristPage withHadData:(BOOL)isHadData withError:(NSError *)error;    //根据传入是否第一页判断和设置刷新或加载完成，根据3个参数判断是否在tableview中显示提示框
 - (void)kyoRefreshShowOrHideErrorMessage:(NSError *)error  withHadData:(BOOL)isHadData; //显示或隐藏错误框
+
+- (NSString *)currentVersion;   /**< 获得当前版本号 */
 
 @end
 

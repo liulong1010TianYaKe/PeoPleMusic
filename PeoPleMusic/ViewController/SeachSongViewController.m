@@ -95,34 +95,34 @@
 
    
     
-    [[NetworkSessionHelp shareNetwork] postNetwork:nil serverAPIUrl:urlString completionBlock:^(NSDictionary *dict, NetworkResultModel *resultModel) {
-        tempDict = dict;
-        if ([NetworkSessionHelp checkDictFromNetwork:dict withKyoRefreshControl:self.kyoRefreshControl]) {
-            NSInteger totoal = [dict[@"TOTAL"] integerValue];
-            self.kyoRefreshControl.numberOfPage = KYOLOADMORECONTROL_NUMBER_OF_PAGES(totoal, kPageSize);
-            NSArray *temp = [AbsListModel objectArrayWithKeyValuesArray:dict[@"abslist"]];
-            
-            NSArray *arr = [AbsListModel getSongInforModel:temp]
-            ;            if (!self.songlist) {
-                self.songlist = [NSMutableArray array];
-            }
-            if (index == 0) {
-                [self.songlist removeAllObjects];
-                self.songlist = [NSMutableArray arrayWithArray:arr];
-            }else{
-                [self.songlist addObjectsFromArray:arr];
-            }
-            
-            [self.tableView reloadData];
-        }else{
-            [self showMessageHUD:@"亲,未搜索到哦～" withTimeInterval:kShowMessageTime];
-        }
-    } errorBlock:^(NSError *error) {
-        
-    } finishedBlock:^(NSError *error) {
-        
-        [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore:index ==0 ? YES : NO withHadData:tempDict ? YES : NO withError:error];
-    }];
+//    [[NetworkSessionHelp shareNetwork] postNetwork:nil serverAPIUrl:urlString completionBlock:^(NSDictionary *dict, NetworkResultModel *resultModel) {
+//        tempDict = dict;
+////        if ([NetworkSessionHelp checkDictFromNetwork:dict withKyoRefreshControl:self.kyoRefreshControl]) {
+//            NSInteger totoal = [dict[@"TOTAL"] integerValue];
+//            self.kyoRefreshControl.numberOfPage = KYOLOADMORECONTROL_NUMBER_OF_PAGES(totoal, kPageSize);
+//            NSArray *temp = [AbsListModel objectArrayWithKeyValuesArray:dict[@"abslist"]];
+//            
+//            NSArray *arr = [AbsListModel getSongInforModel:temp]
+//            ;            if (!self.songlist) {
+//                self.songlist = [NSMutableArray array];
+//            }
+//            if (index == 0) {
+//                [self.songlist removeAllObjects];
+//                self.songlist = [NSMutableArray arrayWithArray:arr];
+//            }else{
+//                [self.songlist addObjectsFromArray:arr];
+//            }
+//            
+//            [self.tableView reloadData];
+////        }else{
+////            [self showMessageHUD:@"亲,未搜索到哦～" withTimeInterval:kShowMessageTime];
+////        }
+//    } errorBlock:^(NSError *error) {
+//        
+//    } finishedBlock:^(NSError *error) {
+//        
+//        [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore:index ==0 ? YES : NO withHadData:tempDict ? YES : NO withError:error];
+//    }];
 }
 #pragma mark --------------------
 #pragma mark - UITableViewDelegate, UITableViewSourceData

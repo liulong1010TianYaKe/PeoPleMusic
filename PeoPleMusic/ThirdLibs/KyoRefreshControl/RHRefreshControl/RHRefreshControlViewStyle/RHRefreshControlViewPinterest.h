@@ -11,6 +11,10 @@
 
 @interface RHRefreshControlViewPinterest : UIView <RHRefreshControlView>
 
+@property (strong, nonatomic) UIColor *fillColor;   /**< 填充颜色 */
+@property (strong, nonatomic) UIColor *strokeColor; /**< 边框颜色 */
+@property (strong, nonatomic) UIImage *imgContent;  /**< 填充图片 */
+
 - (void)reChangeSubViewOrgin;   //重置子视图的坐标
 
 @end

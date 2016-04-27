@@ -125,7 +125,7 @@
     [startButton setBackgroundImage:[UIImage imageNamed:@"nf_btn_use_selected"] forState:UIControlStateHighlighted];
     
     // 3.设置frame
-    
+ 
     startButton.centerX = self.view.width * 0.5;
     startButton.centerY = self.view.height - 80;
     if (kWindowHeight == 480) {

@@ -62,7 +62,4 @@ MBProgressHUDDelegate>
 //interactivePopGestureRecognizer
 - (void)configInteractivePopGestureRecognizer:(BOOL)isNotNil;  //设置viewcontroller的滑动返回是否为空
 
-//network
-- (void)clearOperation:(AFHTTPRequestOperation *)operation;    //清空指定网络请求
-
 @end

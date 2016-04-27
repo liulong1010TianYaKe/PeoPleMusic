@@ -9,12 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "RHRefreshControlView.h"
 #import "RHRefreshControlConfiguration.h"
+#import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, RHRefreshState) {
     RHRefreshStateNormal,
     RHRefreshStatePulling,
     RHRefreshStateLoading
 };
+
+typedef enum : NSInteger {
+    KyoRefreshDisplayTypeDefault = 0,  //默认方式，刷新时上面出现菊花，显示在 contentoffset <= 60
+    KyoRefreshDisplayTypeTop = 1,  //刷新时上面出现菊花，显示在 contentInset设置的值的地方
+} KyoRefreshDisplayType;   //刷新样式
 
 @class RHRefreshControlConfiguration;
 @protocol RHRefreshControlDelegate;
@@ -23,6 +29,8 @@ typedef NS_ENUM(NSInteger, RHRefreshState) {
 
 @property (nonatomic, weak) id<RHRefreshControlDelegate> delegate;
 @property (nonatomic, assign) UIEdgeInsets tableViewDefaultInsets;   //tableview默认的insets
+@property (assign, nonatomic) KyoRefreshDisplayType refreshDisplayType;    /**< 刷新样式，默认RefreshDisplayTypeDefault */
+@property (assign, nonatomic) CGFloat refreshViewOffsetY;   /**< refreshView的y轴偏移量 */
 @property (nonatomic, assign) CGFloat minimumForStart;
 @property (nonatomic, assign) CGFloat maximumForPull;
 @property (nonatomic, assign) BOOL isLoading;    //是否正在刷新

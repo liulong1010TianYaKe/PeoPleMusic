@@ -18,14 +18,6 @@
 #pragma mark -----------------------
 #pragma mark - Network
 
-//清空指定网络请求
-+ (void)clearOperation:(AFHTTPRequestOperation *)operation {
-    if (operation && !operation.isFinished) {
-        [operation cancel];
-    }
-    
-    operation = nil;
-}
 
 #pragma mark -----------------------
 #pragma mark -  Model Key
@@ -323,128 +315,11 @@ static char kMBProgressHUDMessageKey;
 
 #pragma mark - Push
 
-//得到当前是否开启了推送
-+ (BOOL)currentPushSwitch {
-    NSString *pushSwitch = [self getUserDefaultValue:@"kUserDefaultPushSwitch"];
-    if (!pushSwitch || [pushSwitch boolValue]) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
 
-//改变推送是否开启
-+ (void)changePushSwitch:(BOOL)isOpen {
-    [self addUserDefault:@"kUserDefaultPushSwitch" value:[NSString stringWithFormat:@"%d", isOpen]];
-}
 
 #pragma mark -----------------------
 #pragma mark - Image
 
-//根据uiview得到图像
-+ (UIImage *)getImageFromView:(UIView *)fromView useScreenScale:(BOOL)use useNewMethod:(BOOL)useNewMethod
-{
-    UIImage *viewImage = nil;
-    
-    if (kSystemVersionMoreThan7 && useNewMethod) {
-        UIGraphicsBeginImageContextWithOptions(fromView.bounds.size, NO, kScreenScale);
-        [fromView drawViewHierarchyInRect:fromView.bounds afterScreenUpdates:NO];
-        viewImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    } else {
-        NSInteger scale = use ? kScreenScale : 1;
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(fromView.bounds.size.width, fromView.bounds.size.height), NO, scale);
-        [fromView.layer renderInContext:UIGraphicsGetCurrentContext()];
-        viewImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-    }
-    
-    
-    
-    return viewImage;
-}
-
-//根据图像和尺寸截剪图片
-+ (UIImage *)getImageFormImage:(UIImage *)fromView withRect:(CGRect)rect useScreenScale:(BOOL)use
-{
-    NSInteger scale = use ? kScreenScale : 1;
-    CGRect scaleRect = CGRectMake(rect.origin.x * scale, rect.origin.y * scale, rect.size.width * scale, rect.size.height * scale); //得到剪切部分的图片的scale后的rect
-    CGImageRef imageRef = CGImageCreateWithImageInRect([fromView CGImage], scaleRect);
-    UIImage *avatarImage = [[UIImage alloc] initWithCGImage:imageRef scale:scale orientation:UIImageOrientationUp];
-    CFRelease(imageRef);
-    return avatarImage;
-}
-
-//根据图像和分隔的总等份分隔图像
-+ (NSArray *)getSplitImageListWithImage:(UIImage *)image withCount:(NSInteger)count
-{
-    CGFloat height = image.size.height / count;
-    NSMutableArray *arrayImage = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i < count; i++)
-    {
-        UIImage *imgSplit = [self getImageFormImage:image withRect:CGRectMake(0, i*height, image.size.width, height) useScreenScale:NO];
-        [arrayImage addObject:imgSplit];
-    }
-    return arrayImage;
-}
-
-//图像合并成一张
-+ (UIImage*)compoundImageWithSize:(CGSize)imageSize
-                    withMainImage:(UIImage *)MainImage
-                withMainImageRect:(CGRect)mainImageRect
-                     withSubImage:(UIImage *)subImage
-                 withSubImageRect:(CGRect) subImageRect
-{
-    UIGraphicsBeginImageContextWithOptions(imageSize,NO,[UIScreen mainScreen].scale);
-    
-    [MainImage drawInRect:mainImageRect];
-    [subImage drawInRect:subImageRect];
-    
-    UIImage *resultingImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return resultingImage;
-}
-
-//缩小图片，根据传入kb和image
-+ (UIImage *)getScaleImageWithByteSize:(long)byteSize withImage:(UIImage *)image {
-    return [KyoUtil getScaleImageWithByteSize:byteSize withImage:image receiveImageData:nil];
-    
-}
-
-//缩小图片，根据传入kb和image，返回缩小后的图片和data
-+ (UIImage *)getScaleImageWithByteSize:(long)byteSize withImage:(UIImage *)image receiveImageData:(NSData **)dataImage {
-    if (!image) {
-        return image;
-    }
-    
-    //如果超过，则缩小分辨率
-    UIImage *tempImage = nil;
-    NSData *data = UIImageJPEGRepresentation(image, 1);
-    if (data.length > byteSize) {
-        float i = (float)byteSize / (float)data.length;
-        i = sqrt(i);    //根号
-        tempImage = [UIImage imageWithData:data];
-        tempImage = [UIImage imageCompressForSize:tempImage targetSize:CGSizeMake(tempImage.size.width * i, tempImage.size.height * i)];
-        data = UIImageJPEGRepresentation(tempImage, 1);
-    } else {
-        return [UIImage imageWithData:data];
-    }
-    
-    //减小画质
-    while (data.length >= byteSize) {
-        float i = (float)byteSize / (float)data.length;
-        data = UIImageJPEGRepresentation(tempImage, i);
-        i = i * 0.8;
-        if (i < 0.1) {
-            break;
-        }
-    }
-    
-    if (dataImage) {
-        *dataImage = data;
-    }
-    return [UIImage imageWithData:data];
-}
 
 //通过字符串声称ciimage类型的二维码
 + (CIImage *)createQRForString:(NSString *)qrString {
@@ -598,14 +473,6 @@ static char kMBProgressHUDMessageKey;
 
 #pragma mark -----------------------
 #pragma mark - Area
-+ (NSArray *)getProvinceArray {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Province" ofType:@"txt"];
-    NSData *fileData = [NSData dataWithContentsOfFile:filePath];
-    id jsonObject = [NSJSONSerialization JSONObjectWithData:fileData options:0 error:nil];
-    
-    return [NSClassFromString(@"Province") objectArrayWithKeyValuesArray:jsonObject];
-//    return [KyoUtil getModelArray:jsonObject withClass:@"Province" modelKey:nil];
-}
 
 #pragma mark -----------------------
 #pragma mark - String
@@ -641,82 +508,7 @@ static char kMBProgressHUDMessageKey;
     return tip;
 }
 
-#pragma mark -----------------------
-#pragma mark - runtime
 
-+ (NSDictionary *)getPropertyNameList:(Class)class
-{
-    u_int count;
-    
-    objc_property_t *properties = class_copyPropertyList(class, &count);
-    
-    NSMutableDictionary *propertyNameDictionary = [NSMutableDictionary dictionaryWithCapacity:count];
-    
-    for (int i = 0; i < count ; i++)
-    {
-        const char *propertyAttributes = property_getAttributes(properties[i]);
-        const char *propertyName = property_getName(properties[i]);
-        
-        [propertyNameDictionary setObject:[NSString stringWithUTF8String: propertyAttributes] forKey:[NSString stringWithUTF8String: propertyName]];
-    }
-    free(properties);
-    
-    
-    return propertyNameDictionary;
-}
-
-//根据class 得到所有方法 Methods
-+ (Method *)geMethodNameList:(Class)class withCount:(NSInteger *)count;
-{
-    u_int               all;
-    Method *methods = class_copyMethodList([UIView class], &all);
-    *count = all;
-    return methods;
-}
-
-//清空target的网络操作属性（前提是target有_dictCustomerProperty）
-+ (void)clearAllNetworkOperationWithProperty:(id)target
-{
-    NSDictionary *dictProperty = [KyoUtil getPropertyNameList:[target class]];
-    
-    for (int i = 0; i < dictProperty.allKeys.count; i++) {
-        NSString *key = dictProperty.allKeys[i];
-        NSString *value = [dictProperty objectForKey:key];
-        if ([value rangeOfString:@"AFHTTPRequestOperation"].location != NSNotFound) {  //说明是网络请求属性
-            AFHTTPRequestOperation *operation = [target valueForKey:key];
-            if (operation && !operation.isFinished) {
-                [operation cancel];
-            }
-            operation = nil;
-        }
-    }
-    
-    //删除所有关联对象
-//    objc_removeAssociatedObjects(viewController);
-}
-
-//根据传入的object把其属性都设置为空
-+ (void)clearAllProperty:(id)object
-{
-    NSDictionary *dictProperty = [KyoUtil getPropertyNameList:[object class]];
-    
-    for (int i = 0; i < dictProperty.allKeys.count; i++) {
-        NSString *key = dictProperty.allKeys[i];
-        [object setValue:nil forKey:key];
-    }
-}
-
-//根据传入的object得到其所有属性的大小
-+ (NSUInteger)getAllBytesWithObject:(id)object
-{
-    static NSString * const kSerializeGetAllBytes = @"kSerializeGetAllBytes";
-    NSMutableData *dataArchiver = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:dataArchiver];
-    [archiver encodeObject:object forKey:kSerializeGetAllBytes];
-    [archiver finishEncoding];
-    
-    return dataArchiver.length;
-}
 
 
 #pragma mark - runtime动态添加属性详解

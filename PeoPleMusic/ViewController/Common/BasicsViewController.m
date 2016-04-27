@@ -346,14 +346,7 @@ static char kLoadingInNavigationKey;
     }
 }
 
-//清空指定网络请求
-- (void)clearOperation:(AFHTTPRequestOperation *)operation {
-    if (operation && !operation.isFinished) {
-        [operation cancel];
-    }
-    
-    operation = nil;
-}
+
 
 - (void)addObserverWithBarButton
 {

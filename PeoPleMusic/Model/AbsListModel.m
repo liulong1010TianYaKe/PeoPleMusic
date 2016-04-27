@@ -7,7 +7,7 @@
 //
 
 #import "AbsListModel.h"
-#import "AFNetworking.h"
+//#import "AFNetworking.h"
 
 @implementation AbsListModel
 

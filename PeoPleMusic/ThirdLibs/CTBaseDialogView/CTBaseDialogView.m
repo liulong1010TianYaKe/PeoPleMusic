@@ -391,7 +391,7 @@
     if (animation) {
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.mainView.frame];
-        imageView.image = [KyoUtil getImageFromView:self.mainView useScreenScale:NO useNewMethod:YES];
+//        imageView.image = [KyoUtil getImageFromView:self.mainView useScreenScale:NO useNewMethod:YES];
         [self addSubview:imageView];
         
         self.mainView.hidden = YES;

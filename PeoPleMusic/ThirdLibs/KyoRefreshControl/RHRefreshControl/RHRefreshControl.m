@@ -9,7 +9,6 @@
 #import "RHRefreshControl.h"
 #import "RHRefreshControlConfiguration.h"
 
-
 @interface RHRefreshControl ()
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -21,12 +20,16 @@
 
 @implementation RHRefreshControl
 
+#pragma mark --------------------
+#pragma mark - CyCLife
+
 - (id)initWithConfiguration:(RHRefreshControlConfiguration *)configuration {
   self = [super init];
   if (self) {
-    self.minimumForStart = [configuration.minimumForStart floatValue];
-    self.maximumForPull = [configuration.maximumForPull floatValue];
-    self.refreshView = configuration.refreshView;
+      self.minimumForStart = [configuration.minimumForStart floatValue];
+      self.maximumForPull = [configuration.maximumForPull floatValue];
+      self.refreshView = configuration.refreshView;
+      self.refreshDisplayType = KyoRefreshDisplayTypeDefault;
   }
   
   return self;
@@ -36,11 +39,49 @@
     [self removeObserver];
 }
 
+#pragma mark --------------------
+#pragma mark - Settings, Gettings
+
+- (void)setState:(RHRefreshState)newState {
+    
+    
+    switch (newState) {
+        case RHRefreshStateNormal: {
+            [self.refreshView updateViewOnNormalStatePreviousState:_state];
+        }
+            break;
+            
+        case RHRefreshStateLoading: {
+            [self.refreshView updateViewOnLoadingStatePreviousState:_state];
+        }
+            break;
+            
+        case RHRefreshStatePulling: {
+            [self.refreshView updateViewOnPullingStatePreviousState:_state];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    _state = newState;
+    
+}
+
+#pragma mark --------------------
+#pragma mark - Methods
+
 - (void)attachToScrollView:(UIScrollView *)scrollView {
     
     self.scrollView = scrollView;
   _tableViewDefaultInsets = scrollView.contentInset;
-  self.refreshView.center = CGPointMake(CGRectGetMidX(scrollView.bounds), -1*(self.maximumForPull - self.minimumForStart) / 2 + _tableViewDefaultInsets.top / 2);
+    if (self.refreshDisplayType == KyoRefreshDisplayTypeDefault) {
+        self.refreshView.center = CGPointMake(CGRectGetMidX(scrollView.bounds), -1*(self.maximumForPull - self.minimumForStart) / 2 + _tableViewDefaultInsets.top / 2  + self.refreshViewOffsetY);
+    } else if (self.refreshDisplayType == KyoRefreshDisplayTypeTop) {
+        CGFloat centerY = -1*(self.maximumForPull - self.minimumForStart) / 2 + _tableViewDefaultInsets.top / 2 -_tableViewDefaultInsets.top  + self.refreshViewOffsetY;
+        self.refreshView.center = CGPointMake(CGRectGetMidX(scrollView.bounds), centerY);
+    }
 //    self.refreshView.frame = CGRectMake(0, -60, 320, 60);
   [scrollView insertSubview:self.refreshView atIndex:0];
     self.canRefresh = YES;
@@ -57,7 +98,7 @@
     [self setState:RHRefreshStatePulling];
     [self refreshScrollViewDidScroll:self.scrollView];
     [self refreshScrollViewDidEndDragging:self.scrollView];
-    if (!kSystemVersionMoreThan7) {  //兼容ios6，让刷新视图在最下，避免在cell上面
+    if ([[[UIDevice currentDevice] systemVersion] doubleValue] < 7.0) {  //兼容ios6，让刷新视图在最下，避免在cell上面
         [self.scrollView sendSubviewToBack:self.refreshView];
     }
 }
@@ -107,7 +148,12 @@
   CGRect refreshViewFrame = self.refreshView.frame;
   refreshViewFrame.size.height = deltaOffsetY;
   self.refreshView.frame = refreshViewFrame;
-  self.refreshView.center = CGPointMake(CGRectGetMidX(scrollView.bounds), scrollView.contentOffset.y / 2 + _tableViewDefaultInsets.top / 2);
+    if (self.refreshDisplayType == KyoRefreshDisplayTypeDefault) {
+        self.refreshView.center = CGPointMake(CGRectGetMidX(scrollView.bounds), scrollView.contentOffset.y / 2 + _tableViewDefaultInsets.top / 2  + self.refreshViewOffsetY);
+    } else if (self.refreshDisplayType == KyoRefreshDisplayTypeTop) {
+        CGFloat centerY = scrollView.contentOffset.y / 2 + _tableViewDefaultInsets.top / 2 - _tableViewDefaultInsets.top + self.refreshViewOffsetY;
+        self.refreshView.center = CGPointMake(CGRectGetMidX(scrollView.bounds), centerY);
+    }
   
   [self.refreshView updateViewWithPercentage:percentage state:self.state];
 }
@@ -149,7 +195,7 @@
     [self.refreshView updateViewOnComplete];
   }
     self.isLoading = NO;
-    if (!kSystemVersionMoreThan7) {  //兼容ios6，让刷新视图在最下，避免在cell上面
+    if ([[[UIDevice currentDevice] systemVersion] doubleValue] < 7.0) {  //兼容ios6，让刷新视图在最下，避免在cell上面
         [self.scrollView sendSubviewToBack:self.refreshView];
     }
 }
@@ -164,32 +210,8 @@
     self.isLoading = NO;
 }
 
-- (void)setState:(RHRefreshState)newState {
-  
-  
-  switch (newState) {
-    case RHRefreshStateNormal: {
-      [self.refreshView updateViewOnNormalStatePreviousState:_state];
-    }
-      break;
-      
-    case RHRefreshStateLoading: {
-      [self.refreshView updateViewOnLoadingStatePreviousState:_state];
-    }
-      break;
-      
-    case RHRefreshStatePulling: {
-      [self.refreshView updateViewOnPullingStatePreviousState:_state];
-    }
-      break;
-      
-    default:
-      break;
-  }
-  
-  _state = newState;
-  
-}
+#pragma mark --------------------
+#pragma mark - KVO/KVC
 
 - (void)addObserver {
     [self.scrollView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
@@ -209,7 +231,12 @@
     if ([keyPath isEqualToString:@"bounds"]) {
         if (self.refreshView.frame.size.width != self.scrollView.bounds.size.width) {
             self.refreshView.frame = CGRectMake(0, -60, self.scrollView.bounds.size.width, 60);
-            self.refreshView.center = CGPointMake(CGRectGetMidX(self.scrollView.bounds), -1*(self.maximumForPull - self.minimumForStart) / 2 + _tableViewDefaultInsets.top / 2);
+            if (self.refreshDisplayType == KyoRefreshDisplayTypeDefault) {
+                self.refreshView.center = CGPointMake(CGRectGetMidX(self.scrollView.bounds), -1*(self.maximumForPull - self.minimumForStart) / 2 + _tableViewDefaultInsets.top / 2  + self.refreshViewOffsetY);
+            } else if (self.refreshDisplayType == KyoRefreshDisplayTypeTop) {
+                CGFloat centerY = -1*(self.maximumForPull - self.minimumForStart) / 2 + _tableViewDefaultInsets.top / 2 - _tableViewDefaultInsets.top  + self.refreshViewOffsetY;
+                self.refreshView.center = CGPointMake(CGRectGetMidX(self.scrollView.bounds), centerY);
+            }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
             if ([self.refreshView respondsToSelector:@selector(reChangeSubViewOrgin)]) {
@@ -218,9 +245,12 @@
 #pragma clang diagnostic pop
         }
     } else if ([keyPath isEqualToString:@"contentInset"]) {
-        if (self.scrollView.contentInset.top == _tableViewDefaultInsets.top * 2 && self.scrollView.contentInset.top > 0) {
+        if (self.scrollView.contentInset.top == _tableViewDefaultInsets.top * 2 && self.scrollView.contentInset.top > 0) {  //top是64时触发
             self.scrollView.contentInset = UIEdgeInsetsMake(_tableViewDefaultInsets.top, self.scrollView.contentInset.left, self.scrollView.contentInset.bottom, self.scrollView.contentInset.right);
             self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y / 2);
+        } else if ( self.scrollView.contentInset.top == _tableViewDefaultInsets.top + 64 && self.scrollView.contentInset.top > 0) { //top是64+。。时触发
+            self.scrollView.contentInset = UIEdgeInsetsMake(_tableViewDefaultInsets.top, self.scrollView.contentInset.left, self.scrollView.contentInset.bottom, self.scrollView.contentInset.right);
+            self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y + 64);
         }
     }
 }

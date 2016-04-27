@@ -58,7 +58,7 @@
     
     if (kyoDataTipsModel) {
         
-        self.frame = CGRectMake(0, 0, self.scrollView.size.width, self.scrollView.size.height);
+        self.frame = CGRectMake(0, 0, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
         
         CGFloat height = 0;
         
@@ -75,11 +75,14 @@
         if (kyoDataTipsModel.tip &&
             [kyoDataTipsModel.tip isKindOfClass:[NSString class]]) {
             self.lblTips.text = kyoDataTipsModel.tip;
-            tipsSize = KyoBoundingRectWithSize(kyoDataTipsModel.tip, self.lblTips.font, kWindowWidth - kLabelXSpacing * 2);
+            tipsSize =  [kyoDataTipsModel.tip boundingRectWithSize:CGSizeMake([[[UIApplication sharedApplication] delegate] window].bounds.size.width - kLabelXSpacing * 2, 1000)
+                                                           options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                        attributes:[NSDictionary dictionaryWithObjectsAndKeys:self.lblTips.font, NSFontAttributeName, nil] context:NULL].size;
         } else if (kyoDataTipsModel.tip &&
                    [kyoDataTipsModel.tip isKindOfClass:[NSAttributedString class]]) {
             self.lblTips.attributedText = kyoDataTipsModel.tip;
-            tipsSize = KyoAttributeStringSize(kyoDataTipsModel.tip, CGSizeMake(kWindowWidth - kLabelXSpacing * 2, 1000));
+            tipsSize = [kyoDataTipsModel.tip boundingRectWithSize:CGSizeMake([[[UIApplication sharedApplication] delegate] window].bounds.size.width - kLabelXSpacing * 2, 1000)
+                                                          options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:NULL].size;
         }
         self.lcLblTipsHeight.constant = tipsSize.height + 4;
         
@@ -96,6 +99,10 @@
             
             [self.btnOperation setBackgroundImage:kyoDataTipsModel.imgOperationButtonNormal forState:UIControlStateNormal];
             [self.btnOperation setBackgroundImage:kyoDataTipsModel.imgOperationButtonHighight forState:UIControlStateHighlighted];
+            if (kyoDataTipsModel.imgOperationButtonNormal == nil)
+            {
+                [self.btnOperation setBackgroundColor:kyoDataTipsModel.buttonBackgroundColor];
+            }
             if (kyoDataTipsModel && [kyoDataTipsModel.buttonText isKindOfClass:[NSString class]]) {
                 [self.btnOperation setTitle:kyoDataTipsModel.buttonText forState:UIControlStateNormal];
             } else if (kyoDataTipsModel && [kyoDataTipsModel.buttonText isKindOfClass:[NSAttributedString class]]) {
@@ -111,7 +118,7 @@
         }
         
         //计算top
-        CGFloat top = self.scrollView.size.height / 2.0 - height / 2.0;
+        CGFloat top = self.scrollView.frame.size.height / 2.0 - height / 2.0;
         top = top * kyoDataTipsModel.yScale;
         top += kyoDataTipsModel.yOffset;
         top -= (self.scrollViewDefaultInsets.top - self.scrollViewDefaultInsets.bottom);
@@ -143,7 +150,7 @@
 - (void)initialize:(UIScrollView *)scrollView {
     self.scrollView = scrollView;
     self.scrollViewDefaultInsets = scrollView.contentInset;
-    self.frame = CGRectMake(0, 0, scrollView.size.width, scrollView.size.height);
+    self.frame = CGRectMake(0, 0, scrollView.frame.size.width, scrollView.frame.size.height);
     self.alpha = 0;
     [scrollView addSubview:self];
     
@@ -169,7 +176,7 @@
     [self addConstraint:lcImgvCenterH]; //中心x
     
     UILabel *lblTips = [[UILabel alloc] init];
-    lblTips.textColor = YYColor(158, 158, 158);
+    lblTips.textColor = [UIColor colorWithRed:158/255.0 green:158/255.0 blue:158/255.0 alpha:1.0];
     lblTips.font = [UIFont systemFontOfSize:12];
     lblTips.textAlignment = NSTextAlignmentCenter;
     lblTips.numberOfLines = 0;

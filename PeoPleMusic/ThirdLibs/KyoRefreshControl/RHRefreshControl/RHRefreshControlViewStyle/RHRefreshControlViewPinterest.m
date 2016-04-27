@@ -29,6 +29,10 @@
 }
 
 - (void)commonSetupOnInit {
+    _fillColor = [UIColor clearColor];
+    _strokeColor =    [UIColor redColor];  
+    _imgContent = [UIImage imageNamed:@"com_refresh_icon"];
+    
   CAShapeLayer *circle = [CAShapeLayer layer];
   circle.frame = CGRectMake(0, 0, 25.0f, 25.0f);
   circle.contentsGravity = kCAGravityCenter;
@@ -42,7 +46,7 @@
   
   circle.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)-10);    //设置动画圆圈坐标
   circle.fillColor = [UIColor clearColor].CGColor;
-  circle.strokeColor = kGlobalStyleColor.CGColor;;
+  circle.strokeColor = _strokeColor.CGColor;
   circle.lineWidth =2.0f;
   circle.strokeEnd = 0.0f;
     circle.opacity = 0.0f;
@@ -53,7 +57,7 @@
   layer.frame = CGRectMake(0, 0, 24.0f, 24.0f);
   layer.contentsGravity = kCAGravityCenter;
 //    if ([[NSBundle mainBundle] pathForResource:@"com_refresh_icon" ofType:@".png"]) {
-        layer.contents = (id)[UIImage imageNamed:@"com_refresh_icon"].CGImage;
+        layer.contents = (id)_imgContent.CGImage;
 //    }
   
   layer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds)-10); //设置刷新图片坐标

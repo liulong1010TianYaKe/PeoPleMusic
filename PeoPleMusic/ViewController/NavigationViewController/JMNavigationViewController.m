@@ -133,8 +133,6 @@
     }
     isPoping = YES;
     //清空viewcontroller里面所有的operation
-    UIViewController *viewController = self.viewControllers[self.viewControllers.count-1];
-    [KyoUtil clearAllNetworkOperationWithProperty:viewController];
     
     [self delayEnableWinodw];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -153,8 +151,7 @@
     }
     isPoping = YES;
     //清空viewcontroller里面所有的operation
-    UIViewController *tempViewController = self.viewControllers[self.viewControllers.count-1];
-    [KyoUtil clearAllNetworkOperationWithProperty:tempViewController];
+
     
     [self delayEnableWinodw];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -168,8 +165,7 @@
 - (NSArray *)popToRootViewControllerAnimated:(BOOL)animated
 {
     //清空viewcontroller里面所有的operation
-    UIViewController *tempViewController = self.viewControllers[self.viewControllers.count-1];
-    [KyoUtil clearAllNetworkOperationWithProperty:tempViewController];
+
     
     [self delayEnableWinodw];
     
@@ -208,8 +204,8 @@
     
     dispatch_once(&onceToken, ^{
         UIImage *img = [UIImage createImageWithColor:[UIColor clearColor] withSize:CGSizeMake(kWindowWidth/10, 21)];
-        imgArrow = [KyoUtil compoundImageWithSize:img.size withMainImage:img withMainImageRect:CGRectMake(0, 0, 60, 21) withSubImage:[UIImage imageNamed:@"nav_icon_back_normal"] withSubImageRect:CGRectMake(0, 0, 20, 20)];
-        imgArrowHighlight = [KyoUtil compoundImageWithSize:img.size withMainImage:img withMainImageRect:CGRectMake(0, 0, 60, 21) withSubImage:[UIImage imageNamed:@"nav_icon_back_normal"] withSubImageRect:CGRectMake(0, 0, 20, 20)];
+//        imgArrow = [KyoUtil compoundImageWithSize:img.size withMainImage:img withMainImageRect:CGRectMake(0, 0, 60, 21) withSubImage:[UIImage imageNamed:@"nav_icon_back_normal"] withSubImageRect:CGRectMake(0, 0, 20, 20)];
+//        imgArrowHighlight = [KyoUtil compoundImageWithSize:img.size withMainImage:img withMainImageRect:CGRectMake(0, 0, 60, 21) withSubImage:[UIImage imageNamed:@"nav_icon_back_normal"] withSubImageRect:CGRectMake(0, 0, 20, 20)];
 
     });
     

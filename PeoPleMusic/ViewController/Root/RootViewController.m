@@ -22,9 +22,7 @@
 
 
 @property (nonatomic, strong) UIAlertView *networkChangeAlertView;
-@property (nonatomic, assign) AFNetworkReachabilityStatus lasttNetworkState; //之前网络状态
-@property (nonatomic, strong) AFHTTPRequestOperation *loginOperation;   //登录操作
-@property (strong, nonatomic) AFHTTPRequestOperation *queryDefaultCityOpertaion;
+//@property (nonatomic, assign) AFNetworkReachabilityStatus lasttNetworkState; //之前网络状态
 @property (nonatomic, strong) NSMutableArray *arrayCart;
 
 @property (nonatomic, strong) YMTCPClient *clientTcp;
@@ -53,7 +51,6 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES]; //设置白色状态栏
     
-    [self startMonitoringNetworkState]; //开始监听网络状态
     [self setupTabBarViewController];   //设置tabbarviewcontroller
 //    [self checkShowNewFeatureViewController];   //检测是否需要显示新特性viewcontroller
     
@@ -185,28 +182,7 @@
     self.tabBarViewController.selectedIndex = 1;    //默认为产品页
 }
 
-//开始监听网络状态
-- (void)startMonitoringNetworkState
-{
-    self.currentNetworkState = AFNetworkReachabilityStatusUnknown;
-    
-    /*
-     AFNetworkingReachabilityDidChangeNotification其它地方通过监听这个通知可以得到网络状态改变
-     */
-    
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-    // 检测网络连接的单例,网络变化时的回调方法
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        self.lasttNetworkState = self.currentNetworkState;
-        self.currentNetworkState = status;
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivingTheNetworkStateChangeNotification:) name:AFNetworkingReachabilityDidChangeNotification object:nil];  //监听网络状态改变通知
-    
-    
-    //注册网络协议，监听每个网络请求
-//    [NSURLProtocol registerClass:[KyoURLProtocol class]];
-}
+
 
 //检测是否需要显示新特性viewcontroller
 - (void)checkShowNewFeatureViewController
@@ -260,15 +236,7 @@
 //    }];
 }
 
-//检测当前网络状态是否通顺
-- (BOOL)checkCurrentNetworkConnection {
-    if (self.currentNetworkState == AFNetworkReachabilityStatusUnknown ||
-        self.currentNetworkState == AFNetworkReachabilityStatusNotReachable) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
+
 
 - (void)clearAllTextField:(id)targer
 {
@@ -293,19 +261,6 @@
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
 }
 
-//-(void)loginCompletion:(LoginSucessBlock)loginSucessBlock
-//{
-//    LoginViewController *loginViewController = [[LoginViewController alloc]init];
-//    
-//    if (loginSucessBlock) {
-//        loginViewController.loginSucessBlock = loginSucessBlock;
-//    }
-//    
-//    JMNavigationViewController *nav = [[JMNavigationViewController alloc]initWithRootViewController:loginViewController];
-//    [self presentViewController:nav animated:YES completion:^{
-//        
-//    }];
-//}
 
 - (void)gotoLibrayMusicViewController{
     [[KyoUtil getCurrentNavigationViewController] popToRootViewControllerAnimated:YES];
@@ -334,36 +289,6 @@
         [self startConnectSongServer]; // 连接音响
     }
 }
-//监听网络状态通知
--(void)receivingTheNetworkStateChangeNotification:(NSNotification *)notification
-{
-    static NSInteger _fristChangeNetworkState = 0;
-    //temp变量的作用是过滤掉第一次进入到程序时的网络环境变化
-    if (_fristChangeNetworkState == 0) {
-        _fristChangeNetworkState = 1;
-        return;
-    }
-    
-    if (self.currentNetworkState == self.lasttNetworkState) {   //过滤掉相同的操作
-        return;
-    }
-    
-    if (self.currentNetworkState == AFNetworkReachabilityStatusReachableViaWiFi) {  //过滤掉切换为wifi环境
-        return;
-    }
-    
-    if (self.networkChangeAlertView) {  //过滤掉如果当前弹框还在，则不重复弹框
-        return;
-    }
-    
-    NSString *msg = nil;
-    if (self.currentNetworkState == AFNetworkReachabilityStatusNotReachable) {
-        msg = @"当前没有网络,请检查您的网络连接！";
-    } else if (self.currentNetworkState == AFNetworkReachabilityStatusReachableViaWWAN) {
-        msg = @"当前为非WIFI网络，请确定是否继续使用！";
-    }
-    self.networkChangeAlertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:@"确定"  otherButtonTitles:nil, nil];
-    [self.networkChangeAlertView show];
-}
+
 
 @end

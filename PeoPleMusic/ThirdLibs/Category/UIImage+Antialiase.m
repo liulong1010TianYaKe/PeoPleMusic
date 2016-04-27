@@ -8,6 +8,7 @@
 
 #import "UIImage+Antialiase.h"
 #import "UIImage-RoundCorner.h"
+#import "UIImageView+WebCache.h"
 
 @implementation UIImage (Antialiase)
 
@@ -40,7 +41,7 @@
 
     UIImage *img = [UIImage imageNamed:placeUrl];
     UIImage * placeholderImg  =  [img imageWithRadius:radius width:radius*2 height:radius*2];
-    [imgView setImageWithURL:[NSURL URLWithString: url] placeholderImage:placeholderImg];
+    [imgView sd_setImageWithURL:[NSURL URLWithString: url]  placeholderImage:placeholderImg];
     
     return imgView.image;
 }

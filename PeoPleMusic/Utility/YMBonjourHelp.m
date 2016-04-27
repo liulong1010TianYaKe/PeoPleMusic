@@ -7,6 +7,8 @@
 //
 
 #import "YMBonjourHelp.h"
+//#include <netinet/in.h>
+#include <arpa/inet.h>
 
 @interface YMBonjourHelp ()<NSNetServiceDelegate,NSNetServiceBrowserDelegate>
 @property (nonatomic, strong) NSNetServiceBrowser *brower;

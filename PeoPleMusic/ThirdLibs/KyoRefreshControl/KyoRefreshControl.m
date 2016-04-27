@@ -7,8 +7,14 @@
 //
 
 #import "KyoRefreshControl.h"
-#import "RHRefreshControl.h"
 #import "KyoLoadMoreControl.h"
+
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <netinet/in.h>
+#import <netinet6/in6.h>
+#import <arpa/inet.h>
+#import <ifaddrs.h>
+#import <netdb.h>
 
 @interface KyoRefreshControl()<KyoLoadMoreControlDelegate, RHRefreshControlDelegate>
 {
@@ -22,15 +28,14 @@
 @property (strong, nonatomic) KyoDataTipsView *kyoDataTipsView;
 
 @property (assign, nonatomic) BOOL isCanShowNoMore; /**< 是否显示没有更多数据了 */
-
-//@property (assign, nonatomic) CGFloat tipsViewY;   //提示视图在居中的情况下需要偏移的距离
-//@property (assign, nonatomic) CGFloat tipsViewYScale;   //提示视图中心点在scrollview的y轴比例（比如传入0.5，则tipsview的中心点在scrollerview的中心点）
+@property (strong, nonatomic) NSArray *arrayReloadErrorCode;    /**< 如果有errorcode，可以点击后刷新的code数组 */
 
 - (void)setupControl;
 - (void)addObserver;
 - (void)removeObserver;
 - (void)cancelPreviousPerformRequests;
 - (void)changeKyoDataTipsViewCenter;    /**< 修改错误提示的中心点 */
+- (BOOL)isConnectNetwork;   //判断当前是否连接了网络
 
 @end
 
@@ -44,13 +49,19 @@
 }
 
 - (id)initWithScrollView:(UIScrollView *)scrollView withDelegate:(id<KyoRefreshControlDelegate>)delegate withIsCanShowNoMore:(BOOL)isCanShowNoMore {
+    return [self initWithScrollView:scrollView withDelegate:delegate withIsCanShowNoMore:isCanShowNoMore withKyoRefreshDisplayType:KyoRefreshDisplayTypeDefault];
+}
+
+- (id)initWithScrollView:(UIScrollView *)scrollView withDelegate:(id<KyoRefreshControlDelegate>)delegate withIsCanShowNoMore:(BOOL)isCanShowNoMore withKyoRefreshDisplayType:(KyoRefreshDisplayType)type {
     self = [super init];
     if (self) {
         
         self.scrollView = scrollView;
         self.kyoRefreshControlDelegate = delegate;
         self.isCanShowNoMore = isCanShowNoMore;
+        _refreshDisplayType = type;
         _tableViewDefaultInsets = scrollView.contentInset;
+        _arrayReloadErrorCode = @[@"1005", @"1004"];
         
         [self setupControl];
         [self addObserver];
@@ -134,6 +145,16 @@
     self.kyoLoadMoreControl.newInsets = tableViewDefaultInsets;
 }
 
+- (void)setRefreshDisplayType:(KyoRefreshDisplayType)refreshDisplayType {
+    _refreshDisplayType = refreshDisplayType;
+    self.refreshControl.refreshDisplayType = _refreshDisplayType;
+}
+
+- (void)setRefreshViewOffsetY:(CGFloat)refreshViewOffsetY {
+    _refreshViewOffsetY = refreshViewOffsetY;
+    self.refreshControl.refreshViewOffsetY = refreshViewOffsetY;
+}
+
 #pragma mark ------------------------
 #pragma mark - Methods
 
@@ -145,6 +166,8 @@
     RHRefreshControl *refreshControl = [[RHRefreshControl alloc] initWithConfiguration:refreshConfiguration];
     refreshControl.delegate = self;
     [refreshControl attachToScrollView:self.scrollView];
+    refreshControl.refreshDisplayType = self.refreshDisplayType;
+    refreshControl.refreshViewOffsetY = self.refreshViewOffsetY;
     self.refreshControl = refreshControl;
     
     KyoDataTipsView *kyoDataTipsView = [[KyoDataTipsView alloc] initWithScrollView:self.scrollView];
@@ -271,7 +294,7 @@
         self.kyoDataTipsView.kyoDataTipsModel.tip = nil;
         self.kyoDataTipsView.alpha = 0;
     } else if (error) {
-        KyoDataTipsViewType type = [[KyoUtil rootViewController] checkCurrentNetworkConnection] ? KyoDataTipsViewTypeNoDataHadNetworkError : KyoDataTipsViewTypeNoDataNoWifi;
+        KyoDataTipsViewType type = [self isConnectNetwork] ? KyoDataTipsViewTypeNoDataHadNetworkError : KyoDataTipsViewTypeNoDataNoWifi;
         void (^noResultBlock)() = ^{
             KyoDataTipsModel *kyoDataTipsModel = self.kyoDataTipsView.kyoDataTipsModel;
             if (type == KyoDataTipsViewTypeNoDataHadNetworkError) {
@@ -305,9 +328,7 @@
         void (^noResultBlock)() = ^{
             KyoDataTipsModel *kyoDataTipsModel = self.kyoDataTipsView.kyoDataTipsModel;
             if (type == KyoDataTipsViewTypeNoDataHadError) {  //如果是没数据且服务器返回了错误
-                if (self.errorState &&
-                    ([self.errorState isEqualToString:kMultipleDevicesSignInErrorCode] ||
-                     [self.errorState isEqualToString:kReLogInErrorCode])) {  //如果是需要重新登录
+                if (self.errorState && [self.arrayReloadErrorCode containsObject:self.errorState]) {  //如果是需要重新登录
                         kyoDataTipsModel.tip = @"加载失败，点击屏幕重新加载";
                         kyoDataTipsModel.img = [UIImage imageNamed:@"prompt_icon_refresh_normal"];
                         kyoDataTipsModel.isShowBGButton = YES;
@@ -338,6 +359,44 @@
         self.kyoDataTipsView.alpha = 1;
         [self changeKyoDataTipsViewCenter];
     }
+}
+
+//判断当前是否连接了网络
+- (BOOL)isConnectNetwork {
+    //创建零地址，0.0.0.0的地址表示查询本机的网络连接状态
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+    // Recover reachability flags
+    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *)&zeroAddress);
+    SCNetworkReachabilityFlags flags;
+    //获得连接的标志
+    BOOL didRetrieveFlags = SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags);
+    CFRelease(defaultRouteReachability);
+    //如果不能获取连接标志，则不能连接网络，直接返回
+    if (!didRetrieveFlags)
+    {
+        return NO;
+    }
+    
+    //根据获得的连接标志进行判断
+    BOOL isReachable = ((flags & kSCNetworkReachabilityFlagsReachable) != 0);
+    BOOL needsConnection = ((flags & kSCNetworkReachabilityFlagsConnectionRequired) != 0);
+    BOOL canConnectionAutomatically = (((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) || ((flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0));
+    BOOL canConnectWithoutUserInteraction = (canConnectionAutomatically && (flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0);
+    BOOL isNetworkReachable = (isReachable && (!needsConnection || canConnectWithoutUserInteraction));
+    
+    if (isNetworkReachable == NO) {
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+/**< 获得当前版本号 */
+- (NSString *)currentVersion {
+    return @"v2.0.2";
 }
 
 #pragma mark ------------------

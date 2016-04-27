@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 #import "JMTabBarViewController.h"
-#import "AFNetworkReachabilityManager.h"
+//#import "AFNetworkReachabilityManager.h"
 //#import "LoginViewController.h"
 #import "PlayerViewController.h"
 #import "LibrayMusicViewController.h"
@@ -20,7 +20,7 @@
 @interface RootViewController : UIViewController
 
 @property (nonatomic, strong) JMTabBarViewController *tabBarViewController;
-@property (nonatomic, assign) AFNetworkReachabilityStatus currentNetworkState; //当前网络状态
+//@property (nonatomic, assign) AFNetworkReachabilityStatus currentNetworkState; //当前网络状态
 
 
 - (BOOL)checkCurrentNetworkConnection;  //检测当前网络状态是否通顺

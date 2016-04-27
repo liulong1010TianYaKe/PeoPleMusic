@@ -36,7 +36,7 @@
     _buttonTextColor = [UIColor whiteColor];
     _buttonTextSize = 15;
     _operationButtonTop = 16;
-    _operationButtonWidth = kWindowWidth - 32;
+    _operationButtonWidth = [[[UIApplication sharedApplication] delegate] window].bounds.size.width - 32;
     _operationButtonHeight = 44;
     _yScale = 1.0/1.0;
     _img = [UIImage imageNamed:@"com_tipsView_logo"];
