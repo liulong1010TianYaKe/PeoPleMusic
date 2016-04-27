@@ -14,7 +14,7 @@
 #import "YMBonjourHelp.h"
 #import "YMTCPClient.h"
 
-@interface RootViewController()<RESideMenuDelegate>
+@interface RootViewController()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIView *contentView;
@@ -57,10 +57,7 @@
     [KyoUtil addTagGesture:self performSelector:@selector(clearAllTextField:) withView:self.view];
     
     //判断是否需要自动登录
-//    if ([VerifyRegexTool verifyIsNotEmpty:[UserInfo sharedUserInfo].loginName] &&
-//        [VerifyRegexTool verifyIsNotEmpty:[UserInfo sharedUserInfo].loginPassWord]) {
-//        [self networkLogin:nil];
-//    }
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[YMBonjourHelp shareInstance] startSearch];
 
@@ -137,29 +134,16 @@
 {
     self.tabBarViewController = [[JMTabBarViewController alloc] init];
   
-    UIViewController *leftVC = [[UIViewController alloc] init];
-    
-    
-    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:self.tabBarViewController
-                                                                    leftMenuViewController:leftVC                                                                   rightMenuViewController:nil];
-    sideMenuViewController.backgroundImage = [UIImage imageNamed:@"Stars"];
-    sideMenuViewController.menuPreferredStatusBarStyle = 1; // UIStatusBarStyleLightContent
-    sideMenuViewController.delegate = self;
-    sideMenuViewController.contentViewShadowColor = [UIColor blackColor];
-    sideMenuViewController.contentViewShadowOffset = CGSizeMake(0, 0);
-    sideMenuViewController.contentViewShadowOpacity = 0.6;
-    sideMenuViewController.contentViewShadowRadius = 12;
-    sideMenuViewController.contentViewShadowEnabled = YES;
-    
-    [self addChildViewController:sideMenuViewController];
-    [self.contentView addSubview:sideMenuViewController.view];
 
     
-    sideMenuViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
-    NSLayoutConstraint *lcLeft = [NSLayoutConstraint constraintWithItem:sideMenuViewController.view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1 constant:0]; //左
-    NSLayoutConstraint *lcRight = [NSLayoutConstraint constraintWithItem:sideMenuViewController.view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1 constant:0];   //右
-    NSLayoutConstraint *lcTop = [NSLayoutConstraint constraintWithItem:sideMenuViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1 constant:0]; //上
-    NSLayoutConstraint *lcBottom = [NSLayoutConstraint constraintWithItem:sideMenuViewController.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:0]; //下
+    [self addChildViewController:self.tabBarViewController];
+    [self.contentView addSubview:self.tabBarViewController.view];
+    
+     self.tabBarViewController.view.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *lcLeft = [NSLayoutConstraint constraintWithItem: self.tabBarViewController.view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1 constant:0]; //左
+    NSLayoutConstraint *lcRight = [NSLayoutConstraint constraintWithItem: self.tabBarViewController.view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1 constant:0];   //右
+    NSLayoutConstraint *lcTop = [NSLayoutConstraint constraintWithItem: self.tabBarViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1 constant:0]; //上
+    NSLayoutConstraint *lcBottom = [NSLayoutConstraint constraintWithItem: self.tabBarViewController.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:0]; //下
     [self.contentView addConstraints:@[lcLeft, lcRight, lcTop, lcBottom]];
     [self.contentView layoutIfNeeded];
 

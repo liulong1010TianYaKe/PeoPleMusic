@@ -20,7 +20,9 @@
 @property (nonatomic, strong) NSString  *artist;//艺术家
 @property (nonatomic, assign) NSInteger playTime;//点播时间，长整形
 @property (nonatomic, assign) NSInteger duration;// 歌曲播放时长
+
 @property (nonatomic, strong) NSString  *mediaId;//歌曲id
+
 @property (nonatomic, assign) NSInteger mediaSize;//歌曲大小
 @property (nonatomic, strong) NSString  *coin;// 金币
 @property (nonatomic, strong) NSString  *playState;
@@ -32,6 +34,8 @@
 
 @property (nonatomic, strong) NSString *number; // 歌曲序号
 @property (nonatomic, strong) NSString *listen_href; // 歌曲地址
+
+@property (nonatomic, strong) NSString  *lyric_herf; // 歌词连接地址
 
 
 @property (nonatomic, strong) UserInfoModel *userInfor;

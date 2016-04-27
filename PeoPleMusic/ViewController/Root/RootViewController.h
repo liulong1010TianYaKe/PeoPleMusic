@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RESideMenu.h"
+
 #import "JMTabBarViewController.h"
 //#import "AFNetworkReachabilityManager.h"
-//#import "LoginViewController.h"
 #import "PlayerViewController.h"
 #import "LibrayMusicViewController.h"
 #import "UserCenterViewController.h"
@@ -24,7 +23,6 @@
 
 
 
-//- (void)loginCompletion:(LoginSucessBlock)loginSucessBlock;  /**< 跳转到登录界面 */
 //- (void)scanQRCodeCompletion:(ScanQRCodeSucessBlock)scanQRCodeSucessBlock;  /**< 跳转到二维码扫描 */
 - (void)gotoLibrayMusicViewController;
 

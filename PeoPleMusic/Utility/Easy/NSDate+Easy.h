@@ -8,6 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+
+static NSString * const kDateFormatISO8601 = @"yyyy-MM-dd'T'HH:mm:ssZ";
+static NSString * const kDateFormat_yyyy_M_d_slash = @"yyyy/M/d";
+static NSString * const kDateFormat_yyyy_MM_dd = @"yyyy-MM-dd";
+static NSString * const kDateFormat_yyyy_MM_ddTHH_mm_ss = @"yyyy-MM-dd'T'HH:mm:ss";
+static NSString * const kDateFormat_yyyy_MM_dd_HH_mm = @"yyyy-MM-dd HH:mm";
+static NSString * const kDateFormat_yyyy_MM_dd_H_mm = @"yyyy-MM-dd H:mm";
+static NSString * const kTimeFormat_H_mm = @"H:mm";
+static NSString * const KtimeFormat_yyyy_MM_ddTHH_mm_ss_SSS = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
+//Date format for date Display
+static NSString * const kDateFormat_yyyy_M_d_HH_mm_Chinese = @"yyyy年M月d日 HH:mm";
+static NSString * const kDateFormat_yyyy_M_d_Chinese = @"yyyy年M月d日";
+static NSString * const kDateFormat_M_d = @"M-d";
+static NSString * const kTimeFormat_HH_mm = @"HH:mm";
+static NSString * const kTimeFormat_MM_DD_HH_mm = @"MM-dd  HH:mm";
+
+
 @interface NSDate (Easy)
 
 //+ (id)dateWithDate:(NSDate *)date time:(NSDate *)time;

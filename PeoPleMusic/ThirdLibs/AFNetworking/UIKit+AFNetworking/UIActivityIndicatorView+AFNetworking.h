@@ -1,8 +1,5 @@
-//
-// UIViewController+RESideMenu.m
-// RESideMenu
-//
-// Copyright (c) 2013-2014 Roman Efimov (https://github.com/romaonthego)
+// UIActivityIndicatorView+AFNetworking.h
+// Copyright (c) 2011–2016 Alamofire Software Foundation (http://alamofire.org/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,39 +18,31 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-//
 
-#import "UIViewController+RESideMenu.h"
-#import "RESideMenu.h"
+#import <Foundation/Foundation.h>
 
-@implementation UIViewController (RESideMenu)
+#import <TargetConditionals.h>
 
-- (RESideMenu *)sideMenuViewController
-{
-    UIViewController *iter = self.parentViewController;
-    while (iter) {
-        if ([iter isKindOfClass:[RESideMenu class]]) {
-            return (RESideMenu *)iter;
-        } else if (iter.parentViewController && iter.parentViewController != iter) {
-            iter = iter.parentViewController;
-        } else {
-            iter = nil;
-        }
-    }
-    return nil;
-}
+#if TARGET_OS_IOS || TARGET_OS_TV
 
-#pragma mark -
-#pragma mark IB Action Helper methods
+#import <UIKit/UIKit.h>
 
-- (IBAction)presentLeftMenuViewController:(id)sender
-{
-    [self.sideMenuViewController presentLeftMenuViewController];
-}
+/**
+ This category adds methods to the UIKit framework's `UIActivityIndicatorView` class. The methods in this category provide support for automatically starting and stopping animation depending on the loading state of a session task.
+ */
+@interface UIActivityIndicatorView (AFNetworking)
 
-- (IBAction)presentRightMenuViewController:(id)sender
-{
-    [self.sideMenuViewController presentRightMenuViewController];
-}
+///----------------------------------
+/// @name Animating for Session Tasks
+///----------------------------------
+
+/**
+ Binds the animating state to the state of the specified task.
+
+ @param task The task. If `nil`, automatic updating from any previously specified operation will be disabled.
+ */
+- (void)setAnimatingWithStateOfTask:(nullable NSURLSessionTask *)task;
 
 @end
+
+#endif

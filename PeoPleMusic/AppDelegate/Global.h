@@ -94,6 +94,9 @@
 #define kUserDefaultKey_KeyChar @"kUserDefaultKey_KeyChar"  //唯一标示
 
 
+#define kNotificationName_ViewControllerWillAppear  @"kNotificationName_ViewControllerWillAppear"
+#define kNotificationName_ViewControllerWillDisappear @"kNotificationName_ViewControllerWillDisappear"
+
 
 //*****AppStyle
 #define kGlobalStyleColor kStyleFontColorFC4949 //主题色

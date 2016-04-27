@@ -18,6 +18,7 @@
 
 @interface SeachSongViewController ()<UISearchBarDelegate,KyoRefreshControlDelegate>{
     NSString *currentSearchString;
+    NSInteger currentNumb;
 }
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
@@ -48,6 +49,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+    currentNumb = 10;
     self.searchBar.delegate = self;
     [self.searchBar setSearchTextPositionAdjustment:UIOffsetMake(0, 0)];// 设置搜索框中文本框的文本偏移量
    
@@ -86,43 +88,92 @@
 #pragma mark --------------------
 #pragma mark - network
 - (void)requestNetwork:(NSString *)searchStr withIndex:(NSInteger)index{
-    NSString *urlString = [NSString stringWithFormat:@"http://search.kuwo.cn/r.s?all=%@&ft=music&itemset=web_2013&client=kt&pn=%ld&rn=10&rformat=json&encoding=utf8",searchStr,(long)index];
+    NSString *urlString = [NSString stringWithFormat:@"http://sou.kuwo.cn/ws/NSearch?key=%@&type=music&pn=%ld",[searchStr encodeToPercentEscapeString],(long)index];
    
     NSLog(@"%@",urlString);
-    
-    __block NSDictionary *tempDict = nil;
+//    http://sou.kuwo.cn/ws/NSearch?key= &type=music&pn=1
     
 
-   
+
     
-//    [[NetworkSessionHelp shareNetwork] postNetwork:nil serverAPIUrl:urlString completionBlock:^(NSDictionary *dict, NetworkResultModel *resultModel) {
-//        tempDict = dict;
-////        if ([NetworkSessionHelp checkDictFromNetwork:dict withKyoRefreshControl:self.kyoRefreshControl]) {
-//            NSInteger totoal = [dict[@"TOTAL"] integerValue];
-//            self.kyoRefreshControl.numberOfPage = KYOLOADMORECONTROL_NUMBER_OF_PAGES(totoal, kPageSize);
-//            NSArray *temp = [AbsListModel objectArrayWithKeyValuesArray:dict[@"abslist"]];
-//            
-//            NSArray *arr = [AbsListModel getSongInforModel:temp]
-//            ;            if (!self.songlist) {
-//                self.songlist = [NSMutableArray array];
-//            }
-//            if (index == 0) {
-//                [self.songlist removeAllObjects];
-//                self.songlist = [NSMutableArray arrayWithArray:arr];
-//            }else{
-//                [self.songlist addObjectsFromArray:arr];
-//            }
-//            
-//            [self.tableView reloadData];
-////        }else{
-////            [self showMessageHUD:@"亲,未搜索到哦～" withTimeInterval:kShowMessageTime];
-////        }
-//    } errorBlock:^(NSError *error) {
-//        
-//    } finishedBlock:^(NSError *error) {
-//        
-//        [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore:index ==0 ? YES : NO withHadData:tempDict ? YES : NO withError:error];
-//    }];
+    [NetworkSessionHelp NetworkHTML:urlString completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
+        if (responseStatusCode == 200) {
+            
+            TFHpple *doc = [TFHpple hppleWithHTMLData:[htmlText dataUsingEncoding:NSUTF8StringEncoding]];
+            NSArray *TRElements = [doc searchWithXPathQuery:@"//div[@class='list']//ul//li[@class='clearfix']"];
+//            NSArray *TRElements = [doc searchWithXPathQuery:@"//div[@class='main fl']//div[@class='m_list']//ul[@id='musicList']//li[@class='clearfix']"];
+            NSMutableArray *tempArr = [NSMutableArray array];
+            for (TFHppleElement *e in TRElements) {
+                
+                SongInforModel *model = [[SongInforModel alloc] init];
+                
+                NSArray *tempNumb = [e searchWithXPathQuery:@"//p[@class='number']"];  // 歌曲Id
+                if(tempNumb&&tempNumb.count > 0){
+                    model.number = [tempNumb[0] content];
+                    model.mediaId = [[[tempNumb[0] children] objectAtIndex:0] objectForKey:@"mid"];
+                }
+                
+                NSArray *tempm_name = [e searchWithXPathQuery:@"//p[@class='m_name']//a"]; // 歌词
+                if (tempm_name&&tempm_name.count > 0) {
+                    
+                    TFHppleElement *e0 = tempm_name[0];
+                    model.mediaName = [e0 objectForKeyedSubscript:@"title"];
+                    
+                    model.lyric_herf =  [e0 objectForKeyedSubscript:@"href"];
+                }
+                
+                NSArray *tempa_name = [e searchWithXPathQuery:@"//p[@class='a_name']//a"]; // 专辑名称
+                if (tempa_name&&tempa_name.count > 0) {
+                    model.albumName = [tempa_name[0] objectForKeyedSubscript:@"title"];
+                }
+                
+                NSArray *temps_name = [e searchWithXPathQuery:@"//p[@class='s_name']//a"]; // 歌手
+                if (temps_name&&temps_name.count > 0) {
+                    model.artist = [tempa_name[0] objectForKeyedSubscript:@"title"];
+                }
+                
+                NSArray *templisten = [e searchWithXPathQuery:@"//p[@class='listen']//a"]; //  http://player.kuwo.cn/MUSIC/MUSIC_324244  播放连接
+                if (templisten&&templisten>0) {
+                    model.listen_href = [templisten[0] objectForKey:@"href"];
+                }
+                
+                
+                [tempArr addObject:model];
+            }
+            
+            
+             NSArray *TRElementPage = [doc searchWithXPathQuery:@"//form//div[@class='page']//a"];
+     
+            NSInteger total = 1;
+            for (TFHppleElement *e in TRElementPage) {
+                NSInteger numb = [[e content] integerValue];
+                if (numb > total) {
+                    total = numb;
+                }
+            }
+            if (!self.songlist) {
+                self.songlist = [NSMutableArray array];
+            }
+
+            if(index == 1){
+                [self.songlist removeAllObjects];
+                currentNumb = TRElements.count;
+            }
+            
+            self.kyoRefreshControl.numberOfPage = KYOLOADMORECONTROL_NUMBER_OF_PAGES(total, currentNumb);
+            
+            [self.songlist addObjectsFromArray:tempArr];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore:index==1 ? YES : NO withHadData:self.songlist.count > 0 ? YES : NO withError:nil];
+            });
+        }
+    } errorBlock:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore:index==1 ? YES : NO withHadData:self.songlist.count > 0 ? YES : NO withError:error];
+        });
+    }];
+    
 }
 #pragma mark --------------------
 #pragma mark - UITableViewDelegate, UITableViewSourceData
@@ -244,7 +295,7 @@
 
 //刷新
 - (void)kyoRefreshDidTriggerRefresh:(KyoRefreshControl *)refreshControl {
-      [self requestNetwork:currentSearchString withIndex:0];
+      [self requestNetwork:currentSearchString withIndex:1];
 }
 
 //加载下一页
