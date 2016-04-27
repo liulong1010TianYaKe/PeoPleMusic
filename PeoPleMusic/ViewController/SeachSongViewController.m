@@ -135,7 +135,8 @@
                 
                 NSArray *temps_name = [e searchWithXPathQuery:@"//p[@class='s_name']//a"]; // 歌手
                 if (temps_name&&temps_name.count > 0) {
-                    model.artist = [tempa_name[0] objectForKeyedSubscript:@"title"];
+                     TFHppleElement *e0 = tempm_name[0];
+                    model.artist = [e0 objectForKey:@"title"]; //[tempa_name[0] objectForKeyedSubscript:@"title"];
                 }
                 
                 NSArray *templisten = [e searchWithXPathQuery:@"//p[@class='listen']//a"]; //  http://player.kuwo.cn/MUSIC/MUSIC_324244  播放连接
@@ -166,8 +167,8 @@
                 currentNumb = TRElements.count;
             }
             
-            self.kyoRefreshControl.numberOfPage = KYOLOADMORECONTROL_NUMBER_OF_PAGES(total, currentNumb);
-            
+//            self.kyoRefreshControl.numberOfPage = KYOLOADMORECONTROL_NUMBER_OF_PAGES(total, currentNumb);
+              self.kyoRefreshControl.numberOfPage = total;
             [self.songlist addObjectsFromArray:tempArr];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
@@ -230,7 +231,7 @@
         cell.indexPath = indexPath;
         SongInforModel *model = self.songlist[indexPath.row];
         cell.lblM_Name.text = model.mediaName;
-        cell.lblS_Name.text = model.artist;
+        cell.lblS_Name.text = model.albumName;
         return cell;
     }
     
