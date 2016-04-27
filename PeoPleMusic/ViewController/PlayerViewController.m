@@ -123,9 +123,7 @@
     [self.view setNeedsLayout];
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self startAnimation];
-    
-    [self.autoTextView startAutoScroll];
-    
+    self.autoTextView.userInteractionEnabled = NO;
 }
 
 - (void)setupData{
@@ -176,13 +174,13 @@
                 self.autoTextView.text = self.currentSongInfo.playMsg;
 //                self.autoTextView.text = @"难兄难弟扭扭捏捏很多很多华东交大家电家具四季酒店俊男坊就记得记得得劲儿加尔肯我看是你可能吃难念的经";
 //                [self.autoTextView startAutoScroll];
-                NSLog(@"留言 %@",self.currentSongInfo.playMsg);
-                [self.autoTextView startAutoScroll];
-//                if(![self.currentSongInfo.playMsg isEqualToString:@""]){
-//                    [self.autoTextView startAutoScroll];
-//                }else{
-//                    [self.autoTextView stopAutoScroll];
-//                }
+//                NSLog(@"留言 %@",self.currentSongInfo.playMsg);
+//                [self.autoTextView startAutoScroll];
+                if(![self.currentSongInfo.playMsg isEqualToString:@""]){
+                    [self.autoTextView startAutoScroll];
+                }else{
+                    [self.autoTextView stopAutoScroll];
+                }
                 
             });
            

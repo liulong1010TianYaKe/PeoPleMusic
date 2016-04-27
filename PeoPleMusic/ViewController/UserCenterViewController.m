@@ -10,11 +10,8 @@
 #import "AddDeviceViewController.h"
 
 
-
 @interface UserCenterSectionHeaderView : UIView
 @property (nonatomic, strong) NSString *title;
-
-
 
 @end
 
