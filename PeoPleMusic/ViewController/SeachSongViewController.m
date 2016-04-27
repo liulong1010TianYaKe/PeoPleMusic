@@ -73,7 +73,13 @@
     [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:KMusicRecordSong withData:self.recordArr];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.searchBar becomeFirstResponder];
+}
+
 - (IBAction)deleteRecodeClicked:(id)sender {
+    [self.recordArr removeAllObjects];
 }
 
 - (void)refreshAbTableView{
