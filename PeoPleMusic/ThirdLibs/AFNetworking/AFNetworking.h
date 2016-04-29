@@ -37,5 +37,6 @@
 
     #import "AFURLSessionManager.h"
     #import "AFHTTPSessionManager.h"
+    #import "YMHTTPResponserHtmlSerializer.h"
 
 #endif /* _AFNETWORKING_ */

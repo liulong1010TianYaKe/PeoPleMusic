@@ -7,11 +7,12 @@
 //
 
 #import "NetworkSessionHelp.h"
+#import "AFNetworking.h"
 
 
 @interface NetworkSessionHelp()
 
-
+@property (nonatomic, strong) AFHTTPSessionManager *httpSessionManager;
 
 @end
 
@@ -89,13 +90,30 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedClient = [[NetworkSessionHelp alloc] init];
+        _sharedClient.httpSessionManager  = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];;
+        _sharedClient.httpSessionManager.responseSerializer = [[YMHTTPResponserHtmlSerializer alloc] init];
+        
+        //开启允许https模式
+        AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+        securityPolicy.allowInvalidCertificates = YES;
+        _sharedClient.httpSessionManager.securityPolicy = securityPolicy;
+  
     });
     
     return _sharedClient;
 }
 
 
-
++ (void)NetworkHTML:(NSString *)urlString completionBlock:(void (^)(NSString *, NSInteger))completionBlock errorBlock:(void (^)(NSError *))errorBlock finishedBlock:(void (^)(NSError *))finishedBlock{
+    
+     [[NetworkSessionHelp shareNetwork].httpSessionManager POST:urlString parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+         
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+         
+     }];
+}
 
 
 
