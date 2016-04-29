@@ -154,6 +154,13 @@
 
 #pragma mark -------------------
 #pragma mark - UITableViewDelegate,UITableViewDataSource
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        return 0;
+    }else{
+        return 44;
+    }
+}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UserCenterSectionHeaderView *headerView = [[UserCenterSectionHeaderView alloc] init];
     if (section == 0) {

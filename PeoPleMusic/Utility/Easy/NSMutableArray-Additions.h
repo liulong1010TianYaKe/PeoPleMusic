@@ -3,7 +3,7 @@
 //  3wyc
 //
 //  Created by Yang Gaofeng on 14/11/15.
-//  Copyright (c) 2014年 hzins. All rights reserved.
+//  Copyright (c) 2014年 zhunit. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

@@ -3,7 +3,7 @@
 //  MainApp
 //
 //  Created by apple on 15/9/29.
-//  Copyright © 2015年 hzins. All rights reserved.
+//  Copyright © 2015年 zhunit. All rights reserved.
 //
 
 #import "BasicsTableViewController.h"

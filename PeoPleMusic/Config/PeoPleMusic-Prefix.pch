@@ -2,8 +2,8 @@
 //  聚米iOS版本.pch
 //  聚米iOS版本V1.0.1
 //
-//  Created by hzins on 14-10-22.
-//  Copyright (c) 2014年 hzins. All rights reserved.
+//  Created by zhunit on 14-10-22.
+//  Copyright (c) 2014年 zhunit. All rights reserved.
 //
 
 #import <Availability.h>

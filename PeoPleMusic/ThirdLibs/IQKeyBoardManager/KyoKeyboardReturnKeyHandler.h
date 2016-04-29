@@ -3,7 +3,7 @@
 //  MainApp
 //
 //  Created by Kyo on 8/3/16.
-//  Copyright © 2016 hzins. All rights reserved.
+//  Copyright © 2016 zhunit. All rights reserved.
 //
 
 /*

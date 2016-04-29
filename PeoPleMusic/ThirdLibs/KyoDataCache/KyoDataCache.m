@@ -3,7 +3,7 @@
 //  JuMi
 //
 //  Created by Kyo on 2/2/15.
-//  Copyright (c) 2015 hzins. All rights reserved.
+//  Copyright (c) 2015 zhunit. All rights reserved.
 //
 
 #import "KyoDataCache.h"

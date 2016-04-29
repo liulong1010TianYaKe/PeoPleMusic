@@ -3,7 +3,7 @@
 //  MainApp
 //
 //  Created by long on 15/9/10.
-//  Copyright (c) 2015年 hzins. All rights reserved.
+//  Copyright (c) 2015年 zhunit. All rights reserved.
 //
 
 #import "UILabel+size.h"

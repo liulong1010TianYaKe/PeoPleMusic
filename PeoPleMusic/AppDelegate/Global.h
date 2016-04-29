@@ -28,7 +28,7 @@
 //
 
 //一些url
-//#define kCounselorUrl(_proId,_planID,_appId) [NSString stringWithFormat:@"http://m.hzins.com/activities/yuyue/bdym?productId=%ld&planId=%ld&appId=%@", (long)_proId, (long)_planID, _appId]   //预约顾问的页面  －－h5使用的
+//#define kCounselorUrl(_proId,_planID,_appId) [NSString stringWithFormat:@"http://m.zhunit.com/activities/yuyue/bdym?productId=%ld&planId=%ld&appId=%@", (long)_proId, (long)_planID, _appId]   //预约顾问的页面  －－h5使用的
 
 
 //主站App的一些标示

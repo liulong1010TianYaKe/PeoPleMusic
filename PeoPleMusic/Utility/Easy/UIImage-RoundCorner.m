@@ -3,7 +3,7 @@
 //  SwapApp
 //
 //  Created by Yang Gaofeng on 14-9-23.
-//  Copyright (c) 2014年 hzins. All rights reserved.
+//  Copyright (c) 2014年 zhunit. All rights reserved.
 //
 
 #import "UIImage-RoundCorner.h"

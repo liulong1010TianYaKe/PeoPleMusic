@@ -3,7 +3,7 @@
 //  MainApp
 //
 //  Created by Kyo on 11/11/15.
-//  Copyright © 2015 hzins. All rights reserved.
+//  Copyright © 2015 zhunit. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -2,8 +2,8 @@
 //  NSString+Size.h
 //  JuMi
 //
-//  Created by hzins on 15/8/27.
-//  Copyright (c) 2015年 hzins. All rights reserved.
+//  Created by zhunit on 15/8/27.
+//  Copyright (c) 2015年 zhunit. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

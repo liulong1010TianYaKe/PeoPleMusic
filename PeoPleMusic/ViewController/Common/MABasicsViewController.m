@@ -3,7 +3,7 @@
 //  MainApp
 //
 //  Created by Kyo on 6/8/15.
-//  Copyright (c) 2015 hzins. All rights reserved.
+//  Copyright (c) 2015 zhunit. All rights reserved.
 //
 
 #import "MABasicsViewController.h"
