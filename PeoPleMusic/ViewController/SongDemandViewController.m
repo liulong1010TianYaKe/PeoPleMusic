@@ -64,7 +64,11 @@
         return;
     }
     if (self.type == MusiclistViewStyleNetwork && [UserInfoModel shareUserInfo].permission == 1) {
-        [self showMessageHUD:@"亲！ 不允许点播第三方歌曲！" withTimeInterval:kShowMessageTime];
+    
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"播放权限提示" message:@"当前音响只能播放音响内置歌曲,如需要播放第三方歌曲，请联系管理员" delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles: nil];
+        alertView.tag = 1000;
+        [alertView show];
         return;
     }
     

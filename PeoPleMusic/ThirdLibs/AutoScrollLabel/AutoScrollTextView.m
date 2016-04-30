@@ -18,7 +18,7 @@
 
 - (void)setDefaultValue {
     _scrollingIncrement = 1;
-    _scrollingInterval = 60.0 / 1000.0;
+    _scrollingInterval = 100.0 / 1000.0;
 
 }
 

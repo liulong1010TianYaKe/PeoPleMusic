@@ -54,14 +54,12 @@
     
     connectCout = 0;
     NSError *err = nil;
-    //    92.168.1.112 : 7433
-//    [_cmdDict removeAllObjects];
+
     _serverIp = ip;
     _serverPort = port;
     
     if([_clientSocket connectToHost:_serverIp onPort:port withTimeout:60  error:&err]){
         KyoLog(@"----连接成功!-- %@ %ld",_serverIp,port);
-        
         
         return YES;
     }else{
@@ -215,7 +213,7 @@
 //        }
 //    }
  
-    if (connectCout < 10) {
+    if (connectCout < 5) {
           KyoLog(@"重新连接。。。%ld",(long)connectCout++);
         if (_serverPort == 9997) {
             _serverPort = 9998;
@@ -268,10 +266,10 @@
             [self.recvStr appendString:newMessage];
         }
          [_clientSocket readDataWithTimeout:-1 tag:tag];
-        NSLog(@"----%@",newMessage);
+//        NSLog(@"----%@",newMessage);
     }
-    NSLog(@"----------------");
-    NSLog(@"----%@",newMessage);
+//    NSLog(@"----------------");
+//    NSLog(@"----%@",newMessage);
  
     
    

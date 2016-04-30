@@ -78,15 +78,21 @@
     self.navigationController.navigationBar.hidden = YES;
     
     if ([YMTCPClient share].isConnect) {
-        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self requestCurrentSong];
            
         });
-        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
              [self requestGetSonglist];
         });
+    }else{
+        
+         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+          if([KyoUtil rootViewController].currentNetworkState != AFNetworkReachabilityStatusReachableViaWiFi){
+           
+                [self showMessageHUD:@"亲，你还未连接店内WIFI哦～" withTimeInterval:kShowMessageTime];
+            
+         }});
     }
 
 }
@@ -124,6 +130,8 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self startAnimation];
     self.autoTextView.userInteractionEnabled = NO;
+    self.autoTextView.text = @"  点一首我们最爱的歌,回忆我们美好的曾经,人人点歌,播放你的心声";
+    [self.autoTextView startAutoScroll];
 }
 
 - (void)setupData{
@@ -171,15 +179,11 @@
 //            UserInfoModel *userModel = [UserInfoModel objectWithKeyValues:userDict];
             dispatch_sync(dispatch_get_main_queue(), ^{
                 self.lblSongInfo.text = self.currentSongInfo.mediaName;
-                self.autoTextView.text = self.currentSongInfo.playMsg;
-//                self.autoTextView.text = @"难兄难弟扭扭捏捏很多很多华东交大家电家具四季酒店俊男坊就记得记得得劲儿加尔肯我看是你可能吃难念的经";
-//                [self.autoTextView startAutoScroll];
-//                NSLog(@"留言 %@",self.currentSongInfo.playMsg);
-//                [self.autoTextView startAutoScroll];
+                
                 if(![self.currentSongInfo.playMsg isEqualToString:@""]){
-                    [self.autoTextView startAutoScroll];
+                  self.autoTextView.text = self.currentSongInfo.playMsg;
                 }else{
-                    [self.autoTextView stopAutoScroll];
+                  self.autoTextView.text = @"  点一首我们最爱的歌,回忆我们美好的曾经,人人点歌,播放你的心声";
                 }
                 
             });

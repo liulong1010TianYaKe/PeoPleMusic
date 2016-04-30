@@ -154,8 +154,18 @@
 
 #pragma mark -------------------
 #pragma mark - UITableViewDelegate,UITableViewDataSource
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return 0;
+    }else{
+        return 28;
+    }
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && indexPath.row == 0) {
+        return 0;
+    }else if(indexPath.section == 1){
         return 0;
     }else{
         return 44;

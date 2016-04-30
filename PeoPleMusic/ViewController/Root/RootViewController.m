@@ -12,7 +12,7 @@
 
 #import "KyoTopWindow.h"
 #import "YMBonjourHelp.h"
-#import "YMTCPClient.h"
+
 
 @interface RootViewController()
 
@@ -25,7 +25,7 @@
 //@property (nonatomic, assign) AFNetworkReachabilityStatus lasttNetworkState; //之前网络状态
 @property (nonatomic, strong) NSMutableArray *arrayCart;
 
-@property (nonatomic, strong) YMTCPClient *clientTcp;
+
 - (void)setupTabBarViewController;
 
 - (void)checkShowNewFeatureViewController;  //检测是否需要显示新特性viewcontroller
@@ -49,7 +49,7 @@
     [super viewDidLoad];
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES]; //设置白色状态栏
-    
+     [self startMonitoringNetworkState]; //开始监听网络状态
     [self setupTabBarViewController];   //设置tabbarviewcontroller
 //    [self checkShowNewFeatureViewController];   //检测是否需要显示新特性viewcontroller
     
@@ -58,20 +58,15 @@
     
     //判断是否需要自动登录
 
-        self.clientTcp = [YMTCPClient share];
+    self.clientTcp = [YMTCPClient share];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[YMBonjourHelp shareInstance] startSearch];
+ 
+    [self startSearchSerive]; // 开始搜索服务
 
-    });
+//    if ([self.clientTcp connectServer:@"192.168.1.100" port:SOCKET_PORT2]) {
+//                    [self getDeviceInfo];
+//        }
 
-   
-//    if ([self.clientTcp connectServer:@"192.168.0.104" port:SOCKET_PORT2]) {
-//        [self getDeviceInfo];
-//    }
-//    if ([[YMTCPClient share] connectServer:@"192.168.1.100" port:SOCKET_PORT2]) {
-//        [self getDeviceInfo];
-//    }
     //延迟2秒后添加window用于点击滑动到top
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [KyoTopWindow show];
@@ -83,17 +78,31 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
-
 }
 
-- (void)connectSeriver:(NSString *)ip{
+- (void)startSearchSerive{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YMBonjourHelp shareInstance] startSearch];
+        
+    });
+}
+
+- (BOOL)connectSeriver:(NSString *)ip{
     
  
     if ([[YMTCPClient share] connectServer:ip port:SOCKET_PORT2]) {
         [self getDeviceInfo];
         [[YMBonjourHelp shareInstance] stopSearch];
+        return YES;
+    }else{
+        if([[YMTCPClient share] connectServer:ip port:SOCKET_PORT1]){
+            [self getDeviceInfo];
+            [[YMBonjourHelp shareInstance] stopSearch];
+            return YES;
+        }
     }
+    
+    return NO;
 }
 - (void)startConnectSongServer{
 
@@ -227,7 +236,25 @@
 
 
 
-
+//开始监听网络状态
+- (void)startMonitoringNetworkState
+{
+    self.currentNetworkState = AFNetworkReachabilityStatusUnknown;
+    
+    /*
+     AFNetworkingReachabilityDidChangeNotification其它地方通过监听这个通知可以得到网络状态改变
+     */
+    
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    // 检测网络连接的单例,网络变化时的回调方法
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        self.lasttNetworkState = self.currentNetworkState;
+        self.currentNetworkState = status;
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivingTheNetworkStateChangeNotification:) name:AFNetworkingReachabilityDidChangeNotification object:nil];  //监听网络状态改变通知
+    
+}
 #pragma mark --------------------
 #pragma mark - UIAlertViewDelegate
 
@@ -246,6 +273,39 @@
         [self startConnectSongServer]; // 连接音响
     }
 }
+
+//监听网络状态通知
+-(void)receivingTheNetworkStateChangeNotification:(NSNotification *)notification
+{
+    static NSInteger _fristChangeNetworkState = 0;
+    //temp变量的作用是过滤掉第一次进入到程序时的网络环境变化
+    if (_fristChangeNetworkState == 0) {
+        _fristChangeNetworkState = 1;
+        return;
+    }
+    
+    if (self.currentNetworkState == self.lasttNetworkState) {   //过滤掉相同的操作
+        return;
+    }
+    
+    if (self.currentNetworkState == AFNetworkReachabilityStatusReachableViaWiFi) {  //过滤掉切换为wifi环境
+        return;
+    }
+    
+    if (self.networkChangeAlertView) {  //过滤掉如果当前弹框还在，则不重复弹框
+        return;
+    }
+    
+    NSString *msg = nil;
+    if (self.currentNetworkState == AFNetworkReachabilityStatusNotReachable) {
+        msg = @"当前没有网络,请检查您的网络连接！";
+    } else if (self.currentNetworkState == AFNetworkReachabilityStatusReachableViaWWAN) {
+        msg = @"当前为非WIFI网络，请确定是否继续使用！";
+    }
+    self.networkChangeAlertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:msg delegate:self cancelButtonTitle:@"确定"  otherButtonTitles:nil, nil];
+    [self.networkChangeAlertView show];
+}
+
 
 
 @end
