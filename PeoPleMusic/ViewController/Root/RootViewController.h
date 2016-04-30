@@ -23,7 +23,7 @@
 @property (nonatomic, assign) AFNetworkReachabilityStatus currentNetworkState; //当前网络状态
 @property (nonatomic, strong) YMTCPClient *clientTcp;
 
-- (BOOL)connectSeriver:(NSString *)ip;
+- (BOOL)connectSeriver:(NSString *)serveIp;
 - (void)getDeviceInfo;
 - (void)startSearchSerive;
 //- (void)scanQRCodeCompletion:(ScanQRCodeSucessBlock)scanQRCodeSucessBlock;  /**< 跳转到二维码扫描 */

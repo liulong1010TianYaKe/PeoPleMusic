@@ -58,14 +58,15 @@
     _serverIp = ip;
     _serverPort = port;
     
-    if([_clientSocket connectToHost:_serverIp onPort:port withTimeout:60  error:&err]){
-        KyoLog(@"----连接成功!-- %@ %ld",_serverIp,port);
-        
-        return YES;
-    }else{
-        KyoLog(@"----连接失败!--%@ %ld",_serverIp,port);
-        return NO;
-    }
+    return [_clientSocket connectToHost:ip onPort:port error:&err];
+//    if([_clientSocket connectToHost:_serverIp onPort:port withTimeout:60  error:&err]){
+//        KyoLog(@"----连接成功!-- %@ %ld",_serverIp,port);
+//        
+//        return YES;
+//    }else{
+//        KyoLog(@"----连接失败!--%@ %ld",_serverIp,port);
+//        return NO;
+//    }
     
 }
 
@@ -213,15 +214,15 @@
 //        }
 //    }
  
-    if (connectCout < 5) {
-          KyoLog(@"重新连接。。。%ld",(long)connectCout++);
-        if (_serverPort == 9997) {
-            _serverPort = 9998;
-        }else if(_serverPort == 9998){
-            _serverPort = 9997;
-        }
-     [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
-    }
+//    if (connectCout < 5) {
+//          KyoLog(@"重新连接。。。%ld",(long)connectCout++);
+//        if (_serverPort == 9997) {
+//            _serverPort = 9998;
+//        }else if(_serverPort == 9998){
+//            _serverPort = 9997;
+//        }
+//     [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
+//    }
    
 }
 

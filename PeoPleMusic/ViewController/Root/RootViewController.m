@@ -87,15 +87,15 @@
     });
 }
 
-- (BOOL)connectSeriver:(NSString *)ip{
+- (BOOL)connectSeriver:(NSString *)serveIp{
     
  
-    if ([[YMTCPClient share] connectServer:ip port:SOCKET_PORT2]) {
+    if ([self.clientTcp connectServer:serveIp port:SOCKET_PORT2]) {
         [self getDeviceInfo];
         [[YMBonjourHelp shareInstance] stopSearch];
         return YES;
     }else{
-        if([[YMTCPClient share] connectServer:ip port:SOCKET_PORT1]){
+        if([self.clientTcp connectServer:serveIp port:SOCKET_PORT1]){
             [self getDeviceInfo];
             [[YMBonjourHelp shareInstance] stopSearch];
             return YES;

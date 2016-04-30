@@ -70,6 +70,7 @@
     self.tableView.scrollEnabled = NO;
     self.tableView.tableFooterView = [[UIView alloc] init];
  
+    
 //    if ([YMTCPClient share].isConnect) {
 //          DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
 //        if (!_arrDevices) {
@@ -87,6 +88,7 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvDidBonjour:) name:YNotificationName_DIDSUCESSFINDSERVICE object:nil];  //连接音响通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvDeviceInfo:) name:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //连接音响通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDiDConnect:) name:YNotificationName_SOCKETDIDCONNECT object:nil];  //断开连接
+    [[KyoUtil rootViewController] startSearchSerive];
 }
 
 - (void)dealloc{
@@ -201,36 +203,6 @@
 #pragma mark --------------------
 #pragma mark - NSNotification
 
-////连接音响通知
-//- (void)recvDidBonjour:(NSNotification *)noti{
-//    
-//   
-//    if([[YMTCPClient share] connectServer:[YMBonjourHelp shareInstance].deviceIp port:SOCKET_PORT2]){
-//        KyoLog(@"连接成功。。");
-//        [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
-//            if (result == 0) {
-//                NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
-//                DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
-//                [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
-//                [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
-//                if (!_arrDevices) {
-//                    _arrDevices = [NSMutableArray array];
-//                }
-//                [_arrDevices removeAllObjects];
-//                [_arrDevices addObject:deviceInfo];
-//                
-//                dispatch_async(dispatch_get_main_queue(), ^{
-//                    [self.tableView reloadData];
-//                    self.lblScanText.hidden = YES;
-//                    self.isStopBtnUpdateAnimation = YES;
-//                });
-//                
-//            }
-//        }];
-//    }else{
-//         [_arrDevices removeAllObjects];
-//    }
-//}
 - (void)recvDeviceInfo:(NSNotification *)noti{
     DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
     if (!_arrDevices) {
