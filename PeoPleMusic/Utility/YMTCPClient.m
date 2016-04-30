@@ -160,6 +160,11 @@
     [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_SET_DEVICE_PLAYSTATE];
     [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForSetDevicePlayState:playState] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
 }
+/**<22.	切歌	 */
+- (void)networkSendDeviceForSetDevicePlayNextSongCompletionBlock:(CompletionBlock)completionBlock{
+    [_cmdDict setObject:completionBlock forKey:YM_HEAD_CMDTYPE_SET_DEVICE_PLAYSNEXTSONG_FEEDBACK];
+    [_clientSocket writeData:[[PublicNetwork sendDeviceJsonForSetDevicePlayNextSong] dataUsingEncoding:NSUTF8StringEncoding]   withTimeout:-1 tag:0];
+}
 /**<24.	获取音响本地歌曲目录 */
 - (void)networkSendDeviceForSongDir:(CompletionBlock)completionBlock{
   

@@ -53,7 +53,7 @@
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     NSURLSessionTask *sessionTask  = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
-        NSHTTPURLResponse *respdose = (NSHTTPURLResponse*)response;
+//        NSHTTPURLResponse *respdose = (NSHTTPURLResponse*)response;
         if (!error) {
             
             NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -61,7 +61,7 @@
             responseString = [KyoUtil changeJsonStringToTrueJsonString:responseString];
            
            NSData *tempdata = [responseString dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *dict  = [NSJSONSerialization JSONObjectWithData:tempdata options:0 error:nil];
+           NSDictionary *dict  = [NSJSONSerialization JSONObjectWithData:tempdata options:0 error:nil];
             if (completionBlock) {
 //                completionBlock(html, respdose.statusCode);
             }

@@ -8,8 +8,9 @@
 
 #import "SongDemandViewController.h"
 #import "NSString+Easy.h"
+#import "AddDeviceViewController.h"
 
-@interface SongDemandViewController ()
+@interface SongDemandViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lblSongName;
 @property (weak, nonatomic) IBOutlet UILabel *lblAlbumName;
 @property (weak, nonatomic) IBOutlet UILabel *lblCornNum;
@@ -55,6 +56,18 @@
     }
 }
 - (IBAction)btnDianBoTouchInside:(id)sender {
+    
+    if (![YMTCPClient share].isConnect) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未连接音响设备，确定添加吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1000;
+        [alertView show];
+        return;
+    }
+    if (self.type == MusiclistViewStyleNetwork && [UserInfoModel shareUserInfo].permission == 1) {
+        [self showMessageHUD:@"亲！ 不允许点播第三方歌曲！" withTimeInterval:kShowMessageTime];
+        return;
+    }
+    
     self.songInfoModel.coin = [self.txtlblCornNumb.text trim];
     self.songInfoModel.playMsg = [self.textView.text trim];
     [self showLoadingHUD:@"点播歌曲"];
@@ -84,7 +97,7 @@
             [self hideLoadingHUD];
             [self showMessageHUD:@"重复点播！" withTimeInterval:kShowMessageTime];
                 
-                [self requestNetwork];
+//                [self requestNetwork];
             });
 
         }else {
@@ -127,6 +140,16 @@
         }
     }];
     
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 1000) {
+        if (buttonIndex == 1) {
+            AddDeviceViewController *addVC = [AddDeviceViewController createAddDeviceViewController];
+            [[KyoUtil getCurrentNavigationViewController] pushViewController:addVC animated:YES];
+        }
+    }
+ 
 }
 
 @end

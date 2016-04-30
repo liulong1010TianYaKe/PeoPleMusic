@@ -116,8 +116,8 @@
     self.btnStartPlay.layer.borderWidth = 1;
     self.btnStartPlay.layer.borderColor = [UIColor redColor].CGColor;
     self.btnStartPlay.layer.masksToBounds = YES;
-    self.btnStartPlay.hidden = YES;
-    self.lblNoStartPlay.hidden = YES;
+//    self.btnStartPlay.hidden = YES;
+//    self.lblNoStartPlay.hidden = YES;
     self.layoutTopViewHeight.constant = KTopViewHeight;
     self.tableView.contentInset = UIEdgeInsetsMake(KTopViewHeight, 0, 0, 0);
     [self.view setNeedsLayout];

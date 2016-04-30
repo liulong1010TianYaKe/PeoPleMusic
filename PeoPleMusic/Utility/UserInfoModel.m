@@ -10,6 +10,16 @@
 
 
 @implementation UserInfoModel
+
++ (instancetype)shareUserInfo{
+    static UserInfoModel *_share;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _share = [[UserInfoModel alloc] init];
+        _share.permission = 0;
+    });
+    return _share;
+}
 + (NSDictionary *)getUserInfoDict:(BOOL)isAdmin{
     UserInfoModel *model = [[UserInfoModel alloc] init];
     model.isAdmin = isAdmin;

@@ -13,6 +13,7 @@
 
 @property (nonatomic, assign) MusicSongPlayStyle playStyle;
 
+@property (nonatomic, assign) MusiclistViewStyle type;
 @property (nonatomic, strong)SongInforModel *songInfoModel;
 + (SongDemandViewController *)createSongDemandViewController;
 @property (nonatomic, copy) void (^btnBackBlockOperation)();

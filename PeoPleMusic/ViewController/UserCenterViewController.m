@@ -177,17 +177,34 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 2 && indexPath.row == 0) { // 给我打分
-         [self openAppWithIndentifier:@"1038333077"];
+         [self openAppWithIndentifier:@"1106535797"];
     }
     
 }
 - (IBAction)switchChangeValue:(UISwitch *)sender {
-
+   
+    NSInteger  permission;
     if (sender.on) {
         KyoLog(@"开启");
+        permission = 0;
     }else{
         KyoLog(@"关闭");
+        permission = 1;
     }
+    
+//     __weak typeof(self) weakSelf = self;
+     [[YMTCPClient share] networkSendDeviceForSetDevicePlayPermission:permission completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+         if (result == 0) {
+             [UserInfoModel shareUserInfo].permission = [dict[@"permission"] integerValue];
+             dispatch_async(dispatch_get_main_queue(), ^{
+
+             });
+         }else{
+             dispatch_async(dispatch_get_main_queue(), ^{
+//                 [weakSelf hideLoadingInNavigation];
+             });
+         }
+     }];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {

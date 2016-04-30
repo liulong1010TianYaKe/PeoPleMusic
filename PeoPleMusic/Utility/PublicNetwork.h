@@ -36,6 +36,8 @@
 + (NSString *)sendDeviceJsonForGetDevicePlayState;
 /**<21.	设置播放状态	 */
 + (NSString *)sendDeviceJsonForSetDevicePlayState:(NSInteger)playState;
+/**<22.	切歌	 */
++ (NSString *)sendDeviceJsonForSetDevicePlayNextSong;
 /**<24.	获取音响本地歌曲目录	 */
 + (NSString *)sendDeviceJsonForGetDeviceSongDir;
 /**<24.	获取音响目录下的歌曲	 */

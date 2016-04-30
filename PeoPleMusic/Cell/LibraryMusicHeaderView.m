@@ -40,7 +40,7 @@
 // 音响本地
 - (IBAction)btnSpeakerTouchInside:(id)sender {
     if ([YMTCPClient share].isConnect) {
-        DeviceMusicViewController *controller = [DeviceMusicViewController createDeviceMusicViewController];
+         DeviceMusicViewController *controller = [DeviceMusicViewController createDeviceMusicViewController];
         [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
     }else{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未连接音响设备，确定添加吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];

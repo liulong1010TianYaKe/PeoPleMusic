@@ -52,7 +52,6 @@
         if (result == 0) {
             NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
             if (arr) {
-//                self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
                 self.musicList = [SongInforModel objectArrayWithKeyValuesArray:arr];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.tableView reloadData];

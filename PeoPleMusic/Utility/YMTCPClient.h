@@ -66,10 +66,13 @@ typedef void(^CompletionBlock)(NSInteger result,NSDictionary *dict, NSError *err
 - (void)networkSendDeviceForSetDevicePlayState:(CompletionBlock)completionBlock;
 /**<21.	设置播放状态	 */
 - (void)networkSendDeviceForSetDevicePlayState:(NSInteger)playState completionBlock:(CompletionBlock)completionBlock;
+/**<22.	切歌	 */
+- (void)networkSendDeviceForSetDevicePlayNextSongCompletionBlock:(CompletionBlock)completionBlock;
 /**<24.	获取音响本地歌曲目录 */
 - (void)networkSendDeviceForSongDir:(CompletionBlock)completionBlock;
 /**<24.	获取音响本地歌曲目录歌曲 */
 - (void)networkSendDeviceForSonglistWithRequestKey:(NSString *)requestKey withTotalSize:(NSInteger)totalSize completionBlock:(CompletionBlock)completionBlock;
 /**<29.设置点播权限	 */
 - (void)networkSendDeviceForSetDevicePlayPermission:(NSInteger)permission completionBlock:(CompletionBlock)completionBlock;
+
 @end

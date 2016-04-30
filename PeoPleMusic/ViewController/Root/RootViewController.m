@@ -58,13 +58,15 @@
     
     //判断是否需要自动登录
 
+        self.clientTcp = [YMTCPClient share];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[YMBonjourHelp shareInstance] startSearch];
 
     });
-    self.clientTcp = [YMTCPClient share];
+
    
-//    if ([self.clientTcp connectServer:@"192.168.1.117" port:SOCKET_PORT2]) {
+//    if ([self.clientTcp connectServer:@"192.168.0.104" port:SOCKET_PORT2]) {
 //        [self getDeviceInfo];
 //    }
 //    if ([[YMTCPClient share] connectServer:@"192.168.1.100" port:SOCKET_PORT2]) {

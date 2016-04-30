@@ -94,6 +94,8 @@
 
 - (void)networkGetMusicListData{
     
+    NSLog(@"%@",self.urlString);
+    [self showLoadingHUD:nil];
     [NetworkSessionHelp NetworkHTML:self.urlString completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
         if (responseStatusCode == 200) {
             
@@ -136,6 +138,7 @@
             }
             self.songList = [NSArray arrayWithArray:tempArr];
             dispatch_async(dispatch_get_main_queue(), ^{
+                [self hideLoadingHUD];
                 [self.tableView reloadData];
             });
         }

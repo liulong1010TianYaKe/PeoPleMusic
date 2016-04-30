@@ -188,6 +188,7 @@
     
     SongDemandViewController *songVC = [SongDemandViewController createSongDemandViewController];
     songVC.title = @"歌曲点播";
+    songVC.type = self.type;
     songVC.songInfoModel = self.songlist[self.indexRow];
     [[KyoUtil getCurrentNavigationViewController] pushViewController:songVC animated:YES];
 }
