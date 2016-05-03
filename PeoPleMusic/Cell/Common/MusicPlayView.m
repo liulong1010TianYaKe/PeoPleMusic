@@ -10,8 +10,9 @@
 #import "UIView+CTDialog.h"
 #import "STKAudioPlayer.h"
 #import "SongDemandViewController.h"
+#import "AddDeviceViewController.h"
 
-@interface MusicPlayView ()<STKAudioPlayerDelegate>
+@interface MusicPlayView ()<STKAudioPlayerDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong) STKAudioPlayer *player;
 @property (weak, nonatomic) IBOutlet UILabel *lblSongName;
 @property (weak, nonatomic) IBOutlet UILabel *lblPlayTime;
@@ -184,8 +185,16 @@
 // 点歌
 - (IBAction)btnDianboTouchInside:(id)sender {
     
-    [self btnCloseTouchInside:nil];
+  
     
+    if (![YMTCPClient share].isConnect) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未连接音响设备，确定添加吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1000;
+        [alertView show];
+        return;
+    }
+    
+    [self btnCloseTouchInside:nil];
     SongDemandViewController *songVC = [SongDemandViewController createSongDemandViewController];
     songVC.title = @"歌曲点播";
     songVC.type = self.type;
@@ -231,5 +240,17 @@
     if (stopReason == 1) {
         [self nextButtonAction];
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 1000) {
+        if (buttonIndex == 1) {
+           
+            AddDeviceViewController *addVC = [AddDeviceViewController createAddDeviceViewController];
+            [[KyoUtil getCurrentNavigationViewController] pushViewController:addVC animated:YES];
+            [self btnCloseTouchInside:nil];
+        }
+    }
+    
 }
 @end

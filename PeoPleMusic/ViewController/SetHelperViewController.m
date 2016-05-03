@@ -30,7 +30,6 @@
                             @"icon_help_two",
                             @"icon_help_three",
                             @"icon_help_four",
-                            @"icon_help_five"
                             ];
     
 

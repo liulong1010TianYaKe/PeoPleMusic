@@ -63,14 +63,14 @@
         [alertView show];
         return;
     }
-    if (self.type == MusiclistViewStyleNetwork && [UserInfoModel shareUserInfo].permission == 1) {
-    
-        
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"播放权限提示" message:@"当前音响只能播放音响内置歌曲,如需要播放第三方歌曲，请联系管理员" delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles: nil];
-        alertView.tag = 1000;
-        [alertView show];
-        return;
-    }
+//    if (self.type == MusiclistViewStyleNetwork && [UserInfoModel shareUserInfo].permission == 1) {
+//    
+//        
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"播放权限提示" message:@"当前音响只能播放音响内置歌曲,如需要播放第三方歌曲，请联系管理员" delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles: nil];
+//        alertView.tag = 1000;
+//        [alertView show];
+//        return;
+//    }
     
     self.songInfoModel.coin = [self.txtlblCornNumb.text trim];
     self.songInfoModel.playMsg = [self.textView.text trim];

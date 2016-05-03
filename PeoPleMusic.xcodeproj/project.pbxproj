@@ -37,7 +37,6 @@
 		F7524C881CC3A5A30020F2CB /* AutoScrollTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7524C861CC3A5A30020F2CB /* AutoScrollTextView.m */; };
 		F75B8A0E1CA7E31C00340C5E /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F75B8A0D1CA7E31C00340C5E /* AboutMeViewController.m */; };
 		F77D3CDD1CAD61D20065C57A /* DeviceMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77D3CDC1CAD61D20065C57A /* DeviceMusicViewController.m */; };
-		F77EE1A41CAFF7D7009B8A04 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F77EE1A31CAFF7D7009B8A04 /* AddDeviceViewController.m */; };
 		F77F99721C99952E00D10AE8 /* HeadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99711C99952E00D10AE8 /* HeadModel.m */; };
 		F77F99751C9AD60300D10AE8 /* PublicNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99741C9AD60300D10AE8 /* PublicNetwork.m */; };
 		F77F99781C9ADCEA00D10AE8 /* DeviceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F99771C9ADCEA00D10AE8 /* DeviceModel.m */; };
@@ -133,6 +132,7 @@
 		FD1E3BE41CD0BF4F007E0D99 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3BDA1CD0BF4F007E0D99 /* UIRefreshControl+AFNetworking.m */; };
 		FD1E3BE51CD0BF4F007E0D99 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3BDC1CD0BF4F007E0D99 /* UIWebView+AFNetworking.m */; };
 		FD1E3C3C1CD36BCD007E0D99 /* YMHTTPResponserHtmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C3B1CD36BCD007E0D99 /* YMHTTPResponserHtmlSerializer.m */; };
+		FD1E3C3E1CD88AF8007E0D99 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C3D1CD88AF8007E0D99 /* AddDeviceViewController.m */; };
 		FD4338E41C8876D100C9E1DF /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C41C8876D100C9E1DF /* MKAnnotationView+WebCache.m */; };
 		FD4338E51C8876D100C9E1DF /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C61C8876D100C9E1DF /* NSData+ImageContentType.m */; };
 		FD4338E61C8876D100C9E1DF /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C81C8876D100C9E1DF /* SDImageCache.m */; };
@@ -306,7 +306,6 @@
 		F77D3CDB1CAD61D20065C57A /* DeviceMusicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceMusicViewController.h; sourceTree = "<group>"; };
 		F77D3CDC1CAD61D20065C57A /* DeviceMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceMusicViewController.m; sourceTree = "<group>"; };
 		F77EE1A21CAFF7D7009B8A04 /* AddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceViewController.h; sourceTree = "<group>"; };
-		F77EE1A31CAFF7D7009B8A04 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
 		F77F99701C99952E00D10AE8 /* HeadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadModel.h; sourceTree = "<group>"; };
 		F77F99711C99952E00D10AE8 /* HeadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadModel.m; sourceTree = "<group>"; };
 		F77F99731C9AD60300D10AE8 /* PublicNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicNetwork.h; sourceTree = "<group>"; };
@@ -486,6 +485,7 @@
 		FD1E3BDC1CD0BF4F007E0D99 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		FD1E3C3A1CD36BCD007E0D99 /* YMHTTPResponserHtmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMHTTPResponserHtmlSerializer.h; sourceTree = "<group>"; };
 		FD1E3C3B1CD36BCD007E0D99 /* YMHTTPResponserHtmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMHTTPResponserHtmlSerializer.m; sourceTree = "<group>"; };
+		FD1E3C3D1CD88AF8007E0D99 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
 		FD4338C31C8876D100C9E1DF /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		FD4338C41C8876D100C9E1DF /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		FD4338C51C8876D100C9E1DF /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -1664,7 +1664,7 @@
 				F75B8A0C1CA7E31C00340C5E /* AboutMeViewController.h */,
 				F75B8A0D1CA7E31C00340C5E /* AboutMeViewController.m */,
 				F77EE1A21CAFF7D7009B8A04 /* AddDeviceViewController.h */,
-				F77EE1A31CAFF7D7009B8A04 /* AddDeviceViewController.m */,
+				FD1E3C3D1CD88AF8007E0D99 /* AddDeviceViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -1855,7 +1855,6 @@
 				FD8C2DB71C0C6ADF007CE036 /* RootViewController.m in Sources */,
 				FD8C2CDE1C0C6A98007CE036 /* MJIvar.m in Sources */,
 				FD1E3BC71CD0BF43007E0D99 /* AFURLSessionManager.m in Sources */,
-				F77EE1A41CAFF7D7009B8A04 /* AddDeviceViewController.m in Sources */,
 				FD8C2DB01C0C6ADF007CE036 /* BasicsTableViewController.m in Sources */,
 				FD8C2D821C0C6ACA007CE036 /* NSArray-Additions.m in Sources */,
 				FD8C2CDC1C0C6A98007CE036 /* MJConst.m in Sources */,
@@ -1923,6 +1922,7 @@
 				FD1E3BDF1CD0BF4F007E0D99 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				FD8C2DB91C0C6ADF007CE036 /* JMTabBarViewController.m in Sources */,
 				F77F99781C9ADCEA00D10AE8 /* DeviceModel.m in Sources */,
+				FD1E3C3E1CD88AF8007E0D99 /* AddDeviceViewController.m in Sources */,
 				FD8C2CD51C0C6A98007CE036 /* KyoSelectedEmailSuffixView.m in Sources */,
 				18EBC94E1C4FDC5900460546 /* MusicCategoryModel.m in Sources */,
 				FDBB2BB91C50F51500C8E7B1 /* MusicListViewController.m in Sources */,
@@ -2173,8 +2173,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
@@ -2198,8 +2198,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
