@@ -51,8 +51,9 @@
 #pragma mark - Events
 - (void)networkGetDeviceList{
     
-    NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?longitude=37.785834&latitude=122.406417";
+//    NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?longitude=37.785834&latitude=122.406417";
 //    NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalMusicAction!getTerminalMusicList.do?terminalId=83";
+     NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do";
     [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
        self.deviceVodBoxArray = [DeviceVodBoxModel objectArrayWithKeyValuesArray:dict[@"info"]];
     } errorBlock:^(NSError *error) {
@@ -78,7 +79,8 @@
         cell = [[UITableViewCell alloc] init];
     }
     DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
-    cell.textLabel.text = model.ip;
+    cell.textLabel.text = model.name;
+    cell.detailTextLabel.text = model.ip;
     return cell;
 }
 

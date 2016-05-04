@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/*http://lbs.amap.com/dev/#/
+ 18520827838
+ zhunikeji1818
+ 
+ */
 @interface DeviceVodBoxModel : NSObject
 
 @property (nonatomic, strong) NSString *address; //设备当前所在的位置
