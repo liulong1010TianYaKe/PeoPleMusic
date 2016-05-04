@@ -91,7 +91,7 @@
     dispatch_once(&onceToken, ^{
         _sharedClient = [[NetworkSessionHelp alloc] init];
         _sharedClient.httpSessionManager  = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];;
-        _sharedClient.httpSessionManager.responseSerializer = [[YMHTTPResponserHtmlSerializer alloc] init];
+//        _sharedClient.httpSessionManager.responseSerializer = [[YMHTTPResponserHtmlSerializer alloc] init];
         
         //开启允许https模式
         AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
@@ -104,7 +104,7 @@
 }
 
 
-+ (void)NetworkHTML:(NSString *)urlString completionBlock:(void (^)(NSString *, NSInteger))completionBlock errorBlock:(void (^)(NSError *))errorBlock finishedBlock:(void (^)(NSError *))finishedBlock{
++ (void)postNetwork:(NSString *)urlString completionBlock:(void (^)(NSDictionary *dict, NSInteger responseStatusCode))completionBlock errorBlock:(void (^)(NSError *))errorBlock finishedBlock:(void (^)(NSError *))finishedBlock{
     
      [[NetworkSessionHelp shareNetwork].httpSessionManager POST:urlString parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
          

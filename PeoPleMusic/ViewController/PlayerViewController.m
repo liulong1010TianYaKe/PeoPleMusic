@@ -17,6 +17,7 @@
 #import "YMBonjourHelp.h"
 #import "YMTCPClient.h"
 #import "AutoScrollTextView.h"
+#import "SearchDeviceViewController.h"
 
 #define KTopViewHeight  (210*kWindowHeight/667)
 
@@ -54,6 +55,8 @@
 @property (nonatomic, strong) ChaboView *chaoboView;
 
 @property (nonatomic, strong) PlayListView *playListView;
+
+@property (nonatomic, strong) UIButton *linkServerBtn;
 @end
 
 @implementation PlayerViewController
@@ -86,13 +89,16 @@
              [self requestGetSonglist];
         });
     }else{
-        
+        self.lblTitle.text = @"设备未连接";
+        self.linkServerBtn.hidden = NO;
          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
           if([KyoUtil rootViewController].currentNetworkState != AFNetworkReachabilityStatusReachableViaWiFi){
            
                 [self showMessageHUD:@"亲，你还未连接店内WIFI哦～" withTimeInterval:kShowMessageTime];
             
-         }});
+         }}
+                        
+        );
     }
 
 }
@@ -122,8 +128,8 @@
     self.btnStartPlay.layer.borderWidth = 1;
     self.btnStartPlay.layer.borderColor = [UIColor redColor].CGColor;
     self.btnStartPlay.layer.masksToBounds = YES;
-//    self.btnStartPlay.hidden = YES;
-//    self.lblNoStartPlay.hidden = YES;
+    self.btnStartPlay.hidden = YES;
+    self.lblNoStartPlay.hidden = YES;
     self.layoutTopViewHeight.constant = KTopViewHeight;
     self.tableView.contentInset = UIEdgeInsetsMake(KTopViewHeight, 0, 0, 0);
     [self.view setNeedsLayout];
@@ -132,6 +138,24 @@
     self.autoTextView.userInteractionEnabled = NO;
     self.autoTextView.text = @"  点一首我们最爱的歌,回忆我们美好的曾经,人人点歌,播放你的心声";
     [self.autoTextView startAutoScroll];
+    
+    self.linkServerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.linkServerBtn.backgroundColor = [UIColor redColor];
+    self.linkServerBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    self.linkServerBtn.layer.cornerRadius = 5;
+    self.linkServerBtn.layer.borderWidth = 1;
+    self.linkServerBtn.layer.borderColor = kNavBarBGColor.CGColor;
+    [self.linkServerBtn setTitle:@"点击添加设备" forState:UIControlStateNormal];
+    [self.linkServerBtn setTitleColor:YYColor(224, 103, 17) forState:UIControlStateNormal];
+    [self.linkServerBtn setBackgroundImage:[UIImage imageNamed:@"button_0_0_0_2"] forState:UIControlStateHighlighted];
+    [self.linkServerBtn addTarget:self action:@selector(linkServerBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+     self.linkServerBtn.frame = CGRectMake((kWindowWidth-150)/2, kWindowHeight/2, 150, 44);
+    self.linkServerBtn.hidden = YES;
+    
+    [self.view addSubview:self.linkServerBtn];
+    
+
+    
 }
 
 - (void)setupData{
@@ -164,6 +188,13 @@
 {
     angle += 1;
     [self startAnimation];
+}
+
+#pragma mark -------------------
+#pragma mark - Event
+- (void)linkServerBtnAction:(UIButton  *)btn{
+    SearchDeviceViewController *searchVC = [SearchDeviceViewController createSearchDeviceViewController];
+    [self.navigationController pushViewController:searchVC animated:YES];
 }
 #pragma mark -------------------
 #pragma mark - NetWork
