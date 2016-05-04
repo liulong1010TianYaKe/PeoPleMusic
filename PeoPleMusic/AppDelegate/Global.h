@@ -83,6 +83,32 @@
 #define kSecurityLevelDefaultTip @"密码安全程度："
 #define kSecurityLevelEmptyTip @"密码由6-20位数字、字母或符号组成"
 
+#define SYNTHESIZE_SINGLETON_FOR_HEADER(className) + (className *)shared##className;
+
+#define SYNTHESIZE_SINGLETON_FOR_CLASS(className)  + (className *)shared##className { \
+static className *shared##className = nil; \
+static dispatch_once_t onceToken; \
+dispatch_once(&onceToken, ^{ \
+shared##className = [[self alloc] init]; \
+}); \
+return shared##className; \
+}
+
+#define dispatch_main_sync_safeThread(block)\
+if ([NSThread isMainThread]) {\
+block();\
+} else {\
+dispatch_sync_(dispatch_get_main_queue(), block);\
+}
+
+#define dispatch_main_async_safeThread(block)\
+if ([NSThread isMainThread]) {\
+block();\
+} else {\
+dispatch_async(dispatch_get_main_queue(), block);\
+}
+
+
 //电话
 #define kCallServer @"4006366366"
 

@@ -134,6 +134,7 @@
 		FD1E3C3C1CD36BCD007E0D99 /* YMHTTPResponserHtmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C3B1CD36BCD007E0D99 /* YMHTTPResponserHtmlSerializer.m */; };
 		FD1E3C3E1CD88AF8007E0D99 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C3D1CD88AF8007E0D99 /* AddDeviceViewController.m */; };
 		FD1E3C411CDA1455007E0D99 /* SearchDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C401CDA1455007E0D99 /* SearchDeviceViewController.m */; };
+		FD1E3C441CDA1B91007E0D99 /* DeviceVodBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C431CDA1B91007E0D99 /* DeviceVodBoxModel.m */; };
 		FD4338E41C8876D100C9E1DF /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C41C8876D100C9E1DF /* MKAnnotationView+WebCache.m */; };
 		FD4338E51C8876D100C9E1DF /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C61C8876D100C9E1DF /* NSData+ImageContentType.m */; };
 		FD4338E61C8876D100C9E1DF /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C81C8876D100C9E1DF /* SDImageCache.m */; };
@@ -489,6 +490,8 @@
 		FD1E3C3D1CD88AF8007E0D99 /* AddDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceViewController.m; sourceTree = "<group>"; };
 		FD1E3C3F1CDA1455007E0D99 /* SearchDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDeviceViewController.h; sourceTree = "<group>"; };
 		FD1E3C401CDA1455007E0D99 /* SearchDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDeviceViewController.m; sourceTree = "<group>"; };
+		FD1E3C421CDA1B91007E0D99 /* DeviceVodBoxModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceVodBoxModel.h; sourceTree = "<group>"; };
+		FD1E3C431CDA1B91007E0D99 /* DeviceVodBoxModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceVodBoxModel.m; sourceTree = "<group>"; };
 		FD4338C31C8876D100C9E1DF /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		FD4338C41C8876D100C9E1DF /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		FD4338C51C8876D100C9E1DF /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -755,6 +758,8 @@
 		18720E091C1C64550008FA09 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				FD1E3C421CDA1B91007E0D99 /* DeviceVodBoxModel.h */,
+				FD1E3C431CDA1B91007E0D99 /* DeviceVodBoxModel.m */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -1916,6 +1921,7 @@
 				FD8C2D4C1C0C6AAA007CE036 /* UITableView+EmptyOrError.m in Sources */,
 				FD1E3C411CDA1455007E0D99 /* SearchDeviceViewController.m in Sources */,
 				FD8C2D8C1C0C6ACA007CE036 /* NSTimeZone+Easy.m in Sources */,
+				FD1E3C441CDA1B91007E0D99 /* DeviceVodBoxModel.m in Sources */,
 				FD055D351C9D3CF40054AABF /* MBProgressHUD.m in Sources */,
 				FD055D171C9D3BDA0054AABF /* KyoURLProtocol.m in Sources */,
 				FD8C2CE41C0C6A98007CE036 /* NSObject+MJCoding.m in Sources */,

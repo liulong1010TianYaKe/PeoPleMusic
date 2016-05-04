@@ -7,9 +7,12 @@
 //
 
 #import "SearchDeviceViewController.h"
+#import "DeviceVodBoxModel.h"
 
 @interface SearchDeviceViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSArray *deviceVodBoxArray;
 
 @end
 
@@ -47,13 +50,17 @@
 #pragma mark --------------------
 #pragma mark - Events
 - (void)networkGetDeviceList{
+    
     NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do";
-    [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger responseStatusCode) {
-        
+    
+    [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
+       self.deviceVodBoxArray = [DeviceVodBoxModel objectArrayWithKeyValuesArray:dict[@"info"]];
     } errorBlock:^(NSError *error) {
         
     } finishedBlock:^(NSError *error) {
         
+        [self.tableView reloadData];
+
     }];
 }
 #pragma mark -------------------
@@ -62,7 +69,7 @@
 #pragma mark --------------------
 #pragma mark - UITableViewDelegate, UITableViewSourceData
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.deviceVodBoxArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -70,7 +77,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] init];
     }
-    cell.textLabel.text = @"cellText";
+    DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
+    cell.textLabel.text = model.ip;
     return cell;
 }
 

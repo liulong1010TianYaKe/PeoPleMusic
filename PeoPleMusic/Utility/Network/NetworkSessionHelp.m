@@ -104,15 +104,52 @@
 }
 
 
-+ (void)postNetwork:(NSString *)urlString completionBlock:(void (^)(NSDictionary *dict, NSInteger responseStatusCode))completionBlock errorBlock:(void (^)(NSError *))errorBlock finishedBlock:(void (^)(NSError *))finishedBlock{
++ (void)postNetwork:(NSString *)urlString completionBlock:(void (^)(NSDictionary *dict, NSInteger result))completionBlock errorBlock:(void (^)(NSError *))errorBlock finishedBlock:(void (^)(NSError *))finishedBlock{
+//    
+//     [[NetworkSessionHelp shareNetwork].httpSessionManager POST:urlString parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
+//         
+//     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//         
+//     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//         
+//     }];
     
-     [[NetworkSessionHelp shareNetwork].httpSessionManager POST:urlString parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
-         
-     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-         
-     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-         
-     }];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    NSURLSessionTask *sessionTask  = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        dispatch_main_async_safeThread(^{
+            if (!error) {
+                
+                NSString *responseString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                
+                responseString = [KyoUtil changeJsonStringToTrueJsonString:responseString];
+                
+                NSData *tempdata = [responseString dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary *dict  = [NSJSONSerialization JSONObjectWithData:tempdata options:0 error:nil];
+                NSInteger result = [dict[@"result"] integerValue];
+                if (completionBlock) {
+                    completionBlock(dict, result);
+                }
+                
+                if (finishedBlock) {
+                    finishedBlock(nil);
+                }
+                
+                
+            }else{
+                if (errorBlock) {
+                    errorBlock(error);
+                }
+                
+                if (finishedBlock) {
+                    finishedBlock(error);
+                }
+            }
+        });
+//        NSHTTPURLResponse *respdose = (NSHTTPURLResponse*)response;
+     
+    }];
+    [sessionTask resume];
 }
 
 

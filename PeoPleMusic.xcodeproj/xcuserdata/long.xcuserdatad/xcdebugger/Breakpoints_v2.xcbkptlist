@@ -36,7 +36,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/long/Documents/%E5%9C%A8%E6%83%A0%E6%B3%BD%E6%97%A5%E5%AD%90%E9%87%8C/PeoPleMusic/PeoPleMusic/ViewController/MusicListViewController.m"
-                  timestampString = "484054611.878101"
+                  timestampString = "484056332.537799"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "145"
@@ -51,7 +51,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/long/Documents/%E5%9C%A8%E6%83%A0%E6%B3%BD%E6%97%A5%E5%AD%90%E9%87%8C/PeoPleMusic/PeoPleMusic/ViewController/MusicListViewController.m"
-                  timestampString = "484054611.878418"
+                  timestampString = "484056332.53807"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "145"
@@ -66,7 +66,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/long/Documents/%E5%9C%A8%E6%83%A0%E6%B3%BD%E6%97%A5%E5%AD%90%E9%87%8C/PeoPleMusic/PeoPleMusic/ViewController/MusicListViewController.m"
-                  timestampString = "484054611.878541"
+                  timestampString = "484056332.538174"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "147"
@@ -105,6 +105,70 @@
             startingLineNumber = "96"
             endingLineNumber = "96"
             landmarkName = "-networkGetMusicListData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PeoPleMusic/ThirdLibs/AFNetworking/AFHTTPSessionManager.m"
+            timestampString = "484055401.190022"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "-dataTaskWithHTTPMethod:URLString:parameters:uploadProgress:downloadProgress:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PeoPleMusic/ThirdLibs/AFNetworking/AFURLResponseSerialization.m"
+            timestampString = "484055525.357921"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "-responseObjectForResponse:data:error:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PeoPleMusic/ViewController/SearchDeviceViewController.m"
+            timestampString = "484056666.104347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-networkGetDeviceList"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PeoPleMusic/ViewController/SearchDeviceViewController.m"
+            timestampString = "484056666.104347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
