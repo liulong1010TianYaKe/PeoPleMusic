@@ -36,7 +36,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/long/Documents/%E5%9C%A8%E6%83%A0%E6%B3%BD%E6%97%A5%E5%AD%90%E9%87%8C/PeoPleMusic/PeoPleMusic/ViewController/MusicListViewController.m"
-                  timestampString = "484056332.537799"
+                  timestampString = "484057024.924895"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "145"
@@ -51,7 +51,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/long/Documents/%E5%9C%A8%E6%83%A0%E6%B3%BD%E6%97%A5%E5%AD%90%E9%87%8C/PeoPleMusic/PeoPleMusic/ViewController/MusicListViewController.m"
-                  timestampString = "484056332.53807"
+                  timestampString = "484057024.92533"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "145"
@@ -66,7 +66,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/long/Documents/%E5%9C%A8%E6%83%A0%E6%B3%BD%E6%97%A5%E5%AD%90%E9%87%8C/PeoPleMusic/PeoPleMusic/ViewController/MusicListViewController.m"
-                  timestampString = "484056332.538174"
+                  timestampString = "484057024.925452"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "147"
@@ -147,11 +147,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PeoPleMusic/ViewController/SearchDeviceViewController.m"
-            timestampString = "484056666.104347"
+            timestampString = "484056847.619636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-networkGetDeviceList"
             landmarkType = "5">
          </BreakpointContent>
@@ -163,12 +163,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PeoPleMusic/ViewController/SearchDeviceViewController.m"
-            timestampString = "484056666.104347"
+            timestampString = "484056847.619636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PeoPleMusic/ViewController/SearchDeviceViewController.m"
+            timestampString = "484056763.769713"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "-networkGetDeviceList"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
