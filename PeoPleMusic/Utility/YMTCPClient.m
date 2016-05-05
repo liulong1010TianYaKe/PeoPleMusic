@@ -58,15 +58,29 @@
     _serverIp = ip;
     _serverPort = port;
     
-    return [_clientSocket connectToHost:ip onPort:port error:&err];
-//    if([_clientSocket connectToHost:_serverIp onPort:port withTimeout:60  error:&err]){
-//        KyoLog(@"----连接成功!-- %@ %ld",_serverIp,port);
-//        
-//        return YES;
-//    }else{
-//        KyoLog(@"----连接失败!--%@ %ld",_serverIp,port);
-//        return NO;
-//    }
+//    return [_clientSocket connectToHost:ip onPort:port error:&err];
+    if([_clientSocket connectToHost:_serverIp onPort:port withTimeout:60  error:&err]){
+        KyoLog(@"----连接成功!-- %@ %ld",_serverIp,port);
+        
+        return YES;
+    }else{
+        KyoLog(@"----连接失败!--%@ %ld",_serverIp,port);
+        return NO;
+    }
+    
+}
+
+
+- (void)getDeviceInfo{
+    [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
+        if (result == 0) {
+            NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
+            DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
+            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
+            [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
+            
+        }
+    }];
     
 }
 

@@ -135,6 +135,13 @@
 		FD1E3C3E1CD88AF8007E0D99 /* AddDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C3D1CD88AF8007E0D99 /* AddDeviceViewController.m */; };
 		FD1E3C411CDA1455007E0D99 /* SearchDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C401CDA1455007E0D99 /* SearchDeviceViewController.m */; };
 		FD1E3C441CDA1B91007E0D99 /* DeviceVodBoxModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C431CDA1B91007E0D99 /* DeviceVodBoxModel.m */; };
+		FD1E3C511CDB6A2F007E0D99 /* AMapLocationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1E3C501CDB6A2F007E0D99 /* AMapLocationKit.framework */; };
+		FD1E3C531CDB6A56007E0D99 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1E3C521CDB6A56007E0D99 /* CoreTelephony.framework */; };
+		FD1E3C551CDB6A60007E0D99 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1E3C541CDB6A60007E0D99 /* SystemConfiguration.framework */; };
+		FD1E3C571CDB6A6B007E0D99 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1E3C561CDB6A6B007E0D99 /* CoreLocation.framework */; };
+		FD1E3C591CDB6A75007E0D99 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FD1E3C581CDB6A75007E0D99 /* libz.tbd */; };
+		FD1E3C5C1CDB6B61007E0D99 /* YMLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C5B1CDB6B61007E0D99 /* YMLocationManager.m */; };
+		FD1E3C5F1CDB7B1C007E0D99 /* SearchDeviceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1E3C5E1CDB7B1C007E0D99 /* SearchDeviceCell.m */; };
 		FD4338E41C8876D100C9E1DF /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C41C8876D100C9E1DF /* MKAnnotationView+WebCache.m */; };
 		FD4338E51C8876D100C9E1DF /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C61C8876D100C9E1DF /* NSData+ImageContentType.m */; };
 		FD4338E61C8876D100C9E1DF /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4338C81C8876D100C9E1DF /* SDImageCache.m */; };
@@ -492,6 +499,15 @@
 		FD1E3C401CDA1455007E0D99 /* SearchDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDeviceViewController.m; sourceTree = "<group>"; };
 		FD1E3C421CDA1B91007E0D99 /* DeviceVodBoxModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceVodBoxModel.h; sourceTree = "<group>"; };
 		FD1E3C431CDA1B91007E0D99 /* DeviceVodBoxModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceVodBoxModel.m; sourceTree = "<group>"; };
+		FD1E3C501CDB6A2F007E0D99 /* AMapLocationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapLocationKit.framework; sourceTree = "<group>"; };
+		FD1E3C521CDB6A56007E0D99 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		FD1E3C541CDB6A60007E0D99 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FD1E3C561CDB6A6B007E0D99 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FD1E3C581CDB6A75007E0D99 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		FD1E3C5A1CDB6B61007E0D99 /* YMLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YMLocationManager.h; sourceTree = "<group>"; };
+		FD1E3C5B1CDB6B61007E0D99 /* YMLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YMLocationManager.m; sourceTree = "<group>"; };
+		FD1E3C5D1CDB7B1C007E0D99 /* SearchDeviceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDeviceCell.h; sourceTree = "<group>"; };
+		FD1E3C5E1CDB7B1C007E0D99 /* SearchDeviceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDeviceCell.m; sourceTree = "<group>"; };
 		FD4338C31C8876D100C9E1DF /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		FD4338C41C8876D100C9E1DF /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		FD4338C51C8876D100C9E1DF /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -709,9 +725,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD1E3C591CDB6A75007E0D99 /* libz.tbd in Frameworks */,
+				FD1E3C571CDB6A6B007E0D99 /* CoreLocation.framework in Frameworks */,
+				FD1E3C551CDB6A60007E0D99 /* SystemConfiguration.framework in Frameworks */,
+				FD1E3C531CDB6A56007E0D99 /* CoreTelephony.framework in Frameworks */,
 				FD85746D1C60ACF000A0720B /* libiconv.2.4.0.tbd in Frameworks */,
 				FD85746B1C60ACDB00A0720B /* CoreVideo.framework in Frameworks */,
 				FD8574691C60ACCF00A0720B /* CoreMedia.framework in Frameworks */,
+				FD1E3C511CDB6A2F007E0D99 /* AMapLocationKit.framework in Frameworks */,
 				FD8574671C60ACC500A0720B /* AVFoundation.framework in Frameworks */,
 				18EBC9491C4FDADD00460546 /* libxml2.2.tbd in Frameworks */,
 			);
@@ -751,6 +772,8 @@
 			children = (
 				18720E061C1C2E490008FA09 /* PlayerCell.h */,
 				18720E071C1C2E490008FA09 /* PlayerCell.m */,
+				FD1E3C5D1CDB7B1C007E0D99 /* SearchDeviceCell.h */,
+				FD1E3C5E1CDB7B1C007E0D99 /* SearchDeviceCell.m */,
 			);
 			name = Player;
 			sourceTree = "<group>";
@@ -835,7 +858,11 @@
 			isa = PBXGroup;
 			children = (
 				FD85746C1C60ACF000A0720B /* libiconv.2.4.0.tbd */,
+				FD1E3C581CDB6A75007E0D99 /* libz.tbd */,
 				18EBC9481C4FDADD00460546 /* libxml2.2.tbd */,
+				FD1E3C521CDB6A56007E0D99 /* CoreTelephony.framework */,
+				FD1E3C541CDB6A60007E0D99 /* SystemConfiguration.framework */,
+				FD1E3C561CDB6A6B007E0D99 /* CoreLocation.framework */,
 				FD8574661C60ACC500A0720B /* AVFoundation.framework */,
 				FD8574681C60ACCF00A0720B /* CoreMedia.framework */,
 				FD85746A1C60ACDB00A0720B /* CoreVideo.framework */,
@@ -1195,6 +1222,16 @@
 			path = "UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		FD1E3C451CDAFECF007E0D99 /* YMLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				FD1E3C501CDB6A2F007E0D99 /* AMapLocationKit.framework */,
+				FD1E3C5A1CDB6B61007E0D99 /* YMLocationManager.h */,
+				FD1E3C5B1CDB6B61007E0D99 /* YMLocationManager.m */,
+			);
+			name = YMLocationManager;
+			sourceTree = "<group>";
+		};
 		FD4338C21C8876D100C9E1DF /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1302,6 +1339,7 @@
 		FD8C2BB91C0C6A98007CE036 /* ThirdLibs */ = {
 			isa = PBXGroup;
 			children = (
+				FD1E3C451CDAFECF007E0D99 /* YMLocationManager */,
 				FD1E3BB41CD0BF43007E0D99 /* AFNetworking */,
 				FD1E3B761CD0B55E007E0D99 /* KyoRefreshControl */,
 				FD1441E31CA40F820029060A /* IQKeyBoardManager */,
@@ -1943,6 +1981,7 @@
 				FD8C2D441C0C6AAA007CE036 /* UIDevice-Hardware.m in Sources */,
 				FD8C2D491C0C6AAA007CE036 /* UILabel+size.m in Sources */,
 				FD1442111CA40F830029060A /* IQTextView.m in Sources */,
+				FD1E3C5F1CDB7B1C007E0D99 /* SearchDeviceCell.m in Sources */,
 				FDA43B5F1C60872700CC0E75 /* STKQueueEntry.m in Sources */,
 				FD055CE41C9D3A4D0054AABF /* SSKeychain.m in Sources */,
 				FD8C2D3B1C0C6AAA007CE036 /* CALayer+XibConfiguration.m in Sources */,
@@ -2025,6 +2064,7 @@
 				FD055D5D1C9D441D0054AABF /* BasicsCell.m in Sources */,
 				FDA43B5D1C60872700CC0E75 /* STKHTTPDataSource.m in Sources */,
 				FD055D7A1C9D6E5B0054AABF /* SDCollectionViewCell.m in Sources */,
+				FD1E3C5C1CDB6B61007E0D99 /* YMLocationManager.m in Sources */,
 				FD8C2CE51C0C6A98007CE036 /* NSObject+MJKeyValue.m in Sources */,
 				FD8C2D511C0C6AAA007CE036 /* UIView-WhenTappedBlocks.m in Sources */,
 				FD8C2DB51C0C6ADF007CE036 /* JMNavigationViewController.m in Sources */,
@@ -2188,7 +2228,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: yu yan (3LS9X2629Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yu yan (3LS9X2629Z)";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/PeoPleMusic/ThirdLibs";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = "$(SRCROOT)/PeoPleMusic/Config/Info.plist";
@@ -2213,7 +2253,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: yu yan (3LS9X2629Z)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yu yan (3LS9X2629Z)";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/PeoPleMusic/ThirdLibs";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
 				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
 				INFOPLIST_FILE = "$(SRCROOT)/PeoPleMusic/Config/Info.plist";
