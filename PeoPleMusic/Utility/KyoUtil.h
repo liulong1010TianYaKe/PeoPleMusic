@@ -74,6 +74,9 @@
 + (NSString *)passwordSecurityLevel:(NSString *)password;   /**< 得到密码的安全级别（高中低） */
 
 // runtime
++ (NSDictionary *)getPropertyNameList:(Class)class1; //根据class 得到所有属性
++ (Method *)geMethodNameList:(Class)class1 withCount:(NSInteger *)count;    //根据class 得到所有方法 Method
+
 + (void)addAssociatedWithtarget:(id)target withPropertyName:(NSString *)propertyName withValue:(id)value; //在目标target上添加关联对象，属性名propertyname(也能用来添加block)，值value
 + (id)getAssociatedValueWithTarget:(id)target withPropertyName:(NSString *)propertyName;  //获取目标target的指定关联对象值
 + (void)addIvarWithtarget:(id)target withPropertyName:(NSString *)propertyName withValue:(id)value; //在目标target上添加属性(已经存在的类不支持，可跳进去看注释)，属性名propertyname，值value

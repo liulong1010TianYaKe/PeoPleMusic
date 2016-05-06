@@ -141,7 +141,6 @@
     [self.autoTextView startAutoScroll];
     
     self.linkServerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    self.linkServerBtn.backgroundColor = [UIColor redColor];
     self.linkServerBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     self.linkServerBtn.layer.cornerRadius = 5;
     self.linkServerBtn.layer.borderWidth = 1;
@@ -165,13 +164,12 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveupdataCmd:) name:YNotificationName_UPDATE_BRAODCAST object:nil];  //获取音响当前正在播放的歌曲信息
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDidConnect:) name:YNotificationName_SOCKETDIDCONNECT object:nil];  //连接上服务器
-    
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveuDisConnect:) name:YNotificationName_SOCKETDIDDISCONNECT object:nil];  //断开连接
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfo:) name:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //断开连接
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDeviceInfo:) name:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
     
     DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
-    
     self.lblTitle.text = deviceInfo.name;
+   
  
 }
 
@@ -206,9 +204,7 @@
 //        KyoLog(@"%@",dict);
         if (result == 0) {
             NSDictionary *songInfoDict = [dict objectForKey:@"songInfor"];
-//            NSDictionary *userDict = [dict objectForKey:@"userInfor"];
             self.currentSongInfo = [SongInforModel objectWithKeyValues:songInfoDict];
-//            UserInfoModel *userModel = [UserInfoModel objectWithKeyValues:userDict];
             dispatch_sync(dispatch_get_main_queue(), ^{
                 self.lblSongInfo.text = self.currentSongInfo.mediaName;
                 
@@ -217,7 +213,6 @@
                 }else{
                   self.autoTextView.text = @"  点一首我们最爱的歌,回忆我们美好的曾经,人人点歌,播放你的心声";
                 }
-                
             });
            
             

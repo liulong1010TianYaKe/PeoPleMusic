@@ -47,6 +47,8 @@
 		F780D23F1C9EF05900036C6C /* YMBonjourHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = F780D23E1C9EF05900036C6C /* YMBonjourHelp.m */; };
 		F78279F51CC285C00013101A /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F78279F41CC285C00013101A /* RecordCell.m */; };
 		F78279F81CC33CA30013101A /* AbsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F78279F71CC33CA30013101A /* AbsListModel.m */; };
+		F7D0AA321CDD0177006F07DE /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D0AA2F1CDD0177006F07DE /* UserInfo.m */; };
+		F7D0AA331CDD0177006F07DE /* BasicsUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D0AA311CDD0177006F07DE /* BasicsUserInfo.m */; };
 		F7DEB65A1CA782A900BBDC9E /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DEB6591CA782A900BBDC9E /* UserCenterViewController.m */; };
 		F7DEB65C1CA78B9A00BBDC9E /* UserCenter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7DEB65B1CA78B9A00BBDC9E /* UserCenter.storyboard */; };
 		F7EAC9571C8A997400A2623F /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F7EAC9561C8A997400A2623F /* UserInfoModel.m */; };
@@ -334,6 +336,10 @@
 		F78279F41CC285C00013101A /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
 		F78279F61CC33CA30013101A /* AbsListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbsListModel.h; sourceTree = "<group>"; };
 		F78279F71CC33CA30013101A /* AbsListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbsListModel.m; sourceTree = "<group>"; };
+		F7D0AA2E1CDD0177006F07DE /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		F7D0AA2F1CDD0177006F07DE /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		F7D0AA301CDD0177006F07DE /* BasicsUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicsUserInfo.h; sourceTree = "<group>"; };
+		F7D0AA311CDD0177006F07DE /* BasicsUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicsUserInfo.m; sourceTree = "<group>"; };
 		F7DEB6581CA782A900BBDC9E /* UserCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterViewController.h; sourceTree = "<group>"; };
 		F7DEB6591CA782A900BBDC9E /* UserCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterViewController.m; sourceTree = "<group>"; };
 		F7DEB65B1CA78B9A00BBDC9E /* UserCenter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserCenter.storyboard; sourceTree = "<group>"; };
@@ -890,6 +896,17 @@
 				F780D23E1C9EF05900036C6C /* YMBonjourHelp.m */,
 			);
 			name = YMBonjourHelp;
+			sourceTree = "<group>";
+		};
+		F7D0AA2C1CDD013D006F07DE /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				F7D0AA2E1CDD0177006F07DE /* UserInfo.h */,
+				F7D0AA2F1CDD0177006F07DE /* UserInfo.m */,
+				F7D0AA301CDD0177006F07DE /* BasicsUserInfo.h */,
+				F7D0AA311CDD0177006F07DE /* BasicsUserInfo.m */,
+			);
+			name = UserInfo;
 			sourceTree = "<group>";
 		};
 		F7EAC9541C8A98FD00A2623F /* Connect */ = {
@@ -1518,6 +1535,7 @@
 		FD8C2D521C0C6ABF007CE036 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F7D0AA2C1CDD013D006F07DE /* UserInfo */,
 				F7EAC9541C8A98FD00A2623F /* Connect */,
 				18EBC94B1C4FDBF700460546 /* LibraryMusic */,
 				18720E091C1C64550008FA09 /* Player */,
@@ -1811,7 +1829,7 @@
 				TargetAttributes = {
 					FD8C2B8B1C0C6A41007CE036 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 3LS9X2629Z;
+						DevelopmentTeam = 5WDBX5Z66V;
 					};
 					FD8C2BA41C0C6A42007CE036 = {
 						CreatedOnToolsVersion = 7.1;
@@ -2014,6 +2032,7 @@
 				FD8C2D4D1C0C6AAA007CE036 /* UIView+Extension.m in Sources */,
 				F78279F81CC33CA30013101A /* AbsListModel.m in Sources */,
 				FD055D341C9D3CF40054AABF /* MBProgressHUD+MJ.m in Sources */,
+				F7D0AA331CDD0177006F07DE /* BasicsUserInfo.m in Sources */,
 				FDA43B571C60872700CC0E75 /* NSMutableArray+STKAudioPlayer.m in Sources */,
 				FD055CE51C9D3A4D0054AABF /* SSKeychainQuery.m in Sources */,
 				FD1E3BE41CD0BF4F007E0D99 /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -2021,6 +2040,7 @@
 				F780D2311C9EA17000036C6C /* MusicPlayView.m in Sources */,
 				FD8C2DB31C0C6ADF007CE036 /* MABasicsViewController.m in Sources */,
 				FD8C2D3D1C0C6AAA007CE036 /* NSString+Convert.m in Sources */,
+				F7D0AA321CDD0177006F07DE /* UserInfo.m in Sources */,
 				F7EAC95D1C8AC66700A2623F /* SongInforModel.m in Sources */,
 				18720E081C1C2E490008FA09 /* PlayerCell.m in Sources */,
 				FDA43B5B1C60872700CC0E75 /* STKDataSource.m in Sources */,
@@ -2225,8 +2245,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: yu yan (3LS9X2629Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yu yan (3LS9X2629Z)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/PeoPleMusic/ThirdLibs";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
@@ -2240,7 +2260,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhuni.PeoPleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "57cda10e-1f5e-48d7-aac6-d311f45131c7";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2250,8 +2270,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: yu yan (3LS9X2629Z)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yu yan (3LS9X2629Z)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/PeoPleMusic/ThirdLibs";
 				GCC_PREFIX_HEADER = "PeoPleMusic/Config/PeoPleMusic-Prefix.pch";
@@ -2265,7 +2285,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhuni.PeoPleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "57cda10e-1f5e-48d7-aac6-d311f45131c7";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

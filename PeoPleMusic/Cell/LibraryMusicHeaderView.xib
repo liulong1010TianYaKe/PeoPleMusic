@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -39,47 +40,40 @@
                     <rect key="frame" x="0.0" y="70" width="320" height="55"/>
                     <subviews>
                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_music_phone" translatesAutoresizingMaskIntoConstraints="NO" id="aSO-yG-V4G">
-                            <rect key="frame" x="20" y="12" width="25" height="30"/>
+                            <rect key="frame" x="20" y="11" width="33" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="25" id="BQh-Qc-n4K"/>
-                                <constraint firstAttribute="height" constant="30" id="QGd-U7-pBh"/>
+                                <constraint firstAttribute="width" secondItem="aSO-yG-V4G" secondAttribute="height" multiplier="1:1" constant="1" id="Pdk-my-Xf1"/>
+                                <constraint firstAttribute="height" constant="32" id="QGd-U7-pBh"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="BQh-Qc-n4K"/>
+                                </mask>
+                            </variation>
                         </imageView>
                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本地收藏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3R-CT-F8Z">
-                            <rect key="frame" x="53" y="18" width="60" height="18"/>
+                            <rect key="frame" x="61" y="18" width="60" height="18"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9a-rf-PUI">
-                            <rect key="frame" x="0.0" y="0.0" width="160" height="55"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                            <state key="normal" image="com_arrow_cell_right">
-                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <state key="highlighted" backgroundImage="button_0_0_0_2"/>
-                            <connections>
-                                <action selector="btnLoadTouchInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="elv-bi-CzX"/>
-                            </connections>
-                        </button>
                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_music_speaker" translatesAutoresizingMaskIntoConstraints="NO" id="aqW-cI-E0V">
-                            <rect key="frame" x="180" y="12" width="25" height="30"/>
+                            <rect key="frame" x="179.5" y="11" width="32" height="32"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="Aws-T7-SsQ"/>
-                                <constraint firstAttribute="width" constant="25" id="CeV-XV-iCv"/>
+                                <constraint firstAttribute="height" constant="32" id="Aws-T7-SsQ"/>
+                                <constraint firstAttribute="width" constant="32" id="CeV-XV-iCv"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="音响本地" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0H-UH-cGU">
-                            <rect key="frame" x="213" y="19" width="60" height="18"/>
+                            <rect key="frame" x="219.5" y="19" width="60" height="18"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnD-Jd-PKj">
-                            <rect key="frame" x="161" y="0.0" width="159" height="55"/>
+                            <rect key="frame" x="160.5" y="0.0" width="159.5" height="55"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
@@ -96,6 +90,19 @@
                                 <constraint firstAttribute="width" constant="1" id="tNr-Jv-XQ1"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9a-rf-PUI">
+                            <rect key="frame" x="0.0" y="0.0" width="159.5" height="55"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                            <state key="normal" image="com_arrow_cell_right">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="highlighted" backgroundImage="button_0_0_0_2"/>
+                            <connections>
+                                <action selector="btnLoadTouchInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="elv-bi-CzX"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

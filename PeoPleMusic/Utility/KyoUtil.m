@@ -512,6 +512,38 @@ static char kMBProgressHUDMessageKey;
 
 
 #pragma mark - runtime动态添加属性详解
+
+
++ (NSDictionary *)getPropertyNameList:(Class)class
+{
+    u_int count;
+    
+    objc_property_t *properties = class_copyPropertyList(class, &count);
+    
+    NSMutableDictionary *propertyNameDictionary = [NSMutableDictionary dictionaryWithCapacity:count];
+    
+    for (int i = 0; i < count ; i++)
+    {
+        const char *propertyAttributes = property_getAttributes(properties[i]);
+        const char *propertyName = property_getName(properties[i]);
+        
+        [propertyNameDictionary setObject:[NSString stringWithUTF8String: propertyAttributes] forKey:[NSString stringWithUTF8String: propertyName]];
+    }
+    free(properties);
+    
+    
+    return propertyNameDictionary;
+}
+
+//根据class 得到所有方法 Methods
++ (Method *)geMethodNameList:(Class)class withCount:(NSInteger *)count;
+{
+    u_int               all;
+    Method *methods = class_copyMethodList([UIView class], &all);
+    *count = all;
+    return methods;
+}
+
 /*
 Ivar的方法不能在已有的class上面添加属性，不然Ivar是最好的办法
 

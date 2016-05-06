@@ -98,35 +98,36 @@
     }else{
       
             if ([[YMTCPClient share] connectServer:ip port:SOCKET_PORT2]) {
-                [self getDeviceInfo];
+//                [self getDeviceInfo];
+                [self showMessageHUD:@"连接音响成功" withTimeInterval:2.0];
             }
 
     }
 
 }
 
-- (void)getDeviceInfo{
-    [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
-        if (result == 0) {
-            NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
-            DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
-          
-            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
-            [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
-            
-            dispatch_main_async_safeThread(^{
-               [self showMessageHUD:@"连接音响成功" withTimeInterval:2.0];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                });
-                
-            });
-            
-            
-        }
-    }];
-    
-}
+//- (void)getDeviceInfo{
+//    [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
+//        if (result == 0) {
+//            NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
+//            DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
+//          
+//            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
+//            
+//            dispatch_main_async_safeThread(^{
+//               [self showMessageHUD:@"连接音响成功" withTimeInterval:2.0];
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                });
+//                
+//            });
+//            
+//            
+//        }
+//    }];
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -184,7 +185,7 @@
     } finishedBlock:^(NSError *error) {
         
         if (self.deviceVodBoxArray.count > 0) {
-            self.tableView.tableFooterView = self.footView;
+//            self.tableView.tableFooterView = self.footView;
         }else{
             
             ;
@@ -231,27 +232,30 @@
         [self showMessageHUD:@"亲，您已经连接了店内音响了!" withTimeInterval:kShowMessageTime];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
-            return ;
-        });
-    }
-     DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
-    KyoLog(@"%@",model.ip);
-    
-    if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT2]) {
-         [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.navigationController popViewControllerAnimated:YES];
         });
     }else{
-        if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT1]) {
-            [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
+         DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
+        KyoLog(@"%@",model.ip);
+        
+        if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT2]) {
+            [UserInfo sharedUserInfo].deviceVodBoxModel = model;
+             [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }else{
-            [self showMessageHUD:@"连接设备失败，请连接其他设备!" withTimeInterval:kShowMessageTime];
-        }
-    };
+            if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT1]) {
+                [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
+                [UserInfo sharedUserInfo].deviceVodBoxModel = model;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+            }else{
+                [self showMessageHUD:@"连接设备失败，请连接其他设备!" withTimeInterval:kShowMessageTime];
+            }
+        };
+    }
     
 }
 #pragma mark ------------------

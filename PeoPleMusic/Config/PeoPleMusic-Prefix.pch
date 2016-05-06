@@ -60,5 +60,6 @@
 #import "CALayer+XibConfiguration.h"
 #import "UIButton+WebCache.h"
 #import "UIView+VisualEffectView.h"
+#import "UserInfo.h"
 
 #endif

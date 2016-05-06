@@ -39,6 +39,7 @@
 
 // 音响本地
 - (IBAction)btnSpeakerTouchInside:(id)sender {
+    
     if ([YMTCPClient share].isConnect) {
          DeviceMusicViewController *controller = [DeviceMusicViewController createDeviceMusicViewController];
         [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];

@@ -84,6 +84,8 @@
     
 }
 
+
+
 - (void)dealloc{
     
 }
@@ -204,7 +206,7 @@
     
    
     [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_SOCKETDIDCONNECT object:nil];
-
+    [self getDeviceInfo];
     [_clientSocket readDataWithTimeout:-1 tag:0];
     
     

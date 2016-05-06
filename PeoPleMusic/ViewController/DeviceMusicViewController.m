@@ -40,10 +40,28 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self requestNetWork];
     });
+    
+    [self networkGetSongList];
 }
 
 #pragma mark --------------------
 #pragma mark - Network
+
+- (void)networkGetSongList{
+    
+    
+
+     NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?terminalId=%ld",(long)[UserInfo sharedUserInfo].deviceVodBoxModel.code];
+    [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
+
+    } errorBlock:^(NSError *error) {
+        
+    } finishedBlock:^(NSError *error) {
+        
+ 
+        
+    }];
+}
 
 - (void)requestNetWork{
     
