@@ -61,7 +61,7 @@
     self.clientTcp = [YMTCPClient share];
     
  
-    [self startSearchSerive]; // 开始搜索服务
+//    [self startSearchSerive]; // 开始搜索服务
 
 //    if ([self.clientTcp connectServer:@"192.168.1.100" port:SOCKET_PORT2]) {
 //                    [self getDeviceInfo];

@@ -64,14 +64,14 @@
             if (error.code == AMapLocationErrorLocateFailed)
             {
                 if (completionblock) {
-                    completionblock(location.coordinate.latitude,location.coordinate.longitude,error);
+                    completionblock(location.coordinate.longitude,location.coordinate.latitude,error);
                 }
                 return;
             }
         }
         
         if (completionblock) {
-            completionblock(location.coordinate.latitude,location.coordinate.longitude,nil);
+            completionblock(location.coordinate.longitude,location.coordinate.latitude,nil);
         }
 
     }];

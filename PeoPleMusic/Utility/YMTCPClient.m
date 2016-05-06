@@ -228,15 +228,15 @@
 //        }
 //    }
  
-//    if (connectCout < 5) {
-//          KyoLog(@"重新连接。。。%ld",(long)connectCout++);
-//        if (_serverPort == 9997) {
-//            _serverPort = 9998;
-//        }else if(_serverPort == 9998){
-//            _serverPort = 9997;
-//        }
-//     [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
-//    }
+    if (connectCout < 5) {
+          KyoLog(@"重新连接。。。%ld",(long)connectCout++);
+        if (_serverPort == 9997) {
+            _serverPort = 9998;
+        }else if(_serverPort == 9998){
+            _serverPort = 9997;
+        }
+     [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
+    }
    
 }
 
