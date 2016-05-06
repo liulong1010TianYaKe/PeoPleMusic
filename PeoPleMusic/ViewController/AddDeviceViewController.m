@@ -7,7 +7,7 @@
 //
 
 #import "AddDeviceViewController.h"
-#import "YMBonjourHelp.h"
+#import "DeviceVodBoxModel.h"
 
 // 正在自动扫描当前网络设备...
 // 未扫描到设备，请切换其他网络设备重试
@@ -36,6 +36,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblScanText;
 
 @property (nonatomic, assign) BOOL isStopBtnUpdateAnimation;
+
+@property (nonatomic, strong) NSArray *deviceVodBoxArray;
+
+@property (nonatomic, strong) NSString *ssid;
+@property (nonatomic, strong) NSString *macIp;
+
 - (IBAction)btnBackTouchInside:(id)sender;
 
 @property (nonatomic,strong) NSMutableArray *arrDevices;
@@ -70,23 +76,14 @@
     self.tableView.scrollEnabled = NO;
     self.tableView.tableFooterView = [[UIView alloc] init];
  
-    if ([YMTCPClient share].isConnect) {
-          DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
-        if (!_arrDevices) {
-            _arrDevices = [NSMutableArray array];
-        }
-        [_arrDevices removeAllObjects];
-        [_arrDevices addObject:deviceInfo];
-    }
+
     
 }
 
 
 - (void)setupData{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvDidBonjour:) name:YNotificationName_DIDSUCESSFINDSERVICE object:nil];  //连接音响通知
-       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recvDeviceInfo:) name:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];  //连接音响通知
-         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDiDConnect:) name:YNotificationName_SOCKETDIDCONNECT object:nil];  //断开连接
+
 }
 
 - (void)setIsStopBtnUpdateAnimation:(BOOL)isStopBtnUpdateAnimation{
@@ -115,7 +112,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.arrDevices.count;
+    return self.deviceVodBoxArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -129,14 +126,41 @@
     
     AddDeviceCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"AddDeviceCell"];
     cell.indexPath = indexPath;
-    DeviceInfor *deviceInfo = [_arrDevices objectAtIndex:indexPath.row];
-    cell.lblDevice.text = deviceInfo.name;
-    cell.lblWiFiName.text = deviceInfo.wifiName;
+    
+    DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
+    cell.lblDevice.text = model.name;
+    cell.lblWiFiName.text = model.address;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
    
+    DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
+    KyoLog(@"%@",model.ip);
+    
+    if ([YMTCPClient share].isConnect) {
+        [self showMessageHUD:@"亲，您已经连接了店内音响了!" withTimeInterval:kShowMessageTime];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+            return ;
+        });
+    }
+    
+    if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT2]) {
+        [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }else{
+        if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT1]) {
+            [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }else{
+            [self showMessageHUD:@"连接设备失败，请连接其他设备!" withTimeInterval:kShowMessageTime];
+        }
+    };
 }
 
 
@@ -144,22 +168,6 @@
 - (IBAction)btnUpdateTouchInside:(id)sender {
     [self startAnimation];
     
-    if (![YMTCPClient share].isConnect) {
-        [[YMBonjourHelp shareInstance] startSearch];
-        [_arrDevices removeAllObjects];
-        [self.tableView reloadData];
-        self.lblScanText.hidden = NO;
-        self.lblScanText.text = @"在自动扫描当前网络设备...";
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.isStopBtnUpdateAnimation = YES;
-            self.lblScanText.text = @"在未扫描到设备，请切换其他网络设备重试";
-            
-        });
-    }
-
-    
- 
 }
 
 - (IBAction)btnScanTouchInside:(id)sender {
@@ -172,69 +180,27 @@
 #pragma mark --------------------
 #pragma mark - NSNotification
 
-//连接音响通知
-- (void)recvDidBonjour:(NSNotification *)noti{
+- (void)networkGetDeviceList:(CGFloat)latitude longitude:( CGFloat )longitude{
     
-   
-    if([[YMTCPClient share] connectServer:[YMBonjourHelp shareInstance].deviceIp port:SOCKET_PORT2]){
-        KyoLog(@"连接成功。。");
-        [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
-            if (result == 0) {
-                NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
-                DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
-                [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
-                [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
-                if (!_arrDevices) {
-                    _arrDevices = [NSMutableArray array];
-                }
-                [_arrDevices removeAllObjects];
-                [_arrDevices addObject:deviceInfo];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                    self.lblScanText.hidden = YES;
-                    self.isStopBtnUpdateAnimation = YES;
-                });
-                
-            }
-        }];
-    }else{
-         [_arrDevices removeAllObjects];
-    }
-}
-- (void)recvDeviceInfo:(NSNotification *)noti{
-    DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
-    if (!_arrDevices) {
-        _arrDevices = [NSMutableArray array];
-    }
-    [_arrDevices removeAllObjects];
-    [_arrDevices addObject:deviceInfo];
-    [self.tableView reloadData];
-    self.lblScanText.hidden = YES;
-    self.isStopBtnUpdateAnimation = YES;
-}
-- (void)receiveDiDConnect:(NSNotification *)noti{
-    [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
-        if (result == 0) {
-            NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
-            DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
-            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
-            [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_CMDTYPE_REGISTERED_FEEDBACK object:nil];
-            if (!_arrDevices) {
-                _arrDevices = [NSMutableArray array];
-            }
-            [_arrDevices removeAllObjects];
-            [_arrDevices addObject:deviceInfo];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                self.lblScanText.hidden = YES;
-                self.isStopBtnUpdateAnimation = YES;
-            });
-            
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?longitude=%f&latitude=%f",latitude,longitude];
+    
+    
+    //    NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalMusicAction!getTerminalMusicList.do?terminalId=83";
+    //     NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do";
+    [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
+        self.deviceVodBoxArray = [DeviceVodBoxModel objectArrayWithKeyValuesArray:dict[@"info"]];
+    } errorBlock:^(NSError *error) {
+        
+    } finishedBlock:^(NSError *error) {
+        
+        if (self.deviceVodBoxArray.count > 0) {
+        }else{
+            [self showMessageHUD:[NSString stringWithFormat:@"亲，未在WIFI:%@搜到店内有音响开启!",self.ssid] withTimeInterval:3.0f];
         }
+        [self.tableView reloadData];
+        
     }];
 }
-
 
 @end

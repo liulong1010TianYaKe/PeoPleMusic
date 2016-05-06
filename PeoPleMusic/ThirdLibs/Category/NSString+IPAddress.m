@@ -19,6 +19,7 @@
 #import <dlfcn.h>
 //#import "wwanconnect.h//frome apple 你可能没有哦
 #import <SystemConfiguration/SystemConfiguration.h>
+#import <SystemConfiguration/CaptiveNetwork.h>
 
 #define kPingUrl    @"http://www.baidu.com/"
 
@@ -163,6 +164,44 @@
     if (!host) {herror("resolv"); return nil;}
     struct in_addr **list = (struct in_addr **)host->h_addr_list;
     return [NSString stringWithCString:inet_ntoa(*list[0]) encoding:NSUTF8StringEncoding];
+}
+
++ (NSString *)getWiFiName{
+    NSString *wifName = nil;
+    CFArrayRef myArray = CNCopySupportedInterfaces();
+    if (myArray != nil) {
+        CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
+        if (myDict != nil) {
+            NSDictionary *dict = (NSDictionary*)CFBridgingRelease(myDict);
+            
+            wifName = [dict valueForKey:@"SSID"];
+//            self.macIp = [dict valueForKey:@"BSSID"];
+            
+//            self.macIp = [self.macIp stringByReplacingOccurrencesOfString:@":" withString:@""];
+            
+        }
+    }
+    
+    return wifName;
+}
++ (NSString *)getWIFIBSSID{
+    
+    NSString *wifBSSID = nil;
+    CFArrayRef myArray = CNCopySupportedInterfaces();
+    if (myArray != nil) {
+        CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
+        if (myDict != nil) {
+            NSDictionary *dict = (NSDictionary*)CFBridgingRelease(myDict);
+            
+         
+            NSString * tempwifBSSID = [dict valueForKey:@"BSSID"];
+            
+            wifBSSID = [tempwifBSSID stringByReplacingOccurrencesOfString:@":" withString:@""];
+            
+        }
+    }
+    
+    return wifBSSID;
 }
 
 @end

@@ -56,7 +56,7 @@
     [self.aMapLocationManager setDelegate:nil];
 }
 - (void)startLocotion:(locationgCompletionBlock)completionblock{
-    [self.aMapLocationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+    [self.aMapLocationManager requestLocationWithReGeocode:NO completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         if (error)
         {
             NSLog(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);

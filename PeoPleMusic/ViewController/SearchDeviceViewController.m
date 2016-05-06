@@ -143,6 +143,10 @@
 //            latitude = 114.01666;
 //            longitude = 22.538146;
             
+//            latitude = 151.50998;
+//            longitude = -0.1337;
+
+            
             KyoLog(@"latitude: %f longitude: %f",latitude,longitude);
             [[[UIAlertView alloc] initWithTitle:@"获取高德当前的经纬度"
                                         message:[NSString stringWithFormat:@"latitude: %f longitude: %f",latitude,longitude]
@@ -222,6 +226,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if ([YMTCPClient share].isConnect) {
+        [self showMessageHUD:@"亲，您已经连接了店内音响了!" withTimeInterval:kShowMessageTime];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+            return ;
+        });
+    }
      DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
     KyoLog(@"%@",model.ip);
     

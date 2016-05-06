@@ -19,5 +19,6 @@
 + (NSString *)hostname; //获取host的名称
 + (NSString *)getIPAddressForHost:(NSString *)theHost;  //从host获取地址
 + (NSString *)localIPAddress;   //这是本地host的IP地址
-
++ (NSString *)getWiFiName;
++ (NSString *)getWIFIBSSID;
 @end

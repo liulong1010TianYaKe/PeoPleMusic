@@ -118,7 +118,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ViewController/SpeakerControlViewController.m"
-                  timestampString = "483698814.737618"
+                  timestampString = "484242487.537655"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "161"
@@ -133,7 +133,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ViewController/SpeakerControlViewController.m"
-                  timestampString = "483698814.737767"
+                  timestampString = "484242487.537808"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "162"
@@ -166,7 +166,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ViewController/SpeakerControlViewController.m"
-                  timestampString = "483698814.738703"
+                  timestampString = "484242487.538806"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "158"
@@ -181,7 +181,7 @@
                   moduleName = "PeoPleMusic"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ViewController/SpeakerControlViewController.m"
-                  timestampString = "483698814.738855"
+                  timestampString = "484242487.538983"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "159"
@@ -229,13 +229,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/ViewController/Root/RootViewController.m"
-            timestampString = "483696940.280982"
+            filePath = "PeoPleMusic/ViewController/SearchDeviceViewController.m"
+            timestampString = "484241456.420313"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-connectSeriver:"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "-setupView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -245,46 +245,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/ViewController/Root/RootViewController.m"
-            timestampString = "483697187.936088"
+            filePath = "PeoPleMusic/ThirdLibs/YMLocationManager.m"
+            timestampString = "484241715.943058"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "-getDeviceInfo"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-amapLocationManager:didFailWithError:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[RootViewController getDeviceInfo]"
-                  moduleName = "PeoPleMusic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ViewController/Root/RootViewController.m"
-                  timestampString = "483698814.742095"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__35-[RootViewController getDeviceInfo]_block_invoke"
-                  moduleName = "PeoPleMusic"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alen/Desktop/PeoPleMusic/PeoPleMusic/ViewController/Root/RootViewController.m"
-                  timestampString = "483698814.742338"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "29">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -293,13 +261,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PeoPleMusic/Utility/YMTCPClient.m"
-            timestampString = "483698721.634872"
+            filePath = "PeoPleMusic/ThirdLibs/YMLocationManager.m"
+            timestampString = "484241720.550221"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-connectServer:port:"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-amapLocationManager:didChangeAuthorizationStatus:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
