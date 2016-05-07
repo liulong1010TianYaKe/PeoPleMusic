@@ -8,6 +8,13 @@
 
 #import "BasicsViewController.h"
 
+typedef enum : NSUInteger {
+    DeviceMusicViewControllerLoc,
+    DeviceMusicViewControllerOnline,
+} DeviceMusicViewControllerType;
+
 @interface DeviceMusicViewController : BasicsViewController
+
+@property (nonatomic,assign) DeviceMusicViewControllerType type;
 + (DeviceMusicViewController *)createDeviceMusicViewController;
 @end

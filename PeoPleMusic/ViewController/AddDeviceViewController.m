@@ -81,11 +81,6 @@
             
             
             KyoLog(@"latitude: %f longitude: %f",latitude,longitude);
-//            [[[UIAlertView alloc] initWithTitle:@"获取高德当前的经纬度"
-//                                        message:[NSString stringWithFormat:@"latitude: %f longitude: %f",latitude,longitude]
-//                                       delegate:nil
-//                              cancelButtonTitle:nil
-//                              otherButtonTitles:@"知道了", nil] show];
             [self networkGetDeviceList:latitude longitude:longitude];
         }else{
             [self showMessageHUD:@"亲，请在设置中开启允许定位!" withTimeInterval:3.0f];
@@ -211,13 +206,18 @@
     } finishedBlock:^(NSError *error) {
         
         if (self.deviceVodBoxArray.count > 0) {
+            
+            NSMutableArray *arrDevs = [NSMutableArray array];
             for (DeviceVodBoxModel *model in self.deviceVodBoxArray) {
                 
                 if ([model.wifiName isEqualToString:[NSString getWiFiName]] && [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
                     [UserInfo sharedUserInfo].deviceVodBoxModel = model;
                     model.isNeedDevice = YES;
+                    
+                    [arrDevs addObject:model];
                 }
             }
+            [UserInfo sharedUserInfo].deviceVodBoxArr = [NSArray arrayWithArray:arrDevs];
         }else{
             [self showMessageHUD:[NSString stringWithFormat:@"亲，未在WIFI:%@搜到店内有音响开启!",self.ssid] withTimeInterval:3.0f];
         }

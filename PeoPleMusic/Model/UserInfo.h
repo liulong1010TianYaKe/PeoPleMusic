@@ -30,6 +30,9 @@
 
 @property (nonatomic, strong) NSString *userId;
 
+
+@property (nonatomic, strong) NSArray *deviceVodBoxArr; // 搜索当前wifi下所得设备
+
 @property (nonatomic,strong) DeviceVodBoxModel *deviceVodBoxModel;// 当前连接的音响
 
 

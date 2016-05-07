@@ -91,6 +91,9 @@
         });
     }else{
         self.lblTitle.text = @"设备未连接";
+        self.btnStartPlay.hidden = YES;
+        self.lblNoStartPlay.hidden = YES;
+        self.lblTitle.text = @"设备未连接";
         self.linkServerBtn.hidden = NO;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if([KyoUtil rootViewController].currentNetworkState != AFNetworkReachabilityStatusReachableViaWiFi){
@@ -101,15 +104,17 @@
                        
                        );
     }
-    [self refreshSubViews];
+  
 
 
 }
 
-- (void)refreshSubViews{
+- (void)resetfreshSubViews{
     if ([YMTCPClient share].isConnect) {
         self.linkServerBtn.hidden = YES;
     }else{
+        self.btnStartPlay.hidden = YES;
+        self.lblNoStartPlay.hidden = YES;
         self.lblTitle.text = @"设备未连接";
         self.linkServerBtn.hidden = NO;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -460,9 +465,11 @@
          [self requestGetSonglist];
     });
 }
-//获取音响当前正在播放的歌曲信息
+//连接上音响
 - (void)receiveDidConnect:(NSNotification *)noti{
-    [self refreshSubViews];
+     self.linkServerBtn.hidden = YES;
+    [self resetfreshSubViews];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self requestCurrentSong];
     });
@@ -470,13 +477,16 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self requestGetSonglist];
     });
+    
+   
 }
-//获取音响当前正在播放的歌曲信息
+//音响断开连接
 - (void)receiveuDisConnect:(NSNotification *)noti{
     self.currentSongInfo = nil;
     [self.tableView reloadData];
 
-//    [KyoUtil showMessageHUD:@"音响断开了连接" withTimeInterval:kShowMessageTime inView:self.view];
+    [self resetfreshSubViews];
+    [KyoUtil showMessageHUD:@"音响断开了连接" withTimeInterval:kShowMessageTime inView:self.view];
 }
 
 - (void)receiveDeviceInfo:(NSNotification *)noti{
@@ -485,7 +495,7 @@
     
     self.lblTitle.text = deviceInfo.name;
     
-    [self refreshSubViews];
+    [self resetfreshSubViews];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

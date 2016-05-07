@@ -38,10 +38,16 @@
 
 - (void)setupData{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self requestNetWork];
+        
+        if (self.type == DeviceMusicViewControllerLoc) {
+            [self requestNetWork];
+        }else{
+            [self networkGetSongList];
+        }
     });
     
-    [self networkGetSongList];
+    
+    
 }
 
 #pragma mark --------------------
@@ -51,7 +57,9 @@
     
     
 
-     NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?terminalId=%ld",(long)[UserInfo sharedUserInfo].deviceVodBoxModel.code];
+//     NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?terminalId=%ld",(long)[UserInfo sharedUserInfo].deviceVodBoxModel.code];
+    
+      NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalMusicAction!getTerminalMusicList.do?terminalId=%ld",(long)[UserInfo sharedUserInfo].deviceVodBoxModel.Id];
     [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
 
     } errorBlock:^(NSError *error) {
@@ -67,15 +75,19 @@
     
     [[YMTCPClient share] networkSendDeviceForSongDir:^(NSInteger result, NSDictionary *dict, NSError *err) {
 //        KyoLog(@"%@",dict);
-        if (result == 0) {
-            NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
-            if (arr) {
-                self.musicList = [SongInforModel objectArrayWithKeyValuesArray:arr];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tableView reloadData];
-                });
+        
+        dispatch_main_async_safeThread(^{
+            if (result == 0) {
+                NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
+                if (arr) {
+                    
+                    self.musicList = [SongInforModel objectArrayWithKeyValuesArray:arr];
+                        [self.tableView reloadData];
+                    
+                }
             }
-        }
+        })
+     
     }];
 }
 #pragma mark --------------------
@@ -104,13 +116,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    SongInforModel *model = self.musicList[indexPath.row];
-    MusicListViewController *musicPlayerVC = [MusicListViewController createMusicListViewController];
-    musicPlayerVC.style = MusiclistViewStyleDeviceLoc;
-    musicPlayerVC.title = model.mediaName;
-    musicPlayerVC.requestKey = model.mediaUrl;
-    musicPlayerVC.tatolSize = model.childCount;
-    [self.navigationController pushViewController:musicPlayerVC animated:YES];
+    
+    if (self.type == DeviceMusicViewControllerLoc) {
+        SongInforModel *model = self.musicList[indexPath.row];
+        MusicListViewController *musicPlayerVC = [MusicListViewController createMusicListViewController];
+        
+        musicPlayerVC.style = MusiclistViewStyleDeviceLoc;
+        musicPlayerVC.title = model.mediaName;
+        musicPlayerVC.requestKey = model.mediaUrl;
+        musicPlayerVC.tatolSize = model.childCount;
+        [self.navigationController pushViewController:musicPlayerVC animated:YES];
+    }
+  
     
 }
 @end

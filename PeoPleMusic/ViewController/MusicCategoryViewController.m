@@ -13,9 +13,11 @@
 #import "MusicListViewController.h"
 #import "UIImageView+WebCache.h"
 
-@interface MusicCategoryViewController ()
+@interface MusicCategoryViewController ()<KyoRefreshControlDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+
+@property (nonatomic, strong) KyoRefreshControl *kyoRefreshControl;
 @property (nonatomic, strong) NSArray *dataSource;
 @end
 
@@ -40,12 +42,14 @@
 - (void)setupView{
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.backgroundColor = kTableViewbackgroundColor;
+    
+    self.kyoRefreshControl = [[KyoRefreshControl alloc] initWithScrollView:self.tableView withDelegate:self withIsCanShowNoMore:NO];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
 }
 
 - (void)setupData{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self networkGetMusicData];
-    });
+     [self.kyoRefreshControl performSelector:@selector(kyoRefreshOperation) withObject:nil afterDelay:0.2f];
 }
 
 #pragma mark -------------------
@@ -72,15 +76,15 @@
                 [tempArr addObject:model];
             }
             self.dataSource = [NSArray arrayWithArray:tempArr];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-                [self hideLoadingHUD];
-            });
+            
+            [self hideLoadingHUD];
+            [self.tableView reloadData];
+            [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.dataSource &&self.dataSource.count > 0 ? YES : NO withError:nil];
+           
         }
     } errorBlock:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self hideLoadingHUD];
-        });
+          [self hideLoadingHUD];
+          [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.dataSource &&self.dataSource.count > 0 ? YES : NO withError:error];
     }];
 }
 
@@ -116,6 +120,13 @@
     musicPlayerVC.title = model.title;
     musicPlayerVC.urlString = model.href;
     [self.navigationController pushViewController:musicPlayerVC animated:YES];
+    
+}
+
+- (void)kyoRefreshDidTriggerRefresh:(KyoRefreshControl *)refreshControl{
+    [self networkGetMusicData];
+}
+- (void)kyoRefreshLoadMore:(KyoRefreshControl *)refreshControl loadPage:(NSInteger)index{
     
 }
 

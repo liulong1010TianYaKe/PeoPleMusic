@@ -221,8 +221,14 @@
     NSLog(@"---%@",host);
     
    
-    [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_SOCKETDIDCONNECT object:nil];
+    for (DeviceVodBoxModel *mode in [UserInfo sharedUserInfo].deviceVodBoxArr) {
+        if ([mode.ip isEqualToString:_serverIp]) {
+            [UserInfo sharedUserInfo].deviceVodBoxModel = mode;
+        }
+    }
     
+    [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_SOCKETDIDCONNECT object:nil];
+      connectCout = 0;
 //    [KyoUtil showMessageHUD:@"连接音响成功！" withTimeInterval:kShowMessageTime inView:[KyoUtil rootViewController].view];
     
     [self getDeviceInfo];
@@ -250,14 +256,16 @@
 //    }
  
     if (connectCout < 5) {
-          KyoLog(@"重新连接。。。%ld",(long)connectCout++);
+          KyoLog(@"重新连接。。。%ld",(long)connectCout);
         if (_serverPort == 9997) {
             _serverPort = 9998;
         }else if(_serverPort == 9998){
             _serverPort = 9997;
         }
         connectCout ++;
-     [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
+        if( [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err]){
+            connectCout = 0;
+        };
     }
    
 }
@@ -265,15 +273,17 @@
 
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-        NSString *newMessage = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-//    NSDictionary *dict = [NSDictionary objectWithJSONData:data];
+    NSString *newMessage = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+  
     NSLog(@"----%@",newMessage);
     
     NSLog(@"--%ld",tag);
+    if (!newMessage) {
+        [_clientSocket readDataWithTimeout:-1 tag:0];
+        return;
+    }
     if ([newMessage containsString:@"znt_pkg_end"]) {
         NSInteger pos = [newMessage rangeOfString:@"znt_pkg_end"].location;
-//        [newMessage]
         newMessage = [newMessage substringToIndex:pos];
         NSDictionary *dict = [KyoUtil changeJsonStringToDictionary:newMessage];
         if (!dict) {
@@ -290,23 +300,24 @@
         }
         
         if ([cmdType isEqualToString:YM_HEAD_CMDTYPE_UPDATE_BRAODCAST]){ // 接收更新命令
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_UPDATE_BRAODCAST object:nil];
         }
         
         self.recvStr = nil;
-        [_clientSocket readDataWithTimeout:-1 tag:0];
+//        [_clientSocket readDataWithTimeout:-1 tag:0];
     }else{
         if (!self.recvStr) {
             self.recvStr = [NSMutableString stringWithString:newMessage];
         }else{
             [self.recvStr appendString:newMessage];
         }
-         [_clientSocket readDataWithTimeout:-1 tag:tag];
+       
 //        NSLog(@"----%@",newMessage);
     }
-//    NSLog(@"----------------");
-//    NSLog(@"----%@",newMessage);
+    
+    [_clientSocket readDataWithTimeout:-1 tag:tag];
+
+
  
     
    

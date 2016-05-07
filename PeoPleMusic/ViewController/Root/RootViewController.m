@@ -111,14 +111,16 @@
         if (result == 0) {
              NSArray *arr = [DeviceVodBoxModel objectArrayWithKeyValuesArray:dict[@"info"]];
             
+            
+            NSMutableArray *arrDevs = [NSMutableArray array];
             for (DeviceVodBoxModel *model in arr) {
-               
-                if ( [model.wifiName isEqualToString:[NSString getWiFiName]] &&  [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
-                    [UserInfo sharedUserInfo].deviceVodBoxModel = model;
-                    
+                
+                if ([model.wifiName isEqualToString:[NSString getWiFiName]] && [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
                     [[YMTCPClient share] connnectServerIP:model.ip];
+                    [arrDevs addObject:model];
                 }
             }
+
         }
        
        

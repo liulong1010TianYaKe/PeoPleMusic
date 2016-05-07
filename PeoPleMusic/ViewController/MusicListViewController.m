@@ -14,13 +14,14 @@
 #import "MusicPlayView.h"
 #import "SongInforModel.h"
 
-@interface MusicListViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MusicListViewController ()<UITableViewDataSource,UITableViewDelegate,KyoRefreshControlDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 
 @property (nonatomic, strong) NSArray *songList;
 
+@property (nonatomic, strong) KyoRefreshControl *kyoRefreshControl;
 
 @end
 
@@ -38,14 +39,7 @@
     return controller;
 }
 
-+ (instancetype)sharePlayerViewController{
-    static MusicListViewController *musicPlayVC = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        musicPlayVC = [MusicListViewController createMusicListViewController];
-    });
-    return musicPlayVC;
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -58,18 +52,15 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([MusicPlayerCell class]) bundle:nil] forCellReuseIdentifier:KMusicPlayerCellIdentifier];
 
     self.tableView.tableFooterView = [[UIView alloc] init];
-
+    
+    self.kyoRefreshControl = [[KyoRefreshControl alloc] initWithScrollView:self.tableView withDelegate:self withIsCanShowNoMore:NO];
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
 }
 
 - (void)setupData{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (self.style == MusiclistViewStyleNetwork) {
-              [self networkGetMusicListData];
-        }else if (self.style == MusiclistViewStyleDeviceLoc){
-            [self requestNetwork:self.requestKey withTotalSize:self.tatolSize];
-        }
-      
-    });
+
+    
+    [self.kyoRefreshControl performSelector:@selector(kyoRefreshOperation) withObject:nil afterDelay:0.2f];
 }
 
 #pragma mark --------------------
@@ -78,16 +69,22 @@
  *  请求音响本地音乐
  */
 - (void)requestNetwork:(NSString *)requestKey withTotalSize:(NSInteger)totalSize{
+    
     [[YMTCPClient share] networkSendDeviceForSonglistWithRequestKey:requestKey withTotalSize:totalSize completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
-        if (result == 0) {
-            NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
-            if (arr) {
-                self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
-                dispatch_async(dispatch_get_main_queue(), ^{
+        
+        dispatch_main_async_safeThread(^{
+            if (result == 0) {
+                NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
+                if (arr) {
+                    self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
+            
                     [self.tableView reloadData];
-                });
+                    [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.songList &&self.songList.count > 0 ? YES : NO withError:nil];
+                }
             }
-        }
+         
+        })
+       
     }];
 }
 
@@ -95,7 +92,7 @@
 - (void)networkGetMusicListData{
     
     NSLog(@"%@",self.urlString);
-    [self showLoadingHUD:nil];
+//    [self showLoadingHUD:nil];
     [NetworkSessionHelp NetworkHTML:self.urlString completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
         if (responseStatusCode == 200) {
             
@@ -137,13 +134,13 @@
                 [tempArr addObject:model];
             }
             self.songList = [NSArray arrayWithArray:tempArr];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self hideLoadingHUD];
-                [self.tableView reloadData];
-            });
+//            [self hideLoadingHUD];
+            [self.tableView reloadData];
+            [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.songList &&self.songList.count > 0 ? YES : NO withError:nil];
         }
     } errorBlock:^(NSError *error) {
-        
+//          [self hideLoadingHUD];
+        [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.songList &&self.songList.count > 0 ? YES : NO withError:error];
     }];
     
 
@@ -203,7 +200,16 @@
 
 #pragma mark ------------------
 #pragma mark - KyoRefreshControlDelegate
-
+- (void)kyoRefreshDidTriggerRefresh:(KyoRefreshControl *)refreshControl{
+    if (self.style == MusiclistViewStyleNetwork) {
+        [self networkGetMusicListData];
+    }else if (self.style == MusiclistViewStyleDeviceLoc){
+        [self requestNetwork:self.requestKey withTotalSize:self.tatolSize];
+    }
+}
+- (void)kyoRefreshLoadMore:(KyoRefreshControl *)refreshControl loadPage:(NSInteger)index{
+    
+}
 
 
 

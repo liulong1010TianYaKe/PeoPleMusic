@@ -31,10 +31,17 @@
 
 
 
-// 本地下载
+ //音响在线音乐
 - (IBAction)btnLoadTouchInside:(id)sender {
- 
-//    [[YMTCPClient share] connectServer:<#(NSString *)#> port:<#(long)#>]
+    if ([YMTCPClient share].isConnect) {
+        DeviceMusicViewController *controller = [DeviceMusicViewController createDeviceMusicViewController];
+        controller.title = @"音响在线";
+        controller.type = DeviceMusicViewControllerOnline;
+        [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未连接音响设备，确定添加吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
 }
 
 // 音响本地
@@ -42,6 +49,8 @@
     
     if ([YMTCPClient share].isConnect) {
          DeviceMusicViewController *controller = [DeviceMusicViewController createDeviceMusicViewController];
+         controller.title = @"音响本地";
+         controller.type = DeviceMusicViewControllerLoc;
         [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
     }else{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未连接音响设备，确定添加吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];

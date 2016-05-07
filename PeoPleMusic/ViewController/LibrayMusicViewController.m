@@ -15,11 +15,10 @@
 #import "SDCycleScrollView.h"
 
 #define KLIBLRAYMUCICHTML @"http://yinyue.kuwo.cn/yy/category.htm"
-@interface LibrayMusicViewController ()<LibraryMusicHeaderViewDelegate,SDCycleScrollViewDelegate>
+@interface LibrayMusicViewController ()<LibraryMusicHeaderViewDelegate,SDCycleScrollViewDelegate,KyoRefreshControlDelegate>
 
 
-//@property (nonatomic, strong) YMScrollView *tableHeaderView;
-
+@property (nonatomic, strong) KyoRefreshControl *kyoRefreshControl;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
 @end
@@ -64,10 +63,14 @@
     cycleScrollView.titlesGroup = titles;
     cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
     self.tableView.tableHeaderView = cycleScrollView;
+    
+    self.kyoRefreshControl = [[KyoRefreshControl alloc] initWithScrollView:self.tableView withDelegate:self withIsCanShowNoMore:NO];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
 }
 - (void)setupData{
    
-    [self networkGetMusicCateGoryData];
+    [self.kyoRefreshControl performSelector:@selector(kyoRefreshOperation) withObject:nil afterDelay:0.2f];
 
 }
 
@@ -86,16 +89,12 @@
 
 - (void)networkGetMusicCateGoryData{
   
-    [self showLoadingHUD:nil];
+  
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self hideLoadingHUD];
-    });
-    
- 
+    [self showLoadingInNavigation];
     [NetworkSessionHelp NetworkHTML:KLIBLRAYMUCICHTML completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
       
-        [self hideLoadingHUD];
+       
         if (responseStatusCode == 200) {
             TFHpple *doc = [TFHpple hppleWithHTMLData:[htmlText dataUsingEncoding:NSUTF8StringEncoding]];
             NSArray *TRElements = [doc searchWithXPathQuery:@"//div[@class='sider fl']//div[@class='hotlist']"];
@@ -111,15 +110,14 @@
            
            
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self hideLoadingHUD];
-            [self.tableView reloadData];
-        });
+        
+        [self hideLoadingInNavigation];
+        [self.tableView reloadData];
+        [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.dataArray &&self.dataArray.count > 0 ? YES : NO withError:nil];
+    
     } errorBlock:^(NSError *error) {
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 [self hideLoadingHUD];
-       
-             });
+        [self hideLoadingInNavigation];
+        [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.dataArray &&self.dataArray.count > 0 ? YES : NO withError:error];
     }];
  
 }
@@ -171,7 +169,12 @@
 
 #pragma mark ------------------
 #pragma mark - KyoRefreshControlDelegate
-
+- (void)kyoRefreshDidTriggerRefresh:(KyoRefreshControl *)refreshControl{
+    [self networkGetMusicCateGoryData];
+}
+- (void)kyoRefreshLoadMore:(KyoRefreshControl *)refreshControl loadPage:(NSInteger)index{
+    
+}
 #pragma mark --------------------
 #pragma mark - NSNotification
 

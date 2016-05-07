@@ -23,26 +23,32 @@
 
 
 
-+ (void)NetworkHTML:(NSString *)urlString completionBlock:(void (^)(NSString *,NSInteger ))completionBlock errorBlock:(void (^)(NSError *))errorBlock {
++ (void)NetworkHTML:(NSString *)urlString completionBlock:(void (^)(NSString *,NSInteger ))completionBlock errorBlock:(void (^)(NSError *))errorBlock  {
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     NSURLSessionTask *sessionTask  = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSHTTPURLResponse *respdose = (NSHTTPURLResponse*)response;
-        if (!error) {
-            
-            NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-            if (completionBlock) {
-                 completionBlock(html, respdose.statusCode);
+        
+        dispatch_main_async_safeThread(^{
+        
+            NSHTTPURLResponse *respdose = (NSHTTPURLResponse*)response;
+            if (!error) {
+                
+                NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                if (completionBlock) {
+                    completionBlock(html, respdose.statusCode);
+                }
+                
+                
+            }else{
+                if (errorBlock) {
+                    errorBlock(error);
+                }
+                
             }
-           
-          
-        }else{
-            if (errorBlock) {
-                errorBlock(error);
-            }
-            
-        }
+        })
+        
+      
     }];
     [sessionTask resume];
 }
@@ -91,8 +97,7 @@
     dispatch_once(&onceToken, ^{
         _sharedClient = [[NetworkSessionHelp alloc] init];
         _sharedClient.httpSessionManager  = [[AFHTTPSessionManager alloc] initWithBaseURL:nil];;
-//        _sharedClient.httpSessionManager.responseSerializer = [[YMHTTPResponserHtmlSerializer alloc] init];
-        
+
         //开启允许https模式
         AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
         securityPolicy.allowInvalidCertificates = YES;

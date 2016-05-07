@@ -188,13 +188,17 @@
         if (self.deviceVodBoxArray.count > 0) {
 //            self.tableView.tableFooterView = self.footView;
             
+            NSMutableArray *arrDevs = [NSMutableArray array];
             for (DeviceVodBoxModel *model in self.deviceVodBoxArray) {
     
                 if ([model.wifiName isEqualToString:[NSString getWiFiName]] && [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
                     [UserInfo sharedUserInfo].deviceVodBoxModel = model;
                     model.isNeedDevice = YES;
+                    
+                    [arrDevs addObject:model];
                 }
             }
+            [UserInfo sharedUserInfo].deviceVodBoxArr = [NSArray arrayWithArray:arrDevs];
         }else{
             
             ;
@@ -225,11 +229,6 @@
     DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
     cell.lblName.text = model.name;
     cell.lblAddress.text = model.address;
-//    if ([model.wifiName isEqualToString:[NSString getWiFiName]]&& [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
-//        cell.imgSelect.hidden = NO;
-//    }else{
-//        cell.imgSelect.hidden = YES;
-//    }
     cell.imgSelect.hidden = !model.isNeedDevice;
 
     return cell;
@@ -244,7 +243,9 @@
             [self.navigationController popViewControllerAnimated:YES];
         });
     }else{
-         DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
+        
+        
+        DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
         KyoLog(@"%@",model.ip);
         
         if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT2]) {

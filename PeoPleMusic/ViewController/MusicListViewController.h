@@ -14,8 +14,8 @@
 
 @property (nonatomic,strong) NSString  *requestKey;
 @property (nonatomic, assign) NSInteger tatolSize;
+
 @property (nonatomic, assign) MusiclistViewStyle style;
 + (MusicListViewController *)createMusicListViewController;
 
-+ (instancetype)sharePlayerViewController;
 @end

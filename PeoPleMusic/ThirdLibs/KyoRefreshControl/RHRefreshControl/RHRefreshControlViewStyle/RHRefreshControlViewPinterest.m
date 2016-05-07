@@ -31,7 +31,7 @@
 - (void)commonSetupOnInit {
     _fillColor = [UIColor clearColor];
     _strokeColor =    [UIColor redColor];  
-    _imgContent = [UIImage imageNamed:@"com_refresh_icon"];
+  //  _imgContent = [UIImage imageNamed:@"com_refresh_icon"];
     
   CAShapeLayer *circle = [CAShapeLayer layer];
   circle.frame = CGRectMake(0, 0, 25.0f, 25.0f);
