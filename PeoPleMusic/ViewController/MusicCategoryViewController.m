@@ -57,7 +57,7 @@
 
 - (void)networkGetMusicData{
     
-    [self showLoadingHUD:nil];
+//    [self showLoadingHUD:nil];
     [NetworkSessionHelp NetworkHTML:self.urlString completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
         
         if (responseStatusCode == 200) {
@@ -77,13 +77,13 @@
             }
             self.dataSource = [NSArray arrayWithArray:tempArr];
             
-            [self hideLoadingHUD];
+//            [self hideLoadingHUD];
             [self.tableView reloadData];
             [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.dataSource &&self.dataSource.count > 0 ? YES : NO withError:nil];
            
         }
     } errorBlock:^(NSError *error) {
-          [self hideLoadingHUD];
+//          [self hideLoadingHUD];
           [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.dataSource &&self.dataSource.count > 0 ? YES : NO withError:error];
     }];
 }

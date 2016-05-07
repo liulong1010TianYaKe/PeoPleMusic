@@ -12,6 +12,9 @@
 @interface SongDemandViewController : BasicsViewController
 
 @property (nonatomic, assign) MusicSongPlayStyle playStyle;
+@property (weak, nonatomic) IBOutlet UILabel *lblSongDuration;
+
+@property (nonatomic, assign) CGFloat duration; // 歌曲的播放时长
 
 @property (nonatomic, assign) MusiclistViewStyle type;
 @property (nonatomic, strong)SongInforModel *songInfoModel;

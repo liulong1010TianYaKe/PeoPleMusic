@@ -2266,7 +2266,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhuni.PeoPleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "05b52654-34dd-46bd-a664-bca365a225b5";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2291,7 +2291,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhuni.PeoPleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "05b52654-34dd-46bd-a664-bca365a225b5";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

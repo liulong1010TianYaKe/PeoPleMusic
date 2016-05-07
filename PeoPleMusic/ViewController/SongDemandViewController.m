@@ -43,10 +43,15 @@
     self.textView.placeholder = @"说点什么呢～";
     
     [self reSetBackButtonMethod:@selector(btnBackTouchIn:)];
+    NSInteger durMin = (NSInteger)self.duration / 60;//总秒
+    NSInteger durSec = (NSInteger)self.duration % 60;//总分钟
     
+    self.lblSongDuration.text = [NSString stringWithFormat:@"当前歌曲时长:%ld分%ld秒",(long)durSec,(long)durMin];
 }
 
-//- (void)
+- (void)setupData{
+    
+}
 
 - (void)btnBackTouchIn:(UIButton *)btn{
   
@@ -63,6 +68,11 @@
         [alertView show];
         return;
     }
+    NSInteger durSec = (NSInteger)self.duration % 60;//总分钟
+    if (durSec > 9) {
+        [self showMessageHUD:@"亲，当前歌曲不符合要求!" withTimeInterval:kShowMessageTime];
+        return;
+    }
 //    if (self.type == MusiclistViewStyleNetwork && [UserInfoModel shareUserInfo].permission == 1) {
 //    
 //        
@@ -76,43 +86,43 @@
     self.songInfoModel.playMsg = [self.textView.text trim];
     [self showLoadingHUD:@"点播歌曲"];
     
-    [self requestNetwork];
-//    [[YMTCPClient share] networkSendBookSongInfo:self.songInfoModel withPlayType:self.playStyle completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
-//        
-//        if (result == 0) { // 点播成功
-//            
-//         
-//            
-//            NSArray *teamArr = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG];
-//            NSMutableArray *arr = [NSMutableArray arrayWithArray:teamArr];
-//            [arr addObject:self.songInfoModel];
-//            
-//            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG withData:arr];
-//            dispatch_sync(dispatch_get_main_queue(), ^{
-//                [self hideLoadingHUD];
-//                
-//                [self showMessageHUD:@"点播成功！" withTimeInterval:kShowMessageTime];
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    [self.navigationController popViewControllerAnimated:YES];
-//                });
-//            });
-//           
-//        }else if(result==3){ // 重复点播
-//            
-//            dispatch_sync(dispatch_get_main_queue(), ^{
-//            [self hideLoadingHUD];
-//            [self showMessageHUD:@"重复点播！" withTimeInterval:kShowMessageTime];
-//                
-////                [self requestNetwork];
-//            });
-//
-//        }else {
-//            dispatch_sync(dispatch_get_main_queue(), ^{
-//                [self hideLoadingHUD];
-//                [self showMessageHUD:@"点播失败！" withTimeInterval:kShowMessageTime];
-//            });
-//        }
-//    }];
+//    [self requestNetwork];
+    [[YMTCPClient share] networkSendBookSongInfo:self.songInfoModel withPlayType:self.playStyle completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
+        
+        if (result == 0) { // 点播成功
+            
+         
+            
+            NSArray *teamArr = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG];
+            NSMutableArray *arr = [NSMutableArray arrayWithArray:teamArr];
+            [arr addObject:self.songInfoModel];
+            
+            [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_BOOK_PLAYING_SONG withData:arr];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self hideLoadingHUD];
+                
+                [self showMessageHUD:@"点播成功！" withTimeInterval:kShowMessageTime];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+            });
+           
+        }else if(result==3){ // 重复点播
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+            [self hideLoadingHUD];
+            [self showMessageHUD:@"重复点播！" withTimeInterval:kShowMessageTime];
+                
+//                [self requestNetwork];
+            });
+
+        }else {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self hideLoadingHUD];
+                [self showMessageHUD:@"点播失败！" withTimeInterval:kShowMessageTime];
+            });
+        }
+    }];
 }
 
 - (void)requestNetwork{

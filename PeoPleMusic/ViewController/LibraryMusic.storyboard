@@ -199,6 +199,7 @@
                         <outlet property="btnDianBo" destination="ILE-l8-svz" id="z6b-7G-IIh"/>
                         <outlet property="lblAlbumName" destination="bcD-bM-J30" id="tcZ-Qv-Vwl"/>
                         <outlet property="lblCornNum" destination="EVr-8v-Fcg" id="HoD-xd-3Ue"/>
+                        <outlet property="lblSongDuration" destination="Xd1-5B-Trf" id="ila-YZ-J6s"/>
                         <outlet property="lblSongName" destination="HFY-DF-5pC" id="Cr5-9L-sJD"/>
                         <outlet property="textView" destination="5qk-4u-QdM" id="hvJ-4y-2VP"/>
                         <outlet property="txtlblCornNumb" destination="5qk-4u-QdM" id="KbU-J7-xyL"/>

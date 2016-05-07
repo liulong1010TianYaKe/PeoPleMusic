@@ -234,7 +234,6 @@
     musicPlayView.songlist = self.songList;
     musicPlayView.indexRow = indexPath.row;
     
-
     CTBaseDialogView *dialogView = [KyoUtil showDialogView:musicPlayView fromFrame:[KyoUtil relativeFrameForScreenWithView:currentCell]];
     dialogView.isNoReposeWhenBackgroundTouched = YES;
 }

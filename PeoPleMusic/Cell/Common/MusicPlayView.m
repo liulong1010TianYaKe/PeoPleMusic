@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSongName;
 @property (weak, nonatomic) IBOutlet UILabel *lblPlayTime;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
+
+@property (nonatomic, assign) CGFloat duration;
 //临时储存当前播放音乐的URL
 @property (nonatomic, strong) NSString *nowSource;
 
@@ -163,6 +165,7 @@
     NSInteger durMin = (NSInteger)self.player.duration / 60;//总秒
     NSInteger durSec = (NSInteger)self.player.duration % 60;//总分钟
     
+    self.duration = self.player.duration;
     self.lblPlayTime.text = [NSString stringWithFormat:@"%ld:%ld / %ld:%ld", (long)proMin, (long)proSec, (long)durMin, (long)durSec];
 }
 
@@ -200,6 +203,7 @@
     SongDemandViewController *songVC = [SongDemandViewController createSongDemandViewController];
     songVC.title = @"歌曲点播";
     songVC.type = self.type;
+    songVC.duration = self.duration;
     songVC.songInfoModel = self.songlist[self.indexRow];
     [[KyoUtil getCurrentNavigationViewController] pushViewController:songVC animated:YES];
 }

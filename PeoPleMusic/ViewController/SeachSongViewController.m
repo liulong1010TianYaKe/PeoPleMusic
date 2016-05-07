@@ -99,8 +99,6 @@
     NSLog(@"%@",urlString);
 //    http://sou.kuwo.cn/ws/NSearch?key= &type=music&pn=1
     
-
-
     
     [NetworkSessionHelp NetworkHTML:urlString completionBlock:^(NSString *htmlText, NSInteger responseStatusCode) {
         if (responseStatusCode == 200) {
