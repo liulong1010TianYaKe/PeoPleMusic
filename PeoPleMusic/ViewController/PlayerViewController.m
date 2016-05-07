@@ -84,26 +84,44 @@
         self.linkServerBtn.hidden = YES;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self requestCurrentSong];
-           
+            
         });
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-             [self requestGetSonglist];
+            [self requestGetSonglist];
         });
     }else{
         self.lblTitle.text = @"设备未连接";
         self.linkServerBtn.hidden = NO;
-         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-          if([KyoUtil rootViewController].currentNetworkState != AFNetworkReachabilityStatusReachableViaWiFi){
-           
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if([KyoUtil rootViewController].currentNetworkState != AFNetworkReachabilityStatusReachableViaWiFi){
+                
                 [self showMessageHUD:@"亲，你还未连接店内WIFI哦～" withTimeInterval:kShowMessageTime];
-            
-         }}
-                        
-        );
+                
+            }}
+                       
+                       );
     }
+    [self refreshSubViews];
+
 
 }
 
+- (void)refreshSubViews{
+    if ([YMTCPClient share].isConnect) {
+        self.linkServerBtn.hidden = YES;
+    }else{
+        self.lblTitle.text = @"设备未连接";
+        self.linkServerBtn.hidden = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if([KyoUtil rootViewController].currentNetworkState != AFNetworkReachabilityStatusReachableViaWiFi){
+                
+                [self showMessageHUD:@"亲，你还未连接店内WIFI哦～" withTimeInterval:kShowMessageTime];
+                
+            }}
+                       
+        );
+    }
+}
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
@@ -444,6 +462,7 @@
 }
 //获取音响当前正在播放的歌曲信息
 - (void)receiveDidConnect:(NSNotification *)noti{
+    [self refreshSubViews];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self requestCurrentSong];
     });
@@ -465,6 +484,8 @@
     DeviceInfor *deviceInfo = [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] readDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK];
     
     self.lblTitle.text = deviceInfo.name;
+    
+    [self refreshSubViews];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

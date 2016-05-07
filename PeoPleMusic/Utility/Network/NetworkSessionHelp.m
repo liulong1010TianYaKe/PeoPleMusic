@@ -105,14 +105,7 @@
 
 
 + (void)postNetwork:(NSString *)urlString completionBlock:(void (^)(NSDictionary *dict, NSInteger result))completionBlock errorBlock:(void (^)(NSError *))errorBlock finishedBlock:(void (^)(NSError *))finishedBlock{
-//    
-//     [[NetworkSessionHelp shareNetwork].httpSessionManager POST:urlString parameters:nil progress:^(NSProgress * _Nonnull uploadProgress) {
-//         
-//     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//         
-//     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//         
-//     }];
+
     
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];

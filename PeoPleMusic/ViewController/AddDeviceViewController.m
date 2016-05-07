@@ -3,7 +3,7 @@
 //  PeoPleMusic
 //
 //  Created by Alen on 16/4/2.
-//  Copyright © 2016年 kyo. All rights reserved.
+//  Copyright © 2016年 zhuniT All rights reserved.
 //
 
 #import "AddDeviceViewController.h"
@@ -164,14 +164,12 @@
         KyoLog(@"%@",model.ip);
         if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT2]) {
             [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
-            [UserInfo sharedUserInfo].deviceVodBoxModel = model;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });
         }else{
             if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT1]) {
                 [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
-                [UserInfo sharedUserInfo].deviceVodBoxModel = model;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.navigationController popViewControllerAnimated:YES];
                 });
@@ -213,6 +211,13 @@
     } finishedBlock:^(NSError *error) {
         
         if (self.deviceVodBoxArray.count > 0) {
+            for (DeviceVodBoxModel *model in self.deviceVodBoxArray) {
+                
+                if ([model.wifiName isEqualToString:[NSString getWiFiName]] && [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
+                    [UserInfo sharedUserInfo].deviceVodBoxModel = model;
+                    model.isNeedDevice = YES;
+                }
+            }
         }else{
             [self showMessageHUD:[NSString stringWithFormat:@"亲，未在WIFI:%@搜到店内有音响开启!",self.ssid] withTimeInterval:3.0f];
         }

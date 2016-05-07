@@ -12,6 +12,8 @@
 
 #import "KyoTopWindow.h"
 #import "YMBonjourHelp.h"
+#import "YMLocationManager.h"
+#import "NSString+IPAddress.h"
 
 
 @interface RootViewController()
@@ -60,6 +62,7 @@
 
     self.clientTcp = [YMTCPClient share];
     
+    [self searchDeviceSevice];
  
 //    [self startSearchSerive]; // 开始搜索服务
 
@@ -87,6 +90,44 @@
     });
 }
 
+- (void)searchDeviceSevice{
+    [[YMLocationManager shareManager] startLocotion:^(CGFloat latitude, CGFloat longitude, NSError *error) {
+        if (!error) {
+       
+            [self networkGetDeviceList:latitude longitude:longitude];
+        }else{
+            [self showMessageHUD:@"亲，请在设置中开启允许定位!" withTimeInterval:3.0f];
+        }
+        
+    }];
+}
+
+- (void)networkGetDeviceList:(CGFloat)latitude longitude:( CGFloat )longitude{
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?longitude=%f&latitude=%f",latitude,longitude];
+
+    [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
+        if (result == 0) {
+             NSArray *arr = [DeviceVodBoxModel objectArrayWithKeyValuesArray:dict[@"info"]];
+            
+            for (DeviceVodBoxModel *model in arr) {
+               
+                if ( [model.wifiName isEqualToString:[NSString getWiFiName]] &&  [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
+                    [UserInfo sharedUserInfo].deviceVodBoxModel = model;
+                    
+                    [[YMTCPClient share] connnectServerIP:model.ip];
+                }
+            }
+        }
+       
+       
+    } errorBlock:^(NSError *error) {
+        
+    } finishedBlock:^(NSError *error) {
+        
+    }];
+}
 - (BOOL)connectSeriver:(NSString *)serveIp{
     
  

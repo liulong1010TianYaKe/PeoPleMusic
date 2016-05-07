@@ -83,7 +83,7 @@
    
     for (int i = 0; i < self.deviceVodBoxArray.count; i++) {
         DeviceVodBoxModel *model = self.deviceVodBoxArray[i];
-        if (model.wifiName == self.ssid) {
+        if ([model.wifiName isEqualToString:[NSString getWiFiName]] && [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
             ip = model.ip;
         }
     }
@@ -148,12 +148,12 @@
 //            longitude = -0.1337;
 
             
-            KyoLog(@"latitude: %f longitude: %f",latitude,longitude);
-            [[[UIAlertView alloc] initWithTitle:@"获取高德当前的经纬度"
-                                        message:[NSString stringWithFormat:@"latitude: %f longitude: %f",latitude,longitude]
-                                       delegate:nil
-                              cancelButtonTitle:nil
-                              otherButtonTitles:@"知道了", nil] show];
+//            KyoLog(@"latitude: %f longitude: %f",latitude,longitude);
+//            [[[UIAlertView alloc] initWithTitle:@"获取高德当前的经纬度"
+//                                        message:[NSString stringWithFormat:@"latitude: %f longitude: %f",latitude,longitude]
+//                                       delegate:nil
+//                              cancelButtonTitle:nil
+//                              otherButtonTitles:@"知道了", nil] show];
            [self networkGetDeviceList:latitude longitude:longitude];
         }else{
             [self showMessageHUD:@"亲，请在设置中开启允许定位!" withTimeInterval:3.0f];
@@ -179,6 +179,7 @@
 //    NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalMusicAction!getTerminalMusicList.do?terminalId=83";
 //     NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do";
     [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
+        
        self.deviceVodBoxArray = [DeviceVodBoxModel objectArrayWithKeyValuesArray:dict[@"info"]];
     } errorBlock:^(NSError *error) {
         
@@ -186,6 +187,14 @@
         
         if (self.deviceVodBoxArray.count > 0) {
 //            self.tableView.tableFooterView = self.footView;
+            
+            for (DeviceVodBoxModel *model in self.deviceVodBoxArray) {
+    
+                if ([model.wifiName isEqualToString:[NSString getWiFiName]] && [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
+                    [UserInfo sharedUserInfo].deviceVodBoxModel = model;
+                    model.isNeedDevice = YES;
+                }
+            }
         }else{
             
             ;
@@ -216,11 +225,12 @@
     DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
     cell.lblName.text = model.name;
     cell.lblAddress.text = model.address;
-    if (model.wifiName == self.ssid ) {
-        cell.imgSelect.hidden = NO;
-    }else{
-        cell.imgSelect.hidden = YES;
-    }
+//    if ([model.wifiName isEqualToString:[NSString getWiFiName]]&& [model.wifiMac isEqualToString:[NSString getWIFIBSSID]]) {
+//        cell.imgSelect.hidden = NO;
+//    }else{
+//        cell.imgSelect.hidden = YES;
+//    }
+    cell.imgSelect.hidden = !model.isNeedDevice;
 
     return cell;
 }
@@ -238,7 +248,6 @@
         KyoLog(@"%@",model.ip);
         
         if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT2]) {
-            [UserInfo sharedUserInfo].deviceVodBoxModel = model;
              [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 
@@ -247,7 +256,6 @@
         }else{
             if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT1]) {
                 [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
-                [UserInfo sharedUserInfo].deviceVodBoxModel = model;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self.navigationController popViewControllerAnimated:YES];
                 });

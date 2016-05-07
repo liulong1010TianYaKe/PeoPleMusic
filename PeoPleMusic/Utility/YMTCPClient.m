@@ -3,7 +3,7 @@
 //  PeoPleMusic
 //
 //  Created by apple on 16/3/26.
-//  Copyright © 2016年 kyo. All rights reserved.
+//  Copyright © 2016年 zhuniT All rights reserved.
 //
 
 #import "YMTCPClient.h"
@@ -50,6 +50,20 @@
     }
 }
 
+- (void)connnectServerIP:(NSString *)serviceIP{
+    _serverIp = serviceIP;
+    _serverPort = SOCKET_PORT2;
+    
+    
+    if ([_clientSocket connectToHost:_serverIp onPort:_serverPort error:nil]) {
+        
+    }else{
+        
+        _serverPort = SOCKET_PORT1;
+        [_clientSocket connectToHost:_serverIp onPort:_serverPort error:nil];
+    }
+}
+
 - (BOOL)connectServer:(NSString *)ip port:(long)port{
     
     connectCout = 0;
@@ -61,7 +75,8 @@
 //    return [_clientSocket connectToHost:ip onPort:port error:&err];
     if([_clientSocket connectToHost:_serverIp onPort:port withTimeout:60  error:&err]){
         KyoLog(@"----连接成功!-- %@ %ld",_serverIp,port);
-        
+        connectCout = 0;
+        [self getDeviceInfo];
         return YES;
     }else{
         KyoLog(@"----连接失败!--%@ %ld",_serverIp,port);
@@ -74,6 +89,7 @@
 - (void)getDeviceInfo{
     [[YMTCPClient share] networkSendDeviceForRegister:^(NSInteger result, NSDictionary *dict, NSError *err) {
         if (result == 0) {
+//            [KyoUtil showMessageHUD:@"获取音响信息成功！" withTimeInterval:kShowMessageTime inView:[KyoUtil rootViewController].view];
             NSDictionary *tempDict  = [dict objectForKey:@"deviceInfor"];
             DeviceInfor *deviceInfo =  [DeviceInfor objectWithKeyValues:tempDict];
             [[KyoDataCache sharedWithType:KyoDataCacheTypeTempPath] writeToDataWithFolderName:YM_HEAD_CMDTYPE_REGISTERED_FEEDBACK withData:deviceInfo];
@@ -206,6 +222,9 @@
     
    
     [[NSNotificationCenter defaultCenter] postNotificationName:YNotificationName_SOCKETDIDCONNECT object:nil];
+    
+//    [KyoUtil showMessageHUD:@"连接音响成功！" withTimeInterval:kShowMessageTime inView:[KyoUtil rootViewController].view];
+    
     [self getDeviceInfo];
     [_clientSocket readDataWithTimeout:-1 tag:0];
     
@@ -237,6 +256,7 @@
         }else if(_serverPort == 9998){
             _serverPort = 9997;
         }
+        connectCout ++;
      [_clientSocket connectToHost:_serverIp onPort:_serverPort withTimeout:60  error:&err];
     }
    

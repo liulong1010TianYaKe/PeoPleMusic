@@ -3,7 +3,7 @@
 //  PeoPleMusic
 //
 //  Created by apple on 16/3/26.
-//  Copyright © 2016年 kyo. All rights reserved.
+//  Copyright © 2016年 zhuniT All rights reserved.
 //
 
 
@@ -34,7 +34,7 @@ typedef void(^CompletionBlock)(NSInteger result,NSDictionary *dict, NSError *err
 @interface YMTCPClient : NSObject
 
 + (instancetype)share;
-
+- (void)connnectServerIP:(NSString *)serviceIP;
 - (BOOL)connectServer:(NSString *)ip port:(long)port;
 @property (nonatomic, assign) BOOL isConnect;  /**< 是否连接上服务器 */
 

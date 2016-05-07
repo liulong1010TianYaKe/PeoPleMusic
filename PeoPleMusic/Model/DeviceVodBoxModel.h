@@ -26,4 +26,5 @@
 @property (nonatomic, strong) NSString *wifiName;  //音响当前连接的wifi名称
 @property (nonatomic, strong) NSString *wifiPassword;  //Wifi密码
 
+@property (nonatomic, assign) BOOL isNeedDevice;
 @end
