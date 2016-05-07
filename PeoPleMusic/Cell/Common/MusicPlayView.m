@@ -78,6 +78,8 @@
         NSLog(@"%@",mediaUrl);
         self.aMusic = mediaUrl;
         
+    }else if(self.type == MusiclistViewStyleDeviceOnline){
+         self.aMusic = model.mediaUrl;
     }
     
     KyoLog(@"%@",self.aMusic);

@@ -13,6 +13,8 @@
 
 #import "MusicPlayView.h"
 #import "SongInforModel.h"
+#import "TerminalMusicModel.h"
+
 
 @interface MusicListViewController ()<UITableViewDataSource,UITableViewDelegate,KyoRefreshControlDelegate>
 
@@ -52,7 +54,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([MusicPlayerCell class]) bundle:nil] forCellReuseIdentifier:KMusicPlayerCellIdentifier];
 
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
+//    
     self.kyoRefreshControl = [[KyoRefreshControl alloc] initWithScrollView:self.tableView withDelegate:self withIsCanShowNoMore:NO];
     self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
 }
@@ -60,11 +62,47 @@
 - (void)setupData{
 
     
+    if (self.style == MusiclistViewStyleDeviceLoc){
+        self.kyoRefreshControl.isEnableRefresh = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+             [self requestNetwork:self.requestKey withTotalSize:self.tatolSize];
+        });
+       
+    }
     [self.kyoRefreshControl performSelector:@selector(kyoRefreshOperation) withObject:nil afterDelay:0.2f];
+
 }
 
 #pragma mark --------------------
 #pragma mark - Settings, Gettings
+- (void)networkGetSongList{
+    
+    
+    
+    //     NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?terminalId=%ld",(long)[UserInfo sharedUserInfo].deviceVodBoxModel.code];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalMusicAction!getTerminalMusicList.do?terminalId=%ld",(long)[UserInfo sharedUserInfo].deviceVodBoxModel.Id];
+    
+    
+    [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
+        if (result == 0) {
+            
+            NSArray *tempArr = [TerminalMusicModel objectArrayWithKeyValuesArray:dict[@"info"]];
+            self.songList = [TerminalMusicModel getSongInfos:tempArr];
+            
+            [self.tableView reloadData];
+            [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.songList &&self.songList.count > 0 ? YES : NO withError:nil];
+        }
+        
+    } errorBlock:^(NSError *error) {
+        
+    } finishedBlock:^(NSError *error) {
+        
+        [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.songList &&self.songList.count > 0 ? YES : NO withError:error];
+        
+    }];
+}
+
 /**
  *  请求音响本地音乐
  */
@@ -72,18 +110,22 @@
     
     [[YMTCPClient share] networkSendDeviceForSonglistWithRequestKey:requestKey withTotalSize:totalSize completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
         
-        dispatch_main_async_safeThread(^{
+//          dispatch_main_async_safeThread(^{
             if (result == 0) {
+                
                 NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
                 if (arr) {
                     self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
-            
-                    [self.tableView reloadData];
-                    [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.songList &&self.songList.count > 0 ? YES : NO withError:nil];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tableView reloadData];
+                        //            [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.songList &&self.songList.count > 0 ? YES : NO withError:nil];
+                    });
                 }
             }
-         
-        })
+        
+     
+       
+//        })
        
     }];
 }
@@ -203,8 +245,8 @@
 - (void)kyoRefreshDidTriggerRefresh:(KyoRefreshControl *)refreshControl{
     if (self.style == MusiclistViewStyleNetwork) {
         [self networkGetMusicListData];
-    }else if (self.style == MusiclistViewStyleDeviceLoc){
-        [self requestNetwork:self.requestKey withTotalSize:self.tatolSize];
+    }else if (self.style == MusiclistViewStyleDeviceOnline){
+        [self networkGetSongList];
     }
 }
 - (void)kyoRefreshLoadMore:(KyoRefreshControl *)refreshControl loadPage:(NSInteger)index{

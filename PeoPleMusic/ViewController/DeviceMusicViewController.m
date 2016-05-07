@@ -10,15 +10,19 @@
 #import "LibraryMusicCell.h"
 #import "MusicListViewController.h"
 
-@interface DeviceMusicViewController ()
+@interface DeviceMusicViewController ()<KyoRefreshControlDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *musicList;
+
+@property (nonatomic,strong) KyoRefreshControl *kyoRefreshControl;
+
 @end
 
 @implementation DeviceMusicViewController
 
 #pragma mark -------------------
 #pragma mark - CycLife
+
 + (DeviceMusicViewController *)createDeviceMusicViewController{
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LibraryMusic" bundle:nil];
@@ -32,20 +36,18 @@
 }
 
 - (void)setupView{
+    
     self.title = @"音响本地";
+    
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    self.kyoRefreshControl  = [[KyoRefreshControl alloc] initWithScrollView:self.tableView withDelegate:self withIsCanShowNoMore:NO];
 }
 
 - (void)setupData{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        if (self.type == DeviceMusicViewControllerLoc) {
-            [self requestNetWork];
-        }else{
-            [self networkGetSongList];
-        }
-    });
     
+    
+    [self.kyoRefreshControl performSelector:@selector(kyoRefreshOperation) withObject:nil afterDelay:0.2f];
     
     
 }
@@ -53,39 +55,27 @@
 #pragma mark --------------------
 #pragma mark - Network
 
-- (void)networkGetSongList{
-    
-    
 
-//     NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?terminalId=%ld",(long)[UserInfo sharedUserInfo].deviceVodBoxModel.code];
-    
-      NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalMusicAction!getTerminalMusicList.do?terminalId=%ld",(long)[UserInfo sharedUserInfo].deviceVodBoxModel.Id];
-    [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
-
-    } errorBlock:^(NSError *error) {
-        
-    } finishedBlock:^(NSError *error) {
-        
- 
-        
-    }];
-}
 
 - (void)requestNetWork{
     
     [[YMTCPClient share] networkSendDeviceForSongDir:^(NSInteger result, NSDictionary *dict, NSError *err) {
-//        KyoLog(@"%@",dict);
         
         dispatch_main_async_safeThread(^{
+            
             if (result == 0) {
                 NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
                 if (arr) {
                     
                     self.musicList = [SongInforModel objectArrayWithKeyValuesArray:arr];
-                        [self.tableView reloadData];
+        
+                    [self.tableView reloadData];
                     
+                   
                 }
             }
+            
+            [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore:YES withHadData:self.musicList &&self.musicList.count > 0 ? YES : NO withError:err];
         })
      
     }];
@@ -117,7 +107,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.type == DeviceMusicViewControllerLoc) {
+
         SongInforModel *model = self.musicList[indexPath.row];
         MusicListViewController *musicPlayerVC = [MusicListViewController createMusicListViewController];
         
@@ -126,8 +116,15 @@
         musicPlayerVC.requestKey = model.mediaUrl;
         musicPlayerVC.tatolSize = model.childCount;
         [self.navigationController pushViewController:musicPlayerVC animated:YES];
-    }
-  
+    
+}
+
+#pragma mark ------------------
+#pragma mark - KyoRefreshControlDelegate
+- (void)kyoRefreshDidTriggerRefresh:(KyoRefreshControl *)refreshControl{
+    [self requestNetWork];
+}
+- (void)kyoRefreshLoadMore:(KyoRefreshControl *)refreshControl loadPage:(NSInteger)index{
     
 }
 @end

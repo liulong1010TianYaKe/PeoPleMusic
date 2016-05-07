@@ -81,7 +81,7 @@
     self.navigationController.navigationBar.hidden = YES;
     
     if ([YMTCPClient share].isConnect) {
-        self.linkServerBtn.hidden = YES;
+//        self.linkServerBtn.hidden = YES;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self requestCurrentSong];
             
@@ -94,7 +94,7 @@
         self.btnStartPlay.hidden = YES;
         self.lblNoStartPlay.hidden = YES;
         self.lblTitle.text = @"设备未连接";
-        self.linkServerBtn.hidden = NO;
+//        self.linkServerBtn.hidden = NO;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if([KyoUtil rootViewController].currentNetworkState != AFNetworkReachabilityStatusReachableViaWiFi){
                 
@@ -102,7 +102,7 @@
                 
             }}
                        
-                       );
+            );
     }
   
 
@@ -168,6 +168,7 @@
     self.linkServerBtn.layer.cornerRadius = 5;
     self.linkServerBtn.layer.borderWidth = 1;
     self.linkServerBtn.layer.borderColor = kNavBarBGColor.CGColor;
+
     [self.linkServerBtn setTitle:@"点击添加设备" forState:UIControlStateNormal];
     [self.linkServerBtn setTitleColor:YYColor(224, 103, 17) forState:UIControlStateNormal];
     [self.linkServerBtn setBackgroundImage:[UIImage imageNamed:@"button_0_0_0_2"] forState:UIControlStateHighlighted];

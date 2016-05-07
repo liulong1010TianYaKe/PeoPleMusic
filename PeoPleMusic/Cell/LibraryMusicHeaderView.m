@@ -12,6 +12,7 @@
 #import "DeviceMusicViewController.h"
 #import "SeachSongViewController.h"
 #import "AddDeviceViewController.h"
+#import "MusicListViewController.h"
 
 
 @interface LibraryMusicHeaderView ()<UISearchBarDelegate,UIAlertViewDelegate>
@@ -34,10 +35,10 @@
  //音响在线音乐
 - (IBAction)btnLoadTouchInside:(id)sender {
     if ([YMTCPClient share].isConnect) {
-        DeviceMusicViewController *controller = [DeviceMusicViewController createDeviceMusicViewController];
-        controller.title = @"音响在线";
-        controller.type = DeviceMusicViewControllerOnline;
-        [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
+        MusicListViewController *musicPlayerVC = [MusicListViewController createMusicListViewController];
+        musicPlayerVC.style = MusiclistViewStyleDeviceOnline;
+        musicPlayerVC.title = @"音响在线";
+        [[KyoUtil getCurrentNavigationViewController]  pushViewController:musicPlayerVC animated:YES];;
     }else{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未连接音响设备，确定添加吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
@@ -50,7 +51,6 @@
     if ([YMTCPClient share].isConnect) {
          DeviceMusicViewController *controller = [DeviceMusicViewController createDeviceMusicViewController];
          controller.title = @"音响本地";
-         controller.type = DeviceMusicViewControllerLoc;
         [[KyoUtil getCurrentNavigationViewController] pushViewController:controller animated:YES];
     }else{
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"未连接音响设备，确定添加吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];

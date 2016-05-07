@@ -231,7 +231,7 @@
         cell.indexPath = indexPath;
         SongInforModel *model = self.songlist[indexPath.row];
         cell.lblM_Name.text = model.mediaName;
-        cell.lblS_Name.text = model.albumName ? model.albumName : model.artist;
+        cell.lblS_Name.text = model.artist ?  model.artist : model.albumName ;
         return cell;
     }
     

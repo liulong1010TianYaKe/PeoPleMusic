@@ -217,6 +217,7 @@ UIViewAutoresizingFlexibleBottomMargin
 typedef NS_ENUM(NSInteger, MusiclistViewStyle) {
     MusiclistViewStyleDeviceLoc,          // 音响本地
     MusiclistViewStyleNetwork,         // 网络音乐
+    MusiclistViewStyleDeviceOnline,   // 音响在线音乐
 };
 
 //0 点播  1是更新 2强制更新重复点播
