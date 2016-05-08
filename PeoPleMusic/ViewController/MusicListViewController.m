@@ -110,22 +110,23 @@
     
     [[YMTCPClient share] networkSendDeviceForSonglistWithRequestKey:requestKey withTotalSize:totalSize completionBlock:^(NSInteger result, NSDictionary *dict, NSError *err) {
         
-//          dispatch_main_async_safeThread(^{
+          dispatch_main_async_safeThread(^{
             if (result == 0) {
                 
                 NSArray *arr = [KyoUtil changeJsonStringToArray:dict[@"musicList"]];
                 if (arr) {
                     self.songList = [SongInforModel objectArrayWithKeyValuesArray:arr];
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                    
+//                    dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tableView reloadData];
                         //            [self.kyoRefreshControl kyoRefreshDoneRefreshOrLoadMore: YES withHadData:self.songList &&self.songList.count > 0 ? YES : NO withError:nil];
-                    });
+//                    });
                 }
             }
         
      
        
-//        })
+        })
        
     }];
 }

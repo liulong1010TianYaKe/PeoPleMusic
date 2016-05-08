@@ -92,19 +92,19 @@
             [self requestGetSonglist];
         });
     }else{
-        self.lblTitle.text = @"设备未连接";
-        self.btnStartPlay.hidden = YES;
-        self.lblNoStartPlay.hidden = YES;
-        self.lblTitle.text = @"设备未连接";
-//        self.linkServerBtn.hidden = NO;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            if([KyoUtil rootViewController].currentNetworkState != AFNetworkReachabilityStatusReachableViaWiFi){
-                
-                [self showMessageHUD:@"亲，你还未连接店内WIFI哦～" withTimeInterval:kShowMessageTime];
-                
-            }}
-                       
-            );
+//        self.lblTitle.text = @"设备未连接";
+//        self.btnStartPlay.hidden = YES;
+//        self.lblNoStartPlay.hidden = YES;
+//        self.lblTitle.text = @"设备未连接";
+////        self.linkServerBtn.hidden = NO;
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            if([KyoUtil rootViewController].currentNetworkState != AFNetworkReachabilityStatusReachableViaWiFi){
+//                
+//                [self showMessageHUD:@"亲，你还未连接店内WIFI哦～" withTimeInterval:kShowMessageTime];
+//                
+//            }}
+//                       
+//            );
     }
   
   
@@ -112,6 +112,7 @@
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self resetfreshSubViews];
     });
@@ -478,7 +479,7 @@
 //连接上音响
 - (void)receiveDidConnect:(NSNotification *)noti{
      self.linkServerBtn.hidden = YES;
-    [self resetfreshSubViews];
+//    [self resetfreshSubViews];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self requestCurrentSong];
@@ -495,7 +496,11 @@
     self.currentSongInfo = nil;
     [self.tableView reloadData];
 
-    [self resetfreshSubViews];
+//    [self resetfreshSubViews];
+    self.btnStartPlay.hidden = YES;
+    self.lblNoStartPlay.hidden = YES;
+    self.lblTitle.text = @"设备未连接";
+    self.linkServerBtn.hidden = NO;
     [KyoUtil showMessageHUD:@"音响断开了连接" withTimeInterval:kShowMessageTime inView:self.view];
 }
 
@@ -505,7 +510,8 @@
     
     self.lblTitle.text = deviceInfo.name;
     
-    [self resetfreshSubViews];
+//    [self resetfreshSubViews];
+    self.linkServerBtn.hidden = YES;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

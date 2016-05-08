@@ -43,8 +43,8 @@
     self.textView.placeholder = @"说点什么呢～";
     
     [self reSetBackButtonMethod:@selector(btnBackTouchIn:)];
-    NSInteger durMin = (NSInteger)self.duration / 60;//总秒
-    NSInteger durSec = (NSInteger)self.duration % 60;//总分钟
+    NSInteger durSec = (NSInteger)self.duration / 60;//总秒
+    NSInteger durMin = (NSInteger)self.duration % 60;//总分钟
     
     self.lblSongDuration.text = [NSString stringWithFormat:@"当前歌曲时长:%ld分%ld秒",(long)durSec,(long)durMin];
 }
@@ -68,8 +68,8 @@
         [alertView show];
         return;
     }
-    NSInteger durSec = (NSInteger)self.duration % 60;//总分钟
-    if (durSec > 9) {
+    NSInteger durMin = (NSInteger)self.duration / 60;//总分钟
+    if (durMin > 9) {
         [self showMessageHUD:@"亲，当前歌曲不符合要求!" withTimeInterval:kShowMessageTime];
         return;
     }
