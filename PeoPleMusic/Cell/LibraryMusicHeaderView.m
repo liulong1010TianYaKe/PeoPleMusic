@@ -11,7 +11,7 @@
 #import "YMBonjourHelp.h"
 #import "DeviceMusicViewController.h"
 #import "SeachSongViewController.h"
-#import "AddDeviceViewController.h"
+#import "SearchDeviceViewController.h"
 #import "MusicListViewController.h"
 
 
@@ -68,8 +68,8 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-        AddDeviceViewController *addVC = [AddDeviceViewController createAddDeviceViewController];
-        [[KyoUtil getCurrentNavigationViewController] pushViewController:addVC animated:YES];
+        SearchDeviceViewController *searchVC = [SearchDeviceViewController createSearchDeviceViewController];
+        [[KyoUtil getCurrentNavigationViewController] pushViewController:searchVC animated:YES];
     }
 }
 

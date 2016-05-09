@@ -2266,7 +2266,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhuni.PeoPleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d63a4b44-c093-4541-b762-dc9ff973c55e";
+				PROVISIONING_PROFILE = "57cda10e-1f5e-48d7-aac6-d311f45131c7";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2291,7 +2291,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = zhuni.PeoPleMusic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d63a4b44-c093-4541-b762-dc9ff973c55e";
+				PROVISIONING_PROFILE = "57cda10e-1f5e-48d7-aac6-d311f45131c7";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

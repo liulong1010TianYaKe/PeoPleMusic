@@ -231,8 +231,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "171"
             endingLineNumber = "171"
-            landmarkName = "-networkGetDeviceList:longitude:"
-            landmarkType = "5">
+            landmarkName = "@implementation SearchDeviceViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

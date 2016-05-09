@@ -8,7 +8,7 @@
 
 #import "SongDemandViewController.h"
 #import "NSString+Easy.h"
-#import "AddDeviceViewController.h"
+#import "SearchDeviceViewController.h"
 
 @interface SongDemandViewController ()<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *lblSongName;
@@ -160,8 +160,8 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 1000) {
         if (buttonIndex == 1) {
-            AddDeviceViewController *addVC = [AddDeviceViewController createAddDeviceViewController];
-            [[KyoUtil getCurrentNavigationViewController] pushViewController:addVC animated:YES];
+            SearchDeviceViewController *searchVC = [SearchDeviceViewController createSearchDeviceViewController];
+            [[KyoUtil getCurrentNavigationViewController] pushViewController:searchVC animated:YES];
         }
     }
  

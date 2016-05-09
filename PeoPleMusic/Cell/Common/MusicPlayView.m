@@ -10,7 +10,7 @@
 #import "UIView+CTDialog.h"
 #import "STKAudioPlayer.h"
 #import "SongDemandViewController.h"
-#import "AddDeviceViewController.h"
+#import "SearchDeviceViewController.h"
 
 @interface MusicPlayView ()<STKAudioPlayerDelegate,UIAlertViewDelegate>
 @property (nonatomic, strong) STKAudioPlayer *player;
@@ -252,8 +252,8 @@
     if (alertView.tag == 1000) {
         if (buttonIndex == 1) {
            
-            AddDeviceViewController *addVC = [AddDeviceViewController createAddDeviceViewController];
-            [[KyoUtil getCurrentNavigationViewController] pushViewController:addVC animated:YES];
+            SearchDeviceViewController *searchVC = [SearchDeviceViewController createSearchDeviceViewController];
+            [[KyoUtil getCurrentNavigationViewController] pushViewController:searchVC animated:YES];
             [self btnCloseTouchInside:nil];
         }
     }

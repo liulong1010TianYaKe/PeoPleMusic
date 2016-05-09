@@ -7,7 +7,7 @@
 //
 
 #import "UserCenterViewController.h"
-#import "AddDeviceViewController.h"
+#import "SearchDeviceViewController.h"
 
 
 @interface UserCenterSectionHeaderView : UIView
@@ -175,6 +175,7 @@
     UserCenterSectionHeaderView *headerView = [[UserCenterSectionHeaderView alloc] init];
     if (section == 0) {
         headerView.title = @"用户信息";
+       
     }else if(section == 1){
         headerView.title = @"管理员";
     }else if (section == 2){
@@ -186,7 +187,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 2 && indexPath.row == 0) { // 给我打分
+    if (indexPath.section == 0 && indexPath.row == 2) {
+        SearchDeviceViewController *searchVC = [SearchDeviceViewController createSearchDeviceViewController];
+        [self.navigationController pushViewController:searchVC animated:YES];
+    }else if (indexPath.section == 2 && indexPath.row == 0) { // 给我打分
          [self openAppWithIndentifier:@"1106535797"];
     }
     
@@ -218,8 +222,8 @@
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
-        AddDeviceViewController *addVC = [AddDeviceViewController createAddDeviceViewController];
-        [self.navigationController pushViewController:addVC animated:YES];
+        SearchDeviceViewController *searchVC = [SearchDeviceViewController createSearchDeviceViewController];
+        [[KyoUtil getCurrentNavigationViewController] pushViewController:searchVC animated:YES];
     }
 }
 #pragma mark --------------------
