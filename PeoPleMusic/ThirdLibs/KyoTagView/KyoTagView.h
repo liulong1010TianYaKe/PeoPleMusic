@@ -3,7 +3,7 @@
 //  XFLH
 //
 //  Created by Kyo on 7/23/15.
-//  Copyright (c) 2015 Kyo. All rights reserved.
+//  Copyright (c) 2015 zhuniT All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

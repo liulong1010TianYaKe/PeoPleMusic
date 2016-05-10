@@ -3,7 +3,7 @@
 //  PeoPleMusic
 //
 //  Created by long on 5/4/16.
-//  Copyright © 2016 kyo. All rights reserved.
+//  Copyright © 2016 zhuniT All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -26,5 +26,9 @@
 @property (nonatomic, strong) NSString *wifiName;  //音响当前连接的wifi名称
 @property (nonatomic, strong) NSString *wifiPassword;  //Wifi密码
 
-@property (nonatomic, assign) BOOL isNeedDevice;
+@property (nonatomic, assign) BOOL isNeedDevice; /**< 是否在同一wifi下  */
+
+@property (nonatomic, assign) BOOL isConnectIP; // 是否是连接的IP
+
+
 @end

@@ -3,7 +3,7 @@
 //  PeoPleMusic
 //
 //  Created by long on 5/4/16.
-//  Copyright © 2016 kyo. All rights reserved.
+//  Copyright © 2016 zhuniT All rights reserved.
 //
 
 #import "SearchDeviceViewController.h"
@@ -19,8 +19,6 @@
 
 @property (nonatomic, strong) NSArray *deviceVodBoxArray;
 
-@property (nonatomic, strong) NSString *ssid;
-@property (nonatomic, strong) NSString *macIp;
 
 @property (nonatomic, strong)  UIView *footView ;
 
@@ -41,19 +39,7 @@
     
 //    NSString *ssid = @"Not Found";
 //    NSString *macIp = @"Not Found";
-    CFArrayRef myArray = CNCopySupportedInterfaces();
-    if (myArray != nil) {
-        CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
-        if (myDict != nil) {
-            NSDictionary *dict = (NSDictionary*)CFBridgingRelease(myDict);
-            
-            self.ssid = [dict valueForKey:@"SSID"];
-            self.macIp = [dict valueForKey:@"BSSID"];
-           
-            self.macIp = [self.macIp stringByReplacingOccurrencesOfString:@":" withString:@""];
 
-        }
-    }
     
     self.footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWindowWidth, 170)];
     
@@ -88,21 +74,21 @@
         }
     }
     
-    if (!ip) {
-        NSString *str = [NSString stringWithFormat:@"您的手机连接的WIFI是%@,请更换店内wifi再连接!",self.ssid];
-        [[[UIAlertView alloc] initWithTitle:@"当前连接WifI"
-                                    message:str
-                                   delegate:nil
-                          cancelButtonTitle:nil
-                          otherButtonTitles:@"知道了", nil] show];
-    }else{
-      
-            if ([[YMTCPClient share] connectServer:ip port:SOCKET_PORT2]) {
-//                [self getDeviceInfo];
-                [self showMessageHUD:@"连接音响成功" withTimeInterval:2.0];
-            }
-
-    }
+//    if (!ip) {
+//        NSString *str = [NSString stringWithFormat:@"您的手机连接的WIFI是%@,请更换店内wifi再连接!",self.ssid];
+//        [[[UIAlertView alloc] initWithTitle:@"当前连接WifI"
+//                                    message:str
+//                                   delegate:nil
+//                          cancelButtonTitle:nil
+//                          otherButtonTitles:@"知道了", nil] show];
+//    }else{
+//      
+//            if ([[YMTCPClient share] connectServer:ip port:SOCKET_PORT2]) {
+////                [self getDeviceInfo];
+//                [self showMessageHUD:@"连接音响成功" withTimeInterval:2.0];
+//            }
+//
+//    }
 
 }
 
@@ -141,8 +127,8 @@
     
     [[YMLocationManager shareManager] startLocotion:^(CGFloat latitude, CGFloat longitude, NSError *error) {
         if (!error) {
-//            latitude = 114.01666;
-//            longitude = 22.538146;
+            latitude = 114.01666;
+            longitude = 22.538146;
             
 //            latitude = 151.50998;
 //            longitude = -0.1337;
@@ -175,9 +161,6 @@
     
     NSString *urlString = [NSString stringWithFormat:@"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do?longitude=%f&latitude=%f",latitude,longitude];
     
-    
-//    NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalMusicAction!getTerminalMusicList.do?terminalId=83";
-//     NSString *urlString = @"http://115.28.191.217:8080/vodbox/mobinf/terminalAction!getNearbyTerminal.do";
     [NetworkSessionHelp postNetwork:urlString completionBlock:^(NSDictionary *dict, NSInteger result) {
         
        self.deviceVodBoxArray = [DeviceVodBoxModel objectArrayWithKeyValuesArray:dict[@"info"]];
@@ -203,7 +186,7 @@
             
             ;
             
-            [self showMessageHUD:[NSString stringWithFormat:@"亲，未在WIFI:%@搜到店内有音响开启!",self.ssid] withTimeInterval:3.0f];
+//            [self showMessageHUD:[NSString stringWithFormat:@"亲，未在WIFI:%@搜到店内有音响开启!",self.ssid] withTimeInterval:3.0f];
         }
         [self.tableView reloadData];
 
@@ -225,19 +208,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SearchDeviceCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"SearchDeviceCell"];
     cell.indexPath = indexPath;
-  
-    DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
-    cell.lblName.text = model.name;
-    cell.lblAddress.text = model.address;
-    cell.imgSelect.hidden = !model.isNeedDevice;
-
+    cell.model = self.deviceVodBoxArray[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if ([YMTCPClient share].isConnect) {
+       DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
+    if (model.isConnectIP) {
         [self showMessageHUD:@"亲，您已经连接了店内音响了!" withTimeInterval:kShowMessageTime];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
@@ -245,25 +223,26 @@
     }else{
         
         
-        DeviceVodBoxModel *model = self.deviceVodBoxArray[indexPath.row];
-        KyoLog(@"%@",model.ip);
-        
-        if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT2]) {
-             [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                
-                [self.navigationController popViewControllerAnimated:YES];
-            });
+        if (!model.isNeedDevice) {
+             [self showMessageHUD:@"亲,这台设备和音响不在同一WifI下，请切换wifi或者连接其他的设备" withTimeInterval:kShowMessageTime];
+            return;
         }else{
-            if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT1]) {
+            if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT2]) {
                 [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
                     [self.navigationController popViewControllerAnimated:YES];
                 });
             }else{
-                [self showMessageHUD:@"连接设备失败，请连接其他设备!" withTimeInterval:kShowMessageTime];
-            }
-        };
+                if ([[YMTCPClient share] connectServer:model.ip port:SOCKET_PORT1]) {
+                    [self showMessageHUD:@"连接设备成功!" withTimeInterval:kShowMessageTime];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                    });
+                }
+            };
+        }
+    
     }
     
 }

@@ -3,7 +3,7 @@
 //  test-32-AutoScrollLabel
 //
 //  Created by Kyo on 13-8-19.
-//  Copyright (c) 2013年 Kyo. All rights reserved.
+//  Copyright (c) 2013年 zhuniT All rights reserved.
 //
 
 #import "AutoScrollView.h"

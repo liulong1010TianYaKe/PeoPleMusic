@@ -3,7 +3,7 @@
 //  PeoPleMusic
 //
 //  Created by apple on 15/12/17.
-//  Copyright © 2015年 kyo. All rights reserved.
+//  Copyright © 2015年 zhuniT All rights reserved.
 //
 
 #import "LibraryMusicHeaderView.h"

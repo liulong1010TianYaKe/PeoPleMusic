@@ -3,7 +3,7 @@
 //  KidBookPhone
 //
 //  Created by Kyo on 7/2/14.
-//  Copyright (c) 2014 Kyo. All rights reserved.
+//  Copyright (c) 2014 zhuniT All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

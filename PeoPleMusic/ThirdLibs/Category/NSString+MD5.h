@@ -3,7 +3,7 @@
 //  YWCat
 //
 //  Created by Kyo on 3/23/15.
-//  Copyright (c) 2015 Kyo. All rights reserved.
+//  Copyright (c) 2015 zhuniT All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
